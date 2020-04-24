@@ -1,5 +1,6 @@
 {
     "require": {
-        "composer/composer": "^1.10"
+        "composer/composer": "^1.10",
+        "phpstan/phpstan": "^0.12.19"
     }
 }
