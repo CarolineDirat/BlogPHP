@@ -9,3 +9,4 @@ parameters:
         - php74
         - code-quality
         - solid
+        - psr-4
