@@ -4,4 +4,4 @@ parameters :
         - src
         - lib
         - public
-        - tests
+        
