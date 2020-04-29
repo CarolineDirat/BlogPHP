@@ -1,0 +1,11 @@
+parameters:
+    php_version_feature: '7.4'
+    paths:
+        - 'src'
+        - 'public'
+        - 'lib'
+    sets:
+        - php74
+        - code-quality
+        - solid
+        - psr-4
