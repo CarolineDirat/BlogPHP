@@ -4,13 +4,11 @@ require_once '../vendor/autoload.php';
 use App\Controller\HomeController;
 use App\Application\HTTPRequest;
 
-$title = "";
 
 try {
     $httpRequest = new HTTPRequest();
     switch ($httpRequest->requestURI()) {
         case "/":
-            $title = "Page d'accueil";
             $action = "show";
             $view = "home";
             $controller = new HomeController($action, $view, $httpRequest);
