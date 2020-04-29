@@ -2,15 +2,15 @@
 namespace App\Application;
 
 abstract class AbstractController // extends ApplicationComponent
-{    
+{
     /**
      * @var string
      */
-    protected $action = '';    
+    protected $action = '';
     /**
      * @var string
      */
-    protected $module = '';    
+    protected $module = '';
     /**
      * httpRequest
      *
@@ -37,9 +37,8 @@ abstract class AbstractController // extends ApplicationComponent
     {
         $method = 'execute'.ucfirst($this->action);
 
-        if (!is_callable([$this, $method]))
-        {
-        throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur ce module');
+        if (!is_callable([$this, $method])) {
+            throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur ce module');
         }
 
         $this->$method($this->httpRequest);
@@ -47,9 +46,8 @@ abstract class AbstractController // extends ApplicationComponent
 
     public function setModule(string $module) : void
     {
-        if (!is_string($module) || empty($module))
-        {
-        throw new \InvalidArgumentException('Le module doit être une chaine de caractères valide');
+        if (!is_string($module) || empty($module)) {
+            throw new \InvalidArgumentException('Le module doit être une chaine de caractères valide');
         }
 
         $this->module = $module;
@@ -57,9 +55,8 @@ abstract class AbstractController // extends ApplicationComponent
 
     public function setAction(string $action) : void
     {
-        if (!is_string($action) || empty($action))
-        {
-        throw new \InvalidArgumentException('L\'action doit être une chaine de caractères valide');
+        if (!is_string($action) || empty($action)) {
+            throw new \InvalidArgumentException('L\'action doit être une chaine de caractères valide');
         }
 
         $this->action = $action;
@@ -71,9 +68,8 @@ abstract class AbstractController // extends ApplicationComponent
     }
 
     public function setHTTPRequest(HTTPRequest $httpRequest) : void
-    { 
-        if(!$httpRequest instanceof HTTPRequest)
-        {
+    {
+        if (!$httpRequest instanceof HTTPRequest) {
             throw new \InvalidArgumentException('La requête du client doit être une instance de \App\Application\HTTPRequest');
         }
         $this->httpRequest = $httpRequest;

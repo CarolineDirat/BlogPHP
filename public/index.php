@@ -6,14 +6,14 @@ use App\Application\HTTPRequest;
 
 $title = "";
 
-try{
-    $httpRequest = new HTTPRequest();   
+try {
+    $httpRequest = new HTTPRequest();
     switch ($httpRequest->requestURI()) {
         case "/":
             $title = "Page d'accueil";
             $action = "show";
             $module = "home";
-            $controller = new HomeController($action,$module,$httpRequest);
+            $controller = new HomeController($action, $module, $httpRequest);
             $controller->execute();
 
         break;
@@ -22,10 +22,9 @@ try{
             $title = "Page d'accueil";
             $action = "show";
             $module = "home";
-            $controller = new HomeController($action,$module,$httpRequest);
+            $controller = new HomeController($action, $module, $httpRequest);
             $controller->execute();
     }
-
-} catch(Exception $e){
+} catch (Exception $e) {
     echo $e->getMessage();
 }
