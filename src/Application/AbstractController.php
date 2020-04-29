@@ -2,22 +2,38 @@
 namespace App\Application;
 
 abstract class AbstractController // extends ApplicationComponent
-{
-    protected $action = '';
-    protected $module = '';
+{    
+    /**
+     * @var string
+     */
+    protected $action = '';    
+    /**
+     * @var string
+     */
+    protected $module = '';    
+    /**
+     * httpRequest
+     *
+     * @var HTTPRequest
+     */
     protected $httpRequest;
-    protected $twig;
+    
     //protected $page = null;
     //protected $view = '';
 
-    public function __construct($action, $module, HTTPRequest $httpRequest)
+    public function __construct(string $action, string $module, HTTPRequest $httpRequest)
     {
         $this->setAction($action);
         $this->setModule($module);
-        $this->httpRequest = $httpRequest;
+        $this->setHTTPRequest($httpRequest);
     }
-        
-    public function execute()
+                
+    /**
+     * to execute a method corresponding to the action of the request
+     *
+     * @return void
+     */
+    public function execute() : void
     {
         $method = 'execute'.ucfirst($this->action);
 
@@ -29,7 +45,7 @@ abstract class AbstractController // extends ApplicationComponent
         $this->$method($this->httpRequest);
     }
 
-    public function setModule($module)
+    public function setModule(string $module) : void
     {
         if (!is_string($module) || empty($module))
         {
@@ -39,7 +55,7 @@ abstract class AbstractController // extends ApplicationComponent
         $this->module = $module;
     }
 
-    public function setAction($action)
+    public function setAction(string $action) : void
     {
         if (!is_string($action) || empty($action))
         {
@@ -49,12 +65,12 @@ abstract class AbstractController // extends ApplicationComponent
         $this->action = $action;
     }
 
-    public function getHTTPRequest()
+    public function getHTTPRequest() : HTTPRequest
     {
         return $this->httpRequest;
     }
 
-    public function setHTTPReques($httpRequest)
+    public function setHTTPRequest(HTTPRequest $httpRequest) : void
     { 
         if(!$httpRequest instanceof HTTPRequest)
         {

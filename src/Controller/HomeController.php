@@ -7,8 +7,14 @@ use App\Application\TwigRenderer;
 
 class HomeController extends AbstractController
 {    
-    
-    public function executeShow(){
+        
+    /**
+     * controller to show the Home Page
+     *
+     * @return void
+     */
+    public function executeShow()
+    {
         $twigRenderer = new TwigRenderer('/');
         echo $twigRenderer->render('index');
     }

@@ -3,9 +3,15 @@ namespace App\Application;
 
 class TwigRenderer 
 {
-
+    
+    /**
+     * @var \Twig\Environment
+     */
     private $twig;
-
+    
+    /**
+     * @var \Twig\Loader\FilesystemLoader
+     */
     private $loader;
 
     public function __construct(string $path)

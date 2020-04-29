@@ -97,7 +97,7 @@ class HTTPRequest // extends ApplicationComponent
   /**
    * get the URI that was provided to access this page. For example: '/index.php'.
    *
-   * @return void
+   * @return string
    */
   public function requestURI()
   {
