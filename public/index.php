@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '../vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 use App\Controller\HomeController;
 use App\Application\HTTPRequest;
@@ -12,8 +12,8 @@ try {
         case "/":
             $title = "Page d'accueil";
             $action = "show";
-            $module = "home";
-            $controller = new HomeController($action, $module, $httpRequest);
+            $view = "home";
+            $controller = new HomeController($action, $view, $httpRequest);
             $controller->execute();
 
         break;
@@ -21,8 +21,8 @@ try {
         default:
             $title = "Page d'accueil";
             $action = "show";
-            $module = "home";
-            $controller = new HomeController($action, $module, $httpRequest);
+            $view = "home";
+            $controller = new HomeController($action, $view, $httpRequest);
             $controller->execute();
     }
 } catch (Exception $e) {

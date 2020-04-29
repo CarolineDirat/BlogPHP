@@ -10,7 +10,7 @@ abstract class AbstractController // extends ApplicationComponent
     /**
      * @var string
      */
-    protected $module = '';
+    protected $view = '';
     /**
      * httpRequest
      *
@@ -18,13 +18,12 @@ abstract class AbstractController // extends ApplicationComponent
      */
     protected $httpRequest;
     
-    //protected $page = null;
-    //protected $view = '';
+    
 
-    public function __construct(string $action, string $module, HTTPRequest $httpRequest)
+    public function __construct(string $action, string $view, HTTPRequest $httpRequest)
     {
         $this->setAction($action);
-        $this->setModule($module);
+        $this->setView($view);
         $this->setHTTPRequest($httpRequest);
     }
                 
@@ -38,19 +37,24 @@ abstract class AbstractController // extends ApplicationComponent
         $method = 'execute'.ucfirst($this->action);
 
         if (!is_callable([$this, $method])) {
-            throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur ce module');
+            throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur ce view');
         }
 
         $this->$method($this->httpRequest);
     }
 
-    public function setModule(string $module) : void
+    public function setView(string $view) : void
     {
-        if (!is_string($module) || empty($module)) {
-            throw new \InvalidArgumentException('Le module doit être une chaine de caractères valide');
+        if (!is_string($view) || empty($view)) {
+            throw new \InvalidArgumentException('Le view doit être une chaine de caractères valide');
         }
 
-        $this->module = $module;
+        $this->view = $view;
+    }
+
+    public function getView() : string
+    {
+        return $this->view;
     }
 
     public function setAction(string $action) : void
@@ -60,6 +64,11 @@ abstract class AbstractController // extends ApplicationComponent
         }
 
         $this->action = $action;
+    }
+
+    public function getAction() : string
+    {
+        return $this->action;
     }
 
     public function getHTTPRequest() : HTTPRequest

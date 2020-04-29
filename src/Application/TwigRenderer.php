@@ -1,7 +1,7 @@
 <?php
 namespace App\Application;
 
-final class TwigRenderer
+class TwigRenderer 
 {
     
     /**
