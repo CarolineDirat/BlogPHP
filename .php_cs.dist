@@ -5,8 +5,8 @@ COMMENT;
 
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
-    ->exclude('vendor')
-    ->exclude('config')
+    ->exclude('vendor/')
+    ->exclude('config/')
     ->exclude('templates/')
 ;
 

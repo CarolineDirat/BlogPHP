@@ -3,7 +3,6 @@ parameters:
     paths:
         - 'src'
         - 'public'
-        - 'lib'
     sets:
         - php74
         - code-quality
