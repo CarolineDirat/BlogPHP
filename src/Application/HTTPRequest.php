@@ -4,7 +4,7 @@ namespace App\Application;
 /**
  * to represent the client's request
  */
-class HTTPRequest // extends ApplicationComponent
+final class HTTPRequest // extends ApplicationComponent
 {  
   /**
    * get a cookie variable if it exists

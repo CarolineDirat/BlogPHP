@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Application\AbstractController;
 use App\Application\TwigRenderer;
 
-class HomeController extends AbstractController
+final class HomeController extends AbstractController
 {    
         
     /**
