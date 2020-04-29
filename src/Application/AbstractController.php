@@ -10,12 +10,11 @@ abstract class AbstractController // extends ApplicationComponent
     //protected $page = null;
     //protected $view = '';
 
-    public function __construct($action, $module, HTTPRequest $httpRequest, \Twig\Environment $twig)
+    public function __construct($action, $module, HTTPRequest $httpRequest)
     {
         $this->setAction($action);
         $this->setModule($module);
         $this->httpRequest = $httpRequest;
-        $this->setTwig($twig);
     }
         
     public function execute()
@@ -48,20 +47,6 @@ abstract class AbstractController // extends ApplicationComponent
         }
 
         $this->action = $action;
-    }
-
-    public function getTwig()
-    {
-        return $this->twig;
-    }
-
-    public function setTwig($twig)
-    { 
-        if(!$twig instanceof \Twig\Environment)
-        {
-            throw new \InvalidArgumentException('Le twig environnement doit être une instance de \Twig\Environment');
-        }
-        $this->twig = $twig;
     }
 
     public function getHTTPRequest()

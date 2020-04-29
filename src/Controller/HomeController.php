@@ -3,12 +3,13 @@
 namespace App\Controller;
 
 use App\Application\AbstractController;
-use App\Application\HTTPRequest;
+use App\Application\TwigRenderer;
 
 class HomeController extends AbstractController
 {    
     
     public function executeShow(){
-        echo $this->getTwig()->render('layout.twig');
+        $twigRenderer = new TwigRenderer('/');
+        echo $twigRenderer->render('index');
     }
 }
