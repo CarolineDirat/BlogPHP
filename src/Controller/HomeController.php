@@ -15,7 +15,7 @@ final class HomeController extends AbstractController
      */
     public function executeShow()
     {
-        $twigRenderer = new TwigRenderer('/');
-        echo $twigRenderer->render('index');
+        $twigRenderer = new TwigRenderer('../templates');
+        echo $twigRenderer->render($this->getView());
     }
 }
