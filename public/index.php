@@ -9,6 +9,17 @@ try {
     $view = "home";
     $httpRequest = new HTTPRequest();
 
+    if ($httpRequest->requestURI() === "/"){
+        $controller = new HomeController($action, $view, $httpRequest);
+        $controller->execute();
+    }
+    
+    
+
+
+
+    
+    /*
     switch ($httpRequest->requestURI()) {
         case "/":
             $controller = new HomeController($action, $view, $httpRequest);
@@ -20,6 +31,7 @@ try {
             $controller = new HomeController($action, $view, $httpRequest);
             $controller->execute();
     }
+    */
 } catch (Exception $e) {
     echo $e->getMessage();
 }

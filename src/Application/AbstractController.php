@@ -10,7 +10,7 @@ abstract class AbstractController // extends ApplicationComponent
     /**
      * @var string
      */
-    protected $view = '';
+    protected $page = '';
     /**
      * httpRequest
      *
@@ -20,10 +20,10 @@ abstract class AbstractController // extends ApplicationComponent
     
     
 
-    public function __construct(string $action, string $view, HTTPRequest $httpRequest)
+    public function __construct(string $action, string $page, HTTPRequest $httpRequest)
     {
         $this->setAction($action);
-        $this->setView($view);
+        $this->setPage($page);
         $this->setHTTPRequest($httpRequest);
     }
                 
@@ -34,27 +34,27 @@ abstract class AbstractController // extends ApplicationComponent
      */
     public function execute() : void
     {
-        $method = 'execute'.ucfirst($this->action).ucfirst($this->view);
+        $method = 'execute'.ucfirst($this->action).ucfirst($this->page);
 
         if (!is_callable([$this, $method])) {
-            throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur ce view');
+            throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur cette page');
         }
 
         $this->$method($this->httpRequest);
     }
 
-    public function setView(string $view) : void
+    public function setPage(string $page) : void
     {
-        if (!is_string($view) || empty($view)) {
-            throw new \InvalidArgumentException('Le view doit être une chaine de caractères valide');
+        if (!is_string($page) || empty($page)) {
+            throw new \InvalidArgumentException('Le page doit être une chaine de caractères valide');
         }
 
-        $this->view = $view;
+        $this->page = $page;
     }
 
-    public function getView() : string
+    public function getPage() : string
     {
-        return $this->view;
+        return $this->page;
     }
 
     public function setAction(string $action) : void
