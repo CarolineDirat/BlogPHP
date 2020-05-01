@@ -33,7 +33,7 @@ final class PostController extends AbstractController
 
         // return the post page with the post object
         $twigRenderer = new TwigRenderer('../templates');
-        echo $twigRenderer->render($this->getPage(), ['post'=> $post, 'author' => $author]);
+        echo $twigRenderer->render($this->getPage(), ['post'=> $post, 'pseudo' => $pseudo]);
         } else {
             throw new \Exception('La requête est incomplete (slug ou id)');
         }
