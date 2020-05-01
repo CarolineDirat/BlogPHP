@@ -3,3 +3,5 @@ dataset.sql
 /vendor/
 
 .php_cs.cache
+
+/src/Application/PDOFactory.php
