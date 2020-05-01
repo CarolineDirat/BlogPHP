@@ -5,11 +5,12 @@ use App\Controller\HomeController;
 use App\Application\HTTPRequest;
 
 try {
+    $action = "show";
+    $view = "home";
     $httpRequest = new HTTPRequest();
+
     switch ($httpRequest->requestURI()) {
         case "/":
-            $action = "show";
-            $view = "home";
             $controller = new HomeController($action, $view, $httpRequest);
             $controller->execute();
 
@@ -17,8 +18,6 @@ try {
 
         default:
             $title = "Page d'accueil";
-            $action = "show";
-            $view = "home";
             $controller = new HomeController($action, $view, $httpRequest);
             $controller->execute();
     }

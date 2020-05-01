@@ -34,7 +34,7 @@ abstract class AbstractController // extends ApplicationComponent
      */
     public function execute() : void
     {
-        $method = 'execute'.ucfirst($this->action);
+        $method = 'execute'.ucfirst($this->action).ucfirst($this->view);
 
         if (!is_callable([$this, $method])) {
             throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur ce view');
