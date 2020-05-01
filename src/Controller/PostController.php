@@ -4,7 +4,8 @@ namespace App\Controller;
 
 use App\Application\AbstractController;
 use App\Application\TwigRenderer;
-use App\Application\PostManager;
+use App\Model\PostManagerPDO;
+use App\Model\UserManagerPDO;
 
 final class PostController extends AbstractController
 {
@@ -16,15 +17,18 @@ final class PostController extends AbstractController
      */
     public function executeShowPost()
     {
-        // get the post from the id
+        
         $httpRequest = $this->getHTTPRequest();
         
         if ($httpRequest->getExists('id') && $httpRequest->getExists('slug')){
             
-            $post = getPost((int)$httpRequest->getData('id'));
+            // get the post from the id
+            $postManager = new PostManagerPDO();
+            $post = $postManager->getPost((int)$httpRequest->getData('id'));
 
-        // get the author from idUser of $post
-        
+            // get the author from idUser of $post
+            $userManager = new UserManagerPDO();
+            $pseudo = $userManager->getPseudo((int)$post->getIdUser());
         
 
         // return the post page with the post object
