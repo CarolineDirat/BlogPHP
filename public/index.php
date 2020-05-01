@@ -13,11 +13,10 @@ try {
         case "/":
             $controller = new HomeController($action, $view, $httpRequest);
             $controller->execute();
-
-        break;
+            break;
+        
 
         default:
-            $title = "Page d'accueil";
             $controller = new HomeController($action, $view, $httpRequest);
             $controller->execute();
     }
