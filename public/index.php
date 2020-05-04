@@ -26,12 +26,12 @@ try {
     } else {
         throw new \Exception('Auccune page ne correspond à celle demandée');
     }
-    
-    
 
 
 
-    
+
+
+
     /*
     switch ($httpRequest->requestURI()) {
         case "/":
