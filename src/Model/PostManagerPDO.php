@@ -16,7 +16,7 @@ class PostManagerPDO extends PostManager
         $sql = 'SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post WHERE id = :id';
         $req = $this->dao->prepare($sql);
         $req->bindValue(':id', (int) $id, \PDO::PARAM_INT);
-        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'App\Entity\Post');
+        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'App\Entity\Post', []);
         
         $req->execute();
                 
