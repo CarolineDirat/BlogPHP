@@ -1,4 +1,5 @@
-
+RewriteEngine on
+RewriteRule post/([a-z0-9-]+)-([0-9]+) index.php?page=post&slug=$1&id=$2
 
 
 

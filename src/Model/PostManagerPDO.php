@@ -4,8 +4,14 @@ namespace App\Model;
 use \App\Entity\Post;
 
 class PostManagerPDO extends PostManager
-{
-    public function getPost(int $id) : App\Entity\Post
+{    
+    /**
+     * getPost
+     *
+     * @param  int $id
+     * @return App\Entity\Post
+     */
+    public function getPost(int $id)
     {
         $sql = 'SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post WHERE id = :id';
         $req = $this->dao->prepare($sql);
@@ -16,8 +22,8 @@ class PostManagerPDO extends PostManager
         
         if ($post = $req->fetch())
         {
-            $post->setDateCreation(new \DateTime($post->getDateAjout()));
-            $post->setDateUpdate(new \DateTime($post->getDateModif()));
+            $post->setDateCreation(new \DateTime($post->getDateCreation()));
+            $post->setDateUpdate(new \DateTime($post->getDateUpdate()));
             
             return $post;
         } else {

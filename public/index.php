@@ -16,7 +16,7 @@ try {
     }
 
     if($httpRequest->getExists('page')){
-        switch ($httpRequest->getData('page')){
+            switch ($httpRequest->getData('page')){
             case 'post':
             $page = 'post';
                 $controller = new PostController($action, $page, $httpRequest);

@@ -6,13 +6,34 @@ use App\Application\Entity;
 
 class Post extends Entity
 {
-    private $tile,
-            $slug,
-            $content,
-            $abstract,
-            $dateCreation,
-            $dateUpdate,
-            $idUser;  
+    /**
+     * @var string
+     */
+    private $tile;
+    /**
+     * @var string
+     */
+    private $slug;
+    /**
+     * @var string
+     */
+    private $content;    
+    /**
+     * @var string
+     */
+    private $abstract;    
+    /**
+     * @var \Datetime
+     */
+    private $dateCreation;
+    /**
+     * @var \Datetime
+     */
+    private $dateUpdate;    
+    /**
+     * @var int
+     */
+    private $idUser;  
  
     /**
     * Méthode permettant de savoir si le post est valide.
@@ -26,7 +47,7 @@ class Post extends Entity
                 || empty($this->abstract)
                 || empty($this->dateCreation)
                 || empty($this->idUser)
-           ));
+           );
     }
   
     // SETTERS //
@@ -88,13 +109,19 @@ class Post extends Entity
     {
         return $this->abstract;
     }
-    
-    public function getDateCreation() : \DateTime
+        
+    /**
+     * @return DateTime
+     */
+    public function getDateCreation()
     {
         return $this->dateCreation;
     }
-    
-    public function getDateUpdate() : \DateTime
+        
+    /**
+     * @return DateTime
+     */
+    public function getDateUpdate()
     {
         return $this->dateUpdate;
     }

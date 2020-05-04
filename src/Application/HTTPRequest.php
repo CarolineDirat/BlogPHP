@@ -47,7 +47,7 @@ final class HTTPRequest // extends ApplicationComponent
      */
     public function sessionExists($key)
     {
-        return isset($_COOKIE[$key]);
+        return isset($_SESSION[$key]);
     }
    
     /**
@@ -58,7 +58,7 @@ final class HTTPRequest // extends ApplicationComponent
      */
     public function getData($key)
     {
-        return isset($_GET[$key]) ? string $_GET[$key] : null;
+        return isset($_GET[$key]) ? htmlspecialchars($_GET[$key]) : null;
     }
    
     /**
@@ -80,7 +80,7 @@ final class HTTPRequest // extends ApplicationComponent
      */
     public function postData($key)
     {
-        return isset($_POST[$key]) ? string $_POST[$key] : null;
+        return isset($_POST[$key]) ? htmlspecialchars($_POST[$key]) : null;
     }
    
     /**

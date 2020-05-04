@@ -31,6 +31,8 @@ h6 {
   text-transform: uppercase;
   font-weight: 700;
 }
+
+
 hr.star-light,
 hr.star-primary {
   padding: 0;
@@ -526,3 +528,29 @@ fieldset[disabled] .btn-success.active {
   opacity: 0;
   display: none;
 }
+.post {
+  padding-top: 150px;
+}
+.post h2{
+  font-size: 1.5em;
+  line-height: 1.5em !important;
+}
+.post .item-details{
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+
+@media (max-width: 767px) {
+  .post {
+    padding-top: 100px;
+  }
+  .post h1{
+    font-size: 30px !important;
+  }
+  .post h2{
+    font-size: 1.25em;
+  }
+  .post p {
+    font-size: 18px;
+  }
+} 
