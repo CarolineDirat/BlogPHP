@@ -29,7 +29,6 @@ final class PostController extends AbstractController
             // get the author from idUser of $post
             $userManager = new UserManagerPDO(PDOFactory::getMysqlConnexion());
             $pseudo = $userManager->getPseudo((int)$post->getIdUser());
-        
 
             // return the post page with the post object, and the pseudo of the post's author
             $twigRenderer = new TwigRenderer('../templates');
