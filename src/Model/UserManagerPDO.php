@@ -5,7 +5,7 @@ use \App\Entity\User;
 
 /**
  * UserManagerPDO
- * 
+ *
  * Manager of Users for a PDO connection to the database
  */
 final class UserManagerPDO extends UserManager
@@ -16,12 +16,10 @@ final class UserManagerPDO extends UserManager
         $req->bindValue(':id', (int) $id, \PDO::PARAM_INT);
         $req->execute();
         
-        if($pseudo = $req->fetch()){
+        if ($pseudo = $req->fetch()) {
             return $pseudo['pseudo'];
-
         } else {
             throw new \Exception('le pseudo de l\'auteur de l\'article n\'a pas pu être récupéré');
         }
     }
-
 }

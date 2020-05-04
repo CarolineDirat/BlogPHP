@@ -17,11 +17,11 @@ final class Post extends Entity
     /**
      * @var string
      */
-    private $content;    
+    private $content;
     /**
      * @var string
      */
-    private $abstract;    
+    private $abstract;
     /**
      * @var \Datetime
      */
@@ -29,11 +29,11 @@ final class Post extends Entity
     /**
      * @var \Datetime
      */
-    private $dateUpdate;    
+    private $dateUpdate;
     /**
      * @var int
      */
-    private $idUser;  
+    private $idUser;
  
     /**
     * Method to know if the post is valid.
@@ -42,18 +42,19 @@ final class Post extends Entity
     */
     public function isValid()
     {
-        return !(      empty($this->title) 
-                || empty($this->slug) 
+        return !(
+            empty($this->title)
+                || empty($this->slug)
                 || empty($this->content)
                 || empty($this->abstract)
                 || empty($this->dateCreation)
                 || empty($this->idUser)
-           );
+        );
     }
   
     // SETTERS //
   
-    public function setTitle(string $title) : void 
+    public function setTitle(string $title) : void
     {
         $this->title = $title;
     }
@@ -99,7 +100,7 @@ final class Post extends Entity
     public function getSlug() : string
     {
         return $this->slug;
-    } 
+    }
     
     public function getContent() : string
     {

@@ -5,13 +5,13 @@ abstract class AbstractController
 {
     /**
      * the resquest action, to know the name of the method to execute
-     * 
+     *
      * @var string
      */
     protected $action = '';
     /**
      * the name of the request page, to know the name of the method to execute
-     * 
+     *
      * @var string
      */
     protected $page = '';

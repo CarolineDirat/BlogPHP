@@ -21,7 +21,7 @@ final class PostController extends AbstractController
     {
         $httpRequest = $this->getHTTPRequest();
         
-        if ($httpRequest->getExists('id') && $httpRequest->getExists('slug')){
+        if ($httpRequest->getExists('id') && $httpRequest->getExists('slug')) {
             // get the post from the id
             $postManager = new PostManagerPDO(PDOFactory::getMysqlConnexion());
             $post = $postManager->getPost((int)$httpRequest->getData('id'));
@@ -31,9 +31,9 @@ final class PostController extends AbstractController
             $pseudo = $userManager->getPseudo((int)$post->getIdUser());
         
 
-        // return the post page with the post object, and the pseudo of the post's author
-        $twigRenderer = new TwigRenderer('../templates');
-        echo $twigRenderer->render($this->getPage(), ['post'=> $post, 'pseudo' => $pseudo]);
+            // return the post page with the post object, and the pseudo of the post's author
+            $twigRenderer = new TwigRenderer('../templates');
+            echo $twigRenderer->render($this->getPage(), ['post'=> $post, 'pseudo' => $pseudo]);
         } else {
             throw new \Exception('La requête est incomplete (slug ou id)');
         }

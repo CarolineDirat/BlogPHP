@@ -10,20 +10,19 @@ try {
     $page = "home";
     $httpRequest = new HTTPRequest();
 
-    if ($httpRequest->requestURI() === "/"){
+    if ($httpRequest->requestURI() === "/") {
         $controller = new HomeController($action, $page, $httpRequest);
         $controller->execute();
     }
 
-    if($httpRequest->getExists('page')){
-            switch ($httpRequest->getData('page')){
+    if ($httpRequest->getExists('page')) {
+        switch ($httpRequest->getData('page')) {
             case 'post':
             $page = 'post';
                 $controller = new PostController($action, $page, $httpRequest);
                 $controller-> execute();
             break;
         }
-        
     } else {
         throw new \Exception('Auccune page ne correspond à celle demandée');
     }
@@ -39,7 +38,7 @@ try {
             $controller = new HomeController($action, $view, $httpRequest);
             $controller->execute();
             break;
-        
+
 
         default:
             $controller = new HomeController($action, $view, $httpRequest);
