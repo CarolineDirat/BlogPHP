@@ -2,9 +2,9 @@
 
 {% extends "layout.twig" %}
 
-{% block bootstrapCSS %}../{{ parent() }}{% endblock %}
-{% block themeCSS %}../{{ parent() }}{% endblock %}
-{% block awesomeCSS %}../{{ parent() }}{% endblock %}
+{% block bootstrapCSS %}../../{{ parent() }}{% endblock %}
+{% block themeCSS %}../../{{ parent() }}{% endblock %}
+{% block awesomeCSS %}../../{{ parent() }}{% endblock %}
 
 {% block title %}{{ parent() }} {{ post.title }} {% endblock %}
 
@@ -36,6 +36,6 @@
         </div>
 {% endblock %}
 
-{% block bootstrapJS %}../{{ parent() }}{% endblock %}
+{% block bootstrapJS %}../../{{ parent() }}{% endblock %}
 
-{% block themeJS %}../{{ parent() }}{% endblock %}
+{% block themeJS %}../../{{ parent() }}{% endblock %}
