@@ -3,6 +3,11 @@ namespace App\Model;
 
 use \App\Application\Manager;
 
+/**
+ * UserManager
+ * 
+ * contains the methods which concern the management of Users
+ */
 abstract class UserManager extends Manager
 {
   /**

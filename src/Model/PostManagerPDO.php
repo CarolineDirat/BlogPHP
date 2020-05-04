@@ -1,25 +1,25 @@
 <?php
 namespace App\Model;
 
-use \App\Entity\Post;
-
+/**
+ * PostManagerPDO
+ * 
+ * Manager of Posts, for a PDO connection to the database, $this->dao is an instance of \PDO
+ */
 class PostManagerPDO extends PostManager
 {    
-    /**
-     * getPost
-     *
-     * @param  int $id
-     * @return App\Entity\Post
-     */
     public function getPost(int $id)
     {
+        if(!$this->dao instanceof \PDO){
+            throw new \Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
         $sql = 'SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post WHERE id = :id';
         $req = $this->dao->prepare($sql);
         $req->bindValue(':id', (int) $id, \PDO::PARAM_INT);
+        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'App\Entity\Post');
+        
         $req->execute();
-        
-        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\App\Entity\Post');
-        
+                
         if ($post = $req->fetch())
         {
             $post->setDateCreation(new \DateTime($post->getDateCreation()));
@@ -29,9 +29,5 @@ class PostManagerPDO extends PostManager
         } else {
             throw new \Exception('un problème lors de la récupération de l\'article');
         }
-        
-        return null;
     }
-
 }
-

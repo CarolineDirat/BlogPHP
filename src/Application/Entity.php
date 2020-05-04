@@ -2,9 +2,20 @@
 namespace App\Application;
 
 abstract class Entity
-{
-  protected $errors = [],
-            $id;
+{  
+  /**
+   * errors
+   *
+   * @var array
+   */
+  protected $errors = [];
+  
+  /**
+   * id
+   *
+   * @var int
+   */
+  protected $id;
 
   public function __construct(array $data = [])
   {
@@ -28,7 +39,7 @@ abstract class Entity
   }
 
   /**
-   * Méthode permettant de savoir si la news est nouvelle.
+   * Method to find out if the entity is new.
    * @return bool
    */
   public function isNew() : bool
@@ -37,12 +48,14 @@ abstract class Entity
   }
 
   /**
-   * Méthode permettant de savoir si l'entité est valide.
+   * Method to find out if the entity is valid.
    * @return bool
    */
   abstract public function isValid();
 
-  public function errors() : array
+  
+  // GETTERS //
+  public function getErrors() : array
   {
     return $this->errors;
   }
@@ -52,7 +65,9 @@ abstract class Entity
     return $this->id;
   }
 
-  public function setId($id) : void
+  // SETTER //
+
+  public function setId(int $id) : void
   {
     $this->id = (int) $id;
   }

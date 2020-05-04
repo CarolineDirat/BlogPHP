@@ -3,6 +3,11 @@ namespace App\Model;
 
 use \App\Entity\User;
 
+/**
+ * UserManagerPDO
+ * 
+ * Manager of Users for a PDO connection to the database
+ */
 class UserManagerPDO extends UserManager
 {
     public function getPseudo(int $id) : string
@@ -18,8 +23,6 @@ class UserManagerPDO extends UserManager
         } else {
             throw new \Exception('le pseudo de l\'auteur de l\'article n\'a pas pu être récupéré');
         }
-        
-        return null;
     }
 
 }

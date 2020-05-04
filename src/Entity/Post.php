@@ -9,7 +9,7 @@ class Post extends Entity
     /**
      * @var string
      */
-    private $tile;
+    private $title;
     /**
      * @var string
      */
@@ -36,7 +36,8 @@ class Post extends Entity
     private $idUser;  
  
     /**
-    * Méthode permettant de savoir si le post est valide.
+    * Method to know if the post is valid.
+    *
     * @return bool
     */
     public function isValid()
@@ -54,7 +55,7 @@ class Post extends Entity
   
     public function setTitle(string $title) : void 
     {
-        $this->title = $auteur;
+        $this->title = $title;
     }
 
     public function setSlug(string $slug)  : void
@@ -111,7 +112,7 @@ class Post extends Entity
     }
         
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getDateCreation()
     {
@@ -119,7 +120,7 @@ class Post extends Entity
     }
         
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getDateUpdate()
     {

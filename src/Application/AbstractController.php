@@ -1,25 +1,27 @@
 <?php
 namespace App\Application;
 
-abstract class AbstractController // extends ApplicationComponent
+abstract class AbstractController
 {
     /**
+     * the resquest action, to know the name of the method to execute
+     * 
      * @var string
      */
     protected $action = '';
     /**
+     * the name of the request page, to know the name of the method to execute
+     * 
      * @var string
      */
     protected $page = '';
     /**
-     * httpRequest
+     * the client's request
      *
      * @var HTTPRequest
      */
     protected $httpRequest;
-    
-    
-
+   
     public function __construct(string $action, string $page, HTTPRequest $httpRequest)
     {
         $this->setAction($action);
@@ -28,7 +30,7 @@ abstract class AbstractController // extends ApplicationComponent
     }
                 
     /**
-     * to execute a method corresponding to the action of the request
+     * to execute a method corresponding to the action and the page of the request
      *
      * @return void
      */
