@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Application\Entity;
 
-class Post extends Entity
+final class Post extends Entity
 {
     /**
      * @var string

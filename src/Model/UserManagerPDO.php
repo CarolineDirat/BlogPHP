@@ -8,12 +8,11 @@ use \App\Entity\User;
  * 
  * Manager of Users for a PDO connection to the database
  */
-class UserManagerPDO extends UserManager
+final class UserManagerPDO extends UserManager
 {
     public function getPseudo(int $id) : string
     {
-        $sql = 'SELECT pseudo FROM user WHERE id = :id';
-        $req = $this->dao->prepare($sql);
+        $req = $this->dao->prepare('SELECT pseudo FROM user WHERE id = :id');
         $req->bindValue(':id', (int) $id, \PDO::PARAM_INT);
         $req->execute();
         
@@ -26,4 +25,3 @@ class UserManagerPDO extends UserManager
     }
 
 }
-

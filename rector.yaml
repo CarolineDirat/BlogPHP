@@ -5,6 +5,5 @@ parameters:
         - 'public'
     sets:
         - php74
-        - code-quality
         - solid
         - psr-4
