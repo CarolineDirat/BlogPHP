@@ -6,7 +6,7 @@ abstract class Entity
   protected $errors = [],
             $id;
 
-  public function __construct(array $data = []) : void
+  public function __construct(array $data = [])
   {
     if (!empty($data))
     {
