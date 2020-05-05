@@ -5,3 +5,4 @@ dataset.sql
 .php_cs.cache
 
 /src/Application/PDOFactory.php
+/src/Application/PDOSingleton.php

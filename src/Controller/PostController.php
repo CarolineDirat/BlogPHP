@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Application\AbstractController;
 use App\Application\TwigRenderer;
-use App\Application\PDOFactory;
+use App\Application\PDOSingleton;
 use App\Model\PostManagerPDO;
 use App\Model\UserManagerPDO;
 use Âpp\Entity\Post;
@@ -23,11 +23,11 @@ final class PostController extends AbstractController
         
         if ($httpRequest->getExists('id') && $httpRequest->getExists('slug')) {
             // get the post from the id
-            $postManager = new PostManagerPDO(PDOFactory::getMysqlConnexion());
+            $postManager = new PostManagerPDO(PDOSingleton::getInstance()->getConnexion());
             $post = $postManager->getPost((int)$httpRequest->getData('id'));
 
             // get the author from idUser of $post
-            $userManager = new UserManagerPDO(PDOFactory::getMysqlConnexion());
+            $userManager = new UserManagerPDO(PDOSingleton::getInstance()->getConnexion());
             $pseudo = $userManager->getPseudo((int)$post->getIdUser());
 
             // return the post page with the post object, and the pseudo of the post's author
