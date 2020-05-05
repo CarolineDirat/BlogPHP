@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `resume` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abstract` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_creation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_update` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_user` int NOT NULL,
