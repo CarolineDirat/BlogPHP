@@ -24,8 +24,7 @@ final class PostManagerPDO extends PostManager
             $post->setDateUpdate(new \DateTime($post->getDateUpdate()));
             
             return $post;
-        } else {
-            throw new \Exception('un problème lors de la récupération de l\'article');
         }
+        throw new \Exception('un problème lors de la récupération de l\'article');
     }
 }
