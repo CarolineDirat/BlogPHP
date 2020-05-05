@@ -3,6 +3,7 @@ parameters:
     paths:
         - 'src'
         - 'public'
+        - 'config'
     sets:
         - php74
         - solid

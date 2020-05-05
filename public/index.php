@@ -1,5 +1,6 @@
 <?php
 require_once '../vendor/autoload.php';
+require_once '../config/config.php';
 
 use App\Controller\HomeController;
 use App\Controller\PostController;
@@ -26,11 +27,6 @@ try {
     } else {
         throw new \Exception('Auccune page ne correspond à celle demandée');
     }
-
-
-
-
-
 
     /*
     switch ($httpRequest->requestURI()) {
