@@ -31,8 +31,6 @@ h6 {
   text-transform: uppercase;
   font-weight: 700;
 }
-
-
 hr.star-light,
 hr.star-primary {
   padding: 0;
@@ -539,7 +537,6 @@ fieldset[disabled] .btn-success.active {
   padding-top: 20px;
   padding-bottom: 50px;
 }
-
 @media (max-width: 767px) {
   .post {
     padding-top: 100px;
