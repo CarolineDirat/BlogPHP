@@ -5,15 +5,19 @@ require_once '../config/config.php';
 use App\Controller\HomeController;
 use App\Controller\PostController;
 use App\Application\HTTPRequest;
+use App\Application\HTTPResponse;
+use App\Application\TwigRenderer;
 
 try {
     $action = "show";
     $page = "home";
     $httpRequest = new HTTPRequest();
+    $twigRenderer = new TwigRenderer('../templates');
 
     if ($httpRequest->requestURI() === "/") {
         $controller = new HomeController($action, $page, $httpRequest);
-        $controller->execute();
+        $httpResponse = $controller->execute();
+        echo $twigRenderer->render($httpResponse->getPage(), $httpResponse->getParams());
     }
 
     if ($httpRequest->getExists('page')) {
@@ -21,7 +25,8 @@ try {
             case 'post':
             $page = 'post';
                 $controller = new PostController($action, $page, $httpRequest);
-                $controller-> execute();
+                $httpResponse = $controller->execute();
+                echo $twigRenderer->render($httpResponse->getPage(), $httpResponse->getParams());
             break;
         }
     } else {

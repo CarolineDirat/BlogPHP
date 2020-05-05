@@ -32,9 +32,9 @@ abstract class AbstractController
     /**
      * to execute a method corresponding to the action and the page of the request
      *
-     * @return void
+     * @return HTTPResponse
      */
-    public function execute() : void
+    public function execute() : HTTPResponse
     {
         $method = 'execute'.ucfirst($this->action).ucfirst($this->page);
 
@@ -42,7 +42,7 @@ abstract class AbstractController
             throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur cette page');
         }
 
-        $this->$method($this->httpRequest);
+        return $this->$method($this->httpRequest);
     }
 
     public function setPage(string $page) : void

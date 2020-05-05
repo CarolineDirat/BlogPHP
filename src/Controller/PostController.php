@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Application\AbstractController;
-use App\Application\TwigRenderer;
+use App\Application\HTTPResponse;
+//use App\Application\TwigRenderer;
 use App\Application\PDOSingleton;
 use App\Model\PostManagerPDO;
 use App\Model\UserManagerPDO;
@@ -15,9 +16,9 @@ final class PostController extends AbstractController
     /**
      * controller to show the page of a post
      *
-     * @return void
+     * @return HTTPResponse
      */
-    public function executeShowPost()
+    public function executeShowPost() : HTTPResponse
     {
         $httpRequest = $this->getHTTPRequest();
         
@@ -30,9 +31,8 @@ final class PostController extends AbstractController
             $userManager = new UserManagerPDO(PDOSingleton::getInstance()->getConnexion());
             $pseudo = $userManager->getPseudo((int)$post->getIdUser());
 
-            // return the post page with the post object, and the pseudo of the post's author
-            $twigRenderer = new TwigRenderer('../templates');
-            echo $twigRenderer->render($this->getPage(), ['post'=> $post, 'pseudo' => $pseudo]);
+            // return HTTPResponse object
+            return new HTTPResponse($this->getPage(), ['post'=> $post, 'pseudo' => $pseudo]);
         }
         throw new \Exception('La requête est incomplete (slug ou id)');
     }

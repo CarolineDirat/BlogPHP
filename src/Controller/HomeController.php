@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Application\AbstractController;
-use App\Application\TwigRenderer;
+use App\Application\HTTPResponse;
+
+//use App\Application\TwigRenderer;
 
 final class HomeController extends AbstractController
 {
@@ -11,11 +13,10 @@ final class HomeController extends AbstractController
     /**
      * controller to show the Home Page
      *
-     * @return void
+     * @return HTTPResponse
      */
-    public function executeShowHome()
+    public function executeShowHome() : HTTPResponse
     {
-        $twigRenderer = new TwigRenderer('../templates');
-        echo $twigRenderer->render($this->getPage());
+        return new HTTPResponse($this->getPage());
     }
 }
