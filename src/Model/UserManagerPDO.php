@@ -18,8 +18,7 @@ final class UserManagerPDO extends UserManager
         
         if ($pseudo = $req->fetch()) {
             return $pseudo['pseudo'];
-        } else {
-            throw new \Exception('le pseudo de l\'auteur de l\'article n\'a pas pu être récupéré');
         }
+        throw new \Exception('le pseudo de l\'auteur de l\'article n\'a pas pu être récupéré');
     }
 }
