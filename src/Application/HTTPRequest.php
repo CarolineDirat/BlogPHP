@@ -12,9 +12,9 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return string
      */
-    public function cookieData($key)
+    public function cookieData(string $key)
     {
-        return isset($_COOKIE[$key]) ?? filter_var($_COOKIE[$key], FILTER_SANITIZE_STRING);
+        return filter_input(INPUT_COOKIE, $key, FILTER_SANITIZE_STRING);
     }
    
     /**
@@ -23,9 +23,9 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return bool
      */
-    public function cookieExists($key)
+    public function cookieExists(string $key)
     {
-        return isset($_COOKIE[$key]);
+        return filter_has_var(INPUT_COOKIE, $key);
     }
 
     /**
@@ -34,9 +34,9 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return string
      */
-    public function sessionData($key)
+    public function sessionData(string $key)
     {
-        return isset($_SESSION[$key]) ?? filter_var($_SESSION[$key], FILTER_SANITIZE_STRING);
+        return filter_var($_SESSION[$key], FILTER_SANITIZE_STRING);
     }
    
     /**
@@ -45,9 +45,10 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return bool
      */
-    public function sessionExists($key)
-    {
-        return isset($_SESSION[$key]);
+    public function sessionExists(string $key)
+    {   
+        $session = filter_var($_SESSION[$key], FILTER_SANITIZE_STRING);
+        return isset($session);
     }
    
     /**
@@ -56,9 +57,9 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return string
      */
-    public function getData($key)
+    public function getData(string $key)
     {
-        return isset($_GET[$key]) ?? filter_var($_GET[$key], FILTER_SANITIZE_STRING);
+        return filter_input(INPUT_GET, $key, FILTER_SANITIZE_STRING);
     }
    
     /**
@@ -67,9 +68,9 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return bool
      */
-    public function getExists($key)
+    public function getExists(string $key)
     {
-        return isset($_GET[$key]);
+        return filter_has_var(INPUT_GET, $key);
     }
    
     /**
@@ -78,9 +79,9 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return string
      */
-    public function postData($key)
+    public function postData(string $key)
     {
-        return isset($_POST[$key]) ?? filter_var($_POST[$key], FILTER_SANITIZE_STRING);
+        return filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
     }
    
     /**
@@ -89,9 +90,9 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return bool
      */
-    public function postExists($key)
+    public function postExists(string $key)
     {
-        return isset($_POST[$key]);
+        return filter_has_var(INPUT_POST, $key);
     }
    
     /**
@@ -101,7 +102,7 @@ final class HTTPRequest // extends ApplicationComponent
      */
     public function requestURI()
     {
-        return filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_STRING);
+        return filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_STRING);
     }
 
     /**
@@ -111,6 +112,6 @@ final class HTTPRequest // extends ApplicationComponent
      */
     public function method()
     {
-        return filter_var($_SERVER['REQUEST_METHOD'], FILTER_SANITIZE_STRING);
+        return filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
     }
 }
