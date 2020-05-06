@@ -12,13 +12,13 @@
     <title>{% block title %}Blog - {% endblock %}</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="build/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href={% block bootstrapCSS %}build/vendor/bootstrap/css/bootstrap.min.css{% endblock %} rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="build/css/freelancer.css" rel="stylesheet">
+    <link href={% block themeCSS %}build/css/freelancer.css{% endblock %} rel="stylesheet" >
 
     <!-- Custom Fonts -->
-    <link href="build/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href={% block awesomeCSS %}build/vendor/font-awesome/css/font-awesome.min.css{% endblock %} rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -48,13 +48,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
-                        <a href="#page-top"></a>
+                        <a href="/#page-top"></a>
                     </li>
                     <li class="page-scroll">
                         <a href="#">Blog</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#web">Contact</a>
+                        <a href={% block contactLink %}{% endblock %}>Contact</a>
                     </li>
                     <li class="page-scroll">
                         <a href="#">S'inscrire</a>
@@ -111,7 +111,7 @@
     </script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="build/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src={% block bootstrapJS %}build/vendor/bootstrap/js/bootstrap.min.js{% endblock %}></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
@@ -121,7 +121,7 @@
     <script src="build/js/contact_me.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="build/js/freelancer.min.js"></script>
+    <script src={% block themeJS %}build/js/freelancer.min.js{% endblock %}></script>
 
 </body>
 

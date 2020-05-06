@@ -6,15 +6,16 @@ namespace App\Application;
  */
 final class HTTPRequest // extends ApplicationComponent
 {
+        
     /**
      * get a cookie variable if it exists
      *
      * @param  string $key
-     * @return mixed
+     * @return string
      */
-    public function cookieData($key)
+    public function cookieData(string $key)
     {
-        return isset($_COOKIE[$key]) ? $_COOKIE[$key] : null;
+        return filter_input(INPUT_COOKIE, $key, FILTER_SANITIZE_STRING);
     }
    
     /**
@@ -23,42 +24,20 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return bool
      */
-    public function cookieExists($key)
+    public function hasCookie(string $key)
     {
-        return isset($_COOKIE[$key]);
+        return filter_has_var(INPUT_COOKIE, $key);
     }
-
-    /**
-     * get a session variable if it exists
-     *
-     * @param  string $key
-     * @return mixed
-     */
-    public function sessionData($key)
-    {
-        return isset($_SESSION[$key]) ? $_SESSION[$key] : null;
-    }
-   
-    /**
-     * to know if a session variable exist
-     *
-     * @param  string $key
-     * @return bool
-     */
-    public function sessionExists($key)
-    {
-        return isset($_COOKIE[$key]);
-    }
-   
+       
     /**
      * get a GET variable if it exists
      *
      * @param  string $key
-     * @return mixed
+     * @return string
      */
-    public function getData($key)
+    public function getData(string $key)
     {
-        return isset($_GET[$key]) ? $_GET[$key] : null;
+        return filter_input(INPUT_GET, $key, FILTER_SANITIZE_STRING);
     }
    
     /**
@@ -67,20 +46,20 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return bool
      */
-    public function getExists($key)
+    public function hasGet(string $key)
     {
-        return isset($_GET[$key]);
+        return filter_has_var(INPUT_GET, $key);
     }
    
     /**
      * get a POST variable if it exists
      *
      * @param  string $key
-     * @return mixed
+     * @return string
      */
-    public function postData($key)
+    public function postData(string $key)
     {
-        return isset($_POST[$key]) ? $_POST[$key] : null;
+        return filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
     }
    
     /**
@@ -89,9 +68,9 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return bool
      */
-    public function postExists($key)
+    public function hasPost(string $key)
     {
-        return isset($_POST[$key]);
+        return filter_has_var(INPUT_POST, $key);
     }
    
     /**
@@ -101,7 +80,7 @@ final class HTTPRequest // extends ApplicationComponent
      */
     public function requestURI()
     {
-        return $_SERVER['REQUEST_URI'];
+        return filter_input(INPUT_SERVER, 'REQUEST_URI', FILTER_SANITIZE_STRING);
     }
 
     /**
@@ -111,6 +90,6 @@ final class HTTPRequest // extends ApplicationComponent
      */
     public function method()
     {
-        return $_SERVER['REQUEST_METHOD'];
+        return filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
     }
 }

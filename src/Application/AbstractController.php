@@ -1,60 +1,62 @@
 <?php
 namespace App\Application;
 
-abstract class AbstractController // extends ApplicationComponent
+abstract class AbstractController
 {
     /**
+     * the resquest action, to know the name of the method to execute
+     *
      * @var string
      */
     protected $action = '';
     /**
+     * the name of the request page, to know the name of the method to execute
+     *
      * @var string
      */
-    protected $view = '';
+    protected $page = '';
     /**
-     * httpRequest
+     * the client's request
      *
      * @var HTTPRequest
      */
     protected $httpRequest;
-    
-    
-
-    public function __construct(string $action, string $view, HTTPRequest $httpRequest)
+   
+    public function __construct(string $action, string $page, HTTPRequest $httpRequest)
     {
         $this->setAction($action);
-        $this->setView($view);
+        $this->setPage($page);
         $this->setHTTPRequest($httpRequest);
     }
                 
     /**
-     * to execute a method corresponding to the action of the request
+     * to execute a method corresponding to the action and the page of the request
      *
-     * @return void
+     * @return HTTPResponse
      */
-    public function execute() : void
+    public function execute() : HTTPResponse
     {
-        $method = 'execute'.ucfirst($this->action);
+        $method = 'execute'.ucfirst($this->action).ucfirst($this->page);
 
         if (!is_callable([$this, $method])) {
-            throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur ce view');
+            throw new \RuntimeException('L\'action "'.$this->action.ucfirst($this->page).'" n\'est pas définie sur cette page');
         }
 
-        $this->$method($this->httpRequest);
+        return $this->$method($this->httpRequest);
     }
 
-    public function setView(string $view) : void
+    public function setPage(string $page) : void
     {
-        if (!is_string($view) || empty($view)) {
-            throw new \InvalidArgumentException('Le view doit être une chaine de caractères valide');
+        if (!is_string($page) || empty($page)) {
+            throw new \InvalidArgumentException('Le page doit être une chaine de caractères valide');
         }
 
-        $this->view = $view;
+        $this->page = $page;
     }
 
-    public function getView() : string
+    public function getPage() : string
     {
-        return $this->view;
+        return $this->page;
     }
 
     public function setAction(string $action) : void

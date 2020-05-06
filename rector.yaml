@@ -3,8 +3,8 @@ parameters:
     paths:
         - 'src'
         - 'public'
+        - 'config'
     sets:
         - php74
-        - code-quality
         - solid
         - psr-4

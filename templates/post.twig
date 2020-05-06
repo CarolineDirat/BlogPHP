@@ -1,0 +1,40 @@
+{# Post page view #}
+
+{% extends "layout.twig" %}
+
+{% block bootstrapCSS %}../../{{ parent() }}{% endblock %}
+{% block themeCSS %}../../{{ parent() }}{% endblock %}
+{% block awesomeCSS %}../../{{ parent() }}{% endblock %}
+
+{% block contactLink %}/#web{% endblock %}
+
+{% block view %}
+    <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="post">
+                            <h1 class="text-center">{{ post.title }}</h1>
+                            <hr class="star-primary">
+                            <h2 class="text-center"> {{ post.abstract }} </h2>
+                            <hr class="star-primary">
+                            
+                            <p class="text-justify"> {{ post.content|nl2br }}</p>
+                            <ul class="list-inline item-details">
+                                <li>Auteur :
+                                    <strong>{{ pseudo }}</strong>
+                                </li>
+                                <li>Date de dernière mise à jour :
+                                    <strong>{{ post.dateUpdate|date("d/m/Y") }}</a>
+                                    </strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block bootstrapJS %}../../{{ parent() }}{% endblock %}
+
+{% block themeJS %}../../{{ parent() }}{% endblock %}

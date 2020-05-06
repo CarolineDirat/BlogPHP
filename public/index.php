@@ -1,27 +1,36 @@
 <?php
 require_once '../vendor/autoload.php';
+require_once '../config/config.php';
 
 use App\Controller\HomeController;
+use App\Controller\PostController;
 use App\Application\HTTPRequest;
+use App\Application\HTTPResponse;
+use App\Application\TwigRenderer;
 
 try {
+    $action = "show";
+    $page = "home";
     $httpRequest = new HTTPRequest();
-    switch ($httpRequest->requestURI()) {
-        case "/":
-            $action = "show";
-            $view = "home";
-            $controller = new HomeController($action, $view, $httpRequest);
-            $controller->execute();
+    $twigRenderer = new TwigRenderer('../templates');
 
-        break;
-
-        default:
-            $title = "Page d'accueil";
-            $action = "show";
-            $view = "home";
-            $controller = new HomeController($action, $view, $httpRequest);
-            $controller->execute();
+    if ($httpRequest->requestURI() === "/") {
+        $controller = new HomeController($action, $page, $httpRequest);
+        $controller->execute()->send($twigRenderer);
+        ;
     }
+
+    if ($httpRequest->hasGET('page')) {
+        $page =$httpRequest->getData('page');
+        switch ($page) {
+            case 'post':
+                $controller = new PostController($action, $page, $httpRequest);
+                $controller->execute()->send($twigRenderer);
+        }
+    }
+
+    throw new \Exception('Auccune page ne correspond à celle demandée');
 } catch (Exception $e) {
-    echo $e->getMessage();
+    $twigRenderer = new TwigRenderer('../templates');
+    $twigRenderer->render('error', ['error' => $e->getMessage()]);
 }
