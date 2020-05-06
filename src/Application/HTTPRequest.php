@@ -23,7 +23,7 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return bool
      */
-    public function cookieExists(string $key)
+    public function hasCookie(string $key)
     {
         return filter_has_var(INPUT_COOKIE, $key);
     }
@@ -45,7 +45,7 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return bool
      */
-    public function sessionExists(string $key)
+    public function hasSession(string $key)
     {   
         $session = filter_var($_SESSION[$key], FILTER_SANITIZE_STRING);
         return isset($session);
@@ -68,7 +68,7 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return bool
      */
-    public function getExists(string $key)
+    public function hasGet(string $key)
     {
         return filter_has_var(INPUT_GET, $key);
     }
@@ -90,7 +90,7 @@ final class HTTPRequest // extends ApplicationComponent
      * @param  string $key
      * @return bool
      */
-    public function postExists(string $key)
+    public function hasPost(string $key)
     {
         return filter_has_var(INPUT_POST, $key);
     }
