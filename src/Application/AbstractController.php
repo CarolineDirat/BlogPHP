@@ -39,7 +39,7 @@ abstract class AbstractController
         $method = 'execute'.ucfirst($this->action).ucfirst($this->page);
 
         if (!is_callable([$this, $method])) {
-            throw new \RuntimeException('L\'action "'.$this->action.'" n\'est pas définie sur cette page');
+            throw new \RuntimeException('L\'action "'.$this->action.ucfirst($this->page).'" n\'est pas définie sur cette page');
         }
 
         return $this->$method($this->httpRequest);

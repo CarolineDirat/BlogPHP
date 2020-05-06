@@ -35,11 +35,11 @@ final class TwigRenderer
      * Le chemin peut être précisé avec des namespace rajoutés via addPath()
      * @param string $view
      * @param array $params
-     * @return string
+     * @return void
      */
-    public function render(string $view, array $params = []): string
+    public function render(string $view, array $params = []): void
     {
-        return $this->twig->render($view . '.twig', $params);
+        echo $this->twig->render($view . '.twig', $params);
     }
 
     /**
