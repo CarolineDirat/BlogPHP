@@ -6,6 +6,7 @@ namespace App\Application;
  */
 final class HTTPRequest // extends ApplicationComponent
 {
+        
     /**
      * get a cookie variable if it exists
      *
@@ -27,30 +28,7 @@ final class HTTPRequest // extends ApplicationComponent
     {
         return filter_has_var(INPUT_COOKIE, $key);
     }
-
-    /**
-     * get a session variable if it exists
-     *
-     * @param  string $key
-     * @return string
-     */
-    public function sessionData(string $key)
-    {
-        return filter_var($_SESSION[$key], FILTER_SANITIZE_STRING);
-    }
-   
-    /**
-     * to know if a session variable exist
-     *
-     * @param  string $key
-     * @return bool
-     */
-    public function hasSession(string $key)
-    {   
-        $session = filter_var($_SESSION[$key], FILTER_SANITIZE_STRING);
-        return isset($session);
-    }
-   
+       
     /**
      * get a GET variable if it exists
      *
