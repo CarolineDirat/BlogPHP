@@ -4,6 +4,4 @@ dataset.sql
 
 .php_cs.cache
 
-/src/Application/PDOFactory.php
-
 /config/config.php
