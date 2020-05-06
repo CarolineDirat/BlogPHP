@@ -20,7 +20,7 @@ try {
         echo $twigRenderer->render($httpResponse->getPage(), $httpResponse->getParams());
     }
 
-    if ($httpRequest->getExists('page')) {
+    if ($httpRequest->hasGET('page')) {
         switch ($httpRequest->getData('page')) {
             case 'post':
             $page = 'post';

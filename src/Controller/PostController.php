@@ -22,7 +22,7 @@ final class PostController extends AbstractController
     {
         $httpRequest = $this->getHTTPRequest();
         
-        if ($httpRequest->getExists('id') && $httpRequest->getExists('slug')) {
+        if ($httpRequest->hasGet('id') && $httpRequest->hasGet('slug')) {
             // get the post from the id
             $postManager = new PostManagerPDO(PDOSingleton::getInstance()->getConnexion());
             $post = $postManager->getPost((int)$httpRequest->getData('id'));
