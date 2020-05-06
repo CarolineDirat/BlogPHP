@@ -1,0 +1,25 @@
+{# Error page view #}
+
+{% extends "layout.twig" %}
+
+{% block title %}{{ parent() }}Page d'erreur{% endblock %}
+
+{% block bootstrapCSS %}../../{{ parent() }}{% endblock %}
+{% block themeCSS %}../../{{ parent() }}{% endblock %}
+{% block awesomeCSS %}../../{{ parent() }}{% endblock %}
+
+{% block contactLink %}/#web{% endblock %}
+
+{% block view %}
+
+    <div class="container">
+        <div class="alert alert-warning" role="alert" style="margin-top:150px; font-size:1.25em;">
+            <span style="font-weight:bold;">Une erreur s'est produite :</span> {{ error }}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block bootstrapJS %}../../{{ parent() }}{% endblock %}
+
+{% block themeJS %}../../{{ parent() }}{% endblock %}

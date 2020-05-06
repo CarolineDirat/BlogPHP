@@ -30,7 +30,7 @@ try {
     }
 
     throw new \Exception('Auccune page ne correspond à celle demandée');
-
 } catch (Exception $e) {
-    echo $e->getMessage();
+    $twigRenderer = new TwigRenderer('../templates');
+    $twigRenderer->render('error', ['error' => $e->getMessage()]);
 }
