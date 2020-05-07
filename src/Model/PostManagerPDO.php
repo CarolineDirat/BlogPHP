@@ -38,7 +38,7 @@ final class PostManagerPDO extends PostManager
             throw new \Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
         }
         
-        $sql = 'SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post ORDER BY dateUpdate';
+        $sql = 'SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post ORDER BY dateUpdate DESC';
         
         if($offset != -1 || $limit != -1){
             $sql .= ' LIMIT '.(int)$limit.' OFFSET '.(int)$offset;
