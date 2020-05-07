@@ -6,7 +6,7 @@
 {% block themeCSS %}../../{{ parent() }}{% endblock %}
 {% block awesomeCSS %}../../{{ parent() }}{% endblock %}
 
-{% block contactLink %}/#web{% endblock %}
+{% block contactLink %}"/#web"{% endblock %}
 
 {% block view %}
 
@@ -16,75 +16,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Les derniers articles</h2>
+                    <h2>Les articles</h2>
                     <hr class="star-primary">
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a href={{ "post/#{listPosts[0].id}/#{listPosts[0].slug}" }} class="btn btn-primary portfolio-link">
-                                    {{ listPosts[0].title }}
-                                </a>
-                            </h5>
-                            <p class="card-text">{{ listPosts[0].abstract}}</p>
-                            <p class="card-text">{{ listPosts[0].dateUpdate|date("d/m/Y")}}</p>
+                {% for  post in listPosts %}
+                    <div class="col-sm-4 portfolio-item">
+                        <div class="card bg-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="{{ "post/#{post.id}/#{post.slug}" }}" class="btn btn-primary portfolio-link">
+                                        {{ post.title }}
+                                    </a>
+                                </h5>
+                                <p class="card-text small">{{ post.abstract}}</p>
+                                <p class="card-text text-right small">{{ post.dateUpdate|date("d/m/Y")}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="build/img/portfolio/cake.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="build/img/portfolio/circus.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="build/img/portfolio/game.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="build/img/portfolio/safe.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="build/img/portfolio/submarine.png" class="img-responsive" alt="">
-                    </a>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>

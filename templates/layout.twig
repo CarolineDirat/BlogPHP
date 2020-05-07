@@ -5,17 +5,17 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Caroline Dirat's Blog">
     <meta name="author" content="Caroline Dirat">
 
     <title>{% block title %}Blog - {% endblock %}</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href={% block bootstrapCSS %}build/vendor/bootstrap/css/bootstrap.min.css{% endblock %} rel="stylesheet">
+    <link href={% block bootstrapCSS %}build/vendor/bootstrap/css/bootstrap.min.css{% endblock %} rel="stylesheet" type="text/css">
 
     <!-- Theme CSS -->
-    <link href={% block themeCSS %}build/css/freelancer.css{% endblock %} rel="stylesheet" >
+    <link href={% block themeCSS %}build/css/freelancer.css{% endblock %} rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
     <link href={% block awesomeCSS %}build/vendor/font-awesome/css/font-awesome.min.css{% endblock %} rel="stylesheet" type="text/css">
@@ -41,20 +41,20 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="/#page-top">Accueil</a>
+                <a class="navbar-brand" href="/">Accueil</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
-                        <a href="/#page-top"></a>
+                        <a href="/"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#">Blog</a>
+                        <a href="/blog">Blog</a>
                     </li>
                     <li class="page-scroll">
-                        <a href={% block contactLink %}{% endblock %}>Contact</a>
+                        <a href={% block contactLink %}"#web"{% endblock %}>Contact</a>
                     </li>
                     <li class="page-scroll">
                         <a href="#">S'inscrire</a>
