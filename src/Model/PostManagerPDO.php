@@ -32,21 +32,13 @@ final class PostManagerPDO extends PostManager
         throw new \Exception('The article with id='.filter_var($id, FILTER_VALIDATE_INT).' was not found');
     }
 
-    public function getListPosts(int $offset = -1, int $limit = -1)
+    public function getListPosts()
     {
         if (!$this->dao instanceof \PDO) {
             throw new \Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
         }
-        
-        $sql = 'SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post ORDER BY dateUpdate DESC';
-        
-        if($offset != -1 || $limit != -1){
-            $sql .= ' LIMIT '.(int)$limit.' OFFSET '.(int)$offset;
-        }
-        $req = $this->dao->query($sql);
-
+        $req = $this->dao->query('SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post ORDER BY dateUpdate DESC');
         $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\App\Entity\Post', []);
-        
         $listPosts = $req->fetchAll();
         
         foreach ($listPosts as $post)
@@ -56,8 +48,6 @@ final class PostManagerPDO extends PostManager
         }
         
         $req->closeCursor();
-
-        
         
         return $listPosts;
     }
