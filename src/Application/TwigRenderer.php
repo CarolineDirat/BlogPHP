@@ -40,6 +40,7 @@ final class TwigRenderer
     public function render(string $view, array $params = []): void
     {
         echo $this->twig->render($view . '.twig', $params);
+        exit();
     }
 
     /**
