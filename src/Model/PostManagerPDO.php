@@ -1,8 +1,6 @@
 <?php
 namespace App\Model;
 
-use App\Entity\Post;
-
 /**
  * PostManagerPDO
  *
@@ -18,15 +16,16 @@ final class PostManagerPDO extends PostManager
         $req = $this->dao
                     ->prepare('SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post WHERE id = :id');
         $req->bindValue(':id', (int) $id, \PDO::PARAM_INT);
-        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Post', []);
+        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\App\Entity\Post', []);
         
         $req->execute();
                 
         if ($post = $req->fetch()) {
+
             $post->setDateCreation(new \DateTime($post->getDateCreation()));
             $post->setDateUpdate(new \DateTime($post->getDateUpdate()));
 
-            $req->closecursor();
+            $req->closecursor();           
 
             return $post;
         }
