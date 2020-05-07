@@ -26,6 +26,11 @@ try {
             case 'post':
                 $controller = new PostController($action, $page, $httpRequest);
                 $controller->execute()->send($twigRenderer);
+            break;
+            case 'blog':
+                $controller = new PostController($action, $page, $httpRequest);
+                $controller->execute()->send($twigRenderer);
+            break;
         }
     }
 

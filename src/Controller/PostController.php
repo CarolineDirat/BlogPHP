@@ -34,6 +34,21 @@ final class PostController extends AbstractController
             // return HTTPResponse object
             return new HTTPResponse($this->getPage(), ['post'=> $post, 'pseudo' => $pseudo]);
         }
-        throw new \Exception('La requête est incomplete (slug ou id)');
+        throw new \Exception('id or slug is missing in the request');
+    }
+
+    /**
+     * controller to show the blog page, a list of posts from most recent to oldest
+     *
+     * @return HTTPResponse
+     */
+    public function executeShowBLog() : HTTPResponse
+    {
+        // get the list of all posts
+        $postManager = new PostManagerPDO(PDOSingleton::getInstance()->getConnexion());
+        $listPosts = $postManager->getListPosts();
+
+        // return HTTPResponse object
+        return new HTTPResponse($this->getPage(), ['listPosts'=> $listPosts]);
     }
 }

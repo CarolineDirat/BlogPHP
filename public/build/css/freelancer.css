@@ -13,6 +13,11 @@ p {
 p.small {
   font-size: 16px;
 }
+p.card-text {
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-bottom: 10px;
+}
 a,
 a:hover,
 a:focus,
@@ -200,6 +205,9 @@ section.success {
     padding-top: 75px;
   }
 }
+#portfolio{
+  margin-top: 100px;
+}
 #portfolio .portfolio-item {
   margin: 0 0 15px;
   right: 0;
@@ -207,7 +215,6 @@ section.success {
 #portfolio .portfolio-item .portfolio-link {
   display: block;
   position: relative;
-  max-width: 400px;
   margin: 0 auto;
 }
 #portfolio .portfolio-item .portfolio-link .caption {
@@ -323,6 +330,12 @@ footer .footer-below {
 }
 a.nav-link {
   color: white;
+}
+h5.card-title a.btn {
+  white-space: normal;
+}
+.bg-primary {
+  background-color: #18BC9C;
 }
 .btn-menu {
   text-transform: uppercase;

@@ -18,4 +18,12 @@ abstract class PostManager extends Manager
      * @return \App\Entity\Post
      */
     abstract public function getPost(int $id);
+
+
+    /**
+     * method which returns a list of posts, from $offset to $limit, from most recent to oldest
+     *
+     * @return array[Post]
+     */
+    abstract public function getListPosts();
 }
