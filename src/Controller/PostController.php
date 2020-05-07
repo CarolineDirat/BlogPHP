@@ -47,13 +47,6 @@ final class PostController extends AbstractController
         // get the list of all posts
         $postManager = new PostManagerPDO(PDOSingleton::getInstance()->getConnexion());
         $listPosts = $postManager->getListPosts();
-        
-        // get the author from idUser of each $post of the list
-        $userManager = new UserManagerPDO(PDOSingleton::getInstance()->getConnexion());
-        // $listPosts will be an array of arrays[$post, $pseudo]
-        foreach($listPosts as $post){
-            $post = [$post, $userManager->getPseudo((int)$post->getIdUser())];
-        }
 
         // return HTTPResponse object
         return new HTTPResponse($this->getPage(), ['listPosts'=> $listPosts]);
