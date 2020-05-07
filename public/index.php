@@ -31,9 +31,8 @@ try {
                 $controller->execute()->send($twigRenderer);
             break;
         }
-    } else {
-        throw new \Exception('Auccune page ne correspond à celle demandée');
     }
+    throw new \Exception('Aucune page ne correspond à celle demandée');
     
 } catch (Exception $e) {
     $twigRenderer = new TwigRenderer('../templates');
