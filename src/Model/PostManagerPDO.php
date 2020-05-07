@@ -21,11 +21,10 @@ final class PostManagerPDO extends PostManager
         $req->execute();
                 
         if ($post = $req->fetch()) {
-
             $post->setDateCreation(new \DateTime($post->getDateCreation()));
             $post->setDateUpdate(new \DateTime($post->getDateUpdate()));
 
-            $req->closecursor();           
+            $req->closecursor();
 
             return $post;
         }
@@ -41,8 +40,7 @@ final class PostManagerPDO extends PostManager
         $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\App\Entity\Post', []);
         $listPosts = $req->fetchAll();
         
-        foreach ($listPosts as $post)
-        {
+        foreach ($listPosts as $post) {
             $post->setDateCreation(new \DateTime($post->getDateCreation()));
             $post->setDateUpdate(new \DateTime($post->getDateUpdate()));
         }
