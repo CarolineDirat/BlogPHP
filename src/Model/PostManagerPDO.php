@@ -1,6 +1,8 @@
 <?php
 namespace App\Model;
 
+use App\Entity\Post;
+
 /**
  * PostManagerPDO
  *
@@ -13,18 +15,49 @@ final class PostManagerPDO extends PostManager
         if (!$this->dao instanceof \PDO) {
             throw new \Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
         }
-        $req = $this->dao->prepare('SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post WHERE id = :id');
+        $req = $this->dao
+                    ->prepare('SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post WHERE id = :id');
         $req->bindValue(':id', (int) $id, \PDO::PARAM_INT);
-        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\App\Entity\Post', []);
+        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Post', []);
         
         $req->execute();
                 
         if ($post = $req->fetch()) {
             $post->setDateCreation(new \DateTime($post->getDateCreation()));
             $post->setDateUpdate(new \DateTime($post->getDateUpdate()));
-            
+
+            $req->closecursor();
+
             return $post;
         }
-        throw new \Exception('un problème lors de la récupération de l\'article');
+        throw new \Exception('The article with id='.filter_var($id, FILTER_VALIDATE_INT).' was not found');
+    }
+
+    public function getListPosts(int $offset = -1, int $limit = -1)
+    {
+        if (!$this->dao instanceof \PDO) {
+            throw new \Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        
+        $sql = 'SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post ORDER BY dateCreation';
+        
+        if($offset != -1 || $limit != -1){
+            $sql .= ' LIMIT '.(int)$limit.' OFFSET '.(int)$offset;
+        }
+        $req = $this->dao->prepare($sql);
+
+        $req->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Post', []);
+    
+        $listPosts = $req->fetchAll();
+        
+        foreach ($listPosts as $post)
+        {
+            $post->setDateCreation(new \DateTime($post->dateCreation()));
+            $post->setDateUpdate(new \DateTime($post->dateUpdate()));
+        }
+        
+        $req->closeCursor();
+        
+        return $listPosts;
     }
 }
