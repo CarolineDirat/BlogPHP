@@ -6,16 +6,11 @@ abstract class Entity
     /**
      * errors
      *
-     * @var array
+     * @var array[string]
      */
     protected $errors = [];
   
-    /**
-     * id
-     *
-     * @var int
-     */
-    protected $id;
+    
 
     public function __construct(array $data = [])
     {
@@ -57,15 +52,10 @@ abstract class Entity
         return $this->errors;
     }
 
-    public function getId() : int
-    {
-        return $this->id;
-    }
-
     // SETTER //
 
-    public function setId(int $id) : void
+    public function addError(string $error) : void
     {
-        $this->id = (int) $id;
+        $this->errors[] = $error;
     }
 }
