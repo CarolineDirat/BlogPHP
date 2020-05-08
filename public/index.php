@@ -16,8 +16,8 @@ try {
 
     if ($httpRequest->requestURI() === "/") {
         $controller = new HomeController($action, $page, $httpRequest);
-        $controller->execute()->send($twigRenderer);
-        ;
+        $httpResponse = $controller->execute();
+        echo $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
     }
 
     if ($httpRequest->hasGET('page')) {
@@ -25,16 +25,17 @@ try {
         switch ($page) {
             case 'post':
                 $controller = new PostController($action, $page, $httpRequest);
-                $controller->execute()->send($twigRenderer);
+                $httpResponse = $controller->execute();
+                echo $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
             break;
             case 'blog':
                 $controller = new PostController($action, $page, $httpRequest);
-                $controller->execute()->send($twigRenderer);
+                $httpResponse = $controller->execute();
+                echo $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
             break;
         }
     }
-
-    throw new \Exception('Auccune page ne correspond à celle demandée');
+    throw new \Exception('No page corresponds to that requested');
 } catch (Exception $e) {
     $twigRenderer = new TwigRenderer('../templates');
     $twigRenderer->render('error', ['error' => $e->getMessage()]);
