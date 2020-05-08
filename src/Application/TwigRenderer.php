@@ -5,11 +5,15 @@ final class TwigRenderer
 {
     
     /**
+     * Twig environnement
+     * 
      * @var \Twig\Environment
      */
     private $twig;
     
     /**
+     * Loader of twig
+     * 
      * @var \Twig\Loader\FilesystemLoader
      */
     private $loader;
@@ -22,8 +26,11 @@ final class TwigRenderer
 
     /**
      * Permet de rajouter un chemin pour charger les vues
-     * @param string $namespace
-     * @param null|string $path
+     * 
+     * @param string      $namespace namespace corresponding to th path
+     * @param null|string $path      path to add
+     * 
+     * @return void
      */
     public function addPath(string $namespace, ?string $path = null): void
     {
@@ -33,21 +40,24 @@ final class TwigRenderer
     /**
      * Permet de rendre une vue
      * Le chemin peut être précisé avec des namespace rajoutés via addPath()
-     * @param string $view
-     * @param array $params
-     * @return void
+     * 
+     * @param string $view   the name of the view
+     * @param array  $params data to give to the view
+     * 
+     * @return string
      */
-    public function render(string $view, array $params = []): void
+    public function render(string $view, array $params = []): string
     {
-        echo $this->twig->render($view . '.twig', $params);
-        exit();
+        return $this->twig->render($view . '.twig', $params);
     }
 
     /**
      * Permet de rajouter des variables globales à toutes les vues
      *
-     * @param string $key
-     * @param mixed $value
+     * @param string $key   key of the global variable
+     * @param mixed  $value value of the global variable
+     * 
+     * @return void
      */
     public function addGlobal(string $key, $value): void
     {
