@@ -19,4 +19,18 @@ final class HomeController extends AbstractController
     {
         return new HTTPResponse($this->getPage());
     }
+
+    /**
+     * controller to process the contact form
+     *
+     * @return HTTPResponse
+     */
+    public function executeProcessContact() : HTTPResponse
+    {
+        
+        $message = "c'est moi le message";
+        
+        
+        return new HTTPResponse('home', ['messageInfo' => $message ]);
+    }
 }

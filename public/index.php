@@ -13,16 +13,12 @@ try {
     $page = "home";
     $httpRequest = new HTTPRequest();
     $twigRenderer = new TwigRenderer('../templates');
-   
     
     if ($httpRequest->requestURI() === "/") {
         $controller = new HomeController($action, $page, $httpRequest);
         $httpResponse = $controller->execute();
         echo $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
     }
-
-    
-    
 
     if ($httpRequest->hasGET('page')) {
         $page =$httpRequest->getData('page');
@@ -39,10 +35,11 @@ try {
             break;
             case 'contact':
                 if(isset($_POST)){
-                    var_dump($_POST);
-                    exit;
+                    $action = 'process';
+                    $controller = new HomeController($action, $page, $httpRequest);
+                    $httpResponse = $controller->execute();
+                    echo $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
                 }
-                
             break;
         }
     }

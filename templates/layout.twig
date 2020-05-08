@@ -68,7 +68,19 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
+    
+    {% if messageInfo %}
+        <section id="messageInfo">
+            <div class="container">
+                <div class="row">
+                    <div class="text-center alert alert-warning alert-dismissible" role="alert">
+                        {{ messageInfo }}
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+    
     {% block view %}{% endblock %}
 
     <!-- Footer -->
