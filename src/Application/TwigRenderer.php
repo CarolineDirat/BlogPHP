@@ -44,11 +44,11 @@ final class TwigRenderer
      * @param string $view   the name of the view
      * @param array  $params data to give to the view
      * 
-     * @return void
+     * @return string
      */
-    public function render(string $view, array $params = []): void
+    public function render(string $view, array $params = []): string
     {
-        exit($this->twig->render($view . '.twig', $params));
+        return $this->twig->render($view . '.twig', $params);
     }
 
     /**

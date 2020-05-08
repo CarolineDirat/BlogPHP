@@ -16,7 +16,8 @@ try {
 
     if ($httpRequest->requestURI() === "/") {
         $controller = new HomeController($action, $page, $httpRequest);
-        $controller->execute()->send($twigRenderer);
+        $httpResponse = $controller->execute();
+        echo $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
     }
 
     if ($httpRequest->hasGET('page')) {
@@ -24,11 +25,13 @@ try {
         switch ($page) {
             case 'post':
                 $controller = new PostController($action, $page, $httpRequest);
-                $controller->execute()->send($twigRenderer);
+                $httpResponse = $controller->execute();
+                echo $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
             break;
             case 'blog':
                 $controller = new PostController($action, $page, $httpRequest);
-                $controller->execute()->send($twigRenderer);
+                $httpResponse = $controller->execute();
+                echo $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
             break;
         }
     }
