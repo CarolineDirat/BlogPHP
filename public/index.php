@@ -18,8 +18,7 @@ try {
     if ($httpRequest->requestURI() === "/") {
         $match = true;
         $controller = new HomeController($action, $page, $httpRequest);
-        $httpResponse = $controller->execute();
-        $twigRenderer->getTwig()->display($httpResponse->getPage().'.twig',$httpResponse->getParams());
+        $controller->execute()->send($twigRenderer);
     } 
 
     if ($httpRequest->hasGET('page')) {
@@ -29,13 +28,13 @@ try {
                 $match = true;
                 $controller = new PostController($action, $page, $httpRequest);
                 $httpResponse = $controller->execute();
-                echo $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
+                $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
             break;
             case 'blog':
                 $match = true;
                 $controller = new PostController($action, $page, $httpRequest);
                 $httpResponse = $controller->execute();
-                echo $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
+                $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
             break;
             case 'contact':
                 if(isset($_POST)){
@@ -43,7 +42,7 @@ try {
                     $action = 'process';
                     $controller = new HomeController($action, $page, $httpRequest);
                     $httpResponse = $controller->execute();
-                    echo $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
+                    $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
                 }
             break;
         }
@@ -58,5 +57,5 @@ try {
     
 } catch (Exception $e) {
     $twigRenderer = new TwigRenderer('../templates');
-    echo $twigRenderer->render('error', ['error' => $e->getMessage()]);
+    $twigRenderer->render('error', ['error' => $e->getMessage()]);
 }

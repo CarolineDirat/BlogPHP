@@ -44,11 +44,11 @@ final class TwigRenderer
      * @param string $view   the name of the view
      * @param array  $params data to give to the view
      * 
-     * @return string
+     * @return void
      */
-    public function render(string $view, array $params = []): string
+    public function render(string $view, array $params = []): void
     {
-        return $this->twig->render($view . '.twig', $params);
+        $this->twig->display($view . '.twig', $params);
     }
 
     /**
@@ -62,17 +62,5 @@ final class TwigRenderer
     public function addGlobal(string $key, $value): void
     {
         $this->twig->addGlobal($key, $value);
-    }
-    
-    /**
-     * getTwig
-     * 
-     * getter of $twig property of this class
-     *
-     * @return Twig\Environment
-     */
-    public function getTwig() : \Twig\Environment
-    {
-        return $this->twig;
     }
 }

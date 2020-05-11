@@ -33,6 +33,11 @@ final class HTTPResponse
         $this->setPage($page);
         $this->setParams($params);
     }
+
+    public function send(TwigRenderer $twigRenderer) : void
+    {
+        $twigRenderer->render($this->getPage(),$this->getParams());
+    }
     
     public function getPage() : string
     {
