@@ -27,22 +27,19 @@ try {
             case 'post':
                 $match = true;
                 $controller = new PostController($action, $page, $httpRequest);
-                $httpResponse = $controller->execute();
-                $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
+                $controller->execute()->send($twigRenderer);
             break;
             case 'blog':
                 $match = true;
                 $controller = new PostController($action, $page, $httpRequest);
-                $httpResponse = $controller->execute();
-                $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
+                $controller->execute()->send($twigRenderer);
             break;
             case 'contact':
                 if(isset($_POST)){
                     $match = true;
                     $action = 'process';
                     $controller = new HomeController($action, $page, $httpRequest);
-                    $httpResponse = $controller->execute();
-                    $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
+                    $controller->execute()->send($twigRenderer);
                 }
             break;
         }
