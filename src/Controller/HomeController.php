@@ -34,7 +34,7 @@ final class HomeController extends AbstractController
             !$this->httpRequest->hasPost('email1')    ||
             !$this->httpRequest->hasPost('email2')    ||
             !$this->httpRequest->hasPost('messageContact')) {
-            $message = "Le mail n'a pas pu être envoyé car il manque un champs";
+            $message = "Le mail n'a pas pu être envoyé car il manque au moins un champs";
             throw new \Exception($message);
         }
 
@@ -56,7 +56,7 @@ final class HomeController extends AbstractController
         $headers .= "Reply-To: ".$email;
         
         if(mail($to, $emailSubject, $emailBody, $headers)){
-            $message = "L'envoie du mail a réussi.";
+            $message = "Votre message a bien été envoyé.";
         } else {
             $message = "Nous sommes désolés, l'envoie du mail a échoué.";
             throw new \Exception($message);
