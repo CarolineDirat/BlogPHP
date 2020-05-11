@@ -35,17 +35,13 @@ try {
                 $controller->execute()->send($twigRenderer);
             break;
             case 'contact':
-                if(isset($_POST)){
                     $match = true;
                     $action = 'process';
                     $controller = new HomeController($action, $page, $httpRequest);
                     $controller->execute()->send($twigRenderer);
-                }
             break;
         }
     }
-
-    
     
     if(!$match) {
         throw new \Exception('No page corresponds to that requested');
