@@ -114,6 +114,9 @@ header .intro-text .skills {
 .alert{
   margin-bottom: 0px;
 }
+.exception{
+  margin-bottom: 50px !important;
+}
 .navbar-custom {
   background: #2C3E50;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
