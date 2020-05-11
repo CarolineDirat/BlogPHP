@@ -46,5 +46,5 @@ try {
     throw new \Exception('No page corresponds to that requested');
 } catch (Exception $e) {
     $twigRenderer = new TwigRenderer('../templates');
-    $twigRenderer->render('error', ['error' => $e->getMessage()]);
+    echo $twigRenderer->render('error', ['error' => $e->getMessage()]);
 }
