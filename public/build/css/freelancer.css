@@ -211,9 +211,15 @@ section.success {
 #messageInfo {
   padding: 0px;
   padding-top: 110px;
+  font-size: 18px;
 }
 #messageInfo div.container {
   width: 100%;
+}
+@media (max-width: 767px) {
+  #messageInfo {
+    padding-top: 50px;
+  }
 }
 #portfolio{
   margin-top: 100px;
