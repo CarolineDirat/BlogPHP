@@ -19,7 +19,7 @@ try {
         $match = true;
         $controller = new HomeController($action, $page, $httpRequest);
         $httpResponse = $controller->execute();
-        echo $twigRenderer->render($httpResponse->getPage(),$httpResponse->getParams());
+        $twigRenderer->getTwig()->display($httpResponse->getPage().'.twig',$httpResponse->getParams());
     } 
 
     if ($httpRequest->hasGET('page')) {

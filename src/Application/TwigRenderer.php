@@ -63,4 +63,16 @@ final class TwigRenderer
     {
         $this->twig->addGlobal($key, $value);
     }
+    
+    /**
+     * getTwig
+     * 
+     * getter of $twig property of this class
+     *
+     * @return Twig\Environment
+     */
+    public function getTwig() : \Twig\Environment
+    {
+        return $this->twig;
+    }
 }
