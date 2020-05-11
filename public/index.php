@@ -19,7 +19,7 @@ try {
         $match = true;
         $controller = new HomeController($action, $page, $httpRequest);
         $controller->execute()->send($twigRenderer);
-    }
+    } 
 
     if ($httpRequest->hasGET('page')) {
         $page =$httpRequest->getData('page');
@@ -35,17 +35,19 @@ try {
                 $controller->execute()->send($twigRenderer);
             break;
             case 'contact':
+                if($httpRequest->method() === 'POST'){
                     $match = true;
                     $action = 'process';
                     $controller = new HomeController($action, $page, $httpRequest);
                     $controller->execute()->send($twigRenderer);
+                }
             break;
         }
-    }
-    
-    if (!$match) {
+    }    
+    if(!$match) {
         throw new \Exception('No page corresponds to that requested');
     }
+    
 } catch (Exception $e) {
     $twigRenderer = new TwigRenderer('../templates');
     $twigRenderer->render('error', ['error' => $e->getMessage()]);
