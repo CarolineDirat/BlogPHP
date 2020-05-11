@@ -59,7 +59,7 @@ final class HTTPRequest // extends ApplicationComponent
      */
     public function postData(string $key)
     {
-        if($key === 'email' || $key === 'email1' || $key === 'email2'){
+        if ($key === 'email' || $key === 'email1' || $key === 'email2') {
             $sanitizedEmail = filter_input(INPUT_POST, $key, FILTER_SANITIZE_EMAIL);
             return filter_var($sanitizedEmail, FILTER_VALIDATE_EMAIL);
         }

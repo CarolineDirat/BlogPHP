@@ -36,9 +36,9 @@ final class HomeController extends AbstractController
             return new HTTPResponse('home', ['messageInfo' => "Le mail n'a pas pu être envoyé car il manque au moins un champs"]);
         }
 
-        if(!$this->httpRequest->postData('email1') || !$this->httpRequest->postData('email1') || $this->httpRequest->postData('email1') !== $this->httpRequest->postData('email2')){
+        if (!$this->httpRequest->postData('email1') || !$this->httpRequest->postData('email1') || $this->httpRequest->postData('email1') !== $this->httpRequest->postData('email2')) {
             return new HTTPResponse('home', ['messageInfo' => "Le mail n'a pas pu être envoyé car au moins un des emails n'est pas valide."]);
-        }      
+        }
         
         $firstName = $this->httpRequest->postData('firstName');
         $lastName = $this->httpRequest->postData('lastName');
@@ -52,7 +52,7 @@ final class HomeController extends AbstractController
         $headers = "From: noreply@gmail.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
         $headers .= "Reply-To: ".$email;
         
-        if(mail($to, $emailSubject, $emailBody, $headers)){
+        if (mail($to, $emailSubject, $emailBody, $headers)) {
             return new HTTPResponse('home', ['messageInfo' => "Votre message a bien été envoyé."]);
         } else {
             throw new \Exception("Nous sommes désolés, l'envoie du mail a échoué.");

@@ -19,7 +19,7 @@ try {
         $match = true;
         $controller = new HomeController($action, $page, $httpRequest);
         $controller->execute()->send($twigRenderer);
-    } 
+    }
 
     if ($httpRequest->hasGET('page')) {
         $page =$httpRequest->getData('page');
@@ -43,11 +43,9 @@ try {
         }
     }
     
-    if(!$match) {
+    if (!$match) {
         throw new \Exception('No page corresponds to that requested');
     }
-    
-    
 } catch (Exception $e) {
     $twigRenderer = new TwigRenderer('../templates');
     $twigRenderer->render('error', ['error' => $e->getMessage()]);

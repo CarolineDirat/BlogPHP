@@ -36,7 +36,7 @@ final class HTTPResponse
 
     public function send(TwigRenderer $twigRenderer) : void
     {
-        $twigRenderer->render($this->getPage(),$this->getParams());
+        $twigRenderer->render($this->getPage(), $this->getParams());
     }
     
     public function getPage() : string
