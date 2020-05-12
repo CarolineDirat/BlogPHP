@@ -6,4 +6,5 @@ parameters:
         - 'config'
     sets:
         - php74
+        - solid
     
