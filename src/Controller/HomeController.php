@@ -49,7 +49,6 @@ final class HomeController extends AbstractController
 
         ////////// Create the email and send the message //////////////////
         $mail = new PHPMailerApp(true);    // Instantiation of PHPMailer and passing `true` enables exceptions
-        $mail->settings();              // configurations of settings
         
         if ($mail->sendContact($recipient, $firstName, $lastName, $email, $messageContact)) {
             return new HTTPResponse('home', ['messageInfo' => "Votre message a bien été envoyé."]);
