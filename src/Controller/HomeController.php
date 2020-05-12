@@ -49,10 +49,10 @@ final class HomeController extends AbstractController
         // Check captcha 
         // Checking that the posted phrase match the phrase stored in the session
         $sessionPhrase = filter_var($_SESSION['phrase'], FILTER_SANITIZE_STRING, []);
-        if (!isset($sessionPhrase) || !PhraseBuilder::comparePhrases($sessionPhrase, $this->httpRequest->postData('phrase'))) {
+        if (!PhraseBuilder::comparePhrases($sessionPhrase, $this->httpRequest->postData('phrase'))) {
             return new HTTPResponse('home', ['messageInfo' => "Le code recopié ne correspond pas à l'image, veuillez cliquer sur <<Accueil>> du menu pour réessayer"]);
         }
-        // The phrase can't be used twice
+        // The captcha's phrase can't be used twice
         unset($_SESSION['phrase']);
         // Check emails equality
         if (!$this->httpRequest->postData('email1') || !$this->httpRequest->postData('email1') || $this->httpRequest->postData('email1') !== $this->httpRequest->postData('email2')) {
