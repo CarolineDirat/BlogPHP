@@ -54,8 +54,8 @@ final class HomeController extends AbstractController
         
         if (mail($to, $emailSubject, $emailBody, $headers)) {
             return new HTTPResponse('home', ['messageInfo' => "Votre message a bien été envoyé."]);
-        } else {
-            throw new \Exception("Nous sommes désolés, l'envoie du mail a échoué.");
-        }
+        } 
+        throw new \Exception("Nous sommes désolés, l'envoie du mail a échoué.");
+        
     }
 }
