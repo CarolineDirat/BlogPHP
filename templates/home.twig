@@ -90,14 +90,22 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Confirmez votre addresse Email </label>
-                                <input type="email" class="form-control" placeholder="Confirmez votre addresse Email " id="email2" name="email2"required data-validation-required-message="Confirmez votre adresse email.">
+                                <input type="email" class="form-control" placeholder="Confirmez votre addresse Email " id="email2" name="email2" required data-validation-required-message="Confirmez votre adresse email.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Message</label>
-                                <textarea rows="5" class="form-control" placeholder="Message" id="messageContact" name="messageContact" required data-validation-required-message="Please enter a message."></textarea>
+                                <textarea rows="5" class="form-control" placeholder="Message" id="messageContact" name="messageContact" required data-validation-required-message="Veuillez écrire un message."></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <img src="build/captcha.php" alt="image d'un code à recopier"/>
+                                <label>Recopier le code</label>
+                                <input type="text" class="form-control" placeholder="Recopier le code" id="phrase" name="phrase" required data-validation-required-message="Veuillez recopier le code de l'image."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
