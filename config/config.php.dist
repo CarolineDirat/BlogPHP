@@ -16,13 +16,16 @@ function get($configKey, $default)
 
 // to configure the connection to the database
 
-define('SERVER', get('SERVER', 'localhost')); // the adress of the server
-define('USER', get('DB_USER', 'root')); // the user with access to the database
+define('SERVER', get('SERVER', 'localhost'));   // the adress of the server
+define('USER', get('DB_USER', 'root'));         // the user with access to the database
 define('PASSWD', get('DB_PASSWD', 'password')); // the password of the user
-define('DB_NAME', get('DB_NAME', 'blogphp')); // the name of the database
+define('DB_NAME', get('DB_NAME', 'blogphp'));   // the name of the database
 
 define('PORT', get('PORT', '3306'));
 define('PDO_DSN', 'mysql:host=' . SERVER . ';port=' . PORT . ';dbname=' . DB_NAME);
 
-// other sensitive data
-define('MAIL', 'yours@domain.com'); // put your e-mail
+// to configure the send of e-mail
+define('SMTP_SERVER', 'write_yours');    // SMTP server, ex : 'smtp.gmail.com'
+define('SMTP_USER', 'write_yours');      // SMTP username, ex : 'joe.doe@gmail.com'
+define('SMTP_PASS', 'write_yours');      // SMTP password
+define('EMAIL_CONTACT', 'write_yours');    // E-MAIL adress to receive message from contact form
