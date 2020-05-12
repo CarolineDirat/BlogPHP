@@ -28,7 +28,7 @@ class PHPMailerApp extends PHPMailer
     
     /**
      * sendContact
-     * 
+     *
      * Create a message (from the data's contact form (in the home page))
      * and send it.
      *
@@ -37,11 +37,11 @@ class PHPMailerApp extends PHPMailer
      * @param  string $lastName         Last name from the contact form
      * @param  string $email            E-mail from the contact form
      * @param  string $messageContact   Message from the contact form
-     * 
+     *
      * @return bool false on error - See the ErrorInfo property for details of the error
      */
     public function sendContact($recipient, $firstName, $lastName, $email, $messageContact)
-    {           
+    {
         // Recipients
         $this->setFrom('ne-pas-repondre@carocode.com', 'Contact Form');
         $this->addAddress($recipient);   // Add a recipient (Name is optional)
@@ -53,6 +53,6 @@ class PHPMailerApp extends PHPMailer
         // This is the body in plain text for non-HTML mail clients:
         $this->AltBody = $messageContact;
 
-        return $this->send(); 
+        return $this->send();
     }
 }

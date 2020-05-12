@@ -52,7 +52,7 @@ final class HomeController extends AbstractController
         
         if ($mail->sendContact($recipient, $firstName, $lastName, $email, $messageContact)) {
             return new HTTPResponse('home', ['messageInfo' => "Votre message a bien été envoyé."]);
-        } 
+        }
         throw new \Exception("L'envoie du mail a échoué :".$mail->ErrorInfo);
     }
 }
