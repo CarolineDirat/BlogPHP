@@ -35,7 +35,7 @@ final class HomeController extends AbstractController
      * @return HTTPResponse
      */
     public function executeProcessContact() : HTTPResponse
-    {       
+    {
         // Check for empty fields
         if (!$this->httpRequest->hasPost('phrase') ||
             !$this->httpRequest->hasPost('firstName') ||
@@ -46,7 +46,7 @@ final class HomeController extends AbstractController
             return new HTTPResponse('home', ['messageInfo' => "Le mail n'a pas pu être envoyé car il manque au moins un champs"]);
         }
         
-        // Check captcha 
+        // Check captcha
         // Checking that the posted phrase match the phrase stored in the session
         $sessionPhrase = filter_var($_SESSION['phrase'], FILTER_SANITIZE_STRING, []);
         if (!PhraseBuilder::comparePhrases($sessionPhrase, $this->httpRequest->postData('phrase'))) {
