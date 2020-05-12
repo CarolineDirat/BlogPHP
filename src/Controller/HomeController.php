@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Application\AbstractController;
 use App\Application\HTTPResponse;
+use App\Application\PHPMailerApp;
 
 //use App\Application\TwigRenderer;
 
@@ -39,23 +40,19 @@ final class HomeController extends AbstractController
         if (!$this->httpRequest->postData('email1') || !$this->httpRequest->postData('email1') || $this->httpRequest->postData('email1') !== $this->httpRequest->postData('email2')) {
             return new HTTPResponse('home', ['messageInfo' => "Le mail n'a pas pu être envoyé car au moins un des emails n'est pas valide."]);
         }
-        
+   
         $firstName = $this->httpRequest->postData('firstName');
         $lastName = $this->httpRequest->postData('lastName');
         $email = $this->httpRequest->postData('email1');
         $messageContact = $this->httpRequest->postData('messageContact');
+        $recipient = EMAIL_CONTACT; // @phpstan-ignore-line
+
+        ////////// Create the email and send the message //////////////////
+        $mail = new PHPMailerApp(true);    // Instantiation of PHPMailer and passing `true` enables exceptions
         
-        // Create the email and send the message
-        $to = MAIL; // @phpstan-ignore-line // define your email address in config/config.php file, replacing yourname@yourdomain.com - This is where the form will send a message to.
-        $emailSubject = "Formulaire de contact à CaroCode : ".$firstName." ".$lastName;
-        $emailBody = "Vous avez reçu un message depuis le formulaire de contact de CaroCode\n\n"."Voici les details:\n\nNom : ".$lastName."\n\nPrénom : ".$firstName."\n\nEmail : ".$email."\n\nMessage:\n".$messageContact;
-        $headers = "From: noreply@gmail.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
-        $headers .= "Reply-To: ".$email;
-        
-        if (mail($to, $emailSubject, $emailBody, $headers)) {
+        if ($mail->sendContact($recipient, $firstName, $lastName, $email, $messageContact)) {
             return new HTTPResponse('home', ['messageInfo' => "Votre message a bien été envoyé."]);
-        } 
-        throw new \Exception("Nous sommes désolés, l'envoie du mail a échoué.");
-        
+        }
+        throw new \Exception("L'envoie du mail a échoué :".$mail->ErrorInfo);
     }
 }
