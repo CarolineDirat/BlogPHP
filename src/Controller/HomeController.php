@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Application\AbstractController;
 use App\Application\HTTPResponse;
 use App\Application\PHPMailerApp;
+use Gregwar\Captcha\CaptchaBuilder;
 
 //use App\Application\TwigRenderer;
 
@@ -18,7 +19,13 @@ final class HomeController extends AbstractController
      */
     public function executeShowHome() : HTTPResponse
     {
-        return new HTTPResponse($this->getPage());
+        // Creating the captcha instance and setting the phrase in the session to store
+        // it for check when the form is submitted
+        $captcha = new CaptchaBuilder;
+        $_SESSION['phrase'] = $captcha->getPhrase();
+
+        // Retrieve the captcha to insert it directly into the HTML page:
+        return new HTTPResponse($this->getPage(), [ 'captcha' => $captcha->build()->inline() ]);
     }
 
     /**
