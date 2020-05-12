@@ -111,6 +111,12 @@ header .intro-text .skills {
     font-size: 1.75em;
   }
 }
+.alert{
+  margin-bottom: 0px;
+}
+.exception{
+  margin-bottom: 50px !important;
+}
 .navbar-custom {
   background: #2C3E50;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -203,6 +209,19 @@ section.success {
   }
   section.first {
     padding-top: 75px;
+  }
+}
+#messageInfo {
+  padding: 0px;
+  padding-top: 110px;
+  font-size: 18px;
+}
+#messageInfo div.container {
+  width: 100%;
+}
+@media (max-width: 767px) {
+  #messageInfo {
+    padding-top: 50px;
   }
 }
 #portfolio{

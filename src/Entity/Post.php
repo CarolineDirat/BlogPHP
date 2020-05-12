@@ -7,6 +7,11 @@ use App\Application\Entity;
 final class Post extends Entity
 {
     /**
+     * @var int
+     */
+    protected $id;
+    
+    /**
      * @var string
      */
     private $title;
@@ -53,7 +58,12 @@ final class Post extends Entity
     }
   
     // SETTERS //
-  
+    
+    public function setId(int $id) : void
+    {
+        $this->id = (int) $id;
+    }
+    
     public function setTitle(string $title) : void
     {
         $this->title = $title;
@@ -91,6 +101,11 @@ final class Post extends Entity
 
     
     // GETTERS //
+
+    public function getId() : int
+    {
+        return $this->id;
+    }
     
     public function getTitle() : string
     {
