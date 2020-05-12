@@ -14,7 +14,7 @@ class PHPMailerApp extends PHPMailer
         // SETTINGS
         $this->set('CharSet', PHPMailer::CHARSET_UTF8);  // define the character set of the message at utf-8.
         // Server settings
-        $this->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output with SMTP::DEBUG_SERVER, in develop environment (0 in production environment)
+        $this->SMTPDebug = 0;                      // Enable verbose debug output with SMTP::DEBUG_SERVER, in develop environment (0 in production environment)
         $this->isSMTP();                                            // Send using SMTP
         $this->Host       = SMTP_SERVER;  // @phpstan-ignore-line   // Set the SMTP server to send through, defined in config.php
         $this->SMTPAuth   = true;                                   // Enable SMTP authentication
@@ -25,7 +25,21 @@ class PHPMailerApp extends PHPMailer
         // Content
         $this->isHTML(true);   // Set email format to HTML
     }
-
+    
+    /**
+     * sendContact
+     * 
+     * Create a message (from the data's contact form (in the home page))
+     * and send it.
+     *
+     * @param  string $recipient        Recipient of the mail sent
+     * @param  string $firstName        First name from the contact form
+     * @param  string $lastName         Last name from the contact form
+     * @param  string $email            E-mail from the contact form
+     * @param  string $messageContact   Message from the contact form
+     * 
+     * @return bool false on error - See the ErrorInfo property for details of the error
+     */
     public function sendContact($recipient, $firstName, $lastName, $email, $messageContact)
     {           
         // Recipients
