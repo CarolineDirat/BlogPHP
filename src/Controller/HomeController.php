@@ -13,7 +13,7 @@ use Gregwar\Captcha\PhraseBuilder;
 final class HomeController extends AbstractController
 {
     /**
-     * controller to show the Home Page.
+     * Controller to show the Home Page.
      *
      * @return HTTPResponse
      */
@@ -29,7 +29,7 @@ final class HomeController extends AbstractController
     }
 
     /**
-     * controller to process the contact form.
+     * Controller to process the contact form.
      *
      * @return HTTPResponse
      */
@@ -50,7 +50,10 @@ final class HomeController extends AbstractController
         // Check captcha
         // Checking that the posted phrase match the phrase stored in the session
         if (!PhraseBuilder::comparePhrases($this->httpRequest->getSession('phrase'), $this->httpRequest->postData('phrase'))) {
-            return new HTTPResponse('home', ['messageInfo' => "Le code recopié ne correspond pas à l'image, veuillez cliquer sur <<Accueil>> du menu pour réessayer"]);
+            return new HTTPResponse(
+                'home',
+                ['messageInfo' => "Le code recopié ne correspond pas à l'image, veuillez cliquer sur <<Accueil>> du menu pour réessayer"]
+            );
         }
         // The captcha's phrase can't be used twice
         $this->httpRequest->unsetSession('phrase');
@@ -61,19 +64,21 @@ final class HomeController extends AbstractController
             || !$this->httpRequest->postData('email1')
             || $this->httpRequest->postData('email1') !== $this->httpRequest->postData('email2')
         ) {
-            return new HTTPResponse('home', ['messageInfo' => "Le mail n'a pas pu être envoyé car au moins un des emails n'est pas valide."]);
+            return new HTTPResponse(
+                'home',
+                ['messageInfo' => "Le mail n'a pas pu être envoyé car au moins un des emails n'est pas valide."]
+            );
         }
-
-        $firstName = $this->httpRequest->postData('firstName');
-        $lastName = $this->httpRequest->postData('lastName');
-        $email = $this->httpRequest->postData('email1');
-        $messageContact = $this->httpRequest->postData('messageContact');
-        $recipient = EMAIL_CONTACT; // @phpstan-ignore-line
-
-        ////////// Create the email and send the message //////////////////
         $mail = new PHPMailerApp(true);    // Instantiation of PHPMailer and passing `true` enables exceptions
-
-        if ($mail->sendContact($recipient, $firstName, $lastName, $email, $messageContact)) {
+        if (
+            $mail->sendContact(
+                EMAIL_CONTACT,  // @phpstan-ignore-line
+                $this->httpRequest->postData('firstName'),
+                $this->httpRequest->postData('lastName'),
+                $this->httpRequest->postData('email1'),
+                $this->httpRequest->postData('messageContact')
+            )
+        ) {
             return new HTTPResponse('home', ['messageInfo' => 'Votre message a bien été envoyé.']);
         }
 

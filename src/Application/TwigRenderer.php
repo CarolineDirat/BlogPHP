@@ -2,33 +2,36 @@
 
 namespace App\Application;
 
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
 final class TwigRenderer
 {
     /**
      * Twig environnement.
      *
-     * @var \Twig\Environment
+     * @var Environment
      */
-    private $twig;
+    private Environment $twig;
 
     /**
      * Loader of twig.
      *
-     * @var \Twig\Loader\FilesystemLoader
+     * @var FilesystemLoader
      */
-    private $loader;
+    private FilesystemLoader $loader;
 
     public function __construct(string $path)
     {
-        $this->loader = new \Twig\Loader\FilesystemLoader($path);
-        $this->twig = new \Twig\Environment($this->loader, []);
+        $this->loader = new FilesystemLoader($path);
+        $this->twig = new Environment($this->loader, []);
     }
 
     /**
      * Permet de rajouter un chemin pour charger les vues.
      *
-     * @param string      $namespace namespace corresponding to th path
-     * @param null|string $path      path to add
+     * @param string    $namespace namespace corresponding to th path
+     * @param ?string   $path path to add
      */
     public function addPath(string $namespace, ?string $path = null): void
     {

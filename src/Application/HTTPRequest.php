@@ -3,14 +3,14 @@
 namespace App\Application;
 
 /**
- * to represent the client's request.
+ * To represent the client's request.
  */
-final class HTTPRequest // extends ApplicationComponent
+final class HTTPRequest
 {
     /**
      * get a cookie variable if it exists.
      *
-     * @return mixed
+     * @return mixed string || false if the filter fails || null if $key does'nt exist
      */
     public function cookieData(string $key)
     {
@@ -22,7 +22,7 @@ final class HTTPRequest // extends ApplicationComponent
      *
      * @return bool
      */
-    public function hasCookie(string $key)
+    public function hasCookie(string $key): bool
     {
         return filter_has_var(INPUT_COOKIE, $key);
     }
@@ -30,7 +30,7 @@ final class HTTPRequest // extends ApplicationComponent
     /**
      * get a session variable if it exists.
      *
-     * @return mixed
+     * @return mixed string or false if the filter fails
      */
     public function getSession(string $key)
     {
@@ -41,14 +41,19 @@ final class HTTPRequest // extends ApplicationComponent
      * setSession.
      *
      * edit or create a session variable
-     *
-     * @return void
      */
     public function setSession(string $key, string $value): void
     {
         $_SESSION[$key] = filter_var($value, FILTER_SANITIZE_STRING, []);
     }
 
+    /**
+     * unsetSession.
+     *
+     * delete a session variable
+     *
+     * @param mixed $key
+     */
     public function unsetSession(string $key): void
     {
         unset($_SESSION[$key]);
@@ -57,7 +62,7 @@ final class HTTPRequest // extends ApplicationComponent
     /**
      * get a GET variable if it exists.
      *
-     * @return mixed
+     * @return mixed string || false if the filter fails || null if $key does'nt exist
      */
     public function getData(string $key)
     {
@@ -69,7 +74,7 @@ final class HTTPRequest // extends ApplicationComponent
      *
      * @return bool
      */
-    public function hasGet(string $key)
+    public function hasGet(string $key): bool
     {
         return filter_has_var(INPUT_GET, $key);
     }
@@ -77,7 +82,7 @@ final class HTTPRequest // extends ApplicationComponent
     /**
      * get a POST variable if it exists.
      *
-     * @return mixed
+     * @return mixed string || false if the filter fails || null if $key does'nt exist
      */
     public function postData(string $key)
     {
@@ -95,7 +100,7 @@ final class HTTPRequest // extends ApplicationComponent
      *
      * @return bool
      */
-    public function hasPost(string $key)
+    public function hasPost(string $key): bool
     {
         return filter_has_var(INPUT_POST, $key);
     }
@@ -103,7 +108,7 @@ final class HTTPRequest // extends ApplicationComponent
     /**
      * get the URI that was provided to access this page. For example: '/index.php'.
      *
-     * @return mixed
+     * @return mixed string || false if the filter fails || null if $key does'nt exist
      */
     public function requestURI()
     {
@@ -113,7 +118,7 @@ final class HTTPRequest // extends ApplicationComponent
     /**
      * Request method used to access the page; for example 'GET', 'HEAD', 'POST', 'PUT'.
      *
-     * @return mixed
+     * @return mixed string || false if the filter fails || null if $key does'nt exist
      */
     public function method()
     {

@@ -17,23 +17,23 @@ final class PDOSingleton
      *
      * Will contain the instance of our class
      *
-     * @var PDOSingleton | bool
+     * @var PDOSingleton|bool
      */
     private static $instance = false;
 
     /**
-     * connexion.
+     * connection.
      *
      * connection to the database (MySQL) by PDO
      *
      * @var PDO
      */
-    private $connexion;
+    private $connection;
 
     private function __construct() // must be private for the Singleton pattern
     {
-        $this->connexion = new PDO(PDO_DSN, USER, PASSWD); // @phpstan-ignore-line
-        $this->connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->connection = new PDO(PDO_DSN, USER, PASSWD); // @phpstan-ignore-line
+        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     private function __clone() // must be private for the Singleton pattern
@@ -51,6 +51,6 @@ final class PDOSingleton
 
     public function getConnexion(): PDO
     {
-        return $this->connexion;
+        return $this->connection;
     }
 }

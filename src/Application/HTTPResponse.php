@@ -43,14 +43,14 @@ final class HTTPResponse
         return $this->page;
     }
 
-    public function getParams(): array
-    {
-        return $this->params;
-    }
-
     public function setPage(string $page): void
     {
         $this->page = $page;
+    }
+
+    public function getParams(): array
+    {
+        return $this->params;
     }
 
     public function setParams(array $params): void
