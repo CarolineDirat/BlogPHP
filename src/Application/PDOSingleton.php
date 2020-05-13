@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Application;
 
-use \PDO;
+use PDO;
 
 /**
- * PDOSingleton
+ * PDOSingleton.
  *
  * to get the connection to the database (MySQL) by PDO
  * must be instantiated only once
@@ -12,22 +13,22 @@ use \PDO;
 final class PDOSingleton
 {
     /**
-     * instance
+     * instance.
      *
      * Will contain the instance of our class
      *
      * @var PDOSingleton | bool
      */
     private static $instance = false;
-    
+
     /**
-     * connexion
+     * connexion.
      *
      * connection to the database (MySQL) by PDO
      *
      * @var PDO
      */
-    protected $connexion;
+    private $connexion;
 
     private function __construct() // must be private for the Singleton pattern
     {
@@ -39,16 +40,16 @@ final class PDOSingleton
     {
     }
 
-    public static function getInstance() : PDOSingleton
+    public static function getInstance(): PDOSingleton
     {
-        if (self::$instance === false) {
+        if (false === self::$instance) {
             self::$instance = new self();
         }
 
         return self::$instance;
     }
 
-    public function getConnexion() : PDO
+    public function getConnexion(): PDO
     {
         return $this->connexion;
     }

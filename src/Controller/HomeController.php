@@ -12,29 +12,28 @@ use Gregwar\Captcha\PhraseBuilder;
 
 final class HomeController extends AbstractController
 {
-        
     /**
-     * controller to show the Home Page
+     * controller to show the Home Page.
      *
      * @return HTTPResponse
      */
-    public function executeShowHome() : HTTPResponse
+    public function executeShowHome(): HTTPResponse
     {
         // Creating the captcha instance and setting the phrase in the session to store
         // it for check when the form is submitted
-        $captcha = new CaptchaBuilder;
+        $captcha = new CaptchaBuilder();
         $this->httpRequest->setSession('phrase', $captcha->getPhrase());
 
         // Retrieve the captcha to insert it directly into the home.twig page:
-        return new HTTPResponse($this->getPage(), [ 'captcha' => $captcha->build()->inline() ]);
+        return new HTTPResponse($this->getPage(), ['captcha' => $captcha->build()->inline()]);
     }
 
     /**
-     * controller to process the contact form
+     * controller to process the contact form.
      *
      * @return HTTPResponse
      */
-    public function executeProcessContact() : HTTPResponse
+    public function executeProcessContact(): HTTPResponse
     {
         // Check for empty fields
         if (
@@ -47,7 +46,7 @@ final class HomeController extends AbstractController
         ) {
             return new HTTPResponse('home', ['messageInfo' => "Le mail n'a pas pu être envoyé car il manque au moins un champs"]);
         }
-        
+
         // Check captcha
         // Checking that the posted phrase match the phrase stored in the session
         if (!PhraseBuilder::comparePhrases($this->httpRequest->getSession('phrase'), $this->httpRequest->postData('phrase'))) {
@@ -64,7 +63,7 @@ final class HomeController extends AbstractController
         ) {
             return new HTTPResponse('home', ['messageInfo' => "Le mail n'a pas pu être envoyé car au moins un des emails n'est pas valide."]);
         }
-   
+
         $firstName = $this->httpRequest->postData('firstName');
         $lastName = $this->httpRequest->postData('lastName');
         $email = $this->httpRequest->postData('email1');
@@ -73,10 +72,11 @@ final class HomeController extends AbstractController
 
         ////////// Create the email and send the message //////////////////
         $mail = new PHPMailerApp(true);    // Instantiation of PHPMailer and passing `true` enables exceptions
-        
+
         if ($mail->sendContact($recipient, $firstName, $lastName, $email, $messageContact)) {
-            return new HTTPResponse('home', ['messageInfo' => "Votre message a bien été envoyé."]);
+            return new HTTPResponse('home', ['messageInfo' => 'Votre message a bien été envoyé.']);
         }
+
         throw new \Exception("L'envoie du mail a échoué :".$mail->ErrorInfo);
     }
 }

@@ -10,7 +10,7 @@ final class Post extends Entity
      * @var int
      */
     protected $id;
-    
+
     /**
      * @var string
      */
@@ -39,12 +39,12 @@ final class Post extends Entity
      * @var int
      */
     private $idUser;
- 
+
     /**
-    * Method to know if the post is valid.
-    *
-    * @return bool
-    */
+     * Method to know if the post is valid.
+     *
+     * @return bool
+     */
     public function isValid()
     {
         return !(
@@ -56,77 +56,76 @@ final class Post extends Entity
                 || empty($this->idUser)
         );
     }
-  
+
     // SETTERS //
-    
-    public function setId(int $id) : void
+
+    public function setId(int $id): void
     {
         $this->id = (int) $id;
     }
-    
-    public function setTitle(string $title) : void
+
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
-    public function setSlug(string $slug)  : void
+    public function setSlug(string $slug): void
     {
         $this->slug = $slug;
     }
-    
-    public function setContent(string $content) : void
+
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }
 
-    public function setAbstract(string $abstract) : void
+    public function setAbstract(string $abstract): void
     {
         $this->abstract = $abstract;
     }
-        
-    public function setDateCreation(\DateTime $dateCreation) : void
+
+    public function setDateCreation(\DateTime $dateCreation): void
     {
         $this->dateCreation = $dateCreation;
     }
-    
-    public function setDateUpdate(\DateTime $dateUpdate) : void
+
+    public function setDateUpdate(\DateTime $dateUpdate): void
     {
         $this->dateUpdate = $dateUpdate;
     }
 
-    public function setIdUser(int $idUser) : void
+    public function setIdUser(int $idUser): void
     {
         $this->idUser = $idUser;
     }
 
-    
     // GETTERS //
 
-    public function getId() : int
+    public function getId(): int
     {
         return $this->id;
     }
-    
-    public function getTitle() : string
+
+    public function getTitle(): string
     {
         return $this->title;
     }
-    
-    public function getSlug() : string
+
+    public function getSlug(): string
     {
         return $this->slug;
     }
-    
-    public function getContent() : string
+
+    public function getContent(): string
     {
         return $this->content;
     }
 
-    public function getAbstract() : string
+    public function getAbstract(): string
     {
         return $this->abstract;
     }
-        
+
     /**
      * @return \DateTime
      */
@@ -134,7 +133,7 @@ final class Post extends Entity
     {
         return $this->dateCreation;
     }
-        
+
     /**
      * @return \DateTime
      */
@@ -143,7 +142,7 @@ final class Post extends Entity
         return $this->dateUpdate;
     }
 
-    public function getIdUser() : int
+    public function getIdUser(): int
     {
         return $this->idUser;
     }

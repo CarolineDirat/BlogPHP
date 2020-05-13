@@ -12,43 +12,39 @@ use Âpp\Entity\Post;
 
 final class PostController extends AbstractController
 {
-        
     /**
-     * controller to show the page of a post
-     *
-     * @return HTTPResponse
+     * controller to show the page of a post.
      */
-    public function executeShowPost() : HTTPResponse
+    public function executeShowPost(): HTTPResponse
     {
         $httpRequest = $this->getHTTPRequest();
-        
+
         if ($httpRequest->hasGet('id') && $httpRequest->hasGet('slug')) {
             // get the post from the id
             $postManager = new PostManagerPDO(PDOSingleton::getInstance()->getConnexion());
-            $post = $postManager->getPost((int)$httpRequest->getData('id'));
+            $post = $postManager->getPost((int) $httpRequest->getData('id'));
 
             // get the author from idUser of $post
             $userManager = new UserManagerPDO(PDOSingleton::getInstance()->getConnexion());
-            $pseudo = $userManager->getPseudo((int)$post->getIdUser());
+            $pseudo = $userManager->getPseudo((int) $post->getIdUser());
 
             // return HTTPResponse object
-            return new HTTPResponse($this->getPage(), ['post'=> $post, 'pseudo' => $pseudo]);
+            return new HTTPResponse($this->getPage(), ['post' => $post, 'pseudo' => $pseudo]);
         }
+
         throw new \Exception('id or slug is missing in the request');
     }
 
     /**
-     * controller to show the blog page, a list of posts from most recent to oldest
-     *
-     * @return HTTPResponse
+     * controller to show the blog page, a list of posts from most recent to oldest.
      */
-    public function executeShowBLog() : HTTPResponse
+    public function executeShowBLog(): HTTPResponse
     {
         // get the list of all posts
         $postManager = new PostManagerPDO(PDOSingleton::getInstance()->getConnexion());
         $listPosts = $postManager->getListPosts();
 
         // return HTTPResponse object
-        return new HTTPResponse($this->getPage(), ['listPosts'=> $listPosts]);
+        return new HTTPResponse($this->getPage(), ['listPosts' => $listPosts]);
     }
 }

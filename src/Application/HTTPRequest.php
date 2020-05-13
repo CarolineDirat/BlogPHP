@@ -1,27 +1,25 @@
 <?php
+
 namespace App\Application;
 
 /**
- * to represent the client's request
+ * to represent the client's request.
  */
 final class HTTPRequest // extends ApplicationComponent
 {
-        
     /**
-     * get a cookie variable if it exists
+     * get a cookie variable if it exists.
      *
-     * @param  string $key
      * @return mixed
      */
     public function cookieData(string $key)
     {
         return filter_input(INPUT_COOKIE, $key, FILTER_SANITIZE_STRING);
     }
-   
+
     /**
-     * to know if a cookie variable exist
+     * to know if a cookie variable exist.
      *
-     * @param  string $key
      * @return bool
      */
     public function hasCookie(string $key)
@@ -30,9 +28,7 @@ final class HTTPRequest // extends ApplicationComponent
     }
 
     /**
-     * get a session variable if it exists
-     *
-     * @param  string $key
+     * get a session variable if it exists.
      *
      * @return mixed
      */
@@ -40,75 +36,70 @@ final class HTTPRequest // extends ApplicationComponent
     {
         return filter_var($_SESSION[$key], FILTER_SANITIZE_STRING, []);
     }
-    
+
     /**
-     * setSession
+     * setSession.
      *
      * edit or create a session variable
      *
-     * @param  string $key
-     * @param  string $value
-     *
      * @return void
      */
-    public function setSession(string $key, string $value) : void
+    public function setSession(string $key, string $value): void
     {
         $_SESSION[$key] = filter_var($value, FILTER_SANITIZE_STRING, []);
     }
 
-    public function unsetSession(string $key) : void
+    public function unsetSession(string $key): void
     {
         unset($_SESSION[$key]);
     }
-       
+
     /**
-     * get a GET variable if it exists
+     * get a GET variable if it exists.
      *
-     * @param  string $key
      * @return mixed
      */
     public function getData(string $key)
     {
         return filter_input(INPUT_GET, $key, FILTER_SANITIZE_STRING);
     }
-   
+
     /**
-     * to know if a GET variable exist
+     * to know if a GET variable exist.
      *
-     * @param  string $key
      * @return bool
      */
     public function hasGet(string $key)
     {
         return filter_has_var(INPUT_GET, $key);
     }
-   
+
     /**
-     * get a POST variable if it exists
+     * get a POST variable if it exists.
      *
-     * @param  string $key
      * @return mixed
      */
     public function postData(string $key)
     {
-        if ($key === 'email' || $key === 'email1' || $key === 'email2') {
+        if ('email' === $key || 'email1' === $key || 'email2' === $key) {
             $sanitizedEmail = filter_input(INPUT_POST, $key, FILTER_SANITIZE_EMAIL);
+
             return filter_var($sanitizedEmail, FILTER_VALIDATE_EMAIL);
         }
+
         return filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
     }
-   
+
     /**
-     * to know if a POST variable exist
+     * to know if a POST variable exist.
      *
-     * @param  string $key
      * @return bool
      */
     public function hasPost(string $key)
     {
         return filter_has_var(INPUT_POST, $key);
     }
-   
+
     /**
      * get the URI that was provided to access this page. For example: '/index.php'.
      *
