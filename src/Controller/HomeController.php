@@ -37,12 +37,14 @@ final class HomeController extends AbstractController
     public function executeProcessContact() : HTTPResponse
     {
         // Check for empty fields
-        if (!$this->httpRequest->hasPost('phrase') ||
-            !$this->httpRequest->hasPost('firstName') ||
-            !$this->httpRequest->hasPost('lastName')  ||
-            !$this->httpRequest->hasPost('email1')    ||
-            !$this->httpRequest->hasPost('email2')    ||
-            !$this->httpRequest->hasPost('messageContact')) {
+        if (
+            !$this->httpRequest->hasPost('phrase')
+            || !$this->httpRequest->hasPost('firstName')
+            || !$this->httpRequest->hasPost('lastName')
+            || !$this->httpRequest->hasPost('email1')
+            || !$this->httpRequest->hasPost('email2')
+            || !$this->httpRequest->hasPost('messageContact')
+        ) {
             return new HTTPResponse('home', ['messageInfo' => "Le mail n'a pas pu être envoyé car il manque au moins un champs"]);
         }
         
@@ -53,9 +55,13 @@ final class HomeController extends AbstractController
         }
         // The captcha's phrase can't be used twice
         $this->httpRequest->unsetSession('phrase');
-        
+
         // Check emails equality
-        if (!$this->httpRequest->postData('email1') || !$this->httpRequest->postData('email1') || $this->httpRequest->postData('email1') !== $this->httpRequest->postData('email2')) {
+        if (
+            !$this->httpRequest->postData('email1')
+            || !$this->httpRequest->postData('email1')
+            || $this->httpRequest->postData('email1') !== $this->httpRequest->postData('email2')
+        ) {
             return new HTTPResponse('home', ['messageInfo' => "Le mail n'a pas pu être envoyé car au moins un des emails n'est pas valide."]);
         }
    

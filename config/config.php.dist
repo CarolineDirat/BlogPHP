@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Global configuration of application
+ * This file contains global configuration of application.
+ * You must customize it with yours data and save it as config.php
  */
 
 function get($configKey, $default)
