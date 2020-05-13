@@ -11,7 +11,7 @@ final class HTTPRequest // extends ApplicationComponent
      * get a cookie variable if it exists
      *
      * @param  string $key
-     * @return string
+     * @return mixed
      */
     public function cookieData(string $key)
     {
@@ -28,12 +28,44 @@ final class HTTPRequest // extends ApplicationComponent
     {
         return filter_has_var(INPUT_COOKIE, $key);
     }
+
+    /**
+     * get a session variable if it exists
+     *
+     * @param  string $key
+     *
+     * @return mixed
+     */
+    public function getSession(string $key)
+    {
+        return filter_var($_SESSION[$key], FILTER_SANITIZE_STRING, []);
+    }
+    
+    /**
+     * setSession
+     *
+     * edit or create a session variable
+     *
+     * @param  string $key
+     * @param  string $value
+     *
+     * @return void
+     */
+    public function setSession(string $key, string $value) : void
+    {
+        $_SESSION[$key] = filter_var($value, FILTER_SANITIZE_STRING, []);
+    }
+
+    public function unsetSession(string $key) : void
+    {
+        unset($_SESSION[$key]);
+    }
        
     /**
      * get a GET variable if it exists
      *
      * @param  string $key
-     * @return string
+     * @return mixed
      */
     public function getData(string $key)
     {
@@ -55,7 +87,7 @@ final class HTTPRequest // extends ApplicationComponent
      * get a POST variable if it exists
      *
      * @param  string $key
-     * @return string
+     * @return mixed
      */
     public function postData(string $key)
     {
@@ -80,7 +112,7 @@ final class HTTPRequest // extends ApplicationComponent
     /**
      * get the URI that was provided to access this page. For example: '/index.php'.
      *
-     * @return string
+     * @return mixed
      */
     public function requestURI()
     {
@@ -90,7 +122,7 @@ final class HTTPRequest // extends ApplicationComponent
     /**
      * Request method used to access the page; for example 'GET', 'HEAD', 'POST', 'PUT'.
      *
-     * @return string
+     * @return mixed
      */
     public function method()
     {

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once '../vendor/autoload.php';
 require_once '../config/config.php';
 
@@ -14,6 +16,7 @@ try {
     $page = "home";
     $httpRequest = new HTTPRequest();
     $twigRenderer = new TwigRenderer('../templates');
+
     
     if ($httpRequest->requestURI() === "/") {
         $match = true;
