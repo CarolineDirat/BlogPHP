@@ -49,7 +49,6 @@ final class HomeController extends AbstractController
         // Check captcha
         // Checking that the posted phrase match the phrase stored in the session
         if (!PhraseBuilder::comparePhrases($this->httpRequest->getSession('phrase'), $this->httpRequest->postData('phrase'))) {
-            
             return new HTTPResponse('home', ['messageInfo' => "Le code recopié ne correspond pas à l'image, veuillez cliquer sur <<Accueil>> du menu pour réessayer"]);
         }
         // The captcha's phrase can't be used twice

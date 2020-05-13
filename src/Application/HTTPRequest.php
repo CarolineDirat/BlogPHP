@@ -33,7 +33,7 @@ final class HTTPRequest // extends ApplicationComponent
      * get a session variable if it exists
      *
      * @param  string $key
-     * 
+     *
      * @return mixed
      */
     public function getSession(string $key)
@@ -43,12 +43,12 @@ final class HTTPRequest // extends ApplicationComponent
     
     /**
      * setSession
-     * 
+     *
      * edit or create a session variable
      *
-     * @param  mixed $key
-     * @param  mixed $value
-     * 
+     * @param  string $key
+     * @param  string $value
+     *
      * @return void
      */
     public function setSession(string $key, string $value) : void
