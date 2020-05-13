@@ -16,6 +16,7 @@ try {
     $page = "home";
     $httpRequest = new HTTPRequest();
     $twigRenderer = new TwigRenderer('../templates');
+
     
     if ($httpRequest->requestURI() === "/") {
         $match = true;

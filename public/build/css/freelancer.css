@@ -356,6 +356,18 @@ h5.card-title a.btn {
 .bg-primary {
   background-color: #18BC9C;
 }
+.btn-captcha-code {
+  margin-left: 10px;
+}
+@media(max-width: 359px){
+  .btn-captcha-code {
+    margin-top: 5px;
+  }
+}
+.btn-captcha-code a:active,
+.btn-captcha-code a:focus {
+  text-decoration-line: none;
+}
 .btn-menu {
   text-transform: uppercase;
   background-color: #828582 !important ;
