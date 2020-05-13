@@ -365,6 +365,7 @@ h5.card-title a.btn {
   }
 }
 .btn-captcha-code a:active,
+.btn-captcha-code a:hover,
 .btn-captcha-code a:focus {
   text-decoration-line: none;
 }
