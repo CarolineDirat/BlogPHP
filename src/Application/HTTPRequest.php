@@ -33,11 +33,32 @@ final class HTTPRequest // extends ApplicationComponent
      * get a session variable if it exists
      *
      * @param  string $key
+     * 
      * @return mixed
      */
     public function getSession(string $key)
     {
         return filter_var($_SESSION[$key], FILTER_SANITIZE_STRING, []);
+    }
+    
+    /**
+     * setSession
+     * 
+     * edit or create a session variable
+     *
+     * @param  mixed $key
+     * @param  mixed $value
+     * 
+     * @return void
+     */
+    public function setSession(string $key, string $value) : void
+    {
+        $_SESSION[$key] = filter_var($value, FILTER_SANITIZE_STRING, []);
+    }
+
+    public function unsetSession(string $key) : void
+    {
+        unset($_SESSION[$key]);
     }
        
     /**
