@@ -13,16 +13,20 @@ use App\Entity\Post;
 abstract class PostManager extends Manager
 {
     /**
-     * method which returns the instance of one Post, corresponding to an identifier.
+     * getPost.
      *
-     * @return \App\Entity\Post
+     * Method which returns the instance of one Post, corresponding to an identifier.
+     *
+     * @return Post
      */
-    abstract public function getPost(int $id);
+    abstract public function getPost(int $id): Post;
 
     /**
-     * method which returns a list of posts, from $offset to $limit, from most recent to oldest.
+     * getListPosts.
+     *
+     * Method which returns a list of posts, from $offset to $limit, from most recent to oldest.
      *
      * @return array[Post]
      */
-    abstract public function getListPosts();
+    abstract public function getListPosts(): array;
 }

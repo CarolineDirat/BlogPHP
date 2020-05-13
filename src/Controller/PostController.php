@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Application\AbstractController;
 use App\Application\HTTPResponse;
-//use App\Application\TwigRenderer;
 use App\Application\PDOSingleton;
 use App\Model\PostManagerPDO;
 use App\Model\UserManagerPDO;
@@ -28,7 +27,6 @@ final class PostController extends AbstractController
             $userManager = new UserManagerPDO(PDOSingleton::getInstance()->getConnexion());
             $pseudo = $userManager->getPseudo((int) $post->getIdUser());
 
-            // return HTTPResponse object
             return new HTTPResponse($this->getPage(), ['post' => $post, 'pseudo' => $pseudo]);
         }
 
@@ -44,7 +42,6 @@ final class PostController extends AbstractController
         $postManager = new PostManagerPDO(PDOSingleton::getInstance()->getConnexion());
         $listPosts = $postManager->getListPosts();
 
-        // return HTTPResponse object
         return new HTTPResponse($this->getPage(), ['listPosts' => $listPosts]);
     }
 }

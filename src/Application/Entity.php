@@ -18,6 +18,13 @@ abstract class Entity
         }
     }
 
+    /**
+     * hydrate.
+     *
+     * hydrate entity's properties with data
+     *
+     * @param mixed $data
+     */
     public function hydrate(array $data): void
     {
         foreach ($data as $key => $value) {
@@ -30,7 +37,11 @@ abstract class Entity
     }
 
     /**
+     * isNew.
+     *
      * Method to find out if the entity is new.
+     *
+     * @return bool
      */
     public function isNew(): bool
     {
@@ -38,22 +49,23 @@ abstract class Entity
     }
 
     /**
+     * isValid.
+     *
      * Method to find out if the entity is valid.
      *
      * @return bool
      */
-    abstract public function isValid();
+    abstract public function isValid(): bool;
 
-    // GETTERS //
     public function getErrors(): array
     {
         return $this->errors;
     }
 
-    // SETTER //
-
-    public function addError(string $error): void
+    public function addError(string $error): self
     {
         $this->errors[] = $error;
+
+        return $this;
     }
 }

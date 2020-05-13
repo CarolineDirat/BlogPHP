@@ -16,5 +16,5 @@ abstract class UserManager extends Manager
      *
      * @return string
      */
-    abstract public function getPseudo(int $id);
+    abstract public function getPseudo(int $id): string;
 }

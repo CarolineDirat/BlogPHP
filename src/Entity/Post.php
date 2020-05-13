@@ -46,7 +46,7 @@ final class Post extends Entity
      *
      * @return bool
      */
-    public function isValid()
+    public function isValid(): bool
     {
         return !(
             empty($this->title)

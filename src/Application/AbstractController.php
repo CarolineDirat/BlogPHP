@@ -2,6 +2,8 @@
 
 namespace App\Application;
 
+use RuntimeException;
+
 abstract class AbstractController
 {
     /**
@@ -38,19 +40,17 @@ abstract class AbstractController
         $method = 'execute'.ucfirst($this->action).ucfirst($this->page);
 
         if (!is_callable([$this, $method])) {
-            throw new \RuntimeException('L\'action "'.$this->action.ucfirst($this->page).'" n\'est pas définie sur cette page');
+            throw new RuntimeException('The execute'.$this->action.ucfirst($this->page).' controller is not defined for this page');
         }
 
         return $this->{$method}($this->httpRequest);
     }
 
-    public function setPage(string $page): void
+    public function setPage(string $page): self
     {
-        if (!is_string($page) || empty($page)) {
-            throw new \InvalidArgumentException('Le page doit être une chaine de caractères valide');
-        }
-
         $this->page = $page;
+
+        return $this;
     }
 
     public function getPage(): string
@@ -58,13 +58,11 @@ abstract class AbstractController
         return $this->page;
     }
 
-    public function setAction(string $action): void
+    public function setAction(string $action): self
     {
-        if (!is_string($action) || empty($action)) {
-            throw new \InvalidArgumentException('L\'action doit être une chaine de caractères valide');
-        }
-
         $this->action = $action;
+
+        return $this;
     }
 
     public function getAction(): string
@@ -72,16 +70,15 @@ abstract class AbstractController
         return $this->action;
     }
 
+    public function setHTTPRequest(HTTPRequest $httpRequest): self
+    {
+        $this->httpRequest = $httpRequest;
+
+        return $this;
+    }
+
     public function getHTTPRequest(): HTTPRequest
     {
         return $this->httpRequest;
-    }
-
-    public function setHTTPRequest(HTTPRequest $httpRequest): void
-    {
-        if (!$httpRequest instanceof HTTPRequest) {
-            throw new \InvalidArgumentException('La requête du client doit être une instance de \App\Application\HTTPRequest');
-        }
-        $this->httpRequest = $httpRequest;
     }
 }
