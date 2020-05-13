@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Application\Entity;
+use DateTime;
 
 final class Post extends Entity
 {
@@ -10,7 +11,7 @@ final class Post extends Entity
      * @var int
      */
     protected $id;
-    
+
     /**
      * @var string
      */
@@ -28,122 +29,125 @@ final class Post extends Entity
      */
     private $abstract;
     /**
-     * @var \Datetime
+     * @var Datetime
      */
     private $dateCreation;
     /**
-     * @var \Datetime
+     * @var Datetime
      */
     private $dateUpdate;
     /**
      * @var int
      */
     private $idUser;
- 
+
     /**
-    * Method to know if the post is valid.
-    *
-    * @return bool
-    */
-    public function isValid()
+     * Method to know if the post is valid.
+     */
+    public function isValid(): bool
     {
         return !(
             empty($this->title)
-                || empty($this->slug)
-                || empty($this->content)
-                || empty($this->abstract)
-                || empty($this->dateCreation)
-                || empty($this->idUser)
+            || empty($this->slug)
+            || empty($this->content)
+            || empty($this->abstract)
+            || empty($this->dateCreation)
+            || empty($this->idUser)
         );
     }
-  
-    // SETTERS //
-    
-    public function setId(int $id) : void
+
+    public function setId(int $id): self
     {
         $this->id = (int) $id;
-    }
-    
-    public function setTitle(string $title) : void
-    {
-        $this->title = $title;
+
+        return $this;
     }
 
-    public function setSlug(string $slug)  : void
-    {
-        $this->slug = $slug;
-    }
-    
-    public function setContent(string $content) : void
-    {
-        $this->content = $content;
-    }
-
-    public function setAbstract(string $abstract) : void
-    {
-        $this->abstract = $abstract;
-    }
-        
-    public function setDateCreation(\DateTime $dateCreation) : void
-    {
-        $this->dateCreation = $dateCreation;
-    }
-    
-    public function setDateUpdate(\DateTime $dateUpdate) : void
-    {
-        $this->dateUpdate = $dateUpdate;
-    }
-
-    public function setIdUser(int $idUser) : void
-    {
-        $this->idUser = $idUser;
-    }
-
-    
-    // GETTERS //
-
-    public function getId() : int
+    public function getId(): int
     {
         return $this->id;
     }
-    
-    public function getTitle() : string
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getTitle(): string
     {
         return $this->title;
     }
-    
-    public function getSlug() : string
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getSlug(): string
     {
         return $this->slug;
     }
-    
-    public function getContent() : string
+
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getContent(): string
     {
         return $this->content;
     }
 
-    public function getAbstract() : string
+    public function setAbstract(string $abstract): self
+    {
+        $this->abstract = $abstract;
+
+        return $this;
+    }
+
+    public function getAbstract(): string
     {
         return $this->abstract;
     }
-        
-    /**
-     * @return \DateTime
-     */
+
+    public function setDateCreation(DateTime $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
     public function getDateCreation()
     {
         return $this->dateCreation;
     }
-        
-    /**
-     * @return \DateTime
-     */
+
+    public function setDateUpdate(DateTime $dateUpdate): self
+    {
+        $this->dateUpdate = $dateUpdate;
+
+        return $this;
+    }
+
     public function getDateUpdate()
     {
         return $this->dateUpdate;
     }
 
-    public function getIdUser() : int
+    public function setIdUser(int $idUser): self
+    {
+        $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    public function getIdUser(): int
     {
         return $this->idUser;
     }

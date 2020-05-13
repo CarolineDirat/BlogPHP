@@ -1,12 +1,21 @@
 <?php
 
 /**
- * Global configuration of application
+ * This file contains global configuration of application.
+ * You must customize it with yours data and save it as config.php
  */
 
-function get($configKey, $default)
+/**
+ * get
+ *
+ *  Get the value of an environment variable if it exists
+ *
+ * @param string $configKey
+ * @param string $default
+ */
+function get($configKey, $default): string
 {
-    if (getenv($configKey) !== false) {
+    if (false !== getenv($configKey)) {
         return getenv($configKey);
     }
 

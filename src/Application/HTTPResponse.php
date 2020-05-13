@@ -3,14 +3,14 @@
 namespace App\Application;
 
 /**
- * HTTPResponse
+ * HTTPResponse.
  *
  * to represent the controller's response
  */
 final class HTTPResponse
 {
     /**
-     * page
+     * page.
      *
      * to deduce the template to use
      *
@@ -19,7 +19,7 @@ final class HTTPResponse
     private $page;
 
     /**
-     * params
+     * params.
      *
      * data to be transmitted to the view
      *
@@ -27,34 +27,33 @@ final class HTTPResponse
      */
     private $params;
 
-
     public function __construct(string $page, array $params = [])
     {
         $this->setPage($page);
         $this->setParams($params);
     }
 
-    public function send(TwigRenderer $twigRenderer) : void
+    public function send(TwigRenderer $twigRenderer): void
     {
         $twigRenderer->render($this->getPage(), $this->getParams());
     }
-    
-    public function getPage() : string
+
+    public function getPage(): string
     {
         return $this->page;
     }
 
-    public function getParams() : array
-    {
-        return $this->params;
-    }
-
-    public function setPage(string $page) : void
+    public function setPage(string $page): void
     {
         $this->page = $page;
     }
 
-    public function setParams(array $params) : void
+    public function getParams(): array
+    {
+        return $this->params;
+    }
+
+    public function setParams(array $params): void
     {
         $this->params = $params;
     }

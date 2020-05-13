@@ -104,8 +104,8 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <img src="{{ captcha }}" alt="image d'un code à recopier"/>
-                                <button type="button" class="btn btn-primary btn-captcha-code">
-                                    <a href="/">Générer un autre code</a>
+                                <button type="button" class="btn btn-primary btn-captcha-code" onclick='window.location.reload(false)'>
+                                    Générer un autre code
                                 </button>
                                 <label>Recopier le code </label>
                                 <input type="text" class="form-control" placeholder="Recopier le code" id="phrase" name="phrase" required data-validation-required-message="Veuillez recopier le code de l'image."></textarea>

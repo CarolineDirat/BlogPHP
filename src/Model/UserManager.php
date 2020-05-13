@@ -1,20 +1,18 @@
 <?php
+
 namespace App\Model;
 
-use \App\Application\Manager;
+use App\Application\Manager;
 
 /**
- * UserManager
+ * UserManager.
  *
  * contains the methods which concern the management of Users
  */
 abstract class UserManager extends Manager
 {
     /**
-     * method which returns the user's pseudo, corresponding to an identifier
-     *
-     * @param  int $id
-     * @return string
+     * method which returns the user's pseudo, corresponding to an identifier.
      */
-    abstract public function getPseudo(int $id);
+    abstract public function getPseudo(int $id): string;
 }
