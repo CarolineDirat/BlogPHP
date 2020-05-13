@@ -17,7 +17,7 @@ final class PDOSingleton
      *
      * Will contain the instance of our class
      *
-     * @var PDOSingleton|bool
+     * @var bool|PDOSingleton
      */
     private static $instance = false;
 

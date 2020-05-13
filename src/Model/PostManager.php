@@ -16,8 +16,6 @@ abstract class PostManager extends Manager
      * getPost.
      *
      * Method which returns the instance of one Post, corresponding to an identifier.
-     *
-     * @return Post
      */
     abstract public function getPost(int $id): Post;
 

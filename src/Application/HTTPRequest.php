@@ -19,8 +19,6 @@ final class HTTPRequest
 
     /**
      * to know if a cookie variable exist.
-     *
-     * @return bool
      */
     public function hasCookie(string $key): bool
     {
@@ -51,8 +49,6 @@ final class HTTPRequest
      * unsetSession.
      *
      * delete a session variable
-     *
-     * @param string $key
      */
     public function unsetSession(string $key): void
     {
@@ -71,8 +67,6 @@ final class HTTPRequest
 
     /**
      * to know if a GET variable exist.
-     *
-     * @return bool
      */
     public function hasGet(string $key): bool
     {
@@ -97,8 +91,6 @@ final class HTTPRequest
 
     /**
      * to know if a POST variable exist.
-     *
-     * @return bool
      */
     public function hasPost(string $key): bool
     {

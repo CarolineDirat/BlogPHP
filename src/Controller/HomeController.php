@@ -14,8 +14,6 @@ final class HomeController extends AbstractController
 {
     /**
      * Controller to show the Home Page.
-     *
-     * @return HTTPResponse
      */
     public function executeShowHome(): HTTPResponse
     {
@@ -30,8 +28,6 @@ final class HomeController extends AbstractController
 
     /**
      * Controller to process the contact form.
-     *
-     * @return HTTPResponse
      */
     public function executeProcessContact(): HTTPResponse
     {

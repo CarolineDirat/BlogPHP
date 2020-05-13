@@ -2,10 +2,10 @@
 
 namespace App\Model;
 
-use PDO;
-use Exception;
-use DateTime;
 use App\Entity\Post;
+use DateTime;
+use Exception;
+use PDO;
 
 /**
  * PostManagerPDO.
@@ -28,8 +28,8 @@ final class PostManagerPDO extends PostManager
         $req->execute();
         if ($post = $req->fetch()) {
             $post
-                ->setDateCreation(new DateTime($post->getDateCreationString()))
-                ->setDateUpdate(new DateTime($post->getDateUpdateString()))
+                ->setDateCreation(new DateTime($post->getDateCreation()))
+                ->setDateUpdate(new DateTime($post->getDateUpdate()))
             ;
             $req->closecursor();
 
@@ -46,13 +46,14 @@ final class PostManagerPDO extends PostManager
         }
         $req = $this
             ->dao
-            ->query('SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post ORDER BY dateUpdate DESC');
+            ->query('SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post ORDER BY dateUpdate DESC')
+        ;
         $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, '\App\Entity\Post', []);
         $listPosts = $req->fetchAll();
         foreach ($listPosts as $post) {
             $post
-                ->setDateCreation(new DateTime($post->getDateCreationString()))
-                ->setDateUpdate(new DateTime($post->getDateUpdateString()))
+                ->setDateCreation(new DateTime($post->getDateCreation()))
+                ->setDateUpdate(new DateTime($post->getDateUpdate()))
             ;
         }
         $req->closeCursor();

@@ -22,8 +22,6 @@ abstract class Entity
      * hydrate.
      *
      * hydrate entity's properties with data
-     *
-     * @param array $data
      */
     public function hydrate(array $data): void
     {
@@ -40,8 +38,6 @@ abstract class Entity
      * isNew.
      *
      * Method to find out if the entity is new.
-     *
-     * @return bool
      */
     public function isNew(): bool
     {
@@ -52,8 +48,6 @@ abstract class Entity
      * isValid.
      *
      * Method to find out if the entity is valid.
-     *
-     * @return bool
      */
     abstract public function isValid(): bool;
 

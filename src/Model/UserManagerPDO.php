@@ -2,8 +2,8 @@
 
 namespace App\Model;
 
-use PDO;
 use Exception;
+use PDO;
 
 /**
  * UserManagerPDO.

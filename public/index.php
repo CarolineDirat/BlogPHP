@@ -31,11 +31,13 @@ try {
                 $match = true;
                 $controller = new PostController($action, $page, $httpRequest);
                 $controller->execute()->send($twigRenderer);
+
                 break;
             case 'blog':
                 $match = true;
                 $controller = new PostController($action, $page, $httpRequest);
                 $controller->execute()->send($twigRenderer);
+
                 break;
             case 'contact':
                 if ('POST' === $httpRequest->method()) {

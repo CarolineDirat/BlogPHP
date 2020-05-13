@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use DateTime;
 use App\Application\Entity;
+use DateTime;
 
 final class Post extends Entity
 {
@@ -43,8 +43,6 @@ final class Post extends Entity
 
     /**
      * Method to know if the post is valid.
-     *
-     * @return bool
      */
     public function isValid(): bool
     {
@@ -125,12 +123,7 @@ final class Post extends Entity
         return $this;
     }
 
-    public function getDateCreationString(): string
-    {
-        return $this->dateCreation;
-    }
-
-    public function getDateCreation(): DateTime
+    public function getDateCreation()
     {
         return $this->dateCreation;
     }
@@ -142,12 +135,7 @@ final class Post extends Entity
         return $this;
     }
 
-    public function getDateUpdateString(): string
-    {
-        return $this->dateUpdate;
-    }
-
-    public function getDateUpdate(): DateTime
+    public function getDateUpdate()
     {
         return $this->dateUpdate;
     }
