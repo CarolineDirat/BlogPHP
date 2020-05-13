@@ -23,7 +23,7 @@ abstract class Entity
      *
      * hydrate entity's properties with data
      *
-     * @param mixed $data
+     * @param array $data
      */
     public function hydrate(array $data): void
     {

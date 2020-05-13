@@ -52,7 +52,7 @@ final class HTTPRequest
      *
      * delete a session variable
      *
-     * @param mixed $key
+     * @param string $key
      */
     public function unsetSession(string $key): void
     {

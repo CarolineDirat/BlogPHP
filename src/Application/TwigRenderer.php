@@ -12,14 +12,14 @@ final class TwigRenderer
      *
      * @var Environment
      */
-    private Environment $twig;
+    private $twig;
 
     /**
      * Loader of twig.
      *
      * @var FilesystemLoader
      */
-    private FilesystemLoader $loader;
+    private $loader;
 
     public function __construct(string $path)
     {
@@ -30,8 +30,8 @@ final class TwigRenderer
     /**
      * Permet de rajouter un chemin pour charger les vues.
      *
-     * @param string    $namespace namespace corresponding to th path
-     * @param ?string   $path path to add
+     * @param string  $namespace namespace corresponding to th path
+     * @param ?string $path      path to add
      */
     public function addPath(string $namespace, ?string $path = null): void
     {

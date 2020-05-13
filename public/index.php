@@ -46,7 +46,6 @@ try {
                 }
 
                 throw new \Exception('Post data missing from the contact form');
-                break;
         }
     }
     if (!$match) {
