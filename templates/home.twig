@@ -70,33 +70,33 @@
                     <form name="contactForm" id="contactForm"  method="post" action="index.php?page=contact">
                         <div class="row control-group">
                             <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
-                                <label>Prénom</label>
+                                <label for="firstName">Prénom</label>
                                 <input type="text" class="form-control" placeholder="Prénom" id="firstName" name="firstName" required data-validation-required-message="Entrez votre prénom.">
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
-                                <label>Nom</label>
+                                <label for="lastName">Nom</label>
                                 <input type="text" class="form-control" placeholder="Nom" id="lastName" name="lastName" required data-validation-required-message="Entrez votre nom.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Addresse Email </label>
+                                <label for="email1">Addresse Email </label>
                                 <input type="email" class="form-control" placeholder="Addresse Email" id="email1" name="email1" required data-validation-required-message="Entrez votre adresse email.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Confirmez votre addresse Email </label>
+                                <label for="email2">Confirmez votre addresse Email </label>
                                 <input type="email" class="form-control" placeholder="Confirmez votre addresse Email " id="email2" name="email2" required data-validation-required-message="Confirmez votre adresse email.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Message</label>
+                                <label for="messageContact">Message</label>
                                 <textarea rows="5" class="form-control" placeholder="Message" id="messageContact" name="messageContact" required data-validation-required-message="Veuillez écrire un message."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
@@ -107,7 +107,7 @@
                                 <button type="button" class="btn btn-primary btn-captcha-code">
                                     <a href="/">Générer un autre code</a>
                                 </button>
-                                <label>Recopier le code </label>
+                                <label for="phrase">Recopier le code </label>
                                 <input type="text" class="form-control" placeholder="Recopier le code" id="phrase" name="phrase" required data-validation-required-message="Veuillez recopier le code de l'image."></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
