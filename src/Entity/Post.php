@@ -123,6 +123,11 @@ final class Post extends Entity
         return $this;
     }
 
+    /**
+     * getDateCreation.
+     *
+     * @return DateTime
+     */
     public function getDateCreation()
     {
         return $this->dateCreation;
@@ -135,6 +140,11 @@ final class Post extends Entity
         return $this;
     }
 
+    /**
+     * getDateUpdate.
+     *
+     * @return DateTime
+     */
     public function getDateUpdate()
     {
         return $this->dateUpdate;
