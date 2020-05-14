@@ -32,8 +32,11 @@ final class PostManagerPDO extends PostManager
                 ->setDateUpdate(new DateTime($post->getDateUpdate()))
             ;
             $req->closecursor();
+            if ($post->isValid()) {
+                return $post;
+            }
 
-            return $post;
+            throw new Exception('The article collected from database, with id='.filter_var($id, FILTER_VALIDATE_INT).', is not valid, one property is empty.');
         }
 
         throw new Exception('The article with id='.filter_var($id, FILTER_VALIDATE_INT).' was not found');
@@ -51,6 +54,9 @@ final class PostManagerPDO extends PostManager
         $req->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, '\App\Entity\Post', []);
         $listPosts = $req->fetchAll();
         foreach ($listPosts as $post) {
+            if (!$post->isValid()) {
+                throw new Exception('The post with id='.$post->getId().' is not valid, one property is empty.');
+            }
             $post
                 ->setDateCreation(new DateTime($post->getDateCreation()))
                 ->setDateUpdate(new DateTime($post->getDateUpdate()))
