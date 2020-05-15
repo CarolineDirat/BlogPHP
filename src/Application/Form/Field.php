@@ -65,7 +65,7 @@ abstract class Field
      * array of validators necessary to the field
      * 
      */
-    protected array $validators = [];
+    protected Validator[] $validators = [];
 
     
     
