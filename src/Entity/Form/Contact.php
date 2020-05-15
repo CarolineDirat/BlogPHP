@@ -17,7 +17,7 @@ final class Contact extends Entity
     private string $email1;
     private string $email2;
     private string $messageContact;
-    private string $captcha;   
+    private string $captchaPhrase;   
 
     /**
      * Get the value of firstName
@@ -120,21 +120,21 @@ final class Contact extends Entity
     }
 
     /**
-     * Get the value of captcha
+     * Get the value of captchaPhrase
      */ 
-    public function getCaptcha(): string
+    public function getCaptchaPhrase(): string
     {
-        return $this->captcha;
+        return $this->captchaPhrase;
     }
 
     /**
-     * Set the value of captcha
+     * Set the value of captchaPhrase
      *
      * @return  self
      */ 
-    public function setCaptcha(string $captcha): self
+    public function setCaptchaPhrase(string $captchaPhrase): self
     {
-        $this->captcha = $captcha;
+        $this->captchaPhrase = $captchaPhrase;
 
         return $this;
     }
