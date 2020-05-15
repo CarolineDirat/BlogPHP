@@ -10,7 +10,7 @@ final class Post extends Entity
     /**
      * @var int
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
