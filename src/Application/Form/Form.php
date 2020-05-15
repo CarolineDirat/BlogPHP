@@ -5,38 +5,38 @@ namespace App\Application\Form;
 use App\Application\Entity;
 
 /**
- * Form
- * 
+ * Form.
+ *
  * A form to be create from an Entity
  */
-class Form 
-{    
+class Form
+{
     /**
-     * entity
-     * 
+     * entity.
+     *
      * Entity corresponding to the form to hydrate its fields
      *
      * @var Entity
      */
-    private Entity $entity;
+    private $entity;
 
     /**
-     * fields
-     * 
+     * fields.
+     *
      * array of fields making up the form
      *
-     * @var Entity
+     * @var Field[]
      */
-    private array $fields = [];
+    private $fields = [];
 
     public function __construct(Entity $entity)
     {
         $this->setEntity($entity);
     }
-    
+
     /**
-     * isValid
-     * 
+     * isValid.
+     *
      * checks validity of form's fields
      *
      * @return bool
@@ -44,33 +44,32 @@ class Form
     public function isValid(): bool
     {
         $valid = true;
-        foreach($this->fields as field)
-        {
-            if(!$this->field->isValid()) {
+        foreach ($this->fields as $field) {
+            if (!$field->isValid()) {
                 $valid = false;
             }
         }
-        
+
         return $valid;
     }
 
     /**
-     * Get entity corresponding to the form to hydrate its fields
+     * Get entity corresponding to the form to hydrate its fields.
      *
-     * @return  Entity
-     */ 
+     * @return Entity
+     */
     public function getEntity(): Entity
     {
         return $this->entity;
     }
 
     /**
-     * Set entity corresponding to the form to hydrate its fields
+     * Set entity corresponding to the form to hydrate its fields.
      *
-     * @param  Entity  $entity  Entity corresponding to the form to hydrate its fields
+     * @param Entity $entity Entity corresponding to the form to hydrate its fields
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setEntity(Entity $entity): self
     {
         $this->entity = $entity;
@@ -79,28 +78,28 @@ class Form
     }
 
     /**
-     * Get array of fields making up the form
+     * Get array of fields making up the form.
      *
-     * @return  array
-     */ 
+     * @return array
+     */
     public function getFields(): array
     {
         return $this->fields;
     }
 
     /**
-     * Add a field to the list of fields
-     * 
-     * @param Field 
+     * Add a field to the list of fields.
      *
-     * @return  self
-     */ 
+     * @param Field $field
+     *
+     * @return self
+     */
     public function addField(Field $field): self
     {
-        $property = 'get'.ucfirst($field->name());
+        $property = 'get'.ucfirst($field->getName());
         $field->setValue($this->entity->$property()); // assigns the value of the entity property to the value of the corresponding field
-        $this->fields[] = $field;       
-        
+        $this->fields[] = $field;
+
         return $this;
     }
 }

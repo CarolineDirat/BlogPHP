@@ -5,33 +5,84 @@ namespace App\Entity\Form;
 use App\Application\Entity;
 
 /**
- * Contact
- * 
+ * Contact.
+ *
  * Entity class representing the fields of the contact form of the home page
  * Each property represent a field's value
  */
 final class Contact extends Entity
 {
-    private string $firstName;
-    private string $lastName;
-    private string $email1;
-    private string $email2;
-    private string $messageContact;
-    private string $captchaPhrase;   
+    /**
+     * firstName.
+     *
+     * @var string
+     */
+    private $firstName;
 
     /**
-     * Get the value of firstName
-     */ 
+     * lastName.
+     *
+     * @var string
+     */
+    private $lastName;
+
+    /**
+     * email1.
+     *
+     * @var string
+     */
+    private $email1;
+
+    /**
+     * email2.
+     *
+     * @var string
+     */
+    private $email2;
+
+    /**
+     * messageContact.
+     *
+     * @var string
+     */
+    private $messageContact;
+
+    /**
+     * captchaPhrase.
+     *
+     * @var string
+     */
+    private $captchaPhrase;
+
+    /**
+     * Method to know if the contact entity is valid.
+     * Checks all property are'nt not empty.
+     */
+    public function isValid(): bool
+    {
+        return !(
+            empty($this->firstName)
+            || empty($this->lastName)
+            || empty($this->email1)
+            || empty($this->email2)
+            || empty($this->messageContact)
+            || empty($this->captchaPhrase)
+        );
+    }
+
+    /**
+     * Get the value of firstName.
+     */
     public function getFirstName(): string
     {
         return $this->firstName;
     }
 
     /**
-     * Set the value of firstName
+     * Set the value of firstName.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
@@ -40,18 +91,18 @@ final class Contact extends Entity
     }
 
     /**
-     * Get the value of lastName
-     */ 
+     * Get the value of lastName.
+     */
     public function getLastName(): string
     {
         return $this->lastName;
     }
 
     /**
-     * Set the value of lastName
+     * Set the value of lastName.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
@@ -60,18 +111,18 @@ final class Contact extends Entity
     }
 
     /**
-     * Get the value of email1
-     */ 
+     * Get the value of email1.
+     */
     public function getEmail1(): string
     {
         return $this->email1;
     }
 
     /**
-     * Set the value of email1
+     * Set the value of email1.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setEmail1(string $email1): self
     {
         $this->email1 = $email1;
@@ -80,18 +131,18 @@ final class Contact extends Entity
     }
 
     /**
-     * Get the value of email2
-     */ 
+     * Get the value of email2.
+     */
     public function getEmail2(): string
     {
         return $this->email2;
     }
 
     /**
-     * Set the value of email2
+     * Set the value of email2.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setEmail2(string $email2): self
     {
         $this->email2 = $email2;
@@ -100,18 +151,18 @@ final class Contact extends Entity
     }
 
     /**
-     * Get the value of messageContact
-     */ 
+     * Get the value of messageContact.
+     */
     public function getMessageContact(): string
     {
         return $this->messageContact;
     }
 
     /**
-     * Set the value of messageContact
+     * Set the value of messageContact.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setMessageContact(string $messageContact): self
     {
         $this->messageContact = $messageContact;
@@ -120,18 +171,18 @@ final class Contact extends Entity
     }
 
     /**
-     * Get the value of captchaPhrase
-     */ 
+     * Get the value of captchaPhrase.
+     */
     public function getCaptchaPhrase(): string
     {
         return $this->captchaPhrase;
     }
 
     /**
-     * Set the value of captchaPhrase
+     * Set the value of captchaPhrase.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setCaptchaPhrase(string $captchaPhrase): self
     {
         $this->captchaPhrase = $captchaPhrase;
