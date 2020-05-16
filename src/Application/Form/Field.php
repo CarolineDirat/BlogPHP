@@ -59,15 +59,6 @@ abstract class Field
     protected $value;
 
     /**
-     * widget.
-     *
-     * HTML code to display the field in the template
-     *
-     * @var string
-     */
-    protected $widget;
-
-    /**
      * validators.
      *
      * array of validators necessary to the field
@@ -87,8 +78,6 @@ abstract class Field
             $this->hydrate($options);
         }
     }
-
-    abstract public function buildWidget(): string;
 
     public function isValid(): bool
     {
@@ -199,26 +188,6 @@ abstract class Field
     public function setValue(string $value): self
     {
         $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * Get widget.
-     */
-    public function getWidget(): string
-    {
-        return $this->widget;
-    }
-
-    /**
-     * Set widget.
-     *
-     * @return self
-     */
-    public function setWidget(string $widget): self
-    {
-        $this->widget = $widget;
 
         return $this;
     }
