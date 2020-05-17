@@ -23,13 +23,13 @@ abstract class Field
     protected $errorMessage;
 
     /**
-     * label.
+     * textLabel.
      *
      * text in label tag
      *
      * @var string
      */
-    protected $label;
+    protected $textLabel;
 
     /**
      * name.
@@ -50,13 +50,13 @@ abstract class Field
     protected $idField;
 
     /**
-     * value.
+     * valueField.
      *
      * value of the field
      *
      * @var string
      */
-    protected $value;
+    protected $valueField;
 
     /**
      * validators.
@@ -82,7 +82,7 @@ abstract class Field
     public function isValid(): bool
     {
         foreach ($this->validators as $validator) {
-            if (!$validator->isValid($this->value)) {
+            if (!$validator->isValid($this->valueField)) {
                 $this->errorMessage = $validator->getErrorMessage();
 
                 return false;
@@ -113,21 +113,21 @@ abstract class Field
     }
 
     /**
-     * Get label.
+     * Get textLabel.
      */
-    public function getLabel(): string
+    public function getTextLabel(): string
     {
-        return $this->label;
+        return $this->textLabel;
     }
 
     /**
-     * Set label.
+     * Set textLabel.
      *
      * @return self
      */
-    public function setLabel(string $label): self
+    public function setTextLabel(string $textLabel): self
     {
-        $this->label = $label;
+        $this->textLabel = $textLabel;
 
         return $this;
     }
@@ -173,21 +173,21 @@ abstract class Field
     }
 
     /**
-     * Get value.
+     * Get valueField.
      */
-    public function getValue(): string
+    public function getValueField(): string
     {
-        return $this->value;
+        return $this->valueField;
     }
 
     /**
-     * Set value.
+     * Set valueField.
      *
      * @return self
      */
-    public function setValue(string $value): self
+    public function setValueField(string $valueField): self
     {
-        $this->value = $value;
+        $this->valueField = $valueField;
 
         return $this;
     }
