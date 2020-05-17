@@ -68,7 +68,7 @@ final class HomeController extends AbstractController
         $mail = new PHPMailerApp(true);    // Instantiation of PHPMailer and passing `true` enables exceptions
         if (
             $mail->sendContact(
-                EMAIL_CONTACT,  // @phpstan-ignore-line
+                EMAIL_CONTACT,
                 $this->httpRequest->postData('firstName'),
                 $this->httpRequest->postData('lastName'),
                 $this->httpRequest->postData('email1'),

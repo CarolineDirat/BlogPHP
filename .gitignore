@@ -5,3 +5,4 @@ dataset.sql
 .php_cs.cache
 
 /config/config.php
+constants.php
