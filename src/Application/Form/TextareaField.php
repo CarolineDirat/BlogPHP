@@ -18,28 +18,28 @@ class TextareaField extends Field
      *
      * @var ?string
      */
-    private $placeholder;
+    private ?string $placeholder;
 
     /**
      * required.
      *
      * @var bool
      */
-    private $required;
+    private bool $required;
 
     /**
      * rows.
      *
      * @var ?int
      */
-    private $rows;
+    private ?int $rows;
 
     /**
      * cols.
      *
      * @var ?int
      */
-    private $cols;
+    private ?int $cols;
 
     /**
      * Get the value of placeholder.
