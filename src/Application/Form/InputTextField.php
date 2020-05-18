@@ -19,25 +19,25 @@ class InputTextField extends Field
      *
      * @var ?string
      */
-    private $placeholder;
+    private ?string $placeholder;
     /**
      * required.
      *
      * @var bool
      */
-    private $required;
+    private bool $required;
     /**
      * value.
      *
      * @var ?string
      */
-    private $value;
+    private ?string $value;
     /**
      * maxlength.
      *
      * @var ?int
      */
-    private $maxlength;
+    private ?int $maxlength;
 
     /**
      * Get placeholder.
