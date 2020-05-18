@@ -9,7 +9,7 @@ use InvalidArgumentException;
  *
  * Validator to valid  maximum lentgh of field value
  */
-class MaxLengthValidtor extends Validator
+class MaxLengthValidator extends Validator
 {
     private int $maxLength;
 
