@@ -23,7 +23,7 @@ class InputTextField extends Field
     /**
      * required.
      *
-     * @var ?string
+     * @var bool
      */
     private $required;
     /**
@@ -66,9 +66,9 @@ class InputTextField extends Field
     /**
      * Get required.
      *
-     * @return ?string
+     * @return bool
      */
-    public function getRequired(): ?string
+    public function getRequired(): bool
     {
         return $this->required;
     }
@@ -76,11 +76,11 @@ class InputTextField extends Field
     /**
      * Set required.
      *
-     * @param ?string $required required
+     * @param bool $required required
      *
      * @return self
      */
-    public function setRequired(?string $required): self
+    public function setRequired(bool $required): self
     {
         $this->required = $required;
 
@@ -100,15 +100,19 @@ class InputTextField extends Field
     /**
      * Set value.
      *
-     * @param ?string $value value
+     * @param string $value value
      *
      * @return self
      */
-    public function setValue(?string $value): self
+    public function setValue(string $value): self
     {
-        $this->value = $value;
+        $value = filter_var($value, FILTER_SANITIZE_STRING);
+        if ($value) {
+            $this->value = $value;
 
-        return $this;
+            return $this;
+        }
+        throw new InvalidArgumentException('$value property must be a string not null');
     }
 
     /**
@@ -124,11 +128,11 @@ class InputTextField extends Field
     /**
      * Set maxlength.
      *
-     * @param ?int $maxlength maxlength
+     * @param int $maxlength maxlength
      *
      * @return self
      */
-    public function setMaxlength(?int $maxlength): self
+    public function setMaxlength(int $maxlength): self
     {
         if ($maxlength > 0) {
             $this->maxlength = $maxlength;
