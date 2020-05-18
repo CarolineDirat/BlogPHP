@@ -16,7 +16,7 @@ abstract class FormBuilder
      *
      * @var Form
      */
-    protected $form;
+    protected Form $form;
 
     public function __construct(Entity $entity)
     {
