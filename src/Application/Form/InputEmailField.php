@@ -14,14 +14,27 @@ class InputEmailField extends Field
     const HTML_ELEMENT = 'input';
     const TYPE_ATTRIBUTE = 'email';
 
-    private bool $required;    
+    /**
+     * placeholder.
+     *
+     * @var ?string
+     */
+    private ?string $placeholder;
+
+    /**
+     * required.
+     *
+     * @var bool
+     */
+    private bool $required; 
+       
     /**
      * pattern
      *
      * @var ?string
      */
-
     private ?string $pattern;    
+
     /**
      * size
      *
@@ -42,6 +55,30 @@ class InputEmailField extends Field
      * @var ?int
      */
     private ?int $minlength;
+
+    /**
+     * Get placeholder.
+     *
+     * @return ?string
+     */
+    public function getPlaceholder(): ?string
+    {
+        return $this->placeholder;
+    }
+
+    /**
+     * Set placeholder.
+     *
+     * @param ?string $placeholder placeholder
+     *
+     * @return self
+     */
+    public function setPlaceholder(?string $placeholder): self
+    {
+        $this->placeholder = $placeholder;
+
+        return $this;
+    }
 
     /**
      * Get required.
