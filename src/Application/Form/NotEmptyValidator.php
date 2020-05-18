@@ -7,7 +7,7 @@ use InvalidArgumentException;
 /**
  * NotEmptyValidator.
  *
- * Validator to know if field value is empty 
+ * Validator to know if field value is empty (or null)
  */
 class NotEmptyValidator extends Validator
 {
