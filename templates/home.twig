@@ -67,48 +67,42 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <!-- To configure the contact form email address, go to build/mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form name="contactForm" id="contactForm"  method="post" action="index.php?page=contact">
+                    <form name="contactForm" id="contactForm"  method="post" action="index.php?page=contact">                  
                         <div class="row control-group">
                             <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
-                                <label>Prénom</label>
-                                <input type="text" class="form-control" placeholder="Prénom" id="firstName" name="firstName" required data-validation-required-message="Entrez votre prénom.">
+                                {{ fieldBuilder(contactForm.fields.firstName, ['placeholder','required', 'maxlength'], 'form-control') }}
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
-                                <label>Nom</label>
-                                <input type="text" class="form-control" placeholder="Nom" id="lastName" name="lastName" required data-validation-required-message="Entrez votre nom.">
+                                {{ fieldBuilder(contactForm.fields.lastName, ['placeholder','required', 'maxlength'], 'form-control') }}
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Addresse Email </label>
-                                <input type="email" class="form-control" placeholder="Addresse Email" id="email1" name="email1" required data-validation-required-message="Entrez votre adresse email.">
+                                {{ fieldBuilder(contactForm.fields.email1, ['placeholder','required', 'maxlength'], 'form-control') }}
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Confirmez votre addresse Email </label>
-                                <input type="email" class="form-control" placeholder="Confirmez votre addresse Email " id="email2" name="email2" required data-validation-required-message="Confirmez votre adresse email.">
+                                {{ fieldBuilder(contactForm.fields.email2, ['placeholder','required', 'maxlength'], 'form-control') }}
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Message</label>
-                                <textarea rows="5" class="form-control" placeholder="Message" id="messageContact" name="messageContact" required data-validation-required-message="Veuillez écrire un message."></textarea>
+                                {{ fieldBuilder(contactForm.fields.messageContact, ['placeholder','required', 'rows'], 'form-control') }}
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <img src="{{ captcha }}" alt="image d'un code à recopier"/>
-                                <button type="button" class="btn btn-primary btn-captcha-code" onclick='window.location.reload(false)'>
-                                    Générer un autre code
+                                <button type="button" class="btn btn-primary btn-captcha-code">
+                                    <a href="/">Générer un autre code</a>
                                 </button>
-                                <label>Recopier le code </label>
-                                <input type="text" class="form-control" placeholder="Recopier le code" id="phrase" name="phrase" required data-validation-required-message="Veuillez recopier le code de l'image."></textarea>
+                                {{ fieldBuilder(contactForm.fields.captchaPhrase, ['placeholder','required', 'maxlength'], 'form-control') }}
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>

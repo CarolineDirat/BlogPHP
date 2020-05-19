@@ -4,6 +4,7 @@ namespace App\Application;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use App\Application\Twig\FormExtension;
 
 final class TwigRenderer
 {
@@ -12,19 +13,20 @@ final class TwigRenderer
      *
      * @var Environment
      */
-    private $twig;
+    private Environment $twig;
 
     /**
      * Loader of twig.
      *
      * @var FilesystemLoader
      */
-    private $loader;
+    private FilesystemLoader $loader;
 
     public function __construct(string $path)
     {
         $this->loader = new FilesystemLoader($path);
         $this->twig = new Environment($this->loader, []);
+        $this->twig->addExtension(new FormExtension);
     }
 
     /**

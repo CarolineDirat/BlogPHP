@@ -32,7 +32,7 @@ final class PDOSingleton
 
     private function __construct() // must be private for the Singleton pattern
     {
-        $this->connection = new PDO(PDO_DSN, USER, PASSWD); // @phpstan-ignore-line
+        $this->connection = new PDO(PDO_DSN, USER, PASSWD);
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 

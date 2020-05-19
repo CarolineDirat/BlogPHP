@@ -16,10 +16,10 @@ class PHPMailerApp extends PHPMailer
         // Server settings
         $this->SMTPDebug = 0;           // Enable verbose debug output with SMTP::DEBUG_SERVER, in develop environment (0 in production environment)
         $this->isSMTP();                                            // Send using SMTP
-        $this->Host = SMTP_SERVER;      // @phpstan-ignore-line     // Set the SMTP server to send through, defined in config.php
+        $this->Host = SMTP_SERVER;                                  // Set the SMTP server to send through, defined in config.php
         $this->SMTPAuth = true;                                     // Enable SMTP authentication
-        $this->Username = SMTP_USER;    // @phpstan-ignore-line     // SMTP username, defined in config.php
-        $this->Password = SMTP_PASS;    // @phpstan-ignore-line     // SMTP password, defined in config.php
+        $this->Username = SMTP_USER;                                // SMTP username, defined in config.php
+        $this->Password = SMTP_PASS;                                // SMTP password, defined in config.php
         $this->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
         $this->Port = 465;                                          // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
         // Content

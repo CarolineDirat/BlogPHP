@@ -4,6 +4,8 @@ namespace App\Application;
 
 abstract class Entity
 {
+    use Hydrator;
+
     /**
      * errors.
      *
@@ -15,22 +17,6 @@ abstract class Entity
     {
         if (!empty($data)) {
             $this->hydrate($data);
-        }
-    }
-
-    /**
-     * hydrate.
-     *
-     * hydrate entity's properties with data
-     */
-    public function hydrate(array $data): void
-    {
-        foreach ($data as $key => $value) {
-            $method = 'set'.ucfirst($key);
-
-            if (is_callable([$this, $method])) {
-                $this->{$method}($value);
-            }
         }
     }
 

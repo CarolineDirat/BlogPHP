@@ -1,4 +1,6 @@
-parameters :
+parameters:
+    autoload_files:
+        - constants.php
     level: 6
     paths :
         - src
