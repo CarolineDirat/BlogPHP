@@ -2,8 +2,6 @@
 
 namespace App\Application\Form;
 
-use InvalidArgumentException;
-
 /**
  * NotEmptyValidator.
  *
