@@ -24,7 +24,7 @@ final class HomeController extends AbstractController
         $captcha = new CaptchaBuilder();
         $this->httpRequest->setSession('captchaPhrase', $captcha->getPhrase());
 
-        // Instanciate contact form
+        // Instantiate contact form
         $contact = new Contact();
         $formBuilder = new ContactFormBuilder($contact);
         $formBuilder->build();
@@ -39,6 +39,12 @@ final class HomeController extends AbstractController
      */
     public function executeProcessContact(): HTTPResponse
     {
+        // Instantiate contact form
+        $contact = new Contact();
+        $formBuilder = new ContactFormBuilder($contact);
+        $formBuilder->build();
+        $contactForm = $formBuilder->getForm();
+        
         // Check for empty fields
         if (
             !$this->httpRequest->hasPost('captchaPhrase')
@@ -48,19 +54,36 @@ final class HomeController extends AbstractController
             || !$this->httpRequest->hasPost('email2')
             || !$this->httpRequest->hasPost('messageContact')
         ) {
-            return new HTTPResponse('home', ['messageInfo' => "Le mail n'a pas pu être envoyé car il manque au moins un champs"]);
+            // new captcha code
+            $captcha = new CaptchaBuilder();
+            $this->httpRequest->setSession('captchaPhrase', $captcha->getPhrase());
+
+            return new HTTPResponse(
+                'home',
+                [
+                    'captcha' => $captcha->build()->inline(), 
+                    'contactForm' => $contactForm, 
+                    'messageInfo' => "Le mail n'a pas pu être envoyé car il manque au moins un champs"
+                ]
+            );
         }
 
         // Check captcha
         // Checking that the posted phrase match the phrase stored in the session
         if (!PhraseBuilder::comparePhrases($this->httpRequest->getSession('captchaPhrase'), $this->httpRequest->postData('captchaPhrase'))) {
+            // new captcha code
+            $captcha = new CaptchaBuilder();
+            $this->httpRequest->setSession('captchaPhrase', $captcha->getPhrase());
+            
             return new HTTPResponse(
                 'home',
-                ['messageInfo' => "Le code recopié ne correspond pas à l'image, veuillez cliquer sur <<Accueil>> du menu pour réessayer"]
+                [
+                    'contactForm' => $contactForm,
+                    'captcha' => $captcha->build()->inline(),
+                    'messageInfo' => "Le code recopié ne correspond pas à l'image"
+                ]
             );
         }
-        // The captcha's phrase can't be used twice
-        $this->httpRequest->unsetSession('captchaPhrase');
 
         // Check emails equality
         if (
@@ -68,9 +91,17 @@ final class HomeController extends AbstractController
             || !$this->httpRequest->postData('email1')
             || $this->httpRequest->postData('email1') !== $this->httpRequest->postData('email2')
         ) {
+            // new captcha code
+            $captcha = new CaptchaBuilder();
+            $this->httpRequest->setSession('captchaPhrase', $captcha->getPhrase());
+
             return new HTTPResponse(
                 'home',
-                ['messageInfo' => "Le mail n'a pas pu être envoyé car au moins un des emails n'est pas valide."]
+                [
+                    'captcha' => $captcha->build()->inline(),
+                    'contactForm' => $contactForm, 
+                    'messageInfo' => "Le mail n'a pas pu être envoyé car au moins un des emails n'est pas valide."
+                ]
             );
         }
         $mail = new PHPMailerApp(true);    // Instantiation of PHPMailer and passing `true` enables exceptions
@@ -83,7 +114,18 @@ final class HomeController extends AbstractController
                 $this->httpRequest->postData('messageContact')
             )
         ) {
-            return new HTTPResponse('home', ['messageInfo' => 'Votre message a bien été envoyé.']);
+            // new captcha code
+            $captcha = new CaptchaBuilder();
+            $this->httpRequest->setSession('captchaPhrase', $captcha->getPhrase());
+
+            return new HTTPResponse(
+                'home',
+                [
+                    'captcha' => $captcha->build()->inline(),
+                    'contactForm' => $contactForm,
+                    'messageInfo' => 'Votre message a bien été envoyé.'
+                ]
+            );
         }
 
         throw new \Exception("L'envoie du mail a échoué :".$mail->ErrorInfo);
