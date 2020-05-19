@@ -17,42 +17,43 @@ final class Contact extends Entity
      *
      * @var ?string
      */
-    private ?string $firstName;
+    private ?string $firstName = null;
 
     /**
      * lastName.
      *
      * @var ?string
      */
-    private ?string $lastName;
+    private ?string $lastName = null;
 
     /**
      * email1.
      *
      * @var ?string
      */
-    private ?string $email1;
+    private ?string $email1 = null;
 
     /**
      * email2.
      *
      * @var ?string
      */
-    private ?string $email2;
+    private ?string $email2 = null;
 
     /**
      * messageContact.
      *
      * @var ?string
      */
-    private ?string $messageContact;
+    private ?string $messageContact = null;
 
     /**
      * captchaPhrase.
      *
      * @var ?string
      */
-    private ?string $captchaPhrase;
+    private ?string $captchaPhrase = null;
+
 
     /**
      * Method to know if the contact entity is valid.
@@ -83,7 +84,7 @@ final class Contact extends Entity
      *
      * @return self
      */
-    public function setFirstName(string $firstName): self
+    public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
 
@@ -103,7 +104,7 @@ final class Contact extends Entity
      *
      * @return self
      */
-    public function setLastName(string $lastName): self
+    public function setLastName(?string $lastName): self
     {
         $this->lastName = $lastName;
 
@@ -123,7 +124,7 @@ final class Contact extends Entity
      *
      * @return self
      */
-    public function setEmail1(string $email1): self
+    public function setEmail1(?string $email1): self
     {
         $this->email1 = $email1;
 
@@ -143,7 +144,7 @@ final class Contact extends Entity
      *
      * @return self
      */
-    public function setEmail2(string $email2): self
+    public function setEmail2(?string $email2): self
     {
         $this->email2 = $email2;
 
@@ -163,7 +164,7 @@ final class Contact extends Entity
      *
      * @return self
      */
-    public function setMessageContact(string $messageContact): self
+    public function setMessageContact(?string $messageContact): self
     {
         $this->messageContact = $messageContact;
 
@@ -183,7 +184,7 @@ final class Contact extends Entity
      *
      * @return self
      */
-    public function setCaptchaPhrase(string $captchaPhrase): self
+    public function setCaptchaPhrase(?string $captchaPhrase): self
     {
         $this->captchaPhrase = $captchaPhrase;
 
