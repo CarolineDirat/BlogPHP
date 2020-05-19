@@ -9,11 +9,8 @@ use InvalidArgumentException;
  *
  * Represent an intput field with type="text"
  */
-class InputTextField extends Field
+class InputTextField extends InputField
 {
-    const HTML_ELEMENT = 'input';
-    const TYPE_ATTRIBUTE = 'text';
-
     /**
      * placeholder.
      *
@@ -41,6 +38,19 @@ class InputTextField extends Field
      * @var ?int
      */
     private ?int $maxlength;
+
+    public function __construct(array $options = [])
+    {
+        parent::__construct($options);
+        $this->defineTextType();
+    }
+
+    public function defineTextType(): self
+    {
+        $this->type = 'text';
+
+        return $this;
+    }
 
     /**
      * Get placeholder.

@@ -9,11 +9,8 @@ use InvalidArgumentException;
  *
  * Represent an intput field with type="email"
  */
-class InputEmailField extends Field
+class InputEmailField extends InputField
 {
-    const HTML_ELEMENT = 'input';
-    const TYPE_ATTRIBUTE = 'email';
-
     /**
      * placeholder.
      *
@@ -55,6 +52,19 @@ class InputEmailField extends Field
      * @var ?int
      */
     private ?int $minlength;
+
+    public function __construct(array $options = [])
+    {
+        parent::__construct($options);
+        $this->defineEmailType();
+    }
+
+    public function defineEmailType(): self
+    {
+        $this->type = 'email';
+
+        return $this;
+    }
 
     /**
      * Get placeholder.
