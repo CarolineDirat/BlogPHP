@@ -195,7 +195,7 @@ abstract class Field
     /**
      * Get valueField.
      */
-    public function getValueField(): string
+    public function getValueField(): ?string
     {
         return $this->valueField;
     }
