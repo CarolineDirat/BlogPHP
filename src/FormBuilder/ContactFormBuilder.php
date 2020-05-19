@@ -85,9 +85,10 @@ final class ContactFormBuilder extends FormBuilder
                     'idField' => 'captchaPhrase',
                     'placeholder' => 'Recopier le code',
                     'required' => true,
-                    'maxlength' => 50,
+                    'maxlength' => 6,
                     'validators' => [
-                        new NotEmptyValidator('Merci de spécifier le code.')
+                        new NotEmptyValidator('Merci de spécifier le code.'),
+                        new MaxLengthValidator('Le code spécifié est trop long (6 caractères maximum)', 6)
                     ]
             ]))
         ;
