@@ -80,7 +80,7 @@ class Form
     /**
      * Get array of fields making up the form.
      *
-     * @return array
+     * @return Field[]
      */
     public function getFields(): array
     {
