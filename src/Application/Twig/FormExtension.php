@@ -94,9 +94,9 @@ class FormExtension extends AbstractExtension
     {
         $valueAttr = "";
         if (!empty($field->getValueField())) {
-            $valueAttr = "value = \"" . $field->getValueField() . "\">";
+            $valueAttr = "value = \"" . $field->getValueField() . '"';
         }
-        return '<input type="' . $field->getType() . '" ' . $this->getHtmlFromArray($attributes) . ' ' . $valueAttr;
+        return '<input type="' . $field->getType() . '" ' . $this->getHtmlFromArray($attributes) . ' ' . $valueAttr . '/>';
     }
     
     /**
