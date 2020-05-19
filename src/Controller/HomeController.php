@@ -5,8 +5,10 @@ namespace App\Controller;
 use App\Application\AbstractController;
 use App\Application\HTTPResponse;
 use App\Application\PHPMailerApp;
+use App\FormBuilder\ContactFormBuilder;
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
+use App\Entity\Form\Contact;
 
 //use App\Application\TwigRenderer;
 
@@ -22,8 +24,14 @@ final class HomeController extends AbstractController
         $captcha = new CaptchaBuilder();
         $this->httpRequest->setSession('captchaPhrase', $captcha->getPhrase());
 
+        // Instanciate contact form
+        $contact = new Contact();
+        $formBuilder = new ContactFormBuilder($contact);
+        $formBuilder->build();
+        $contactForm = $formBuilder->getForm();
+
         // Retrieve the captcha to insert it directly into the home.twig page:
-        return new HTTPResponse($this->getPage(), ['captcha' => $captcha->build()->inline()]);
+        return new HTTPResponse($this->getPage(), ['contactForm' => $contactForm, 'captcha' => $captcha->build()->inline()]);
     }
 
     /**
