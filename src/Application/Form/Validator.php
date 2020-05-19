@@ -15,14 +15,14 @@ abstract class Validator
      *
      * @var string
      */
-    protected $errorMessage;
+    protected string $errorMessage;
 
     public function __construct(string $errorMessage)
     {
         $this->setErrorMessage($errorMessage);
     }
 
-    abstract public function isValid(string $value): bool;
+    abstract public function isValid(?string $value): bool;
 
     /**
      * Get the value of errorMessage.
