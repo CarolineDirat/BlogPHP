@@ -205,7 +205,7 @@ abstract class Field
      *
      * @return self
      */
-    public function setValueField(string $valueField): self
+    public function setValueField(?string $valueField): self
     {
         $this->valueField = $valueField;
 
