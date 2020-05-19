@@ -6,7 +6,6 @@ use InvalidArgumentException;
 
 /**
  * InputTextField.
- *
  * Represent an intput field with type="text"
  */
 class InputTextField extends InputField
@@ -18,19 +17,6 @@ class InputTextField extends InputField
      */
     private ?string $placeholder;
 
-    /**
-     * required.
-     *
-     * @var bool
-     */
-    private bool $required;
-
-    /**
-     * value.
-     *
-     * @var ?string
-     */
-    private ?string $value;
     
     /**
      * maxlength.
@@ -74,58 +60,6 @@ class InputTextField extends InputField
         $this->placeholder = $placeholder;
 
         return $this;
-    }
-
-    /**
-     * Get required.
-     *
-     * @return bool
-     */
-    public function getRequired(): bool
-    {
-        return $this->required;
-    }
-
-    /**
-     * Set required.
-     *
-     * @param bool $required required
-     *
-     * @return self
-     */
-    public function setRequired(bool $required): self
-    {
-        $this->required = $required;
-
-        return $this;
-    }
-
-    /**
-     * Get value.
-     *
-     * @return ?string
-     */
-    public function getValue(): ?string
-    {
-        return $this->value;
-    }
-
-    /**
-     * Set value.
-     *
-     * @param string $value value
-     *
-     * @return self
-     */
-    public function setValue(string $value): self
-    {
-        $value = filter_var($value, FILTER_SANITIZE_STRING);
-        if ($value) {
-            $this->value = $value;
-
-            return $this;
-        }
-        throw new InvalidArgumentException('$value property must be a string not null');
     }
 
     /**

@@ -17,13 +17,6 @@ class InputEmailField extends InputField
      * @var ?string
      */
     private ?string $placeholder;
-
-    /**
-     * required.
-     *
-     * @var bool
-     */
-    private bool $required; 
        
     /**
      * pattern
@@ -86,30 +79,6 @@ class InputEmailField extends InputField
     public function setPlaceholder(?string $placeholder): self
     {
         $this->placeholder = $placeholder;
-
-        return $this;
-    }
-
-    /**
-     * Get required.
-     *
-     * @return bool
-     */
-    public function getRequired(): bool
-    {
-        return $this->required;
-    }
-
-    /**
-     * Set required.
-     *
-     * @param bool $required required
-     *
-     * @return self
-     */
-    public function setRequired(bool $required): self
-    {
-        $this->required = $required;
 
         return $this;
     }
