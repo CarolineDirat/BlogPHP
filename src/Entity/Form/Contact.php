@@ -15,44 +15,44 @@ final class Contact extends Entity
     /**
      * firstName.
      *
-     * @var string
+     * @var ?string
      */
-    private $firstName;
+    private ?string $firstName;
 
     /**
      * lastName.
      *
-     * @var string
+     * @var ?string
      */
-    private $lastName;
+    private ?string $lastName;
 
     /**
      * email1.
      *
-     * @var string
+     * @var ?string
      */
-    private $email1;
+    private ?string $email1;
 
     /**
      * email2.
      *
-     * @var string
+     * @var ?string
      */
-    private $email2;
+    private ?string $email2;
 
     /**
      * messageContact.
      *
-     * @var string
+     * @var ?string
      */
-    private $messageContact;
+    private ?string $messageContact;
 
     /**
      * captchaPhrase.
      *
-     * @var string
+     * @var ?string
      */
-    private $captchaPhrase;
+    private ?string $captchaPhrase;
 
     /**
      * Method to know if the contact entity is valid.
@@ -73,7 +73,7 @@ final class Contact extends Entity
     /**
      * Get the value of firstName.
      */
-    public function getFirstName(): string
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
@@ -93,7 +93,7 @@ final class Contact extends Entity
     /**
      * Get the value of lastName.
      */
-    public function getLastName(): string
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
@@ -113,7 +113,7 @@ final class Contact extends Entity
     /**
      * Get the value of email1.
      */
-    public function getEmail1(): string
+    public function getEmail1(): ?string
     {
         return $this->email1;
     }
@@ -133,7 +133,7 @@ final class Contact extends Entity
     /**
      * Get the value of email2.
      */
-    public function getEmail2(): string
+    public function getEmail2(): ?string
     {
         return $this->email2;
     }
@@ -153,7 +153,7 @@ final class Contact extends Entity
     /**
      * Get the value of messageContact.
      */
-    public function getMessageContact(): string
+    public function getMessageContact(): ?string
     {
         return $this->messageContact;
     }
@@ -173,7 +173,7 @@ final class Contact extends Entity
     /**
      * Get the value of captchaPhrase.
      */
-    public function getCaptchaPhrase(): string
+    public function getCaptchaPhrase(): ?string
     {
         return $this->captchaPhrase;
     }
