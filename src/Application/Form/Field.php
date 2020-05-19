@@ -21,7 +21,7 @@ abstract class Field
      *
      * @var string
      */
-    protected $errorMessage;
+    protected string $errorMessage;
 
     /**
      * textLabel.
@@ -30,7 +30,7 @@ abstract class Field
      *
      * @var string
      */
-    protected $textLabel;
+    protected string $textLabel;
     
     /**
      * tag
@@ -39,7 +39,7 @@ abstract class Field
      *
      * @var string
      */
-    protected $tag;
+    protected string $tag;
 
     /**
      * name.
@@ -48,7 +48,7 @@ abstract class Field
      *
      * @var string
      */
-    protected $name;
+    protected string $name;
 
     /**
      * idField.
@@ -57,16 +57,16 @@ abstract class Field
      *
      * @var string
      */
-    protected $idField;
+    protected string $idField;
 
     /**
      * valueField.
      *
      * value of the field
      *
-     * @var string
+     * @var ?string
      */
-    protected $valueField;
+    protected ?string $valueField;
 
     /**
      * validators.
@@ -75,7 +75,7 @@ abstract class Field
      *
      * @var Validator[]
      */
-    protected $validators = [];
+    protected array $validators = [];
 
     /**
      * __construct.
