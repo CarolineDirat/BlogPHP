@@ -19,8 +19,11 @@ class MaxLengthValidator extends Validator
         $this->setMaxLength($maxLength);
     }
 
-    public function isValid(string $value): bool
+    public function isValid(?string $value): bool
     {
+        if (is_null($value)) {
+            return false;
+        }
         return strlen($value) <= $this->maxLength;
     }
 

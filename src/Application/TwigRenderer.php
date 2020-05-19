@@ -13,14 +13,14 @@ final class TwigRenderer
      *
      * @var Environment
      */
-    private $twig;
+    private Environment $twig;
 
     /**
      * Loader of twig.
      *
      * @var FilesystemLoader
      */
-    private $loader;
+    private FilesystemLoader $loader;
 
     public function __construct(string $path)
     {
