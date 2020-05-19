@@ -20,7 +20,7 @@ final class ContactFormBuilder extends FormBuilder
                     'name' => 'firstName',
                     'idField' => 'firstName',
                     'placeholder' => 'Prénom',
-                    'required' => true,
+                    'required' => 'required',
                     'maxlength' => 50,
                     'validators' => [
                         new NotEmptyValidator('Merci de spécifier votre Prénom.'),
@@ -33,7 +33,7 @@ final class ContactFormBuilder extends FormBuilder
                     'name' => 'lastName',
                     'idField' => 'lastName',
                     'placeholder' => 'Nom',
-                    'required' => true,
+                    'required' => 'required',
                     'maxlength' => 50,
                     'validators' => [
                         new NotEmptyValidator('Merci de spécifier votre Nom.'),
@@ -46,7 +46,7 @@ final class ContactFormBuilder extends FormBuilder
                     'name' => 'email1',
                     'idField' => 'email1',
                     'placeholder' => 'Adresse Email',
-                    'required' => true,
+                    'required' => 'required',
                     'maxlength' => 250,
                     'validators' => [
                         new NotEmptyValidator('Merci de spécifier votre email.'),
@@ -59,7 +59,7 @@ final class ContactFormBuilder extends FormBuilder
                     'name' => 'email2',
                     'idField' => 'email2',
                     'placeholder' => 'Confirmez votre adresse email',
-                    'required' => true,
+                    'required' => 'required',
                     'maxlength' => 250,
                     'validators' => [
                         new NotEmptyValidator('Merci de confirmer votre adresse email.'),
@@ -72,7 +72,7 @@ final class ContactFormBuilder extends FormBuilder
                     'name' => 'messageContact',
                     'idField' => 'messageContact',
                     'placeholder' => 'Message',
-                    'required' => true,
+                    'required' => 'required',
                     'rows' => 5,
                     'validators' => [
                         new NotEmptyValidator('Merci de confirmer votre adresse email.')
@@ -84,7 +84,7 @@ final class ContactFormBuilder extends FormBuilder
                     'name' => 'captchaPhrase',
                     'idField' => 'captchaPhrase',
                     'placeholder' => 'Recopier le code',
-                    'required' => true,
+                    'required' => 'required',
                     'maxlength' => 6,
                     'validators' => [
                         new NotEmptyValidator('Merci de spécifier le code.'),

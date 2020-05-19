@@ -21,9 +21,9 @@ class InputField extends Field
     /**
      * required.
      *
-     * @var bool
+     * @var ?string
      */
-    private bool $required;
+    private ?string $required;
 
     /**
      * value.
@@ -58,9 +58,9 @@ class InputField extends Field
     /**
      * Get required.
      *
-     * @return bool
+     * @return ?string
      */
-    public function getRequired(): bool
+    public function getRequired(): ?string
     {
         return $this->required;
     }
@@ -68,11 +68,11 @@ class InputField extends Field
     /**
      * Set required.
      *
-     * @param bool $required required
+     * @param ?string $required required
      *
      * @return self
      */
-    public function setRequired(bool $required): self
+    public function setRequired(?string $required): self
     {
         $this->required = $required;
 

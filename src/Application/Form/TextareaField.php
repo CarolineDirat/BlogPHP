@@ -21,9 +21,9 @@ class TextareaField extends Field
     /**
      * required.
      *
-     * @var bool
+     * @var ?string
      */
-    private bool $required;
+    private ?string $required;
 
     /**
      * rows.
@@ -75,7 +75,7 @@ class TextareaField extends Field
     /**
      * Get the value of required.
      */
-    public function getRequired(): bool
+    public function getRequired(): ?string
     {
         return $this->required;
     }
@@ -85,7 +85,7 @@ class TextareaField extends Field
      *
      * @return self
      */
-    public function setRequired(bool $required): self
+    public function setRequired(?string $required): self
     {
         $this->required = $required;
 
