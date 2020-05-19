@@ -33,10 +33,8 @@ class FormExtension extends AbstractExtension
      */
     public function fieldBuilder(Field $field, array $options = [], ?string $class): string
     {
-        $html = '<label for="' . $field->getIdField() . '">' . $field->getTextLabel() . '</label>';
-        $htmlAttributes = 'id="' . $field->getIdField() . ' name=' . $field->getName();
-        
-        $attributes = [];
+        $attributes['id'] = $field->getIdField();
+        $attributes['name'] = $field->getName();
         foreach ($options as $option) {
             $attribute = 'get'.ucfirst($option);
             if (is_callable([$field, $attribute]) && !empty($field->$attribute())) {
@@ -46,6 +44,8 @@ class FormExtension extends AbstractExtension
         if (!empty($class)) {
             $attributes['class'] = $class;
         }
+
+        $html = '<label for="' . $field->getIdField() . '">' . $field->getTextLabel() . '</label>';
         
         if($field->getTag() === 'input') {
             if ($field instanceof InputField) {
