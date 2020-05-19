@@ -55,6 +55,9 @@ class FormExtension extends AbstractExtension
         if($field->getTag() === 'textarea') {
             $html .= $this->textarea($field->getValueField(), $attributes);
         }
+        if($field->getErrorMessage()) {
+            $html .= $this->errorHTML($field->getErrorMessage());
+        }
 
         return $html;
     }
@@ -111,5 +114,10 @@ class FormExtension extends AbstractExtension
     public function textarea(?string $value, array $attributes = []): string
     {
         return '<textarea ' . $this->getHtmlFromArray($attributes) . '>' . $value . '</textarea>';
+    }
+
+    public function errorHTML(string $errorMessage): string
+    {
+        return '<small class="text-danger">' . $errorMessage . '</small>';
     }
 }

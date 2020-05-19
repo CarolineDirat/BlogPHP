@@ -21,7 +21,7 @@ abstract class Field
      *
      * @var string
      */
-    protected string $errorMessage;
+    protected string $errorMessage = '';
 
     /**
      * textLabel.
