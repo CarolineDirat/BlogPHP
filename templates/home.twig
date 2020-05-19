@@ -70,33 +70,29 @@
                     <form name="contactForm" id="contactForm"  method="post" action="index.php?page=contact">                  
                         <div class="row control-group">
                             <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
-                                {{ fieldBuilder(contactForm.fields.firstName, ['placeholder','required'], 'form-control') }}
+                                {{ fieldBuilder(contactForm.fields.firstName, ['placeholder','required', 'maxlength'], 'form-control') }}
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
-                                <label for="lastName">Nom</label>
-                                <input type="text" class="form-control" placeholder="Nom" id="lastName" name="lastName" required/>
+                                {{ fieldBuilder(contactForm.fields.lastName, ['placeholder','required', 'maxlength'], 'form-control') }}
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label for="email1">Addresse Email </label>
-                                <input type="email" class="form-control" placeholder="Addresse Email" id="email1" name="email1" required/>
+                                {{ fieldBuilder(contactForm.fields.email1, ['placeholder','required', 'maxlength'], 'form-control') }}
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label for="email2">Confirmez votre addresse Email </label>
-                                <input type="email" class="form-control" placeholder="Confirmez votre addresse Email " id="email2" name="email2" required/>
+                                {{ fieldBuilder(contactForm.fields.email2, ['placeholder','required', 'maxlength'], 'form-control') }}
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label for="messageContact">Message</label>
-                                <textarea rows="5" class="form-control" placeholder="Message" id="messageContact" name="messageContact" required></textarea>
+                                {{ fieldBuilder(contactForm.fields.messageContact, ['placeholder','required', 'rows'], 'form-control') }}
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -106,8 +102,7 @@
                                 <button type="button" class="btn btn-primary btn-captcha-code">
                                     <a href="/">Générer un autre code</a>
                                 </button>
-                                <label for="captchaPhrase">Recopier le code </label>
-                                <input type="text" class="form-control" placeholder="Recopier le code" id="captchaPhrase" name="captchaPhrase" required>
+                                {{ fieldBuilder(contactForm.fields.captchaPhrase, ['placeholder','required', 'maxlength'], 'form-control') }}
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
