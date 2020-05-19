@@ -9,6 +9,7 @@ use App\Application\HTTPRequest;
 use App\Application\TwigRenderer;
 use App\Controller\HomeController;
 use App\Controller\PostController;
+use Exception;
 
 $twigRenderer = new TwigRenderer('../templates');
 
@@ -47,11 +48,11 @@ try {
                     $controller->execute()->send($twigRenderer);
                 }
 
-                throw new \Exception('Post data missing from the contact form');
+                throw new Exception('Post data missing from the contact form');
         }
     }
     if (!$match) {
-        throw new \Exception('No page corresponds to that requested');
+        throw new Exception('No page corresponds to that requested');
     }
 } catch (Exception $e) {
     $twigRenderer->render('error', ['error' => $e->getMessage() . ' in the file ' . $e->getFile()]);
