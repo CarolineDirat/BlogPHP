@@ -15,7 +15,7 @@ class FormExtension extends AbstractExtension
             new TwigFunction(
                 'fieldBuilder', 
                 [$this, 'fieldBuilder'],
-                ['is_safe' => 'html'],
+                ['is_safe' => ['html']],
             ),
         ];
     }
@@ -26,9 +26,9 @@ class FormExtension extends AbstractExtension
      * Generate HTML code of a field
      *
      * @param  Field $field
-     * @param  string[] $options Names of attributes you want to use 
-     * in the html element (the field) : input or textarea or select ...
-     * @param ?string $class class attribute for the html element of the field
+     * @param  string[] $options    Names of attributes you want to use in the html element (the field) : 
+     *                              input or textarea or select ...
+     * @param ?string $class        value of class attribute for the html element of the field
      * @return string
      */
     public function fieldBuilder(Field $field, array $options = [], ?string $class): string
