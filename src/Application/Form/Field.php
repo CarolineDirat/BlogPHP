@@ -3,6 +3,7 @@
 namespace App\Application\Form;
 
 use App\Application\Hydrator;
+use InvalidArgumentException;
 
 /**
  * Field.
@@ -30,6 +31,15 @@ abstract class Field
      * @var string
      */
     protected $textLabel;
+    
+    /**
+     * tag
+     * 
+     * html element for the field : 'input', 'textarea', 'select' ...
+     *
+     * @var string
+     */
+    protected $tag;
 
     /**
      * name.
@@ -130,6 +140,16 @@ abstract class Field
         $this->textLabel = $textLabel;
 
         return $this;
+    }
+
+    /**
+     * Get html element for the field : 'input', 'textarea', 'select' ...
+     *
+     * @return  string
+     */ 
+    public function getTag(): string
+    {
+        return $this->tag;
     }
 
     /**
