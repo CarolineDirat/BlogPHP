@@ -67,11 +67,10 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <!-- To configure the contact form email address, go to build/mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form name="contactForm" id="contactForm"  method="post" action="index.php?page=contact">
+                    <form name="contactForm" id="contactForm"  method="post" action="index.php?page=contact">                  
                         <div class="row control-group">
                             <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
-                                <label for="firstName">Prénom</label>
-                                <input type="text" class="form-control" placeholder="Prénom" id="firstName" name="firstName" required/>
+                                {{ fieldBuilder(contactForm.fields.firstName, ['placeholder','required'], 'form-control') }}
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
