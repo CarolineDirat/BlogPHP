@@ -11,8 +11,6 @@ use InvalidArgumentException;
  */
 class TextareaField extends Field
 {
-    const HTML_ELEMENT = 'textarea';
-
     /**
      * placeholder.
      *
@@ -40,6 +38,19 @@ class TextareaField extends Field
      * @var ?int
      */
     private ?int $cols;
+
+    public function __construct(array $options = [])
+    {
+        parent::__construct($options);
+        $this->defineTextareaTag();
+    }
+
+    public function defineTextareaTag(): self
+    {
+            $this->tag = 'textarea';
+
+            return $this;
+    }
 
     /**
      * Get the value of placeholder.
