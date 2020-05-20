@@ -31,11 +31,11 @@ final class Post extends Entity
     /**
      * @var Datetime
      */
-    private $dateCreation;
+    private Datetime $dateCreation;
     /**
      * @var Datetime
      */
-    private $dateUpdate;
+    private Datetime $dateUpdate;
     /**
      * @var int
      */
@@ -128,7 +128,7 @@ final class Post extends Entity
      *
      * @return DateTime
      */
-    public function getDateCreation()
+    public function getDateCreation(): DateTime
     {
         return $this->dateCreation;
     }
@@ -145,7 +145,7 @@ final class Post extends Entity
      *
      * @return DateTime
      */
-    public function getDateUpdate()
+    public function getDateUpdate(): DateTime
     {
         return $this->dateUpdate;
     }
