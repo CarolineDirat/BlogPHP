@@ -10,20 +10,20 @@ final class Post extends Entity
     /**
      * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      */
-    private $title;
+    private string $title;
     /**
      * @var string
      */
-    private $slug;
+    private string $slug;
     /**
      * @var string
      */
-    private $content;
+    private string $content;
     /**
      * @var string
      */
@@ -39,7 +39,7 @@ final class Post extends Entity
     /**
      * @var int
      */
-    private $idUser;
+    private int $idUser;
 
     /**
      * Method to know if the post is valid.
