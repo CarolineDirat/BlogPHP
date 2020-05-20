@@ -2,6 +2,7 @@
 
 namespace App\Model\Form;
 
+use Exception;
 use App\Application\PHPMailerApp;
 use App\Entity\Form\Contact;
 
@@ -27,6 +28,6 @@ class ContactManager
             return true;
         }
 
-        return false;
+        throw new Exception("L'envoie du mail a échoué :" . $mail->ErrorInfo);
     }
 }
