@@ -27,7 +27,7 @@ final class Post extends Entity
     /**
      * @var string
      */
-    private $abstract;
+    private string $abstract;
     /**
      * @var Datetime
      */
