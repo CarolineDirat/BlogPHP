@@ -27,8 +27,6 @@ class ContactFormHandler extends FormHandler
             if($this->form->getEntity() instanceof Contact) {
                 return $this->contactManager->sendEmail($this->form->getEntity());
             }
-
-            throw new Exception('The entity corresponding to form must be an instance of Contact entity');
         }
 
         return false;
