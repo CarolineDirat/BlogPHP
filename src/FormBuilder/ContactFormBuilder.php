@@ -9,6 +9,7 @@ use App\Application\Form\TextareaField;
 use App\Application\Form\NotEmptyValidator;
 use App\Application\Form\MaxLengthValidator;
 use App\Application\Form\CaptchaValidator;
+use App\Application\Form\ValuesEqualityValidator;
 use App\Application\HTTPRequest;
 use App\Application\Entity;
 
@@ -20,6 +21,13 @@ final class ContactFormBuilder extends FormBuilder
     {
         parent::__construct($entity);
         $this->setHttpRequest($httpRequest);
+    }
+
+    public function getValueField(string $fieldName): string
+    {
+        $fields = $this->form->getFields();
+        $field = $fields[$fieldName];
+        return '' . $field->getValueField();
     }
 
     public function build(): void
@@ -74,7 +82,11 @@ final class ContactFormBuilder extends FormBuilder
                     'maxlength' => 250,
                     'validators' => [
                         new NotEmptyValidator('Merci de confirmer votre adresse email.'),
-                        new MaxLengthValidator('L\'email spécifié est trop long (250 caractères maximum)', 250)
+                        new MaxLengthValidator('L\'email spécifié est trop long (250 caractères maximum)', 250),
+                        new ValuesEqualityValidator(
+                            'L\'email de confirmation doit être identique au premier email',
+                            $this->getValueField('email1')
+                        )
                     ]
             ]))
             ->addField(
