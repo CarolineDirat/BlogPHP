@@ -14,7 +14,7 @@ use PDOStatement;
  * Manager of Posts, for a PDO connection to the database, $this->dao is an instance of PDO
  */
 final class PostManagerPDO extends PostManager
-{
+{    
     public function getPost(int $id): Post
     {
         if (!$this->dao instanceof PDO) {
@@ -38,9 +38,8 @@ final class PostManagerPDO extends PostManager
         $req->execute();
         $data = $req->fetch(PDO::FETCH_ASSOC);
         $req->closecursor();
-        // dateCreation and dateUpdate must be instantiations of DateTime
-        $data['dateCreation'] = new DateTime($data['dateCreation']);
-        $data['dateUpdate'] = new DateTime($data['dateUpdate']);
+        // Instantiate Post object
+        $data = $this->stringToDateTime($data); // dateCreation and dateUpdate must be instantiations of DateTime
         $post = new Post($data);
         if ($post->isValid()) {
             return $post;
@@ -48,8 +47,6 @@ final class PostManagerPDO extends PostManager
 
         throw new Exception('The article collected from database, with id='.filter_var($id, FILTER_VALIDATE_INT).', is not valid, at least one property is empty.');  
     }
-
-
 
     public function getListPosts(): array
     {
@@ -76,9 +73,7 @@ final class PostManagerPDO extends PostManager
         $listPosts = [];
         if(is_array($dataArray)) {
             foreach ($dataArray as $data) {
-                // dateCreation and dateUpdate must be instantiations of DateTime
-                $data['dateCreation'] = new DateTime($data['dateCreation']);
-                $data['dateUpdate'] = new DateTime($data['dateUpdate']);
+                $data = $this->stringToDateTime($data); // dateCreation and dateUpdate must be instantiations of DateTime
                 $post = new Post($data);
                 if (!$post->isValid()) {
                     throw new Exception('The post with id='.$post->getId().' is not valid, one property is empty.');
@@ -88,5 +83,20 @@ final class PostManagerPDO extends PostManager
         }
 
         return $listPosts;
+    }
+    
+    /**
+     * stringToDateTime
+     * 
+     * dateCreation and dateUpdate, Post's properties, must be instantiations of DateTime
+     *
+     * @param  array $data
+     * @return array
+     */
+    public function stringToDateTime(array $data): array
+    {
+        $data['dateCreation'] = new DateTime($data['dateCreation']);
+        $data['dateUpdate'] = new DateTime($data['dateUpdate']);
+        return $data;
     }
 }
