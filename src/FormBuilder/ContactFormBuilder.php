@@ -8,9 +8,20 @@ use App\Application\Form\InputEmailField;
 use App\Application\Form\TextareaField;
 use App\Application\Form\NotEmptyValidator;
 use App\Application\Form\MaxLengthValidator;
+use App\Application\Form\CaptchaValidator;
+use App\Application\HTTPRequest;
+use App\Application\Entity;
 
 final class ContactFormBuilder extends FormBuilder
 {
+    private HTTPRequest $httpRequest;
+    
+    public function __construct(Entity $entity, HTTPRequest $httpRequest)
+    {
+        parent::__construct($entity);
+        $this->setHttpRequest($httpRequest);
+    }
+
     public function build(): void
     {
         $this->form
@@ -88,9 +99,22 @@ final class ContactFormBuilder extends FormBuilder
                     'maxlength' => 6,
                     'validators' => [
                         new NotEmptyValidator('Merci de spécifier le code.'),
-                        new MaxLengthValidator('Le code spécifié est trop long (6 caractères maximum)', 6)
+                        new MaxLengthValidator('Le code spécifié est trop long (6 caractères maximum)', 6),
+                        new CaptchaValidator('Le code recopié n\'est pas le bon. Aide : vous pouvez tout écrire en minuscule', $this->httpRequest)
                     ]
             ]))
         ;
+    }
+
+    /**
+     * Set the value of httpRequest
+     *
+     * @return  self
+     */ 
+    public function setHttpRequest(HTTPRequest $httpRequest): self
+    {
+        $this->httpRequest = $httpRequest;
+
+        return $this;
     }
 }

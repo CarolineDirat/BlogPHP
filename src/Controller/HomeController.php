@@ -9,6 +9,7 @@ use App\FormBuilder\ContactFormBuilder;
 use Gregwar\Captcha\CaptchaBuilder;
 use Gregwar\Captcha\PhraseBuilder;
 use App\Entity\Form\Contact;
+use Exception;
 
 //use App\Application\TwigRenderer;
 
@@ -26,7 +27,7 @@ final class HomeController extends AbstractController
 
         // Instantiate contact form
         $contact = new Contact();
-        $formBuilder = new ContactFormBuilder($contact);
+        $formBuilder = new ContactFormBuilder($contact, $this->httpRequest);
         $formBuilder->build();
         $contactForm = $formBuilder->getForm();
 
@@ -38,10 +39,10 @@ final class HomeController extends AbstractController
      * Controller to process the contact form.
      */
     public function executeProcessContact(): HTTPResponse
-    {
+    {      
         // Instantiate contact form
         $contact = new Contact();
-        $formBuilder = new ContactFormBuilder($contact);
+        $formBuilder = new ContactFormBuilder($contact, $this->httpRequest);
         $formBuilder->build();
         $contactForm = $formBuilder->getForm();
         
@@ -128,6 +129,6 @@ final class HomeController extends AbstractController
             );
         }
 
-        throw new \Exception("L'envoie du mail a échoué :".$mail->ErrorInfo);
+        throw new Exception("L'envoie du mail a échoué :".$mail->ErrorInfo);
     }
 }
