@@ -33,6 +33,7 @@ class FormExtension extends AbstractExtension
      */
     public function fieldBuilder(Field $field, array $options = [], ?string $class): string
     {
+        // define values attributes for html element
         $attributes['id'] = $field->getIdField();
         $attributes['name'] = $field->getName();
         foreach ($options as $option) {
@@ -44,17 +45,18 @@ class FormExtension extends AbstractExtension
         if (!empty($class)) {
             $attributes['class'] = $class;
         }
-
+        // write the label tag
         $html = '<label for="' . $field->getIdField() . '">' . $field->getTextLabel() . '</label>';
-        
-        if($field->getTag() === 'input') {
+        // add the field tag
+        if('input' === $field->getTag()) {
             if ($field instanceof InputField) {
                 $html .= $this->input($field, $attributes);
             }
         }
-        if($field->getTag() === 'textarea') {
+        if('textarea' === $field->getTag()) {
             $html .= $this->textarea($field->getValueField(), $attributes);
         }
+        // add an error message if it exists
         if($field->getErrorMessage()) {
             $html .= $this->errorHTML($field->getErrorMessage());
         }
