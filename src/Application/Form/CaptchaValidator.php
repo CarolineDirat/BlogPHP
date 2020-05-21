@@ -6,8 +6,8 @@ use App\Application\HTTPRequest;
 use Gregwar\Captcha\PhraseBuilder;
 
 /**
- * CaptchaValidator
- * 
+ * CaptchaValidator.
+ *
  * checks captcha phrase value
  */
 class CaptchaValidator extends Validator
@@ -17,7 +17,7 @@ class CaptchaValidator extends Validator
     public function __construct(string $errorMesssage, HTTPRequest $httpRequest)
     {
         parent::__construct($errorMesssage);
-        $this->setHttpRequest($httpRequest); 
+        $this->setHttpRequest($httpRequest);
     }
 
     public function isValid(?string $value): bool
@@ -26,20 +26,18 @@ class CaptchaValidator extends Validator
     }
 
     /**
-     * Get the value of httpRequest
-     */ 
+     * Get the value of httpRequest.
+     */
     public function getHttpRequest(): HTTPRequest
     {
         return $this->httpRequest;
     }
 
     /**
-     * Set the value of httpRequest
-     * 
-     * @param HTTPRequest $httpRequest
+     * Set the value of httpRequest.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setHttpRequest(HTTPRequest $httpRequest): self
     {
         $this->httpRequest = $httpRequest;

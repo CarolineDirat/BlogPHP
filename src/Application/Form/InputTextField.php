@@ -6,7 +6,7 @@ use InvalidArgumentException;
 
 /**
  * InputTextField.
- * Represent an intput field with type="text"
+ * Represent an intput field with type="text".
  */
 class InputTextField extends InputField
 {
@@ -17,7 +17,6 @@ class InputTextField extends InputField
      */
     private ?string $placeholder;
 
-    
     /**
      * maxlength.
      *
@@ -86,6 +85,7 @@ class InputTextField extends InputField
 
             return $this;
         }
+
         throw new InvalidArgumentException('$maxlength property must be an integer greater than 0');
     }
 }

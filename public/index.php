@@ -55,5 +55,5 @@ try {
         throw new Exception('No page corresponds to that requested');
     }
 } catch (Exception $e) {
-    $twigRenderer->render('error', ['error' => $e->getMessage() . ' in the file ' . $e->getFile()]);
+    $twigRenderer->render('error', ['error' => $e->getMessage().' in the file '.$e->getFile()]);
 }

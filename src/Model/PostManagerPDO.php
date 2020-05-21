@@ -14,7 +14,7 @@ use PDOStatement;
  * Manager of Posts, for a PDO connection to the database, $this->dao is an instance of PDO
  */
 final class PostManagerPDO extends PostManager
-{    
+{
     public function getPost(int $id): Post
     {
         if (!$this->dao instanceof PDO) {
@@ -28,10 +28,10 @@ final class PostManagerPDO extends PostManager
         if (!$req instanceof PDOStatement) {
             throw new Exception('The article with id='.filter_var($id, FILTER_VALIDATE_INT).' was not found');
         }
-        /** 
+        /*
         * Data recovery :
-        * I choose not to use PDO::FETCH_CLASS, with setFetchMode(), because my post object has attributes typed in DateTime, 
-        * and I cannot ask the getter of a DateTime property to return a string 
+        * I choose not to use PDO::FETCH_CLASS, with setFetchMode(), because my post object has attributes typed in DateTime,
+        * and I cannot ask the getter of a DateTime property to return a string
         * (when I want to instantiate a DateTime from the data retrieved in string from the database)
         */
         $req->bindValue(':id', (int) $id, PDO::PARAM_INT);
@@ -45,7 +45,7 @@ final class PostManagerPDO extends PostManager
             return $post;
         }
 
-        throw new Exception('The article collected from database, with id='.filter_var($id, FILTER_VALIDATE_INT).', is not valid, at least one property is empty.');  
+        throw new Exception('The article collected from database, with id='.filter_var($id, FILTER_VALIDATE_INT).', is not valid, at least one property is empty.');
     }
 
     public function getListPosts(): array
@@ -61,17 +61,17 @@ final class PostManagerPDO extends PostManager
         if (!$req instanceof PDOStatement) {
             throw new Exception('PDO request failed');
         }
-        /** 
-        * Data recovery :
-        * I choose not to use PDO::FETCH_CLASS, with setFetchMode(), because my post object has attributes typed in DateTime, 
-        * and I cannot ask the getter of a DateTime property to return a string 
-        * (when I want to instantiate a DateTime from the data retrieved in string from the database)
-        */
+        /**
+         * Data recovery :
+         * I choose not to use PDO::FETCH_CLASS, with setFetchMode(), because my post object has attributes typed in DateTime,
+         * and I cannot ask the getter of a DateTime property to return a string
+         * (when I want to instantiate a DateTime from the data retrieved in string from the database).
+         */
         $dataArray = $req->fetchAll();
         $req->closeCursor();
-        // build array of Post objects 
+        // build array of Post objects
         $listPosts = [];
-        if(is_array($dataArray)) {
+        if (is_array($dataArray)) {
             foreach ($dataArray as $data) {
                 $data = $this->stringToDateTime($data); // dateCreation and dateUpdate must be instantiations of DateTime
                 $post = new Post($data);
@@ -84,19 +84,19 @@ final class PostManagerPDO extends PostManager
 
         return $listPosts;
     }
-    
+
     /**
-     * stringToDateTime
-     * 
+     * stringToDateTime.
+     *
      * dateCreation and dateUpdate, Post's properties, must be instantiations of DateTime
      *
-     * @param  array $data
      * @return array
      */
     public function stringToDateTime(array $data): array
     {
         $data['dateCreation'] = new DateTime($data['dateCreation']);
         $data['dateUpdate'] = new DateTime($data['dateUpdate']);
+
         return $data;
     }
 }

@@ -3,15 +3,15 @@
 namespace App\Application\Form;
 
 /**
- * ValuesEqualityValidator
- * 
+ * ValuesEqualityValidator.
+ *
  * Validator which compare the field value with another value
  */
 class ValuesEqualityValidator extends Validator
-{    
+{
     /**
-     * refValue
-     * 
+     * refValue.
+     *
      * the value which the field value must be compared
      *
      * @var string
@@ -30,10 +30,10 @@ class ValuesEqualityValidator extends Validator
     }
 
     /**
-     * Set the value of refValue
+     * Set the value of refValue.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setRefValue(string $refValue): self
     {
         $this->refValue = $refValue;

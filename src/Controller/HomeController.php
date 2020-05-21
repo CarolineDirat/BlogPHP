@@ -2,17 +2,13 @@
 
 namespace App\Controller;
 
-use Exception;
 use App\Application\AbstractController;
 use App\Application\HTTPResponse;
-use App\Application\PHPMailerApp;
-use Gregwar\Captcha\CaptchaBuilder;
-use Gregwar\Captcha\PhraseBuilder;
 use App\Entity\Form\Contact;
 use App\FormBuilder\ContactFormBuilder;
-use App\Model\Form\ContactManager;
 use App\FormHandler\ContactFormHandler;
-
+use App\Model\Form\ContactManager;
+use Gregwar\Captcha\CaptchaBuilder;
 
 //use App\Application\TwigRenderer;
 
@@ -42,7 +38,7 @@ final class HomeController extends AbstractController
      * Controller to process the contact form.
      */
     public function executeProcessContact(): HTTPResponse
-    {      
+    {
         // hydratation of Contact entity with POST data from contact form
         $contact = new Contact([
             'firstName' => $this->httpRequest->postData('firstName'),
@@ -50,9 +46,9 @@ final class HomeController extends AbstractController
             'email1' => $this->httpRequest->postData('email1'),
             'email2' => $this->httpRequest->postData('email2'),
             'messageContact' => $this->httpRequest->postData('messageContact'),
-            'captchaPhrase' => $this->httpRequest->postData('captchaPhrase')
-        ]);       
-        
+            'captchaPhrase' => $this->httpRequest->postData('captchaPhrase'),
+        ]);
+
         // Build contact form
         $formBuilder = new ContactFormBuilder($contact, $this->httpRequest);
         $formBuilder->build();
@@ -68,32 +64,32 @@ final class HomeController extends AbstractController
             $contactForm = $formBuilder->getForm();
             // new captcha code
             $captcha = $this->initCaptchaCode();
-                
+
             return new HTTPResponse(
                 'home',
                 [
                     'captcha' => $captcha->build()->inline(),
                     'contactForm' => $contactForm,
-                    'messageInfo' => 'Votre message a bien été envoyé.'
+                    'messageInfo' => 'Votre message a bien été envoyé.',
                 ]
             );
         }
         // new captcha code
         $captcha = $this->initCaptchaCode();
-        
+
         return new HTTPResponse(
             'home',
             [
                 'captcha' => $captcha->build()->inline(),
                 'contactForm' => $contactForm,
-                'messageInfo' => "L'envoie du message a échoué, veuillez vérifier les champs du formulaire."
+                'messageInfo' => "L'envoie du message a échoué, veuillez vérifier les champs du formulaire.",
             ]
         );
     }
-    
+
     /**
-     * initCaptchaCode
-     * 
+     * initCaptchaCode.
+     *
      * Initialization of catpcha code, and put it in $_SESSION['captchaPhrase']
      *
      * @return CaptchaBuilder
@@ -102,8 +98,7 @@ final class HomeController extends AbstractController
     {
         $captcha = new CaptchaBuilder();
         $this->httpRequest->setSession('captchaPhrase', $captcha->getPhrase());
+
         return $captcha;
     }
 }
-
-        

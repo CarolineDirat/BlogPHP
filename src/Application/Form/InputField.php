@@ -5,14 +5,14 @@ namespace App\Application\Form;
 use InvalidArgumentException;
 
 /**
- * InputField
- * 
+ * InputField.
+ *
  * field with html element = input
  */
 class InputField extends Field
-{    
+{
     /**
-     * type
+     * type.
      *
      * @var string
      */
@@ -40,16 +40,16 @@ class InputField extends Field
 
     public function defineInputTag(): self
     {
-            $this->tag = 'input';
+        $this->tag = 'input';
 
-            return $this;
+        return $this;
     }
 
     /**
-     * Get type
+     * Get type.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;

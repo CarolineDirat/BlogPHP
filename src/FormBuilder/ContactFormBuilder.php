@@ -2,21 +2,21 @@
 
 namespace App\FormBuilder;
 
-use App\Application\Form\FormBuilder;
-use App\Application\Form\InputTextField;
-use App\Application\Form\InputEmailField;
-use App\Application\Form\TextareaField;
-use App\Application\Form\NotEmptyValidator;
-use App\Application\Form\MaxLengthValidator;
+use App\Application\Entity;
 use App\Application\Form\CaptchaValidator;
+use App\Application\Form\FormBuilder;
+use App\Application\Form\InputEmailField;
+use App\Application\Form\InputTextField;
+use App\Application\Form\MaxLengthValidator;
+use App\Application\Form\NotEmptyValidator;
+use App\Application\Form\TextareaField;
 use App\Application\Form\ValuesEqualityValidator;
 use App\Application\HTTPRequest;
-use App\Application\Entity;
 
 final class ContactFormBuilder extends FormBuilder
 {
     private HTTPRequest $httpRequest;
-    
+
     public function __construct(Entity $entity, HTTPRequest $httpRequest)
     {
         parent::__construct($entity);
@@ -27,7 +27,8 @@ final class ContactFormBuilder extends FormBuilder
     {
         $fields = $this->form->getFields();
         $field = $fields[$fieldName];
-        return '' . $field->getValueField();
+
+        return ''.$field->getValueField();
     }
 
     public function build(): void
@@ -43,9 +44,10 @@ final class ContactFormBuilder extends FormBuilder
                     'maxlength' => 50,
                     'validators' => [
                         new NotEmptyValidator('Merci de spécifier votre Prénom.'),
-                        new MaxLengthValidator('Le prénom spécifié est trop long (50 caractères maximum)', 50)
-                    ]
-            ]))
+                        new MaxLengthValidator('Le prénom spécifié est trop long (50 caractères maximum)', 50),
+                    ],
+                ])
+            )
             ->addField(
                 new InputTextField([
                     'textLabel' => 'Nom',
@@ -56,9 +58,10 @@ final class ContactFormBuilder extends FormBuilder
                     'maxlength' => 50,
                     'validators' => [
                         new NotEmptyValidator('Merci de spécifier votre Nom.'),
-                        new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 50)
-                    ]
-            ]))
+                        new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 50),
+                    ],
+                ])
+            )
             ->addField(
                 new InputEmailField([
                     'textLabel' => 'Adresse Email',
@@ -69,9 +72,10 @@ final class ContactFormBuilder extends FormBuilder
                     'maxlength' => 250,
                     'validators' => [
                         new NotEmptyValidator('Merci de spécifier votre email.'),
-                        new MaxLengthValidator('L\'email spécifié est trop long (250 caractères maximum)', 250)
-                    ]
-            ]))
+                        new MaxLengthValidator('L\'email spécifié est trop long (250 caractères maximum)', 250),
+                    ],
+                ])
+            )
             ->addField(
                 new InputEmailField([
                     'textLabel' => 'Confirmez votre adresse email',
@@ -86,9 +90,10 @@ final class ContactFormBuilder extends FormBuilder
                         new ValuesEqualityValidator(
                             'L\'email de confirmation doit être identique au premier email',
                             $this->getValueField('email1')
-                        )
-                    ]
-            ]))
+                        ),
+                    ],
+                ])
+            )
             ->addField(
                 new TextareaField([
                     'textLabel' => 'Message',
@@ -98,9 +103,10 @@ final class ContactFormBuilder extends FormBuilder
                     'required' => 'required',
                     'rows' => 5,
                     'validators' => [
-                        new NotEmptyValidator('Merci de confirmer votre adresse email.')
-                    ]
-            ]))
+                        new NotEmptyValidator('Merci de confirmer votre adresse email.'),
+                    ],
+                ])
+            )
             ->addField(
                 new InputTextField([
                     'textLabel' => 'Recopier le code',
@@ -112,17 +118,18 @@ final class ContactFormBuilder extends FormBuilder
                     'validators' => [
                         new NotEmptyValidator('Merci de spécifier le code.'),
                         new MaxLengthValidator('Le code spécifié est trop long (6 caractères maximum)', 6),
-                        new CaptchaValidator('Le code recopié n\'est pas le bon. Aide : vous pouvez tout écrire en minuscule', $this->httpRequest)
-                    ]
-            ]))
+                        new CaptchaValidator('Le code recopié n\'est pas le bon. Aide : vous pouvez tout écrire en minuscule', $this->httpRequest),
+                    ],
+                ])
+            )
         ;
     }
 
     /**
-     * Set the value of httpRequest
+     * Set the value of httpRequest.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setHttpRequest(HTTPRequest $httpRequest): self
     {
         $this->httpRequest = $httpRequest;

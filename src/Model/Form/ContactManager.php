@@ -2,13 +2,13 @@
 
 namespace App\Model\Form;
 
-use Exception;
 use App\Application\PHPMailerApp;
 use App\Entity\Form\Contact;
+use Exception;
 
 /**
- * ContactManager
- * 
+ * ContactManager.
+ *
  * contains method called by ContactFormHandler to process the contact form
  */
 class ContactManager
@@ -28,6 +28,6 @@ class ContactManager
             return true;
         }
 
-        throw new Exception("L'envoie du mail a échoué :" . $mail->ErrorInfo);
+        throw new Exception("L'envoie du mail a échoué :".$mail->ErrorInfo);
     }
 }

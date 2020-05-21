@@ -47,9 +47,9 @@ class TextareaField extends Field
 
     public function defineTextareaTag(): self
     {
-            $this->tag = 'textarea';
+        $this->tag = 'textarea';
 
-            return $this;
+        return $this;
     }
 
     /**

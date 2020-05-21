@@ -18,15 +18,15 @@ abstract class FormHandler
         $this->setHttpRequest($httpRequest);
     }
 
-    // cette fonction est abstraite pour le moment, mais elle sera définie 
+    // cette fonction est abstraite pour le moment, mais elle sera définie
     // par défaut pour faire appel à la méthode save() de PostManager, CommentManager et UserManager
     abstract public function process(): bool;
 
     /**
-     * Set the value of form
+     * Set the value of form.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setForm(Form $form): self
     {
         $this->form = $form;
@@ -35,10 +35,10 @@ abstract class FormHandler
     }
 
     /**
-     * Set the value of manager
+     * Set the value of manager.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setManager(Manager $manager): self
     {
         $this->manager = $manager;
@@ -47,10 +47,10 @@ abstract class FormHandler
     }
 
     /**
-     * Set the value of httpRequest
+     * Set the value of httpRequest.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setHttpRequest(HTTPRequest $httpRequest): self
     {
         $this->httpRequest = $httpRequest;
