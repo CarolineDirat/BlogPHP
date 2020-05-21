@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Application\AbstractController;
 use App\Application\HTTPResponse;
 use App\Application\PDOSingleton;
+use App\Model\CommentManagerPDO;
 use App\Model\PostManagerPDO;
 use App\Model\UserManagerPDO;
 use Âpp\Entity\Post;
@@ -19,15 +20,20 @@ final class PostController extends AbstractController
         $httpRequest = $this->getHTTPRequest();
 
         if ($httpRequest->hasGet('id') && $httpRequest->hasGet('slug')) {
+            $dao = PDOSingleton::getInstance()->getConnexion();
             // get the post from the id
-            $postManager = new PostManagerPDO(PDOSingleton::getInstance()->getConnexion());
+            $postManager = new PostManagerPDO($dao);
             $post = $postManager->getPost((int) $httpRequest->getData('id'));
 
             // get the author from idUser of $post
-            $userManager = new UserManagerPDO(PDOSingleton::getInstance()->getConnexion());
+            $userManager = new UserManagerPDO($dao);
             $pseudo = $userManager->getPseudo((int) $post->getIdUser());
 
-            return new HTTPResponse($this->getPage(), ['post' => $post, 'pseudo' => $pseudo]);
+            // get list of post's comments
+            $commentManager = new CommentManagerPDO($dao);
+            $listComments = $commentManager->getValidComments($post->getId());
+
+            return new HTTPResponse($this->getPage(), ['post' => $post, 'pseudo' => $pseudo, 'comments' => $listComments]);
         }
 
         throw new \Exception('id or slug is missing in the request');

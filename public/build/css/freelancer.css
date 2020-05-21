@@ -18,6 +18,15 @@ p.card-text {
   padding-left: 5%;
   padding-bottom: 10px;
 }
+p.comment-author-date {
+  font-weight: bold;
+  color: #18BC9C;
+  margin-top: 25px;
+  margin-bottom: 5px;
+}
+p.comment-content {
+  font-size: 17px;
+}
 a,
 a:hover,
 a:focus,
@@ -211,6 +220,27 @@ section.success {
     padding-top: 75px;
   }
 }
+#comments h3 {
+  margin-bottom: 30px !important;
+}
+#comments button {
+    margin-left: 80px;
+}
+@media (max-width: 630px) {
+  #comments button {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 500px) {
+  #comments button {
+    margin-left: 20px;
+  }
+}
+@media (max-width: 350px) {
+  #comments button {
+    margin-left: 0px;
+  }
+}
 #messageInfo {
   padding: 0px;
   padding-top: 110px;
@@ -325,6 +355,7 @@ form .row:first-child .floating-label-form-group {
 }
 footer {
   color: white;
+  margin-top: 30px;
 }
 footer h3 {
   margin-bottom: 30px;
