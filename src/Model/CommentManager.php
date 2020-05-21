@@ -19,5 +19,5 @@ abstract class CommentManager extends Manager
      * 
      * @return array[Comment]
      */
-    abstract public function getListComments(): array;
+    abstract public function getListComments(int $idPost): array;
 }
