@@ -31,7 +31,7 @@ final class PostController extends AbstractController
 
             // get list of post's comments
             $commentManager = new CommentManagerPDO($dao);
-            $listComments = $commentManager->getListValidComments($post->getId());
+            $listComments = $commentManager->getValidComments($post->getId());
 
             return new HTTPResponse($this->getPage(), ['post' => $post, 'pseudo' => $pseudo, 'comments' => $listComments]);
         }
