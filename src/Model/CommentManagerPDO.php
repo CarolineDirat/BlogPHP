@@ -35,7 +35,7 @@ final class CommentManagerPDO extends CommentManager
                 FROM comment
                 INNER JOIN user
                 ON comment.id_user = user.id
-                WHERE idPost = :id
+                WHERE comment.id_post = :id
                 ORDER BY dateCreation DESC'
             )
         ;
@@ -50,7 +50,7 @@ final class CommentManagerPDO extends CommentManager
          */
         $req->bindValue(':id', $idPost, PDO::PARAM_INT);
         $req->execute();
-        $dataArray = $req->fetchAll();
+        $dataArray = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
         // build array of comment objects
         $listComments = [];
@@ -58,10 +58,9 @@ final class CommentManagerPDO extends CommentManager
             foreach ($dataArray as $data) {
                 $data['dateCreation'] = new DateTime($data['dateCreation']); // dateCreation must be an instantiation of DateTime
                 $comment = new comment($data);
-                $listComments[] = $comment;
-            }
+                $listComments[] = $comment;   
+            }    
         }
-
         return $listComments;
     }
 }
