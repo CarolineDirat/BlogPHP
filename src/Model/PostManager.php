@@ -22,7 +22,7 @@ abstract class PostManager extends Manager
     /**
      * getListPosts.
      *
-     * Method which returns a list of posts, from $offset to $limit, from most recent to oldest.
+     * Method which returns a list of posts from most recent to oldest.
      *
      * @return array[Post]
      */
