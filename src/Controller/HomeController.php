@@ -4,13 +4,12 @@ namespace App\Controller;
 
 use App\Application\AbstractController;
 use App\Application\HTTPResponse;
+use App\Application\Form\Form;
 use App\Entity\Form\Contact;
 use App\FormBuilder\ContactFormBuilder;
 use App\FormHandler\ContactFormHandler;
 use App\Model\Form\ContactManager;
 use Gregwar\Captcha\CaptchaBuilder;
-
-//use App\Application\TwigRenderer;
 
 final class HomeController extends AbstractController
 {
@@ -23,13 +22,10 @@ final class HomeController extends AbstractController
         // it for check when the form is submitted
         $captcha = new CaptchaBuilder();
         $this->httpRequest->setSession('captchaPhrase', $captcha->getPhrase());
-
-        // Instantiate contact form
+        // Initialize empty contact form
         $contact = new Contact();
-        $formBuilder = new ContactFormBuilder($contact, $this->httpRequest);
-        $formBuilder->build();
-        $contactForm = $formBuilder->getForm();
-
+        $contactForm = $this->buildContactForm($contact);
+        
         // Retrieve the captcha to insert it directly into the home.twig page:
         return new HTTPResponse($this->getPage(), ['contactForm' => $contactForm, 'captcha' => $captcha->build()->inline()]);
     }
@@ -48,20 +44,15 @@ final class HomeController extends AbstractController
             'messageContact' => $this->httpRequest->postData('messageContact'),
             'captchaPhrase' => $this->httpRequest->postData('captchaPhrase'),
         ]);
-
         // Build contact form
-        $formBuilder = new ContactFormBuilder($contact, $this->httpRequest);
-        $formBuilder->build();
-        $contactForm = $formBuilder->getForm();
+        $contactForm = $this->buildContactForm($contact);
         // The process with checks
         $manager = new ContactManager();
         $formHandler = new ContactFormHandler($contactForm, $manager, $this->httpRequest);
         if ($formHandler->process()) {
             // Build another empty contact form for the home page
             $contact = new Contact();
-            $formBuilder = new ContactFormBuilder($contact, $this->httpRequest);
-            $formBuilder->build();
-            $contactForm = $formBuilder->getForm();
+            $contactForm = $this->buildContactForm($contact);
             // new captcha code
             $captcha = $this->initCaptchaCode();
 
@@ -100,5 +91,21 @@ final class HomeController extends AbstractController
         $this->httpRequest->setSession('captchaPhrase', $captcha->getPhrase());
 
         return $captcha;
+    }
+    
+    /**
+     * buildContactForm
+     * 
+     * create a contact form from Contact object
+     *
+     * @param  Contact $contact
+     * @return Form
+     */
+    public function buildContactForm(Contact $contact): Form
+    {
+        $formBuilder = new ContactFormBuilder($contact, $this->httpRequest);
+        $formBuilder->build();
+
+        return $formBuilder->getForm();
     }
 }
