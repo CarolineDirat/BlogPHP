@@ -41,7 +41,7 @@ final class Post extends Entity
      * @var Datetime
      */
     private Datetime $dateUpdate;
-    
+
     /**
      * @var int
      */

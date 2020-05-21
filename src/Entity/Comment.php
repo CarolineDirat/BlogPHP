@@ -2,62 +2,61 @@
 
 namespace App\Entity;
 
-use InvalidArgumentException;
 use App\Application\Entity;
 use DateTime;
+use InvalidArgumentException;
 
 /**
- * Comment
- * 
+ * Comment.
+ *
  * Entity class that represents a comment
  */
 final class Comment extends Entity
 {
-
     /**
      * @var int
      */
     private int $id;
-    
+
     /**
-     * content
+     * content.
      *
      * @var string
      */
     private string $content;
-    
+
     /**
-     * dateCreation
+     * dateCreation.
      *
      * @var DateTime
      */
     private DateTime $dateCreation;
-    
+
     /**
-     * permit
-     * 
+     * permit.
+     *
      * comment permit witch can only be 'waiting', 'valid' or 'rejected'
      *
      * @var string
      */
     private string $permit = 'waiting';
-    
+
     /**
-     * idPost
+     * idPost.
      *
      * @var int
      */
     private int $idPost;
-    
+
     /**
-     * idUser
+     * idUser.
      *
      * @var int
      */
     private int $idUser;
-    
+
     /**
-     * author
+     * author.
      *
      * @var string
      */
@@ -91,22 +90,20 @@ final class Comment extends Entity
     }
 
     /**
-     * Get the value of id
+     * Get the value of id.
      *
-     * @return  int
-     */ 
+     * @return int
+     */
     public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * Set the value of id
+     * Set the value of id.
      *
-     * @param  int  $id
-     *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setId(int $id): self
     {
         $this->id = $id;
@@ -115,22 +112,22 @@ final class Comment extends Entity
     }
 
     /**
-     * Get content
+     * Get content.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getContent(): string
     {
         return $this->content;
     }
 
     /**
-     * Set content
+     * Set content.
      *
-     * @param  string  $content  content
+     * @param string $content content
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setContent(string $content): self
     {
         $this->content = $content;
@@ -139,22 +136,22 @@ final class Comment extends Entity
     }
 
     /**
-     * Get dateCreation
+     * Get dateCreation.
      *
-     * @return  DateTime
-     */ 
+     * @return DateTime
+     */
     public function getDateCreation(): DateTime
     {
         return $this->dateCreation;
     }
 
     /**
-     * Set dateCreation
+     * Set dateCreation.
      *
-     * @param  DateTime  $dateCreation  dateCreation
+     * @param DateTime $dateCreation dateCreation
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setDateCreation(DateTime $dateCreation): self
     {
         $this->dateCreation = $dateCreation;
@@ -163,22 +160,22 @@ final class Comment extends Entity
     }
 
     /**
-     * Get permit
+     * Get permit.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getPermit(): string
     {
         return $this->permit;
     }
 
     /**
-     * Set permit
+     * Set permit.
      *
-     * @param  string  $permit  permit
+     * @param string $permit permit
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setPermit(string $permit): self
     {
         if (in_array($permit, ['waiting', 'valid', 'rejected'], true)) {
@@ -188,26 +185,25 @@ final class Comment extends Entity
         }
 
         throw new InvalidArgumentException("Comment's permit can have only three values : 'waiting', 'rejected' or 'valid'");
-        
     }
 
     /**
-     * Get idPost
+     * Get idPost.
      *
-     * @return  int
-     */ 
+     * @return int
+     */
     public function getIdPost(): int
     {
         return $this->idPost;
     }
 
     /**
-     * Set idPost
+     * Set idPost.
      *
-     * @param  int  $idPost  idPost
+     * @param int $idPost idPost
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setIdPost(int $idPost): self
     {
         $this->idPost = $idPost;
@@ -216,22 +212,22 @@ final class Comment extends Entity
     }
 
     /**
-     * Get idUser
+     * Get idUser.
      *
-     * @return  int
-     */ 
+     * @return int
+     */
     public function getIdUser(): int
     {
         return $this->idUser;
     }
 
     /**
-     * Set idUser
+     * Set idUser.
      *
-     * @param  int  $idUser  idUser
+     * @param int $idUser idUser
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setIdUser(int $idUser): self
     {
         $this->idUser = $idUser;
@@ -240,22 +236,22 @@ final class Comment extends Entity
     }
 
     /**
-     * Get author
+     * Get author.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getAuthor(): string
     {
         return $this->author;
     }
 
     /**
-     * Set author
+     * Set author.
      *
-     * @param  string  $author  author
+     * @param string $author author
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setAuthor(string $author): self
     {
         $this->author = $author;

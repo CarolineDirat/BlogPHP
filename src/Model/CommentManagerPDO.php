@@ -18,8 +18,8 @@ final class CommentManagerPDO extends CommentManager
     /**
      * getListComments.
      *
-     * Method which returns a list of all comments from most recent to oldest. 
-     * 
+     * Method which returns a list of all comments from most recent to oldest.
+     *
      * @return array[Comment]
      */
     public function getListComments(int $idPost): array
@@ -42,7 +42,7 @@ final class CommentManagerPDO extends CommentManager
         if (!$req instanceof PDOStatement) {
             throw new Exception('PDO request failed');
         }
-        /**
+        /*
          * Data recovery :
          * I choose not to use PDO::FETCH_CLASS, with setFetchMode(), because my comment object has attribute typed in DateTime,
          * and I cannot ask the getter of a DateTime property to return a string
@@ -58,17 +58,18 @@ final class CommentManagerPDO extends CommentManager
             foreach ($dataArray as $data) {
                 $data['dateCreation'] = new DateTime($data['dateCreation']); // dateCreation must be an instantiation of DateTime
                 $comment = new comment($data);
-                $listComments[] = $comment;   
-            }    
+                $listComments[] = $comment;
+            }
         }
+
         return $listComments;
     }
 
     /**
      * getListComments.
      *
-     * Method which returns a list of VALID comments from most recent to oldest. 
-     * 
+     * Method which returns a list of VALID comments from most recent to oldest.
+     *
      * @return array[Comment]
      */
     public function getListValidComments(int $idPost): array
@@ -92,7 +93,7 @@ final class CommentManagerPDO extends CommentManager
         if (!$req instanceof PDOStatement) {
             throw new Exception('PDO request failed');
         }
-        /**
+        /*
          * Data recovery :
          * I choose not to use PDO::FETCH_CLASS, with setFetchMode(), because my comment object has attribute typed in DateTime,
          * and I cannot ask the getter of a DateTime property to return a string
@@ -108,9 +109,10 @@ final class CommentManagerPDO extends CommentManager
             foreach ($dataArray as $data) {
                 $data['dateCreation'] = new DateTime($data['dateCreation']); // dateCreation must be an instantiation of DateTime
                 $comment = new comment($data);
-                $listValidComments[] = $comment;   
-            }    
+                $listValidComments[] = $comment;
+            }
         }
+
         return $listValidComments;
     }
 }
