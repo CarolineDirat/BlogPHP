@@ -437,6 +437,10 @@ fieldset[disabled] .btn-primary.active {
   color: #2C3E50;
   background-color: white;
 }
+.btn-primary.btn-scroll-contact-form {
+	border-radius: 19px;
+	margin-left: 10px;
+}
 .btn-success {
   color: white;
   background-color: #18BC9C;
