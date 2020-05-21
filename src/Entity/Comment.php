@@ -55,6 +55,13 @@ final class Comment extends Entity
      * @var int
      */
     private int $idUser;
+    
+    /**
+     * author
+     *
+     * @var string
+     */
+    private string $author;
 
     public function isValid(): bool
     {
@@ -228,6 +235,30 @@ final class Comment extends Entity
     public function setIdUser(int $idUser): self
     {
         $this->idUser = $idUser;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return  string
+     */ 
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set author
+     *
+     * @param  string  $author  author
+     *
+     * @return  self
+     */ 
+    public function setAuthor(string $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }
