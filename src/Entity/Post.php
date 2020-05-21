@@ -16,26 +16,32 @@ final class Post extends Entity
      * @var string
      */
     private string $title;
+
     /**
      * @var string
      */
     private string $slug;
+
     /**
      * @var string
      */
     private string $content;
+
     /**
      * @var string
      */
     private string $abstract;
+
     /**
      * @var Datetime
      */
     private Datetime $dateCreation;
+
     /**
      * @var Datetime
      */
     private Datetime $dateUpdate;
+    
     /**
      * @var int
      */
