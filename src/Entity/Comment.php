@@ -34,13 +34,13 @@ final class Comment extends Entity
     private DateTime $dateCreation;
     
     /**
-     * status
+     * permit
      * 
-     * comment status witch can only be 'waiting', 'valid' or 'rejected'
+     * comment permit witch can only be 'waiting', 'valid' or 'rejected'
      *
      * @var string
      */
-    private string $status = 'waiting';
+    private string $permit = 'waiting';
     
     /**
      * idPost
@@ -58,7 +58,7 @@ final class Comment extends Entity
 
     public function isValid(): bool
     {
-        if ('valid' === $this->getStatus()) {
+        if ('valid' === $this->getPermit()) {
             return true;
         }
 
@@ -67,7 +67,7 @@ final class Comment extends Entity
 
     public function isRejected(): bool
     {
-        if ('rejected' === $this->getStatus()) {
+        if ('rejected' === $this->getPermit()) {
             return true;
         }
 
@@ -76,7 +76,7 @@ final class Comment extends Entity
 
     public function isWaiting(): bool
     {
-        if ('waiting' === $this->getStatus()) {
+        if ('waiting' === $this->getPermit()) {
             return true;
         }
 
@@ -156,31 +156,31 @@ final class Comment extends Entity
     }
 
     /**
-     * Get status
+     * Get permit
      *
      * @return  string
      */ 
-    public function getStatus(): string
+    public function getPermit(): string
     {
-        return $this->status;
+        return $this->permit;
     }
 
     /**
-     * Set status
+     * Set permit
      *
-     * @param  string  $status  status
+     * @param  string  $permit  permit
      *
      * @return  self
      */ 
-    public function setStatus(string $status): self
+    public function setPermit(string $permit): self
     {
-        if (in_array($status, ['waiting', 'valid', 'rejected'], true)) {
-            $this->status = $status;
+        if (in_array($permit, ['waiting', 'valid', 'rejected'], true)) {
+            $this->permit = $permit;
 
             return $this;
         }
 
-        throw new InvalidArgumentException("Comment's status can have only three values : 'waiting', 'rejected' or 'valid'");
+        throw new InvalidArgumentException("Comment's permit can have only three values : 'waiting', 'rejected' or 'valid'");
         
     }
 
