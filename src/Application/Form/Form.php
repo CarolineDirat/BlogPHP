@@ -90,14 +90,12 @@ class Form
     /**
      * Add a field to the list of fields.
      *
-     * @param Field $field
-     *
      * @return self
      */
     public function addField(Field $field): self
     {
         $property = 'get'.ucfirst($field->getName());
-        $field->setValueField($this->entity->$property()); // assigns the value of the entity property to the value of the corresponding field
+        $field->setValueField($this->entity->{$property}()); // assigns the value of the entity property to the value of the corresponding field
         $this->fields[$field->getName()] = $field;
 
         return $this;

@@ -17,30 +17,30 @@ class InputEmailField extends InputField
      * @var ?string
      */
     private ?string $placeholder;
-       
+
     /**
-     * pattern
+     * pattern.
      *
      * @var ?string
      */
-    private ?string $pattern;    
+    private ?string $pattern;
 
     /**
-     * size
+     * size.
      *
      * @var ?int
      */
     private ?int $size;
-    
+
     /**
-     * maxlength
+     * maxlength.
      *
      * @var ?int
      */
     private ?int $maxlength;
-    
+
     /**
-     * minlength
+     * minlength.
      *
      * @var ?int
      */
@@ -84,22 +84,22 @@ class InputEmailField extends InputField
     }
 
     /**
-     * Get pattern
+     * Get pattern.
      *
-     * @return  ?string
-     */ 
+     * @return ?string
+     */
     public function getPattern(): ?string
     {
         return $this->pattern;
     }
 
     /**
-     * Set pattern
+     * Set pattern.
      *
-     * @param  string  $pattern  pattern
+     * @param string $pattern pattern
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setPattern(string $pattern): self
     {
         $this->pattern = $pattern;
@@ -108,22 +108,22 @@ class InputEmailField extends InputField
     }
 
     /**
-     * Get size
+     * Get size.
      *
-     * @return  ?int
-     */ 
+     * @return ?int
+     */
     public function getSize(): ?int
     {
         return $this->size;
     }
 
     /**
-     * Set size
+     * Set size.
      *
-     * @param  int  $size  size
+     * @param int $size size
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setSize(int $size): self
     {
         if ($size > 0) {
@@ -131,27 +131,27 @@ class InputEmailField extends InputField
 
             return $this;
         }
-        
+
         throw new InvalidArgumentException('$size property must be an integer not null');
     }
 
     /**
-     * Get maxlength
+     * Get maxlength.
      *
-     * @return  ?int
-     */ 
+     * @return ?int
+     */
     public function getMaxlength(): ?int
     {
         return $this->maxlength;
     }
 
     /**
-     * Set maxlength
+     * Set maxlength.
      *
-     * @param  ?int  $maxlength  maxlength
+     * @param ?int $maxlength maxlength
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setMaxlength(?int $maxlength): self
     {
         if ($maxlength > 0) {
@@ -159,27 +159,27 @@ class InputEmailField extends InputField
 
             return $this;
         }
-        
+
         throw new InvalidArgumentException('$maxlength property must be an integer not null');
     }
 
     /**
-     * Get minlength
+     * Get minlength.
      *
-     * @return  ?int
-     */ 
+     * @return ?int
+     */
     public function getMinlength(): ?int
     {
         return $this->minlength;
     }
 
     /**
-     * Set minlength
+     * Set minlength.
      *
-     * @param  ?int  $minlength  minlength
+     * @param ?int $minlength minlength
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setMinlength(?int $minlength): self
     {
         if ($minlength > 0) {

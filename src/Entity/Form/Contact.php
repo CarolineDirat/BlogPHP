@@ -54,7 +54,6 @@ final class Contact extends Entity
      */
     private ?string $captchaPhrase = null;
 
-
     /**
      * Method to know if the contact entity is valid.
      * Checks all property are'nt not empty.

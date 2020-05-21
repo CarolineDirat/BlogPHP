@@ -3,7 +3,6 @@
 namespace App\Application\Form;
 
 use App\Application\Hydrator;
-use InvalidArgumentException;
 
 /**
  * Field.
@@ -21,7 +20,7 @@ abstract class Field
      *
      * @var string
      */
-    protected string $errorMessage;
+    protected string $errorMessage = '';
 
     /**
      * textLabel.
@@ -31,10 +30,10 @@ abstract class Field
      * @var string
      */
     protected string $textLabel;
-    
+
     /**
-     * tag
-     * 
+     * tag.
+     *
      * html element for the field : 'input', 'textarea', 'select' ...
      *
      * @var string
@@ -145,8 +144,8 @@ abstract class Field
     /**
      * Get html element for the field : 'input', 'textarea', 'select' ...
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getTag(): string
     {
         return $this->tag;
@@ -228,7 +227,7 @@ abstract class Field
     public function setValidators(array $validators)
     {
         foreach ($validators as $validator) {
-            if ($validator instanceof Validator && !in_array($validator, $this->validators)) {
+            if ($validator instanceof Validator && !in_array($validator, $this->validators, true)) {
                 $this->validators[] = $validator;
             }
         }

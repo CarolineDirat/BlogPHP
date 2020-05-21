@@ -10,36 +10,36 @@ final class Post extends Entity
     /**
      * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      */
-    private $title;
+    private string $title;
     /**
      * @var string
      */
-    private $slug;
+    private string $slug;
     /**
      * @var string
      */
-    private $content;
+    private string $content;
     /**
      * @var string
      */
-    private $abstract;
+    private string $abstract;
     /**
      * @var Datetime
      */
-    private $dateCreation;
+    private Datetime $dateCreation;
     /**
      * @var Datetime
      */
-    private $dateUpdate;
+    private Datetime $dateUpdate;
     /**
      * @var int
      */
-    private $idUser;
+    private int $idUser;
 
     /**
      * Method to know if the post is valid.
@@ -128,7 +128,7 @@ final class Post extends Entity
      *
      * @return DateTime
      */
-    public function getDateCreation()
+    public function getDateCreation(): DateTime
     {
         return $this->dateCreation;
     }
@@ -145,7 +145,7 @@ final class Post extends Entity
      *
      * @return DateTime
      */
-    public function getDateUpdate()
+    public function getDateUpdate(): DateTime
     {
         return $this->dateUpdate;
     }

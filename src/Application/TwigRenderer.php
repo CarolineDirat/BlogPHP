@@ -2,9 +2,9 @@
 
 namespace App\Application;
 
+use App\Application\Twig\FormExtension;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-use App\Application\Twig\FormExtension;
 
 final class TwigRenderer
 {
@@ -26,7 +26,7 @@ final class TwigRenderer
     {
         $this->loader = new FilesystemLoader($path);
         $this->twig = new Environment($this->loader, []);
-        $this->twig->addExtension(new FormExtension);
+        $this->twig->addExtension(new FormExtension());
     }
 
     /**

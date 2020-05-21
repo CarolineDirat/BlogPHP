@@ -4,6 +4,14 @@
 
 {% block title %}{{ parent() }}Page d'accueil{% endblock %}
 
+{% block scrollForm %}
+    <button type="button" class="btn btn-primary btn-scroll-contact-form">
+        <a href="#web" class="">
+            <i class="fas fa-angle-double-down fa-lg"></i>
+        </a>
+    </button>
+{% endblock %}
+
 
 
 {% block view %}
