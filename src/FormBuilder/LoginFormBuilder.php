@@ -41,6 +41,7 @@ final class LoginFormBuilder extends FormBuilder
                     'idField' => 'pseudo',
                     'placeholder' => 'Votre pseudo',
                     'maxlength' => 50,
+                    'autofocus' => true,
                     'validators' => [
                         new NotEmptyValidator('Merci de spécifier votre pseudo.'),
                         new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 50),
