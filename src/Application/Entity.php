@@ -30,13 +30,6 @@ abstract class Entity
         return empty($this->id);
     }
 
-    /**
-     * isValid.
-     *
-     * Method to find out if the entity is valid.
-     */
-    abstract public function isValid(): bool;
-
     public function getErrors(): array
     {
         return $this->errors;
