@@ -6,7 +6,7 @@ use Exception;
 use App\Application\AbstractController;
 use App\Application\Form\Form;
 use App\Application\HTTPResponse;
-use App\Entity\User;
+use App\Entity\Form\Login;
 use App\FormBuilder\LoginFormBuilder;
 
 final class LoginController extends AbstractController
@@ -17,10 +17,11 @@ final class LoginController extends AbstractController
     public function executeShowLogin(): HTTPResponse
     {
         // Build login form
-        $user = new User();
-        $loginForm = new LoginFormBuilder($user);
+        $login = new Login();
+        $FormBuilder = new LoginFormBuilder($login);
+        $FormBuilder->build();
+        $loginForm = $FormBuilder->getForm();
 
-        // return response
         return new HTTPResponse($this->getPage(), ['loginForm' => $loginForm]);
     }
 }
