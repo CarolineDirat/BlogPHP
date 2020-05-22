@@ -21,7 +21,7 @@ class ContactFormHandler extends FormHandler
 
     public function process(): bool
     {
-        if ('POST' === $this->httpRequest->method() && $this->form->isValid()) {
+        if ($this->form->isValid()) {
             if ($this->form->getEntity() instanceof Contact) {
                 return $this->contactManager->sendEmail($this->form->getEntity());
             }
