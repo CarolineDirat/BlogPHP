@@ -61,9 +61,11 @@
                     <li class="page-scroll">
                         <a href="#">S'inscrire</a>
                     </li>
-                    <li class="page-scroll">
-                        <a href="/login"><button type="button" class="btn btn-menu btn-success">Se connecter</button></a>
-                    </li>
+                    {% block headerConnectionButton %}
+                        <li class="page-scroll">
+                            <a href="/login"><button type="button" class="btn btn-menu btn-success">Se connecter</button></a>
+                        </li>
+                    {% endblock %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -90,11 +92,13 @@
     <footer class="text-center">
         <div class="footer-menu">
             <ul class="nav navbar-custom justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">
-                        <button type="button" class="btn btn-menu btn-success">Se connecter</button>
-                    </a>
-                </li>
+                {% block footerConnectionButton %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">
+                            <button type="button" class="btn btn-menu btn-success">Se connecter</button>
+                        </a>
+                    </li>
+                {% endblock %}
             </ul>
         </div>
         <div class="footer-below">
