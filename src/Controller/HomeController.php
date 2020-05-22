@@ -18,10 +18,7 @@ final class HomeController extends AbstractController
      */
     public function executeShowHome(): HTTPResponse
     {
-        // Creating the captcha instance and setting the phrase in the session to store
-        // it for check when the form is submitted
-        $captcha = new CaptchaBuilder();
-        $this->httpRequest->setSession('captchaPhrase', $captcha->getPhrase());
+        $captcha = $this->initCaptchaCode();
         // Initialize empty contact form
         $contact = new Contact();
         $contactForm = $this->buildContactForm($contact);
@@ -87,6 +84,8 @@ final class HomeController extends AbstractController
      */
     public function initCaptchaCode(): CaptchaBuilder
     {
+        // Creating the captcha instance and setting the phrase in the session to store
+        // it for check when the form is submitted
         $captcha = new CaptchaBuilder();
         $this->httpRequest->setSession('captchaPhrase', $captcha->getPhrase());
 
