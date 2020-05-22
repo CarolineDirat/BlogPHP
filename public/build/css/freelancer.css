@@ -264,6 +264,14 @@ section.success {
     margin-top: 50px;
   }
 }
+#login-footer {
+  margin-top: 250px;
+}
+@media (max-width: 450px) {
+  #login-footer {
+    margin-top: 100px;
+  }
+}
 #messageInfo {
   padding: 0px;
   padding-top: 110px;
