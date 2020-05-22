@@ -241,6 +241,9 @@ section.success {
     margin-left: 0px;
   }
 }
+#comments-footer{
+  height: 50px;
+}
 #messageInfo {
   padding: 0px;
   padding-top: 110px;
@@ -355,7 +358,6 @@ form .row:first-child .floating-label-form-group {
 }
 footer {
   color: white;
-  margin-top: 30px;
 }
 footer h3 {
   margin-bottom: 30px;
