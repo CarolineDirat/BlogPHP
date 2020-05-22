@@ -5,11 +5,12 @@ session_start();
 require_once '../vendor/autoload.php';
 require_once '../config/config.php';
 
+use Exception;
 use App\Application\HTTPRequest;
 use App\Application\TwigRenderer;
 use App\Controller\HomeController;
 use App\Controller\PostController;
-use Exception;
+use App\Controller\LoginController;
 
 $twigRenderer = new TwigRenderer('../templates');
 
@@ -44,6 +45,10 @@ try {
                     $match = true;
                     $action = 'process';
                     $controller = new HomeController($action, $page, $httpRequest);
+                    $controller->execute()->send($twigRenderer);
+            case 'login':
+                    $match = true;
+                    $controller = new LoginController($action, $page, $httpRequest);
                     $controller->execute()->send($twigRenderer);
         }
     }

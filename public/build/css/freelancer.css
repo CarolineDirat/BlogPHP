@@ -241,8 +241,25 @@ section.success {
     margin-left: 0px;
   }
 }
-#comments-footer{
+#comments-footer {
   height: 50px;
+}
+#login h2 {
+  margin-top: 100px;
+}
+#login .username {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 0;
+  z-index: -1;
+}
+@media (max-width: 767px) {
+  #login h2 {
+    margin-top: 50px;
+  }
 }
 #messageInfo {
   padding: 0px;

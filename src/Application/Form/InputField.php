@@ -31,6 +31,13 @@ class InputField extends Field
      * @var ?string
      */
     private ?string $value;
+    
+    /**
+     * autofocus
+     *
+     * @var ?string
+     */
+    private ?string $autofocus;
 
     public function __construct(array $options = [])
     {
@@ -106,5 +113,29 @@ class InputField extends Field
         }
 
         throw new InvalidArgumentException('$value property must be a string not null');
+    }
+
+    /**
+     * Get autofocus
+     *
+     * @return  ?string
+     */ 
+    public function getAutofocus(): ?string
+    {
+        return $this->autofocus;
+    }
+
+    /**
+     * Set autofocus
+     *
+     * @param  ?string  $autofocus  autofocus
+     *
+     * @return  self
+     */ 
+    public function setAutofocus(?string $autofocus): self
+    {
+        $this->autofocus = $autofocus;
+
+        return $this;
     }
 }

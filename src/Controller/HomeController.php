@@ -23,7 +23,7 @@ final class HomeController extends AbstractController
         // Initialize empty contact form
         $contact = new Contact();
         $contactForm = $this->buildContactForm($contact);
-
+        
         // Retrieve the captcha to insert it directly into the home.twig page:
         return new HTTPResponse($this->getPage(), ['contactForm' => $contactForm, 'captcha' => $captcha->build()->inline()]);
     }
