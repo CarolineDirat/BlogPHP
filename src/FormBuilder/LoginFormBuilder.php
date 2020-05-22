@@ -60,6 +60,7 @@ final class LoginFormBuilder extends FormBuilder
                         new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 255),
                     ],
                 ])
-            );
+            )
+        ;
     }
 }
