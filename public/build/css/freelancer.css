@@ -244,6 +244,9 @@ section.success {
 #comments-footer {
   height: 50px;
 }
+#login button {
+  margin-top: 30px;
+}
 #login h2 {
   margin-top: 100px;
 }
@@ -259,6 +262,14 @@ section.success {
 @media (max-width: 767px) {
   #login h2 {
     margin-top: 50px;
+  }
+}
+#login-footer {
+  margin-top: 250px;
+}
+@media (max-width: 450px) {
+  #login-footer {
+    margin-top: 100px;
   }
 }
 #messageInfo {
