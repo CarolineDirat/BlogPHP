@@ -40,7 +40,7 @@ abstract class AbstractController
         $method = 'execute'.ucfirst($this->action).ucfirst($this->page);
 
         if (!is_callable([$this, $method])) {
-            throw new RuntimeException('The execute'.$this->action.ucfirst($this->page).' controller is not defined for this page');
+            throw new RuntimeException('The execute'.ucfirst($this->action).ucfirst($this->page).' controller is not defined for this page');
         }
 
         return $this->{$method}($this->httpRequest);
