@@ -63,6 +63,14 @@ final class User extends Entity
         return $this->id;
     }
 
+    public function isEnabled(): bool
+    {
+        if (1 === $this->getEnabled()) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Set the value of id.
      *
