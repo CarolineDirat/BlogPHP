@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Exception;
 use App\Application\AbstractController;
 use App\Application\Form\Form;
 use App\Application\HTTPResponse;
@@ -32,6 +33,10 @@ final class HomeController extends AbstractController
      */
     public function executeProcessContact(): HTTPResponse
     {
+        if ('POST' !== $this->httpRequest->method()) {
+            throw new Exception('Post data missing from the contact form');
+        }
+        
         // hydratation of Contact entity with POST data from contact form
         $contact = new Contact([
             'firstName' => $this->httpRequest->postData('firstName'),

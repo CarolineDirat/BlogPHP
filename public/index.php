@@ -41,14 +41,10 @@ try {
 
                 break;
             case 'contact':
-                if ('POST' === $httpRequest->method()) {
                     $match = true;
                     $action = 'process';
                     $controller = new HomeController($action, $page, $httpRequest);
                     $controller->execute()->send($twigRenderer);
-                }
-
-                throw new Exception('Post data missing from the contact form');
         }
     }
     if (!$match) {
