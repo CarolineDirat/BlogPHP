@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Application\Entity;
 use DateTime;
-use InvalidArgumentException;
 
 /**
  * User.
@@ -53,6 +52,14 @@ final class User extends Entity
      */
     private $enabled = 0;
 
+    public function isEnabled(): bool
+    {
+        if (1 === $this->getEnabled()) {
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Get the value of id.
      *
@@ -61,14 +68,6 @@ final class User extends Entity
     public function getId(): int
     {
         return $this->id;
-    }
-
-    public function isEnabled(): bool
-    {
-        if (1 === $this->getEnabled()) {
-            return true;
-        }
-        return false;
     }
 
     /**
