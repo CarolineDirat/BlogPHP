@@ -21,19 +21,15 @@ final class PostController extends AbstractController
 
         if ($httpRequest->hasGet('id') && $httpRequest->hasGet('slug')) {
             $dao = PDOSingleton::getInstance()->getConnexion();
-            // get the post from the id
+            // get the post from the id, with its author's pseudo
             $postManager = new PostManagerPDO($dao);
             $post = $postManager->getPost((int) $httpRequest->getData('id'));
-
-            // get the author from idUser of $post
-            $userManager = new UserManagerPDO($dao);
-            $pseudo = $userManager->getPseudo((int) $post->getIdUser());
 
             // get list of post's comments
             $commentManager = new CommentManagerPDO($dao);
             $listComments = $commentManager->getValidComments($post->getId());
 
-            return new HTTPResponse($this->getPage(), ['post' => $post, 'pseudo' => $pseudo, 'comments' => $listComments]);
+            return new HTTPResponse($this->getPage(), ['post' => $post, 'comments' => $listComments]);
         }
 
         throw new \Exception('id or slug is missing in the request');
