@@ -29,7 +29,7 @@ abstract class Entity
         if (!empty($data)) {
             $this->hydrate($data);
         }
-        foreach ($data as $property => $value) {
+        foreach (array_keys($data) as $property) {
             $method = 'get'.ucfirst($property);
             if (method_exists($this, $method)) {
                 $this->properties[] = $property;
