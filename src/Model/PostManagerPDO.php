@@ -28,7 +28,7 @@ final class PostManagerPDO extends PostManager
                 FROM post
                 INNER JOIN user
                 ON post.id_user = user.id
-                WHERE id = :id')
+                WHERE post.id = :id')
         ;
         if (!$req instanceof PDOStatement) {
             throw new Exception('The article with id='.filter_var($id, FILTER_VALIDATE_INT).' was not found');
