@@ -28,7 +28,14 @@ final class PostController extends AbstractController
             $commentManager = new CommentManagerPDO($dao);
             $listComments = $commentManager->getValidComments($post->getId());
 
-            return new HTTPResponse($this->getPage(), ['post' => $post, 'comments' => $listComments]);
+            return new HTTPResponse(
+                $this->getPage(), 
+                [
+                    'post' => $post,
+                    'comments' => $listComments,
+                    'user' => $this->httpRequest->getUserSession()
+                ]
+            );
         }
 
         throw new \Exception('id or slug is missing in the request');
@@ -43,6 +50,6 @@ final class PostController extends AbstractController
         $postManager = new PostManagerPDO(PDOSingleton::getInstance()->getConnexion());
         $listPosts = $postManager->getListPosts();
 
-        return new HTTPResponse($this->getPage(), ['listPosts' => $listPosts]);
+        return new HTTPResponse($this->getPage(), ['listPosts' => $listPosts, 'user' => $this->httpRequest->getUserSession()]);
     }
 }
