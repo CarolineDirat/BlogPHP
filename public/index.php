@@ -1,9 +1,9 @@
 <?php
 
-session_start();
-
 require_once '../vendor/autoload.php';
 require_once '../config/config.php';
+
+session_start();
 
 use App\Application\HTTPRequest;
 use App\Application\TwigRenderer;
@@ -13,11 +13,12 @@ use App\Controller\PostController;
 
 $twigRenderer = new TwigRenderer('../templates');
 
+
 try {
     $match = false; // will be true if the rooter receive a route corresponding to a controller
     $action = 'show';
     $page = 'home';
-    $httpRequest = new HTTPRequest();
+    $httpRequest = new HTTPRequest();//$httpRequest->unsetSession('user');
 
     if ('/' === $httpRequest->requestURI()) {
         $match = true;
