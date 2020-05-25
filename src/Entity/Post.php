@@ -56,21 +56,6 @@ final class Post extends Entity
      */
     private string $author;
 
-    /**
-     * Method to know if  the post is valid.
-     */
-    public function isValid(): bool
-    {
-        return !(
-            empty($this->title)
-            || empty($this->slug)
-            || empty($this->content)
-            || empty($this->abstract)
-            || empty($this->dateCreation)
-            || empty($this->author)
-        );
-    }
-
     public function setId(int $id): self
     {
         $this->id = (int) $id;
