@@ -58,14 +58,16 @@
                     <li class="page-scroll">
                         <a href={% block contactLink %}"#web"{% endblock %}>Contact</a>
                     </li>
-                    <li class="page-scroll">
-                        <a href="#">S'inscrire</a>
-                    </li>
-                    {% block headerConnectionButton %}
+                    {% if not user %}
                         <li class="page-scroll">
-                            <a href="/login"><button type="button" class="btn btn-menu btn-success">Se connecter</button></a>
+                            <a href="#">S'inscrire</a>
                         </li>
-                    {% endblock %}
+                        {% block headerConnectionButton %}
+                            <li class="page-scroll">
+                                <a href="/login"><button type="button" class="btn btn-menu btn-success">Se connecter</button></a>
+                            </li>
+                        {% endblock %}
+                    {% endif %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
