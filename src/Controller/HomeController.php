@@ -25,7 +25,14 @@ final class HomeController extends AbstractController
         $contactForm = $this->buildContactForm($contact);
 
         // Retrieve the captcha to insert it directly into the home.twig page:
-        return new HTTPResponse($this->getPage(), ['contactForm' => $contactForm, 'captcha' => $captcha->build()->inline()]);
+        return new HTTPResponse(
+            $this->getPage(), 
+            [
+                'contactForm' => $contactForm, 
+                'captcha' => $captcha->build()->inline(),
+                'user' => $this->httpRequest->getUserSession()
+            ]
+        );
     }
 
     /**
@@ -64,6 +71,7 @@ final class HomeController extends AbstractController
                     'captcha' => $captcha->build()->inline(),
                     'contactForm' => $contactForm,
                     'messageInfo' => 'Votre message a bien été envoyé.',
+                    'user' => $this->httpRequest->getUserSession()
                 ]
             );
         }
@@ -76,6 +84,7 @@ final class HomeController extends AbstractController
                 'captcha' => $captcha->build()->inline(),
                 'contactForm' => $contactForm,
                 'messageInfo' => "L'envoie du message a échoué, veuillez vérifier les champs du formulaire.",
+                'user' => $this->httpRequest->getUserSession()
             ]
         );
     }
