@@ -51,6 +51,13 @@ final class User extends Entity
      * @var int
      */
     private $enabled = 0;
+    
+    /**
+     * role
+     *
+     * @var string
+     */
+    private string $role;
 
     public function isEnabled(): bool
     {
@@ -199,6 +206,30 @@ final class User extends Entity
     public function setEnabled(int $enabled): self
     {
         $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return  string
+     */ 
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set role
+     *
+     * @param  string  $role  role
+     *
+     * @return  self
+     */ 
+    public function setRole(string $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }
