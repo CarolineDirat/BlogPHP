@@ -2,17 +2,17 @@
 
 namespace App\FormBuilder;
 
-use App\Application\Entity;
 use App\Application\Form\FormBuilder;
 use App\Application\Form\InputTextField;
 use App\Application\Form\MaxLengthValidator;
 use App\Application\Form\NotEmptyValidator;
+
 //use App\Application\Form\ValuesEqualityValidator;
 //use App\Application\HTTPRequest;
 
 /**
- * LoginFormBuilder
- * 
+ * LoginFormBuilder.
+ *
  * Build the login form for the login page
  */
 final class LoginFormBuilder extends FormBuilder
@@ -35,32 +35,34 @@ final class LoginFormBuilder extends FormBuilder
             )
             ->addField(
                 new InputTextField(
-                [
-                    'textLabel' => 'Votre pseudo',
-                    'name' => 'pseudo',
-                    'idField' => 'pseudo',
-                    'placeholder' => 'Votre pseudo',
-                    'maxlength' => 50,
-                    'autofocus' => true,
-                    'validators' => [
-                        new NotEmptyValidator('Merci de spécifier votre pseudo.'),
-                        new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 50),
-                    ],
-                ])
+                    [
+                        'textLabel' => 'Votre pseudo',
+                        'name' => 'pseudo',
+                        'idField' => 'pseudo',
+                        'placeholder' => 'Votre pseudo',
+                        'maxlength' => 50,
+                        'autofocus' => true,
+                        'validators' => [
+                            new NotEmptyValidator('Merci de spécifier votre pseudo.'),
+                            new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 50),
+                        ],
+                    ]
+                )
             )
             ->addField(
                 new InputTextField(
-                [
-                    'textLabel' => 'Votre mot de passe',
-                    'name' => 'password',
-                    'idField' => 'password',
-                    'placeholder' => 'Votre mot de passe',
-                    'maxlength' => 255,
-                    'validators' => [
-                        new NotEmptyValidator('Merci de spécifier votre mot de passe.'),
-                        new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 255),
-                    ],
-                ])
+                    [
+                        'textLabel' => 'Votre mot de passe',
+                        'name' => 'password',
+                        'idField' => 'password',
+                        'placeholder' => 'Votre mot de passe',
+                        'maxlength' => 255,
+                        'validators' => [
+                            new NotEmptyValidator('Merci de spécifier votre mot de passe.'),
+                            new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 255),
+                        ],
+                    ]
+                )
             )
         ;
     }

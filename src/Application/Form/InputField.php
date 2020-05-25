@@ -31,9 +31,9 @@ class InputField extends Field
      * @var ?string
      */
     private ?string $value;
-    
+
     /**
-     * autofocus
+     * autofocus.
      *
      * @var ?string
      */
@@ -116,22 +116,22 @@ class InputField extends Field
     }
 
     /**
-     * Get autofocus
+     * Get autofocus.
      *
-     * @return  ?string
-     */ 
+     * @return ?string
+     */
     public function getAutofocus(): ?string
     {
         return $this->autofocus;
     }
 
     /**
-     * Set autofocus
+     * Set autofocus.
      *
-     * @param  ?string  $autofocus  autofocus
+     * @param ?string $autofocus autofocus
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setAutofocus(?string $autofocus): self
     {
         $this->autofocus = $autofocus;

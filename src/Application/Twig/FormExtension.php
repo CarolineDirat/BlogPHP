@@ -47,7 +47,7 @@ class FormExtension extends AbstractExtension
         }
         // write the label tag
         $html = '';
-        if(!empty($field->getTextLabel())) {
+        if (!empty($field->getTextLabel())) {
             $html .= '<label for="'.$field->getIdField().'">'.$field->getTextLabel().'</label>';
         }
         // add the field tag

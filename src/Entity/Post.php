@@ -36,7 +36,6 @@ final class Post extends Entity
      * @var Datetime
      */
     private Datetime $dateCreation;
-    
 
     /**
      * @var Datetime
@@ -47,10 +46,10 @@ final class Post extends Entity
      * @var int
      */
     private int $idUser;
-    
+
     /**
-     * author
-     * 
+     * author.
+     *
      * User's pseudo wich wrote the post
      *
      * @var string
@@ -164,22 +163,22 @@ final class Post extends Entity
     }
 
     /**
-     * Get user's pseudo wich wrote the post
+     * Get user's pseudo wich wrote the post.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getAuthor(): string
     {
         return $this->author;
     }
 
     /**
-     * Set user's pseudo wich wrote the post
+     * Set user's pseudo wich wrote the post.
      *
-     * @param  string  $author  User's pseudo wich wrote the post
+     * @param string $author User's pseudo wich wrote the post
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setAuthor(string $author): self
     {
         $this->author = $author;

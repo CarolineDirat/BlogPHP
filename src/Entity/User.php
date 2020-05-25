@@ -16,37 +16,37 @@ final class User extends Entity
      * @var int
      */
     private int $id;
-    
+
     /**
-     * pseudo
+     * pseudo.
      *
      * @var string
      */
     private $pseudo;
-    
+
     /**
-     * password
+     * password.
      *
      * @var string
      */
     private $password;
-    
+
     /**
-     * dateCreation
+     * dateCreation.
      *
      * @var DateTime
      */
     private $dateCreation;
-    
+
     /**
-     * activationKey
+     * activationKey.
      *
      * @var string
      */
     private $activationKey;
-    
+
     /**
-     * enabled
+     * enabled.
      *
      * @var int
      */
@@ -57,6 +57,7 @@ final class User extends Entity
         if (1 === $this->getEnabled()) {
             return true;
         }
+
         return false;
     }
 
@@ -83,22 +84,22 @@ final class User extends Entity
     }
 
     /**
-     * Get pseudo
+     * Get pseudo.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getPseudo(): string
     {
         return $this->pseudo;
     }
 
     /**
-     * Set pseudo
+     * Set pseudo.
      *
-     * @param  string  $pseudo  pseudo
+     * @param string $pseudo pseudo
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
@@ -107,22 +108,22 @@ final class User extends Entity
     }
 
     /**
-     * Get password
+     * Get password.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getPassword(): string
     {
         return $this->password;
     }
 
     /**
-     * Set password
+     * Set password.
      *
-     * @param  string  $password  password
+     * @param string $password password
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
@@ -131,22 +132,22 @@ final class User extends Entity
     }
 
     /**
-     * Get dateCreation
+     * Get dateCreation.
      *
-     * @return  DateTime
-     */ 
+     * @return DateTime
+     */
     public function getDateCreation(): DateTime
     {
         return $this->dateCreation;
     }
 
     /**
-     * Set dateCreation
+     * Set dateCreation.
      *
-     * @param  DateTime  $dateCreation  dateCreation
+     * @param DateTime $dateCreation dateCreation
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setDateCreation(DateTime $dateCreation): self
     {
         $this->dateCreation = $dateCreation;
@@ -155,22 +156,22 @@ final class User extends Entity
     }
 
     /**
-     * Get activationKey
+     * Get activationKey.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getActivationKey(): string
     {
         return $this->activationKey;
     }
 
     /**
-     * Set activationKey
+     * Set activationKey.
      *
-     * @param  string  $activationKey  activationKey
+     * @param string $activationKey activationKey
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setActivationKey(string $activationKey): self
     {
         $this->activationKey = $activationKey;
@@ -179,22 +180,22 @@ final class User extends Entity
     }
 
     /**
-     * Get enabled
+     * Get enabled.
      *
-     * @return  int
-     */ 
+     * @return int
+     */
     public function getEnabled(): int
     {
         return $this->enabled;
     }
 
     /**
-     * Set enabled
+     * Set enabled.
      *
-     * @param  int  $enabled  enabled
+     * @param int $enabled enabled
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setEnabled(int $enabled): self
     {
         $this->enabled = $enabled;

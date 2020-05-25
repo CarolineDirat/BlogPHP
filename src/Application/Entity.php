@@ -14,10 +14,10 @@ abstract class Entity
      * @var array[string]
      */
     protected $errors = [];
-    
+
     /**
-     * properties
-     * 
+     * properties.
+     *
      * array of entity's properties
      *
      * @var array
@@ -35,12 +35,11 @@ abstract class Entity
                 $this->properties[] = $property;
             }
         }
-       
     }
-    
+
     /**
-     * isValid
-     * 
+     * isValid.
+     *
      * checks if all entity propertoes are'nt not null
      *
      * @return bool
@@ -48,14 +47,15 @@ abstract class Entity
     public function isValid(): bool
     {
         foreach ($this->getProperties() as $property) {
-            $method = 'get' . ucfirst($property);
-           if (!method_exists($this, $method)) {
-                throw new Exception('The ' . $method . ' method is not callable');
+            $method = 'get'.ucfirst($property);
+            if (!method_exists($this, $method)) {
+                throw new Exception('The '.$method.' method is not callable');
             }
-            if (empty($this->$method())) {
+            if (empty($this->{$method}())) {
                 return false;
             }
         }
+
         return true;
     }
 
@@ -82,22 +82,22 @@ abstract class Entity
     }
 
     /**
-     * Get array of entity's properties
+     * Get array of entity's properties.
      *
-     * @return  array
-     */ 
+     * @return array
+     */
     public function getProperties(): array
     {
         return $this->properties;
     }
 
     /**
-     * Set array of entity's properties
+     * Set array of entity's properties.
      *
-     * @param  array  $properties  array of entity's properties
+     * @param array $properties array of entity's properties
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setProperties(array $properties): self
     {
         $this->properties = $properties;

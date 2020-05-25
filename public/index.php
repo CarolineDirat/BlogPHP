@@ -8,8 +8,8 @@ require_once '../config/config.php';
 use App\Application\HTTPRequest;
 use App\Application\TwigRenderer;
 use App\Controller\HomeController;
-use App\Controller\PostController;
 use App\Controller\LoginController;
+use App\Controller\PostController;
 
 $twigRenderer = new TwigRenderer('../templates');
 
@@ -51,7 +51,7 @@ try {
                     $match = true;
                     $controller = new LoginController($action, $page, $httpRequest);
                     $controller->execute()->send($twigRenderer);
-                    
+
                 break;
         }
     }

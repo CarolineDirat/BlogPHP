@@ -7,7 +7,6 @@ use App\Application\HTTPResponse;
 use App\Application\PDOSingleton;
 use App\Model\CommentManagerPDO;
 use App\Model\PostManagerPDO;
-use App\Model\UserManagerPDO;
 use Âpp\Entity\Post;
 
 final class PostController extends AbstractController
