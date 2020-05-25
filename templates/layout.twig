@@ -95,11 +95,13 @@
         <div class="footer-menu">
             <ul class="nav navbar-custom justify-content-center">
                 {% block footerConnectionButton %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">
-                            <button type="button" class="btn btn-menu btn-success">Se connecter</button>
-                        </a>
-                    </li>
+                    {% if not user %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">
+                                <button type="button" class="btn btn-menu btn-success">Se connecter</button>
+                            </a>
+                        </li>
+                    {% endif %}
                 {% endblock %}
             </ul>
         </div>
