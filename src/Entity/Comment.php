@@ -62,33 +62,6 @@ final class Comment extends Entity
      */
     private string $author;
 
-    public function isValid(): bool
-    {
-        if ('valid' === $this->getPermit()) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public function isRejected(): bool
-    {
-        if ('rejected' === $this->getPermit()) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public function isWaiting(): bool
-    {
-        if ('waiting' === $this->getPermit()) {
-            return true;
-        }
-
-        return false;
-    }
-
     /**
      * Get the value of id.
      *
