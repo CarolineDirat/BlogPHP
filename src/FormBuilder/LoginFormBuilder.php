@@ -28,7 +28,6 @@ final class LoginFormBuilder extends FormBuilder
                     'placeholder' => 'Nom',
                     'maxlength' => 50,
                     'validators' => [
-                        new NotEmptyValidator('Merci de spécifier votre Nom.'),
                         new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 50),
                     ],
                 ])
