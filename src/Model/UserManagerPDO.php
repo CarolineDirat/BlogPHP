@@ -56,8 +56,7 @@ final class UserManagerPDO extends UserManager
             return false;
         }
         // checks password
-        $passwordLoginHash = password_hash($login->getPassword(), PASSWORD_DEFAULT);
-        if (password_verify($password, $passwordLoginHash)) {
+        if (password_verify($login->getPassword(), $password)) {
             return true;
         }
         return false;
@@ -80,7 +79,7 @@ final class UserManagerPDO extends UserManager
         }
         $req->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
         $req->execute();
-        $data = $req->fetchAll();
+        $data = $req->fetch();
         $req->closeCursor();
         // Instantiate User object
         $data['dateCreation'] = new DateTime($data['dateCreation']); // dateCreation must be instantiations of DateTime
