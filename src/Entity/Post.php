@@ -36,6 +36,7 @@ final class Post extends Entity
      * @var Datetime
      */
     private Datetime $dateCreation;
+    
 
     /**
      * @var Datetime
