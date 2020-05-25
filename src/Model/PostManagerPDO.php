@@ -23,7 +23,12 @@ final class PostManagerPDO extends PostManager
 
         $req = $this
             ->dao
-            ->prepare('SELECT  id, title, slug, content, abstract, date_creation as dateCreation, date_update as dateUpdate, id_user as idUser FROM post WHERE id = :id')
+            ->prepare(
+                'SELECT post.id, title, slug, content, abstract, post.date_creation as dateCreation, post.date_update as dateUpdate, user.pseudo as author
+                FROM post
+                INNER JOIN user
+                ON post.id_user = user.id
+                WHERE id = :id')
         ;
         if (!$req instanceof PDOStatement) {
             throw new Exception('The article with id='.filter_var($id, FILTER_VALIDATE_INT).' was not found');
