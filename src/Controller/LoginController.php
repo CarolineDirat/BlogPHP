@@ -39,14 +39,14 @@ final class LoginController extends AbstractController
                 return new HTTPResponse(
                     $this->getPage(),
                     [
-                        'messageLogin' => "Bonjour ". $this->httpRequest->getUserSession()->getPseudo() ." ! Vous êtes connecté.",
+                        'messageLogin' => "Bonjour ",
                         'user' => $this->httpRequest->getUserSession()
                     ]
                 );
             }
             return new HTTPResponse(
                     $this->getPage(),
-                    ['messageLogin' => "Une erreur de pseudo ou de mot de passe.", 'loginForm' => $loginForm ]
+                    ['messageLogin' => "Pseudo et/ou de mot de pas incorrect(s).", 'loginForm' => $loginForm ]
                 );
         }
         

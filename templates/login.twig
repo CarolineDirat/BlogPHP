@@ -10,7 +10,22 @@
 
 {% block contactLink %}"/#web"{% endblock %}
 
-{% block headerConnectionButton %}{% endblock %}
+{% block headerConnectionButton %}
+    {% if user %}
+    <li class="nav-item">
+        <a href="/logout" class="nav-link">
+            <button type="button" class="btn btn-menu btn-success">Se déconnecter</button>
+        </a>
+    </li>
+    {% endif %}
+    {% if 'admin' == user.role %}
+    <li class="nav-item">
+        <a href="/admin" class="nav-link">
+            <button type="button" class="btn btn-menu btn-success">Admin</button>
+        </a>
+    </li>
+    {% endif %}
+{% endblock %}
 
 
 {% block view %}
@@ -23,42 +38,75 @@
                     <hr class="star-primary">
                 </div>
             </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <form name="loginForm" id="loginForm"  method="post" action="/login">                  
-                        <div class="row control-group username">
-                            <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
-                                {{ fieldBuilder(loginForm.fields.username, ['placeholder', 'maxlength'], 'form-control') }}
-                                <p class="help-block text-danger"></p>
+
+        {% if messageLogin %}
+            <div class="container" id="message-login">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        {% if user %}
+                            <p class="text-center bg-success">
+                        {% else %}
+                            <p class="text-center bg-warning">
+                        {% endif %}
+                        {{ messageLogin }}
+                        {% if user %}
+                            <span>{{ user.pseudo }}</span>{{ " ! Vous êtes connecté :) " }}
+                        {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>    
+        {% endif %}
+
+        {% if loginForm %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <form name="loginForm" id="loginForm"  method="post" action="/login">                  
+                            <div class="row control-group username">
+                                <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
+                                    {{ fieldBuilder(loginForm.fields.username, ['placeholder', 'maxlength'], 'form-control') }}
+                                    <p class="help-block text-danger"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
-                                {{ fieldBuilder(loginForm.fields.pseudo, ['placeholder', 'maxlength', 'autofocus'], 'form-control') }}
-                                <p class="help-block text-danger"></p>
+                            <div class="row control-group">
+                                <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
+                                    {{ fieldBuilder(loginForm.fields.pseudo, ['placeholder', 'maxlength', 'autofocus'], 'form-control') }}
+                                    <p class="help-block text-danger"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
-                                {{ fieldBuilder(loginForm.fields.password, ['placeholder', 'maxlength'], 'form-control') }}
-                                <p class="help-block text-danger"></p>
+                            <div class="row control-group">
+                                <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
+                                    {{ fieldBuilder(loginForm.fields.password, ['placeholder', 'maxlength'], 'form-control') }}
+                                    <p class="help-block text-danger"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg">Me connecter</button>
-                            </div>
-                        </div>     
-                    </form>
+                            <div class="row">
+                                <div class="form-group col-xs-12">
+                                    <button type="submit" class="btn btn-success btn-lg">Me connecter</button>
+                                </div>
+                            </div>     
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="login-footer" class="row">
-        </div>
+            <div id="login-footer" class="row">
+            </div>
+        {% endif %}
     </div>  
 {% endblock %}
 
-{% block footerConnectionButton %}{% endblock %}
+{% block footerConnectionButton %}
+    {% if user %}
+        <li class="nav-item">
+            <a href="/logout"><button type="button" class="btn btn-menu btn-success">Se déconnecter</button></a>
+        </li>
+    {% endif %}
+    {% if 'admin' == user.role %}
+        <li class="nav-item">
+            <a href="/admin"><button type="button" class="btn btn-menu btn-success">Admin</button></a>
+        </li>
+    {% endif %}
+{% endblock %}
 
 {% block themeJS %}../../{{ parent() }}{% endblock %}
