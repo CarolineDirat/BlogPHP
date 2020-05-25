@@ -2,6 +2,8 @@
 
 namespace App\Application;
 
+use App\Entity\User;
+
 /**
  * To represent the client's request.
  */
@@ -43,6 +45,11 @@ final class HTTPRequest
     public function setSession(string $key, string $value): void
     {
         $_SESSION[$key] = filter_var($value, FILTER_SANITIZE_STRING, []);
+    }
+
+    public function setUserSession(User $user): void
+    {
+        $_SESSION['user'] = $user;
     }
 
     /**
