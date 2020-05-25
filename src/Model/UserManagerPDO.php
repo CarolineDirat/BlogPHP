@@ -27,7 +27,7 @@ final class UserManagerPDO extends UserManager
         $pseudo = $req->fetch();
         if ($pseudo) {
             return $pseudo['pseudo'];
-        } 
+        }
 
         throw new Exception('The nickname of the author of the article could not be recovered');
     }

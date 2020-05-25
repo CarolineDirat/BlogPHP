@@ -23,7 +23,7 @@
                             <p class="text-justify"> {{ post.content|nl2br }}</p>
                             <ul class="list-inline item-details">
                                 <li>Auteur :
-                                    <strong>{{ pseudo }}</strong>
+                                    <strong>{{ post.author }}</strong>
                                 </li>
                                 <li>Date de dernière mise à jour :
                                     <strong>{{ post.dateUpdate|date("d/m/Y") }}</a>

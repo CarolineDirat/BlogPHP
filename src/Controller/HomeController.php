@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use Exception;
 use App\Application\AbstractController;
 use App\Application\Form\Form;
 use App\Application\HTTPResponse;
@@ -10,6 +9,7 @@ use App\Entity\Form\Contact;
 use App\FormBuilder\ContactFormBuilder;
 use App\FormHandler\ContactFormHandler;
 use App\Model\Form\ContactManager;
+use Exception;
 use Gregwar\Captcha\CaptchaBuilder;
 
 final class HomeController extends AbstractController
@@ -23,7 +23,7 @@ final class HomeController extends AbstractController
         // Initialize empty contact form
         $contact = new Contact();
         $contactForm = $this->buildContactForm($contact);
-        
+
         // Retrieve the captcha to insert it directly into the home.twig page:
         return new HTTPResponse($this->getPage(), ['contactForm' => $contactForm, 'captcha' => $captcha->build()->inline()]);
     }
@@ -36,7 +36,7 @@ final class HomeController extends AbstractController
         if ('POST' !== $this->httpRequest->method()) {
             throw new Exception('Post data missing from the contact form');
         }
-        
+
         // hydratation of Contact entity with POST data from contact form
         $contact = new Contact([
             'firstName' => $this->httpRequest->postData('firstName'),

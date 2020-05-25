@@ -3,7 +3,6 @@
 namespace App\Entity\Form;
 
 use App\Application\Entity;
-use DateTime;
 
 /**
  * User.
@@ -12,46 +11,46 @@ use DateTime;
  */
 final class Login extends Entity
 {
-   /**
-     * username
-     * 
+    /**
+     * username.
+     *
      * property to manage honeypot field
      *
      * @var ?string
      */
     private ?string $username = null;
-    
+
     /**
-     * pseudo
+     * pseudo.
      *
      * @var ?string
      */
     private ?string $pseudo = null;
-    
+
     /**
-     * password
+     * password.
      *
      * @var ?string
      */
     private ?string $password = null;
 
     /**
-     * Get property to manage honeypot field
+     * Get property to manage honeypot field.
      *
-     * @return  ?string
-     */ 
+     * @return ?string
+     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
     /**
-     * Set property to manage honeypot field
+     * Set property to manage honeypot field.
      *
-     * @param  string  $username  property to manage honeypot field
+     * @param string $username property to manage honeypot field
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setUsername(?string $username): self
     {
         $this->username = $username;
@@ -60,22 +59,22 @@ final class Login extends Entity
     }
 
     /**
-     * Get pseudo
+     * Get pseudo.
      *
-     * @return  ?string
-     */ 
+     * @return ?string
+     */
     public function getPseudo(): ?string
     {
         return $this->pseudo;
     }
 
     /**
-     * Set pseudo
+     * Set pseudo.
      *
-     * @param  ?string  $pseudo  pseudo
+     * @param ?string $pseudo pseudo
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setPseudo(?string $pseudo): self
     {
         $this->pseudo = $pseudo;
@@ -84,22 +83,22 @@ final class Login extends Entity
     }
 
     /**
-     * Get password
+     * Get password.
      *
-     * @return  ?string
-     */ 
+     * @return ?string
+     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
     /**
-     * Set password
+     * Set password.
      *
-     * @param  ?string  $password  password
+     * @param ?string $password password
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setPassword(?string $password): self
     {
         $this->password = $password;

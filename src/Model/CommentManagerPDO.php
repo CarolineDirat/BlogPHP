@@ -91,15 +91,18 @@ final class CommentManagerPDO extends CommentManager
         $dataArray = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
         // build array of comment objects
-        $listValidComments = [];
+        $listComments = [];
         if (is_array($dataArray)) {
             foreach ($dataArray as $data) {
                 $data['dateCreation'] = new DateTime($data['dateCreation']); // dateCreation must be an instantiation of DateTime
                 $comment = new comment($data);
-                $listValidComments[] = $comment;
+                if (!$comment->isValid()) {
+                    throw new Exception('The comment with id='.$comment->getId().' is not valid, one property is empty.');
+                }
+                $listComments[] = $comment;
             }
         }
 
-        return $listValidComments;
+        return $listComments;
     }
 }
