@@ -46,9 +46,18 @@ final class Post extends Entity
      * @var int
      */
     private int $idUser;
+    
+    /**
+     * author
+     * 
+     * User's pseudo wich wrote the post
+     *
+     * @var string
+     */
+    private string $author;
 
     /**
-     * Method to know if the post is valid.
+     * Method to know if  the post is valid.
      */
     public function isValid(): bool
     {
@@ -58,7 +67,7 @@ final class Post extends Entity
             || empty($this->content)
             || empty($this->abstract)
             || empty($this->dateCreation)
-            || empty($this->idUser)
+            || empty($this->author)
         );
     }
 
@@ -166,5 +175,29 @@ final class Post extends Entity
     public function getIdUser(): int
     {
         return $this->idUser;
+    }
+
+    /**
+     * Get user's pseudo wich wrote the post
+     *
+     * @return  string
+     */ 
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set user's pseudo wich wrote the post
+     *
+     * @param  string  $author  User's pseudo wich wrote the post
+     *
+     * @return  self
+     */ 
+    public function setAuthor(string $author): self
+    {
+        $this->author = $author;
+
+        return $this;
     }
 }
