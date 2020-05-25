@@ -47,6 +47,11 @@ final class HTTPRequest
         $_SESSION[$key] = filter_var($value, FILTER_SANITIZE_STRING, []);
     }
 
+    public function getUserSession(): User
+    {
+        return $_SESSION['user'];
+    }
+    
     public function setUserSession(User $user): void
     {
         $_SESSION['user'] = $user;

@@ -39,8 +39,8 @@ final class LoginController extends AbstractController
                 return new HTTPResponse(
                     $this->getPage(),
                     [
-                        'messageLogin' => "Bonjour ". $this->httpRequest->getSession('user')->getPseudo() ." ! Vous êtes connecté.",
-                        'user' => $this->httpRequest->getSession('user')
+                        'messageLogin' => "Bonjour ". $this->httpRequest->getUserSession()->getPseudo() ." ! Vous êtes connecté.",
+                        'user' => $this->httpRequest->getUserSession()
                     ]
                 );
             }
