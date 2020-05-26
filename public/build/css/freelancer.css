@@ -244,7 +244,7 @@ section.success {
 #comments-footer {
   height: 50px;
 }
-#login button {
+#login button.btn-login {
   margin-top: 30px;
 }
 #login h2 {
