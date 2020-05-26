@@ -34,26 +34,33 @@ try {
                 $controller = new PostController($action, $page, $httpRequest);
                 $controller->execute()->send($twigRenderer);
 
-                break;
+            break;
             case 'blog':
                 $match = true;
                 $controller = new PostController($action, $page, $httpRequest);
                 $controller->execute()->send($twigRenderer);
 
-                break;
+            break;
             case 'contact':
-                    $match = true;
-                    $action = 'process';
-                    $controller = new HomeController($action, $page, $httpRequest);
-                    $controller->execute()->send($twigRenderer);
+                $match = true;
+                $action = 'process';
+                $controller = new HomeController($action, $page, $httpRequest);
+                $controller->execute()->send($twigRenderer);
 
-                break;
+            break;
             case 'login':
-                    $match = true;
-                    $controller = new LoginController($action, $page, $httpRequest);
-                    $controller->execute()->send($twigRenderer);
+                $match = true;
+                $controller = new LoginController($action, $page, $httpRequest);
+                $controller->execute()->send($twigRenderer);
 
-                break;
+            break;
+            case 'logout':
+                $match = true;
+                $httpRequest->unsetSession('user');
+                header('Location: http://blogphp/'); // redirection to home page without connection
+            
+            break;
+
         }
     }
     if (!$match) {
