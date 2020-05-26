@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Application\AbstractController;
-//use App\Application\Form\Form;
+use App\Application\Form\Form;
 use App\Application\HTTPResponse;
 use App\Application\PDOSingleton;
 use App\Entity\Form\Login;
@@ -25,9 +25,7 @@ final class LoginController extends AbstractController
                 'pseudo' => $this->httpRequest->postData('pseudo'),
                 'password' => $this->httpRequest->postData('password')
             ]);
-            $formBuilder = new LoginFormBuilder($login);
-            $formBuilder->build();
-            $loginForm = $formBuilder->getForm();
+            $loginForm = $this->buildLoginForm($login);
             // check honeypot
             if(!empty($login->getUsername()))
             {
@@ -52,10 +50,38 @@ final class LoginController extends AbstractController
         
         // Build empty login form
         $login = new Login();
-        $FormBuilder = new LoginFormBuilder($login);
-        $FormBuilder->build();
-        $loginForm = $FormBuilder->getForm();
+        $loginForm = $this->buildLoginForm($login);
 
         return new HTTPResponse($this->getPage(), ['loginForm' => $loginForm]);
+    }
+
+    /**
+     * Controller to logout : unset $_SESSION['user'] and display login page
+     */
+    public function executeLogout(): HTTPResponse
+    {
+        $this->httpRequest->unsetSession('user');
+        // We go to the login page
+        $this->setPage('login');
+        // Build empty login form
+        $login = new Login();
+        $loginForm = $this->buildLoginForm($login);
+
+        return new HTTPResponse($this->getPage(), ['loginForm' => $loginForm, 'messageLogin' => 'Vous êtes déconnecté.']);
+    }
+
+    /**
+     * buildLoginForm.
+     *
+     * create a login form from Login object
+     *
+     * @return Form
+     */
+    public function buildLoginForm(Login $login): Form
+    {
+        $formBuilder = new LoginFormBuilder($login);
+        $formBuilder->build();
+
+        return $formBuilder->getForm();
     }
 }
