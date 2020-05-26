@@ -57,7 +57,9 @@ try {
             case 'logout':
                 $match = true;
                 $httpRequest->unsetSession('user');
-                header('Location: http://blogphp/'); // redirection to home page without connection
+                $page = 'home';
+                $controller = new HomeController($action, $page, $httpRequest);
+                $controller->execute()->send($twigRenderer);
             
             break;
 
