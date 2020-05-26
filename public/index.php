@@ -27,6 +27,7 @@ try {
 
     if ($httpRequest->hasGET('page')) {
         $page = $httpRequest->getData('page');
+        $action = $httpRequest->getData('action');
         switch ($page) {
             case 'post':
                 $match = true;
@@ -42,14 +43,12 @@ try {
             break;
             case 'contact':
                 $match = true;
-                $action = 'process';
                 $controller = new HomeController($action, $page, $httpRequest);
                 $controller->execute()->send($twigRenderer);
 
             break;
             case 'login':
                 $match = true;
-                $action = $httpRequest->getData('action');
                 $controller = new LoginController($action, $page, $httpRequest);
                 $controller->execute()->send($twigRenderer);
 
