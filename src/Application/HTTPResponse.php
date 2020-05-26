@@ -40,7 +40,7 @@ final class HTTPResponse
 
     public function redirectTo(string $location): void
     {
-        header('Location: ' . $location);
+        header('Location: '.$location);
     }
 
     public function getPage(): string

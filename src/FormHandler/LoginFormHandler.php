@@ -3,10 +3,10 @@
 namespace App\FormHandler;
 
 use App\Application\Form\Form;
-use App\Model\UserManagerPDO;
-use App\Application\HTTPRequest;
 use App\Application\Form\FormHandler;
+use App\Application\HTTPRequest;
 use App\Entity\Form\Login;
+use App\Model\UserManagerPDO;
 
 class LoginFormHandler extends FormHandler
 {
@@ -18,7 +18,7 @@ class LoginFormHandler extends FormHandler
         $this->setUserManagerPDO($userManagerPDO);
         $this->setHttpRequest($httpRequest);
     }
-    
+
     public function process(): bool
     {
         $login = $this->form->getEntity();
@@ -26,17 +26,20 @@ class LoginFormHandler extends FormHandler
         if ($login instanceof Login && $this->form->isValid() && $this->userManagerPDO->hasLogin($login)) {
             // ... get $user and keep it in $_SESSION['user]
             $this->httpRequest
-                ->setUserSession($this->userManagerPDO->getUser($login->getPseudo()));
+                ->setUserSession($this->userManagerPDO->getUser($login->getPseudo()))
+            ;
+
             return true;
         }
+
         return false;
     }
 
     /**
-     * Set the value of manager
+     * Set the value of manager.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setUserManagerPDO(UserManagerPDO $userManagerPDO): self
     {
         $this->userManagerPDO = $userManagerPDO;

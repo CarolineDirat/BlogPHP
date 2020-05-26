@@ -11,7 +11,6 @@ use App\FormBuilder\LoginFormBuilder;
 use App\FormHandler\LoginFormHandler;
 use App\Model\UserManagerPDO;
 
-
 final class LoginController extends AbstractController
 {
     /**
@@ -23,12 +22,11 @@ final class LoginController extends AbstractController
             $login = new Login([
                 'username' => $this->httpRequest->postData('username'),
                 'pseudo' => $this->httpRequest->postData('pseudo'),
-                'password' => $this->httpRequest->postData('password')
+                'password' => $this->httpRequest->postData('password'),
             ]);
             $loginForm = $this->buildLoginForm($login);
             // check honeypot
-            if(!empty($login->getUsername()))
-            {
+            if (!empty($login->getUsername())) {
                 return new HTTPResponse($this->getPage(), ['loginForm' => $loginForm]);
             }
             $manager = new UserManagerPDO(PDOSingleton::getInstance()->getConnexion());
@@ -37,17 +35,18 @@ final class LoginController extends AbstractController
                 return new HTTPResponse(
                     $this->getPage(),
                     [
-                        'messageLogin' => "Bonjour ",
-                        'user' => $this->httpRequest->getUserSession()
+                        'messageLogin' => 'Bonjour ',
+                        'user' => $this->httpRequest->getUserSession(),
                     ]
                 );
             }
+
             return new HTTPResponse(
-                    $this->getPage(),
-                    ['messageLogin' => "Pseudo et/ou de mot de pas incorrect(s).", 'loginForm' => $loginForm ]
-                );
+                $this->getPage(),
+                ['messageLogin' => 'Pseudo et/ou de mot de pas incorrect(s).', 'loginForm' => $loginForm]
+            );
         }
-        
+
         // Build empty login form
         $login = new Login();
         $loginForm = $this->buildLoginForm($login);
@@ -56,7 +55,7 @@ final class LoginController extends AbstractController
     }
 
     /**
-     * Controller to logout : unset $_SESSION['user'] and display login page
+     * Controller to logout : unset $_SESSION['user'] and display login page.
      */
     public function executeLogout(): HTTPResponse
     {

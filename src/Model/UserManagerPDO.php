@@ -2,12 +2,12 @@
 
 namespace App\Model;
 
+use App\Entity\Form\Login;
+use App\Entity\User;
+use DateTime;
 use Exception;
 use PDO;
 use PDOStatement;
-use DateTime;
-use App\Entity\User;
-use App\Entity\Form\Login;
 
 /**
  * UserManagerPDO.
@@ -59,6 +59,7 @@ final class UserManagerPDO extends UserManager
         if (password_verify($login->getPassword(), $password)) {
             return true;
         }
+
         return false;
     }
 
@@ -85,7 +86,7 @@ final class UserManagerPDO extends UserManager
         $data['dateCreation'] = new DateTime($data['dateCreation']); // dateCreation must be instantiations of DateTime
         $user = new User($data);
         if (!$user->isValid()) {
-            throw new Exception('The user ' . $user->getPseudo() . ' with id='.$user->getId().' is not valid, at least one property is empty.');
+            throw new Exception('The user '.$user->getPseudo().' with id='.$user->getId().' is not valid, at least one property is empty.');
         }
 
         return $user;

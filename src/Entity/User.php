@@ -51,9 +51,9 @@ final class User extends Entity
      * @var int
      */
     private $enabled = 0;
-    
+
     /**
-     * role
+     * role.
      *
      * @var string
      */
@@ -211,22 +211,22 @@ final class User extends Entity
     }
 
     /**
-     * Get role
+     * Get role.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getRole(): string
     {
         return $this->role;
     }
 
     /**
-     * Set role
+     * Set role.
      *
-     * @param  string  $role  role
+     * @param string $role role
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setRole(string $role): self
     {
         $this->role = $role;

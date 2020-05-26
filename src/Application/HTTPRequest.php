@@ -51,7 +51,7 @@ final class HTTPRequest
     {
         return (!empty($_SESSION['user'])) ? $_SESSION['user'] : null;
     }
-    
+
     public function setUserSession(User $user): void
     {
         $_SESSION['user'] = $user;

@@ -29,11 +29,11 @@ final class PostController extends AbstractController
             $listComments = $commentManager->getValidComments($post->getId());
 
             return new HTTPResponse(
-                $this->getPage(), 
+                $this->getPage(),
                 [
                     'post' => $post,
                     'comments' => $listComments,
-                    'user' => $this->httpRequest->getUserSession()
+                    'user' => $this->httpRequest->getUserSession(),
                 ]
             );
         }

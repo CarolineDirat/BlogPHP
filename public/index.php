@@ -13,12 +13,11 @@ use App\Controller\PostController;
 
 $twigRenderer = new TwigRenderer('../templates');
 
-
 try {
     $match = false; // will be true if the rooter receive a route corresponding to a controller
     $action = 'show';
     $page = 'home';
-    $httpRequest = new HTTPRequest();//$httpRequest->unsetSession('user');
+    $httpRequest = new HTTPRequest(); //$httpRequest->unsetSession('user');
 
     if ('/' === $httpRequest->requestURI()) {
         $match = true;
@@ -59,9 +58,8 @@ try {
                 $action = '';
                 $controller = new LoginController($action, $page, $httpRequest);
                 $controller->execute()->send($twigRenderer);
-            
-            break;
 
+            break;
         }
     }
     if (!$match) {

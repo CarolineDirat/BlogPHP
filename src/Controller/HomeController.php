@@ -13,7 +13,7 @@ use Exception;
 use Gregwar\Captcha\CaptchaBuilder;
 
 final class HomeController extends AbstractController
-{    
+{
     /**
      * Controller to show the Home Page.
      */
@@ -26,11 +26,11 @@ final class HomeController extends AbstractController
 
         // Retrieve the captcha to insert it directly into the home.twig page:
         return new HTTPResponse(
-            $this->getPage(), 
+            $this->getPage(),
             [
-                'contactForm' => $contactForm, 
+                'contactForm' => $contactForm,
                 'captcha' => $captcha->build()->inline(),
-                'user' => $this->httpRequest->getUserSession()
+                'user' => $this->httpRequest->getUserSession(),
             ]
         );
     }
@@ -71,7 +71,7 @@ final class HomeController extends AbstractController
                     'captcha' => $captcha->build()->inline(),
                     'contactForm' => $contactForm,
                     'messageInfo' => 'Votre message a bien été envoyé.',
-                    'user' => $this->httpRequest->getUserSession()
+                    'user' => $this->httpRequest->getUserSession(),
                 ]
             );
         }
@@ -84,7 +84,7 @@ final class HomeController extends AbstractController
                 'captcha' => $captcha->build()->inline(),
                 'contactForm' => $contactForm,
                 'messageInfo' => "L'envoie du message a échoué, veuillez vérifier les champs du formulaire.",
-                'user' => $this->httpRequest->getUserSession()
+                'user' => $this->httpRequest->getUserSession(),
             ]
         );
     }

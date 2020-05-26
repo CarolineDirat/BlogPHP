@@ -17,27 +17,18 @@ abstract class UserManager extends Manager
      * method which returns the user's pseudo, corresponding to an identifier.
      */
     abstract public function getPseudo(int $id): string;
-    
+
     /**
-     * hasLogin
-     * 
-     * Checks if login(pseudo, password) is in database
+     * hasLogin.
      *
-     * @param  Login $login
-     * 
-     * @return bool
+     * Checks if login(pseudo, password) is in database
      */
     abstract public function hasLogin(Login $login): bool;
 
-    
     /**
-     * getUser
-     * 
-     * Get user object from pseudo in the database
+     * getUser.
      *
-     * @param  string $pseudo
-     * 
-     * @return User
+     * Get user object from pseudo in the database
      */
     abstract public function getUser(string $pseudo): User;
 }
