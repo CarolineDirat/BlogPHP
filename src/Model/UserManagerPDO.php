@@ -56,14 +56,14 @@ final class UserManagerPDO extends UserManager
             return false;
         }
         // checks password
-        if (password_verify($login->getPassword(), $password)) {
-            return true;
+        if (!empty($login->getPassword())) {
+            return password_verify($login->getPassword(), $password);
         }
-
+        
         return false;
     }
 
-    public function getUser(string $pseudo): User
+    public function getUser(?string $pseudo): User
     {
         if (!$this->dao instanceof PDO) {
             throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
