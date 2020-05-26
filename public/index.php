@@ -49,13 +49,7 @@ try {
             break;
             case 'login':
                 $match = true;
-                $controller = new LoginController($action, $page, $httpRequest);
-                $controller->execute()->send($twigRenderer);
-
-            break;
-            case 'logout':
-                $match = true;
-                $action = '';
+                $action = $httpRequest->getData('action');
                 $controller = new LoginController($action, $page, $httpRequest);
                 $controller->execute()->send($twigRenderer);
 
