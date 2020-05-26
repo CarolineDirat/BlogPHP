@@ -38,11 +38,6 @@ final class HTTPResponse
         $twigRenderer->render($this->getPage(), $this->getParams());
     }
 
-    public function redirectTo(string $location): void
-    {
-        header('Location: '.$location);
-    }
-
     public function getPage(): string
     {
         return $this->page;
