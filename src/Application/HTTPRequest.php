@@ -49,7 +49,7 @@ final class HTTPRequest
 
     public function getUserSession(): ?User
     {
-        return $_SESSION['user'];
+        return (!empty($_SESSION['user'])) ? $_SESSION['user'] : null;
     }
     
     public function setUserSession(User $user): void
