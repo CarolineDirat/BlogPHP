@@ -41,12 +41,6 @@ try {
                 $controller->execute()->send($twigRenderer);
 
             break;
-            case 'contact':
-                $match = true;
-                $controller = new HomeController($action, $page, $httpRequest);
-                $controller->execute()->send($twigRenderer);
-
-            break;
             case 'login':
                 $match = true;
                 $controller = new LoginController($action, $page, $httpRequest);

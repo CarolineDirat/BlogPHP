@@ -19,71 +19,63 @@ final class HomeController extends AbstractController
      */
     public function executeShowHome(): HTTPResponse
     {
-        $captcha = $this->initCaptchaCode();
-        // Initialize empty contact form
-        $contact = new Contact();
-        $contactForm = $this->buildContactForm($contact);
-
-        // Retrieve the captcha to insert it directly into the home.twig page:
-        return new HTTPResponse(
-            $this->getPage(),
-            [
-                'contactForm' => $contactForm,
-                'captcha' => $captcha->build()->inline(),
-                'user' => $this->httpRequest->getUserSession(),
-            ]
-        );
-    }
-
-    /**
-     * Controller to process the contact form.
-     */
-    public function executeProcessContact(): HTTPResponse
-    {
-        if ('POST' !== $this->httpRequest->method()) {
-            throw new Exception('Post data missing from the contact form');
-        }
-
-        // hydratation of Contact entity with POST data from contact form
-        $contact = new Contact([
-            'firstName' => $this->httpRequest->postData('firstName'),
-            'lastName' => $this->httpRequest->postData('lastName'),
-            'email1' => $this->httpRequest->postData('email1'),
-            'email2' => $this->httpRequest->postData('email2'),
-            'messageContact' => $this->httpRequest->postData('messageContact'),
-            'captchaPhrase' => $this->httpRequest->postData('captchaPhrase'),
-        ]);
-        // Build contact form
-        $contactForm = $this->buildContactForm($contact);
-        // The process with checks
-        $manager = new ContactManager();
-        $formHandler = new ContactFormHandler($contactForm, $manager, $this->httpRequest);
-        if ($formHandler->process()) {
-            // Build another empty contact form for the home page
-            $contact = new Contact();
+        // process contact form if POST data
+        if ('POST' === $this->httpRequest->method()) {
+            // hydratation of Contact entity with POST data from contact form
+            $contact = new Contact([
+                'firstName' => $this->httpRequest->postData('firstName'),
+                'lastName' => $this->httpRequest->postData('lastName'),
+                'email1' => $this->httpRequest->postData('email1'),
+                'email2' => $this->httpRequest->postData('email2'),
+                'messageContact' => $this->httpRequest->postData('messageContact'),
+                'captchaPhrase' => $this->httpRequest->postData('captchaPhrase'),
+            ]);
+            // Build contact form
             $contactForm = $this->buildContactForm($contact);
-            // new captcha code
-            $captcha = $this->initCaptchaCode();
+            // The process with checks
+            $manager = new ContactManager();
+            $formHandler = new ContactFormHandler($contactForm, $manager, $this->httpRequest);
+            if ($formHandler->process()) {
+                // Build another empty contact form for the home page
+                $contact = new Contact();
+                $contactForm = $this->buildContactForm($contact);
+                // new captcha code
+                $captcha = $this->initCaptchaCode();
+
+                return new HTTPResponse(
+                    'home',
+                    [
+                        'captcha' => $captcha->build()->inline(),
+                        'contactForm' => $contactForm,
+                        'messageInfo' => 'Votre message a bien été envoyé.',
+                        'user' => $this->httpRequest->getUserSession(),
+                    ]
+                );
+            }
+            // else, if process failed, display pre-filled contact form with warning messages
+            $captcha = $this->initCaptchaCode(); // new captcha code
 
             return new HTTPResponse(
                 'home',
                 [
                     'captcha' => $captcha->build()->inline(),
                     'contactForm' => $contactForm,
-                    'messageInfo' => 'Votre message a bien été envoyé.',
+                    'messageInfo' => "L'envoie du message a échoué, veuillez vérifier les champs du formulaire.",
                     'user' => $this->httpRequest->getUserSession(),
                 ]
             );
         }
-        // new captcha code
-        $captcha = $this->initCaptchaCode();
+        // Else, if there is not POST data, display home page with empty contact form
+        $captcha = $this->initCaptchaCode(); // new captcha code
+        // Initialize empty contact form
+        $contact = new Contact();
+        $contactForm = $this->buildContactForm($contact);
 
         return new HTTPResponse(
-            'home',
+            $this->getPage(),
             [
-                'captcha' => $captcha->build()->inline(),
                 'contactForm' => $contactForm,
-                'messageInfo' => "L'envoie du message a échoué, veuillez vérifier les champs du formulaire.",
+                'captcha' => $captcha->build()->inline(),
                 'user' => $this->httpRequest->getUserSession(),
             ]
         );
