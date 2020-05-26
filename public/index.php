@@ -57,8 +57,8 @@ try {
             case 'logout':
                 $match = true;
                 $action = '';
-                $controller = new HomeController($action, $page, $httpRequest);
-                $controller->execute()->redirectTo('/');
+                $controller = new LoginController($action, $page, $httpRequest);
+                $controller->execute()->send($twigRenderer);
             
             break;
 

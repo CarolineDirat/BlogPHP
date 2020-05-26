@@ -15,16 +15,6 @@ use Gregwar\Captcha\CaptchaBuilder;
 final class HomeController extends AbstractController
 {    
     /**
-     * Controller to logout : unset $_SESSION['user']
-     */
-    public function executeLogout(): HTTPResponse
-    {
-        $this->httpRequest->unsetSession('user');
-        return new HTTPResponse('home');
-    }
-    
-    
-    /**
      * Controller to show the Home Page.
      */
     public function executeShowHome(): HTTPResponse
