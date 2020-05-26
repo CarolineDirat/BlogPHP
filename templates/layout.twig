@@ -117,26 +117,28 @@
     <!-- Footer -->
     <footer class="text-center">
         <div class="footer-menu">
-            <ul class="nav navbar-custom justify-content-center">
-                {% if user %}
-                    <li class="nav-item">
-                        <a href="/logout"><button type="button" class="btn btn-menu btn-success">Se déconnecter</button></a>
-                    </li>
-                    {% if 'admin' == user.role %}
+            <nav>
+                <ul class="nav navbar-custom justify-content-center">
+                    {% if user %}
+                        {% if 'admin' == user.role %}
+                            <li class="nav-item">
+                                <a href="/admin" class="nav-link"><button type="button" class="btn btn-menu btn-success">Admin</button></a>
+                            </li>
+                        {% endif %}
                         <li class="nav-item">
-                            <a href="/admin"><button type="button" class="btn btn-menu btn-success">Admin</button></a>
+                            <a href="/logout" class="nav-link"><button type="button" class="btn btn-menu btn-success">Se déconnecter</button></a>
                         </li>
-                    {% endif %}
-                {% else %}
-                    {% block footerConnectionButton %}
+                    {% else %}
+                        {% block footerConnectionButton %}
                             <li class="nav-item">
                                 <a class="nav-link" href="/login">
                                     <button type="button" class="btn btn-menu btn-success">Se connecter</button>
                                 </a>
                             </li>
-                    {% endblock %}
-                {% endif %}
-            </ul>
+                        {% endblock %}
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
         <div class="footer-below">
             <div class="container">
