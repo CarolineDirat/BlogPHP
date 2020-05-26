@@ -56,10 +56,9 @@ try {
             break;
             case 'logout':
                 $match = true;
-                $httpRequest->unsetSession('user');
-                $page = 'home';
+                $action = '';
                 $controller = new HomeController($action, $page, $httpRequest);
-                $controller->execute()->send($twigRenderer);
+                $controller->execute()->redirectTo('/');
             
             break;
 
