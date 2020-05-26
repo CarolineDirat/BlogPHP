@@ -33,7 +33,7 @@
                         {% else %}
                             <p class="text-center bg-warning">
                         {% endif %}
-                        {{ messageLogin }}
+                        {{ messageLogin|nl2br }}
                         {% if user %}
                             <span>{{ user.pseudo }}</span>{{ " ! Vous êtes connecté :) " }}
                         {% endif %}
