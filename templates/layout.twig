@@ -58,7 +58,20 @@
                     <li class="page-scroll">
                         <a href={% block contactLink %}"#web"{% endblock %}>Contact</a>
                     </li>
-                    {% if not user %}
+                    {% if user %}
+                        <li class="nav-item">
+                            <a href="/logout" class="nav-link">
+                                <button type="button" class="btn btn-menu btn-success">Se déconnecter</button>
+                            </a>
+                        </li>
+                        {% if 'admin' == user.role %}
+                            <li class="nav-item">
+                                <a href="/admin" class="nav-link">
+                                    <button type="button" class="btn btn-menu btn-success">Admin</button>
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% else %}
                         <li class="page-scroll">
                             <a href="#">S'inscrire</a>
                         </li>
@@ -94,15 +107,24 @@
     <footer class="text-center">
         <div class="footer-menu">
             <ul class="nav navbar-custom justify-content-center">
-                {% block footerConnectionButton %}
-                    {% if not user %}
+                {% if user %}
+                    <li class="nav-item">
+                        <a href="/logout"><button type="button" class="btn btn-menu btn-success">Se déconnecter</button></a>
+                    </li>
+                    {% if 'admin' == user.role %}
                         <li class="nav-item">
-                            <a class="nav-link" href="/login">
-                                <button type="button" class="btn btn-menu btn-success">Se connecter</button>
-                            </a>
+                            <a href="/admin"><button type="button" class="btn btn-menu btn-success">Admin</button></a>
                         </li>
                     {% endif %}
-                {% endblock %}
+                {% else %}
+                    {% block footerConnectionButton %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">
+                                    <button type="button" class="btn btn-menu btn-success">Se connecter</button>
+                                </a>
+                            </li>
+                    {% endblock %}
+                {% endif %}
             </ul>
         </div>
         <div class="footer-below">

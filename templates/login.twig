@@ -10,22 +10,7 @@
 
 {% block contactLink %}"/#web"{% endblock %}
 
-{% block headerConnectionButton %}
-    {% if user %}
-    <li class="nav-item">
-        <a href="/logout" class="nav-link">
-            <button type="button" class="btn btn-menu btn-success">Se déconnecter</button>
-        </a>
-    </li>
-    {% endif %}
-    {% if 'admin' == user.role %}
-    <li class="nav-item">
-        <a href="/admin" class="nav-link">
-            <button type="button" class="btn btn-menu btn-success">Admin</button>
-        </a>
-    </li>
-    {% endif %}
-{% endblock %}
+{% block headerConnectionButton %}{% endblock %}
 
 
 {% block view %}
@@ -96,17 +81,6 @@
     </div>  
 {% endblock %}
 
-{% block footerConnectionButton %}
-    {% if user %}
-        <li class="nav-item">
-            <a href="/logout"><button type="button" class="btn btn-menu btn-success">Se déconnecter</button></a>
-        </li>
-    {% endif %}
-    {% if 'admin' == user.role %}
-        <li class="nav-item">
-            <a href="/admin"><button type="button" class="btn btn-menu btn-success">Admin</button></a>
-        </li>
-    {% endif %}
-{% endblock %}
+{% block footerConnectionButton %}{% endblock %}
 
 {% block themeJS %}../../{{ parent() }}{% endblock %}
