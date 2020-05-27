@@ -1,0 +1,53 @@
+<?php
+
+namespace App\FormHandler;
+
+use App\Application\Form\Form;
+use App\Application\Form\FormHandler;
+use App\Application\HTTPRequest;
+use App\Entity\Comment;
+use App\Model\CommentManagerPDO;
+use Exception;
+
+class CommentFormHandler extends FormHandler
+{
+    private CommentManagerPDO $manager;
+
+    public function __construct(Form $form, CommentManagerPDO $manager, HTTPRequest $httpRequest)
+    {
+        parent::__construct($form, $httpRequest);
+        $this->setManager($manager);
+    }
+
+    /**
+     * process
+     * 
+     * check form validity, then if it's ok, save the comment in database
+     *
+     * @return bool
+     */
+    public function process(): bool
+    {
+        $comment = $this->form->getEntity();
+        if ($comment instanceof Comment && $this->form->isValid()) {
+            if ($this->manager->save($comment)) {
+                return true;
+            }
+            throw new Exception("Saving the comment failed.");
+        }
+        return false;
+        
+    }
+
+    /**
+     * Set the value of manager
+     *
+     * @return  self
+     */ 
+    public function setManager(CommentManagerPDO $manager): self
+    {
+        $this->manager = $manager;
+
+        return $this;
+    }
+}

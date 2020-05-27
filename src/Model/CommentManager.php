@@ -37,9 +37,9 @@ abstract class CommentManager extends Manager
      * Method to add a comment in database
      *
      * @param  Comment $comment
-     * @return void
+     * @return bool
      */
-    abstract public function add(Comment $comment): void;
+    abstract public function add(Comment $comment): bool;
         
     /**
      * modify
@@ -47,9 +47,9 @@ abstract class CommentManager extends Manager
      * Method to modify a comment in database
      *
      * @param  Comment $comment
-     * @return void
+     * @return bool
      */
-    abstract public function modify(Comment $comment): void;
+    abstract public function modify(Comment $comment): bool;
     
     /**
      * save
@@ -59,12 +59,16 @@ abstract class CommentManager extends Manager
      * - modify it if it isn't new
      *
      * @param  Comment $comment
-     * @return void
+     * @return bool
      */
-    public function save(Comment $comment): void
+    public function save(Comment $comment): bool
     {
         if ($comment->isValid()) {
-            $comment->isNew() ? $this->add($comment) : $this->modify($comment);
+            if ($comment->isNew()) {
+                return $this->add($comment);
+            }
+              
+            return $this->modify($comment);
         } else {
             throw new Exception("The comment must be valid to be saved.");
         }

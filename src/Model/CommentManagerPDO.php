@@ -111,9 +111,9 @@ final class CommentManagerPDO extends CommentManager
      * Method to add a comment in database
      *
      * @param  Comment $comment
-     * @return void
+     * @return bool
      */
-    public function add(Comment $comment): void
+    public function add(Comment $comment): bool
     {
         if (!$this->dao instanceof PDO) {
             throw new Exception('commentManangerPDO must use an instance of PDO to connect to a MySQL database');
@@ -133,9 +133,11 @@ final class CommentManagerPDO extends CommentManager
         $req->bindValue(':permit', 'waiting', PDO::PARAM_STR);
         $req->bindValue(':idPost', $comment->getIdPost(), PDO::PARAM_INT);
         $req->bindValue(':idUser', $comment->getIdUser(), PDO::PARAM_INT);
-        $req->execute();
+        $result = $req->execute();
         $req->closeCursor();
         //$comment->setId($this->dao->lastInsertId());
+
+        return $result;
     }
 
     /**
@@ -144,9 +146,9 @@ final class CommentManagerPDO extends CommentManager
      * Method to modify a comment in database
      *
      * @param  Comment $comment
-     * @return void
+     * @return bool
      */
-    public function modify(Comment $comment): void
+    public function modify(Comment $comment): bool
     {
         if (!$this->dao instanceof PDO) {
             throw new Exception('commentManangerPDO must use an instance of PDO to connect to a MySQL database');
@@ -165,7 +167,9 @@ final class CommentManagerPDO extends CommentManager
         }
         $req->bindValue(':content', $comment->getContent(), PDO::PARAM_STR);
         $req->bindValue(':permit', $comment->getPermit(), PDO::PARAM_STR);
-        $req->execute();
+        $result = $req->execute();
         $req->closeCursor();
+
+        return $result;
     }
 }
