@@ -8,7 +8,7 @@ use App\Application\HTTPResponse;
 use App\Entity\Form\Contact;
 use App\FormBuilder\ContactFormBuilder;
 use App\FormHandler\ContactFormHandler;
-use App\Model\Form\ContactManager;
+use App\Model\Email\ContactEmailManager;
 use Exception;
 use Gregwar\Captcha\CaptchaBuilder;
 
@@ -33,7 +33,7 @@ final class HomeController extends AbstractController
             // Build contact form
             $contactForm = $this->buildContactForm($contact);
             // The process with checks
-            $manager = new ContactManager();
+            $manager = new ContactEmailManager();
             $formHandler = new ContactFormHandler($contactForm, $manager, $this->httpRequest);
             if ($formHandler->process()) {
                 // Build another empty contact form for the home page
