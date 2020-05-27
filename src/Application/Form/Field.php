@@ -27,9 +27,9 @@ abstract class Field
      *
      * text in label tag
      *
-     * @var string
+     * @var ?string
      */
-    protected string $textLabel;
+    protected ?string $textLabel = null;
 
     /**
      * tag.
@@ -124,7 +124,7 @@ abstract class Field
     /**
      * Get textLabel.
      */
-    public function getTextLabel(): string
+    public function getTextLabel(): ?string
     {
         return $this->textLabel;
     }
