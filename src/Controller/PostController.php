@@ -21,6 +21,7 @@ final class PostController extends AbstractController
         $httpRequest = $this->getHTTPRequest();
 
         if ($httpRequest->hasGet('id') && $httpRequest->hasGet('slug')) {
+            // connexion to the database
             $dao = PDOSingleton::getInstance()->getConnexion();
             // get the post from the id, with its author's pseudo
             $postManager = new PostManagerPDO($dao);
