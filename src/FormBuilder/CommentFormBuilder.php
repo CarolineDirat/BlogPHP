@@ -18,9 +18,9 @@ final class CommentFormBuilder extends FormBuilder
     public function build(): void
     {
         $this->form->addField(new TextareaField([
-                'name' => 'Comment',
-                'idField' => 'Comment',
-                'placeholder' => 'Comment',
+                'name' => 'content',
+                'idField' => 'content',
+                'placeholder' => 'Un commentaire ?',
                 'required' => 'required',
                 'rows' => 8,
                 'validators' => [
