@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div id="comments">
-                            <h3> 
+                            <h2> 
                                 Commentaires 
                                 {% if not user %}
                                     <a href="/login" class="nav-link">
@@ -45,18 +45,29 @@
                                         </button>
                                     </a>
                                 {% endif %}
-                            </h3>
+                            </h2>
                             {% if user %}
+                                <p class="comment-content">
+                                    <span class="label label-success">{{ user.pseudo }}</span>
+                                </p>
                                 <div id="comment-form">
                                     <form name="contactForm" id="contactForm"  method="post" action="/">                  
                                         <div class="row control-group">
                                             <div class="form-group col-12 controls">
                                                 {{ fieldBuilder(commentForm.fields.content, ['placeholder','required', 'rows'], 'form-control') }}
-                                                <p class="help-block text-danger"></p>
                                             </div>
+                                            <p class="text-danger">
+                                                Ce commentaire sera soumis à validation avant de pouvoir être affiché.
+                                            </p>
                                         </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-12">
+                                                <button type="submit" class="btn btn-success">Envoyer le commentaire</button>
+                                            </div>
+                                        </div> 
                                     </form>
-                                </div> 
+                                </div>
+                                
                             {% endif %}                  
                             {% for comment in comments %}
                                     <p class="comment-author-date"> {{ comment.author }} - {{ comment.dateCreation|date("d/m/Y") }}</p>

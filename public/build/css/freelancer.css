@@ -120,11 +120,14 @@ header .intro-text .skills {
     font-size: 1.75em;
   }
 }
-.alert{
+.alert {
   margin-bottom: 0px;
 }
-.exception{
+.exception {
   margin-bottom: 50px !important;
+}
+.label-success {
+  background-color: rgb(44, 62, 80);
 }
 .navbar-custom {
   background: #2C3E50;
@@ -220,7 +223,19 @@ section.success {
     padding-top: 75px;
   }
 }
-#comments h3 {
+#comment-form div.form-group button {
+  margin-left: 0px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+#comment-form div.form-group {
+  margin-bottom: 0px;
+}
+#comment-form p {
+  font-size: 17px;
+  margin-left: 5px;
+}
+#comments h2 {
   margin-bottom: 30px !important;
 }
 #comments button {
