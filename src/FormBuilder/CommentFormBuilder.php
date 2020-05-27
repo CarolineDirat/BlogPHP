@@ -20,7 +20,7 @@ final class CommentFormBuilder extends FormBuilder
         $this->form->addField(new TextareaField([
                 'name' => 'content',
                 'idField' => 'content',
-                'placeholder' => 'Un commentaire ?',
+                'placeholder' => '... ici pour écrire le commentaire ...',
                 'required' => 'required',
                 'rows' => 8,
                 'validators' => [
