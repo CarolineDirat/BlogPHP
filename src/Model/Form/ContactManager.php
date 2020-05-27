@@ -28,6 +28,6 @@ class ContactManager
             return true;
         }
 
-        throw new Exception("L'envoie du mail a échoué :".$mail->ErrorInfo);
+        throw new Exception("Sending email failed:".$mail->ErrorInfo);
     }
 }
