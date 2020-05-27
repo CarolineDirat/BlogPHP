@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Application\Entity;
 use DateTime;
+use InvalidArgumentException;
 
 /**
  * User.
@@ -50,7 +51,7 @@ final class User extends Entity
      *
      * @var int
      */
-    private $enabled = 0;
+    private $enabled = 1;
 
     /**
      * role.
@@ -61,7 +62,7 @@ final class User extends Entity
 
     public function isEnabled(): bool
     {
-        if (1 === $this->getEnabled()) {
+        if (2 === $this->getEnabled()) {
             return true;
         }
 
@@ -205,9 +206,12 @@ final class User extends Entity
      */
     public function setEnabled(int $enabled): self
     {
-        $this->enabled = $enabled;
+        if (in_array($enabled, [1,2], true)) {
+            $this->enabled = $enabled;
 
-        return $this;
+            return $this;
+        }
+        throw new InvalidArgumentException('User $enabled property must be equal to 1 or 2.');
     }
 
     /**

@@ -34,11 +34,29 @@ final class LoginController extends AbstractController
             $manager = new UserManagerPDO(PDOSingleton::getInstance()->getConnexion());
             $formHandler = new LoginFormHandler($loginForm, $manager, $this->httpRequest);
             if ($formHandler->process()) {
+                // check if user is enabled : 
+                $user = $this->httpRequest->getUserSession();
+                if (!$user->isEnabled()) {
+                    // $_SESSION['user'] is unset if user is not enabled
+                    $this->httpRequest->unsetSession('user');
+                    // Build empty login form
+                    $login = new Login();
+                    $loginForm = $this->buildLoginForm($login);
+                    
+                    return new HTTPResponse(
+                        $this->getPage(),
+                        [
+                            'loginForm' => $loginForm,
+                            'messageLogin' => "Votre compte n'est pas encore activé ! \n Veuillez vérifier vos emails, un mail vous a été envoyé pour l'activer."
+                        ]
+                    );
+                }
+
                 return new HTTPResponse(
                     $this->getPage(),
                     [
                         'messageLogin' => "Bonjour ",
-                        'user' => $this->httpRequest->getUserSession()
+                        'user' => $user
                     ]
                 );
             }
