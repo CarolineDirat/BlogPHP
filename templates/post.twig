@@ -54,7 +54,7 @@
                                     <form name="contactForm" id="contactForm"  method="post" action="/">                  
                                         <div class="row control-group">
                                             <div class="form-group col-12 controls">
-                                                {{ fieldBuilder(commentForm.fields.content, ['placeholder','required', 'rows'], 'form-control') }}
+                                                {{ fieldBuilder(commentForm.fields.content, ['placeholder', 'maxlength','required', 'rows'], 'form-control') }}
                                             </div>
                                             <p class="text-danger">
                                                 Ce commentaire sera soumis à validation avant de pouvoir être affiché.
