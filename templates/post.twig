@@ -51,7 +51,7 @@
                                     <span class="label label-success">{{ user.pseudo }}</span>
                                 </p>
                                 <div id="comment-form">
-                                    <form name="contactForm" id="contactForm"  method="post" action="/">                  
+                                    <form name="contactForm" id="contactForm"  method="post" action={{"/post/#{post.id}/#{post.slug}"}}>                  
                                         <div class="row control-group">
                                             <div class="form-group col-12 controls">
                                                 {{ fieldBuilder(commentForm.fields.content, ['placeholder', 'maxlength','required', 'rows'], 'form-control') }}
