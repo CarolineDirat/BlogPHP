@@ -17,10 +17,11 @@ final class CommentFormBuilder extends FormBuilder
 {
     public function build(): void
     {
+        // one textarea field for the content of a comment
         $this->form->addField(new TextareaField([
                 'name' => 'content',
                 'idField' => 'content',
-                'placeholder' => '... ici pour écrire le commentaire ...',
+                'placeholder' => '... ici pour écrire un commentaire ...',
                 'required' => 'required',
                 'rows' => 8,
                 'validators' => [
