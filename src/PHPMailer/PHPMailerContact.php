@@ -33,8 +33,9 @@ class PHPMailerContact extends PHPMailerApp
     public function sendEmail(array $params): bool
     {
         // We check that the $params array has the right keys
-        foreach ($params as $key => $value) {
-            if (!in_array($key, ['recipient', 'firstName', 'lastName', 'email', 'messageContact'], true)) {
+        $keys = array_keys($params);
+        foreach ($keys as $value) {
+            if (!in_array($value, ['recipient', 'firstName', 'lastName', 'email', 'messageContact'], true)) {
                 throw new InvalidArgumentException('The params data array passed to sendEmail(params) method is not valid.');
             }
         }
