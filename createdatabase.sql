@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `email` varchar(254) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_creation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `activation_key` char(40) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `enabled` tinyint(1) DEFAULT 0 NOT NULL,
+  `enabled` tinyint(1) DEFAULT 1 NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

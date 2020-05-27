@@ -23,7 +23,7 @@ final class Comment extends Entity
      *
      * @var string
      */
-    private string $content;
+    private ?string $content = null;
 
     /**
      * dateCreation.
@@ -87,9 +87,9 @@ final class Comment extends Entity
     /**
      * Get content.
      *
-     * @return string
+     * @return ?string
      */
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }
