@@ -7,7 +7,9 @@ use App\Application\HTTPResponse;
 use App\Application\PDOSingleton;
 use App\Model\CommentManagerPDO;
 use App\Model\PostManagerPDO;
-use Âpp\Entity\Post;
+use App\Entity\Post;
+use App\Entity\Comment;
+use App\FormBuilder\CommentFormBuilder;
 
 final class PostController extends AbstractController
 {
@@ -23,7 +25,11 @@ final class PostController extends AbstractController
             // get the post from the id, with its author's pseudo
             $postManager = new PostManagerPDO($dao);
             $post = $postManager->getPost((int) $httpRequest->getData('id'));
-
+            // build comment form
+            $comment = new Comment();
+            $formBuilder = new CommentFormBuilder($comment);
+            $formBuilder->build();
+            $commentForm = $formBuilder->getForm();
             // get list of post's comments
             $commentManager = new CommentManagerPDO($dao);
             $listComments = $commentManager->getValidComments($post->getId());
@@ -34,6 +40,7 @@ final class PostController extends AbstractController
                     'post' => $post,
                     'comments' => $listComments,
                     'user' => $this->httpRequest->getUserSession(),
+                    'commentForm' => $commentForm
                 ]
             );
         }
