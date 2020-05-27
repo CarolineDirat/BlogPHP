@@ -45,7 +45,19 @@
                                         </button>
                                     </a>
                                 {% endif %}
-                            </h3>                        
+                            </h3>
+                            {% if user %}
+                                <div id="comment-form">
+                                    <form name="contactForm" id="contactForm"  method="post" action="/">                  
+                                        <div class="row control-group">
+                                            <div class="form-group col-12 controls">
+                                                {{ fieldBuilder(commentForm.fields.content, ['placeholder','required', 'rows'], 'form-control') }}
+                                                <p class="help-block text-danger"></p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div> 
+                            {% endif %}                  
                             {% for comment in comments %}
                                     <p class="comment-author-date"> {{ comment.author }} - {{ comment.dateCreation|date("d/m/Y") }}</p>
                                     <p class="text-justify comment-content">{{ comment.content|nl2br }}</p>
