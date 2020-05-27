@@ -2,8 +2,8 @@
 
 namespace App\Model\Email;
 
-use App\PHPMailer\PHPMailerContact;
 use App\Entity\Form\Contact;
+use App\PHPMailer\PHPMailerContact;
 use Exception;
 
 /**
@@ -21,12 +21,12 @@ class ContactEmailManager
             'firstName' => $contact->getFirstName(),
             'lastName' => $contact->getLastName(),
             'email' => $contact->getEmail1(),
-            'messageContact' => $contact->getMessageContact()
+            'messageContact' => $contact->getMessageContact(),
         ];
         if ($mail->sendEmail($params)) {
             return true;
         }
 
-        throw new Exception("Sending email failed:".$mail->ErrorInfo);
+        throw new Exception('Sending email failed:'.$mail->ErrorInfo);
     }
 }

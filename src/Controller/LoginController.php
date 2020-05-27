@@ -11,7 +11,6 @@ use App\FormBuilder\LoginFormBuilder;
 use App\FormHandler\LoginFormHandler;
 use App\Model\UserManagerPDO;
 
-
 final class LoginController extends AbstractController
 {
     /**
@@ -23,18 +22,17 @@ final class LoginController extends AbstractController
             $login = new Login([
                 'username' => $this->httpRequest->postData('username'),
                 'pseudo' => $this->httpRequest->postData('pseudo'),
-                'password' => $this->httpRequest->postData('password')
+                'password' => $this->httpRequest->postData('password'),
             ]);
             $loginForm = $this->buildLoginForm($login);
             // check honeypot
-            if(!empty($login->getUsername()))
-            {
+            if (!empty($login->getUsername())) {
                 return new HTTPResponse($this->getPage(), ['loginForm' => $loginForm]);
             }
             $manager = new UserManagerPDO(PDOSingleton::getInstance()->getConnexion());
             $formHandler = new LoginFormHandler($loginForm, $manager, $this->httpRequest);
             if ($formHandler->process()) {
-                // check if user is enabled : 
+                // check if user is enabled :
                 $user = $this->httpRequest->getUserSession();
                 if (!$user->isEnabled()) {
                     // $_SESSION['user'] is unset if user is not enabled
@@ -42,12 +40,12 @@ final class LoginController extends AbstractController
                     // Build empty login form
                     $login = new Login();
                     $loginForm = $this->buildLoginForm($login);
-                    
+
                     return new HTTPResponse(
                         $this->getPage(),
                         [
                             'loginForm' => $loginForm,
-                            'messageLogin' => "Votre compte n'est pas encore activé ! \n Veuillez vérifier vos emails, un mail vous a été envoyé pour l'activer."
+                            'messageLogin' => "Votre compte n'est pas encore activé ! \n Veuillez vérifier vos emails, un mail vous a été envoyé pour l'activer.",
                         ]
                     );
                 }
@@ -55,17 +53,18 @@ final class LoginController extends AbstractController
                 return new HTTPResponse(
                     $this->getPage(),
                     [
-                        'messageLogin' => "Bonjour ",
-                        'user' => $user
+                        'messageLogin' => 'Bonjour ',
+                        'user' => $user,
                     ]
                 );
             }
+
             return new HTTPResponse(
-                    $this->getPage(),
-                    ['messageLogin' => "Pseudo et/ou de mot de pas incorrect(s).", 'loginForm' => $loginForm ]
-                );
+                $this->getPage(),
+                ['messageLogin' => 'Pseudo et/ou de mot de pas incorrect(s).', 'loginForm' => $loginForm]
+            );
         }
-        
+
         // Build empty login form
         $login = new Login();
         $loginForm = $this->buildLoginForm($login);
@@ -74,7 +73,7 @@ final class LoginController extends AbstractController
     }
 
     /**
-     * Controller to logout : unset $_SESSION['user'] and display login page
+     * Controller to logout : unset $_SESSION['user'] and display login page.
      */
     public function executeLogoutLogin(): HTTPResponse
     {

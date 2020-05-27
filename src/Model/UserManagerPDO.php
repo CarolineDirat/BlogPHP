@@ -59,7 +59,7 @@ final class UserManagerPDO extends UserManager
         if (!empty($login->getPassword())) {
             return password_verify($login->getPassword(), $password);
         }
-        
+
         return false;
     }
 

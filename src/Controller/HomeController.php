@@ -9,7 +9,6 @@ use App\Entity\Form\Contact;
 use App\FormBuilder\ContactFormBuilder;
 use App\FormHandler\ContactFormHandler;
 use App\Model\Email\ContactEmailManager;
-use Exception;
 use Gregwar\Captcha\CaptchaBuilder;
 
 final class HomeController extends AbstractController

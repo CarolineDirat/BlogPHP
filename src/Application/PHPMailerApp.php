@@ -32,9 +32,9 @@ abstract class PHPMailerApp extends PHPMailer
      * Create a message (from the string data contained in the $param array)
      * and send it with $this->send() method
      *
-     * @param string[] $params  ex: $recipient, data from a form, etc...
+     * @param string[] $params ex: $recipient, data from a form, etc...
      *
-     * @return bool             false on error - See the ErrorInfo property for details of the error
+     * @return bool false on error - See the ErrorInfo property for details of the error
      */
     abstract public function sendEmail(array $params): bool;
 }

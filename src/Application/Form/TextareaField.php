@@ -38,9 +38,9 @@ class TextareaField extends Field
      * @var ?int
      */
     private ?int $cols;
-    
+
     /**
-     * maxlength
+     * maxlength.
      *
      * @var ?int
      */
@@ -148,22 +148,22 @@ class TextareaField extends Field
     }
 
     /**
-     * Get maxlength
+     * Get maxlength.
      *
-     * @return  ?int
-     */ 
+     * @return ?int
+     */
     public function getMaxlength(): ?int
     {
         return $this->maxlength;
     }
 
     /**
-     * Set maxlength
+     * Set maxlength.
      *
-     * @param  ?int  $maxlength  maxlength
+     * @param ?int $maxlength maxlength
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setMaxlength(?int $maxlength): self
     {
         if ($maxlength > 0) {

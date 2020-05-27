@@ -206,11 +206,12 @@ final class User extends Entity
      */
     public function setEnabled(int $enabled): self
     {
-        if (in_array($enabled, [1,2], true)) {
+        if (in_array($enabled, [1, 2], true)) {
             $this->enabled = $enabled;
 
             return $this;
         }
+
         throw new InvalidArgumentException('User $enabled property must be equal to 1 or 2.');
     }
 

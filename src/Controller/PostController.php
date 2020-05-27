@@ -5,11 +5,11 @@ namespace App\Controller;
 use App\Application\AbstractController;
 use App\Application\HTTPResponse;
 use App\Application\PDOSingleton;
+use App\Entity\Comment;
+use App\Entity\Post;
+use App\FormBuilder\CommentFormBuilder;
 use App\Model\CommentManagerPDO;
 use App\Model\PostManagerPDO;
-use App\Entity\Post;
-use App\Entity\Comment;
-use App\FormBuilder\CommentFormBuilder;
 
 final class PostController extends AbstractController
 {
@@ -41,7 +41,7 @@ final class PostController extends AbstractController
                     'post' => $post,
                     'comments' => $listComments,
                     'user' => $this->httpRequest->getUserSession(),
-                    'commentForm' => $commentForm
+                    'commentForm' => $commentForm,
                 ]
             );
         }
