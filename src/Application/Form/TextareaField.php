@@ -38,6 +38,13 @@ class TextareaField extends Field
      * @var ?int
      */
     private ?int $cols;
+    
+    /**
+     * maxlength
+     *
+     * @var ?int
+     */
+    private ?int $maxlength;
 
     public function __construct(array $options = [])
     {
@@ -138,5 +145,33 @@ class TextareaField extends Field
         }
 
         throw new InvalidArgumentException('$cols property must be an integer greater than 0');
+    }
+
+    /**
+     * Get maxlength
+     *
+     * @return  ?int
+     */ 
+    public function getMaxlength(): ?int
+    {
+        return $this->maxlength;
+    }
+
+    /**
+     * Set maxlength
+     *
+     * @param  ?int  $maxlength  maxlength
+     *
+     * @return  self
+     */ 
+    public function setMaxlength(?int $maxlength): self
+    {
+        if ($maxlength > 0) {
+            $this->maxlength = $maxlength;
+
+            return $this;
+        }
+
+        throw new InvalidArgumentException('$maxlength property must be an integer greater than 0');
     }
 }
