@@ -38,11 +38,13 @@
                         <div id="comments">
                             <h3> 
                                 Commentaires 
-                                <a href="/login" class="nav-link">
-                                    <button type="button" class="btn btn-menu btn-success">
-                                        Me connecter pour commenter
-                                    </button>
-                                </a>
+                                {% if not user %}
+                                    <a href="/login" class="nav-link">
+                                        <button type="button" class="btn btn-menu btn-success">
+                                            Me connecter pour commenter
+                                        </button>
+                                    </a>
+                                {% endif %}
                             </h3>                        
                             {% for comment in comments %}
                                     <p class="comment-author-date"> {{ comment.author }} - {{ comment.dateCreation|date("d/m/Y") }}</p>

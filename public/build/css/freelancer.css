@@ -244,7 +244,7 @@ section.success {
 #comments-footer {
   height: 50px;
 }
-#login button {
+#login button.btn-login {
   margin-top: 30px;
 }
 #login h2 {
@@ -284,6 +284,15 @@ section.success {
   #messageInfo {
     padding-top: 50px;
   }
+}
+#message-login p{
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 50px;
+}
+#message-login span {
+  font-weight: bold;
+  color: #18BC9C;
 }
 #portfolio{
   margin-top: 100px;

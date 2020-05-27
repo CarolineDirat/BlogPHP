@@ -97,7 +97,7 @@ final class CommentManagerPDO extends CommentManager
                 $data['dateCreation'] = new DateTime($data['dateCreation']); // dateCreation must be an instantiation of DateTime
                 $comment = new comment($data);
                 if (!$comment->isValid()) {
-                    throw new Exception('The comment with id='.$comment->getId().' is not valid, one property is empty.');
+                    throw new Exception('The comment with id='.$comment->getId().' is not valid, at least one property is empty.');
                 }
                 $listComments[] = $comment;
             }

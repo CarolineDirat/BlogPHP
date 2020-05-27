@@ -1,9 +1,9 @@
 <?php
 
-session_start();
-
 require_once '../vendor/autoload.php';
 require_once '../config/config.php';
+
+session_start();
 
 use App\Application\HTTPRequest;
 use App\Application\TwigRenderer;
@@ -17,7 +17,7 @@ try {
     $match = false; // will be true if the rooter receive a route corresponding to a controller
     $action = 'show';
     $page = 'home';
-    $httpRequest = new HTTPRequest();
+    $httpRequest = new HTTPRequest(); //$httpRequest->unsetSession('user');
 
     if ('/' === $httpRequest->requestURI()) {
         $match = true;
@@ -27,32 +27,26 @@ try {
 
     if ($httpRequest->hasGET('page')) {
         $page = $httpRequest->getData('page');
+        $action = $httpRequest->getData('action');
         switch ($page) {
             case 'post':
                 $match = true;
                 $controller = new PostController($action, $page, $httpRequest);
                 $controller->execute()->send($twigRenderer);
 
-                break;
+            break;
             case 'blog':
                 $match = true;
                 $controller = new PostController($action, $page, $httpRequest);
                 $controller->execute()->send($twigRenderer);
 
-                break;
-            case 'contact':
-                    $match = true;
-                    $action = 'process';
-                    $controller = new HomeController($action, $page, $httpRequest);
-                    $controller->execute()->send($twigRenderer);
-
-                break;
+            break;
             case 'login':
-                    $match = true;
-                    $controller = new LoginController($action, $page, $httpRequest);
-                    $controller->execute()->send($twigRenderer);
+                $match = true;
+                $controller = new LoginController($action, $page, $httpRequest);
+                $controller->execute()->send($twigRenderer);
 
-                break;
+            break;
         }
     }
     if (!$match) {
