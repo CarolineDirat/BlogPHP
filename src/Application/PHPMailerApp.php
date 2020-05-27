@@ -5,7 +5,7 @@ namespace App\Application;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-class PHPMailerApp extends PHPMailer
+abstract class PHPMailerApp extends PHPMailer
 {
     public function __construct($exceptions = null)
     {
@@ -27,31 +27,14 @@ class PHPMailerApp extends PHPMailer
     }
 
     /**
-     * sendContact.
+     * sendEmail.
      *
-     * Create a message (from the data's contact form (in the home page))
-     * and send it.
+     * Create a message (from the string data contained in the $param array)
+     * and send it with $this->send() method
      *
-     * @param string $recipient      Recipient of the mail sent
-     * @param string $firstName      First name from the contact form
-     * @param string $lastName       Last name from the contact form
-     * @param string $email          E-mail from the contact form
-     * @param string $messageContact Message from the contact form
+     * @param string[] $params ex: $recipient, data from a form, etc...
      *
      * @return bool false on error - See the ErrorInfo property for details of the error
      */
-    public function sendContact($recipient, $firstName, $lastName, $email, $messageContact): bool
-    {
-        // Recipients
-        $this->setFrom('ne-pas-repondre@carocode.com', 'Contact Form');
-        $this->addAddress($recipient);   // Add a recipient (Name is optional)
-        $this->addReplyTo($email, $firstName.' '.$lastName);
-        $this->Subject = 'Formulaire de contact à CaroCode : '.$firstName.' '.$lastName;    // Here is the subject
-        // This is the HTML message body <b>in bold!</b>:
-        $this->Body = 'Vous avez reçu un message depuis le formulaire de contact de CaroCode. Voici les details :<br/><br/><b>Prénom : </b>'.$firstName.'<br/><br/><b>Nom :</b> '.$lastName.'<br/><br/><b>Email :</b> '.$email.'<br/><br/><b>Message :</b> '.$messageContact;
-        // This is the body in plain text for non-HTML mail clients:
-        $this->AltBody = $messageContact;
-
-        return $this->send();
-    }
+    abstract public function sendEmail(array $params): bool;
 }

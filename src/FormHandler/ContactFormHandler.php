@@ -6,16 +6,16 @@ use App\Application\Form\Form;
 use App\Application\Form\FormHandler;
 use App\Application\HTTPRequest;
 use App\Entity\Form\Contact;
-use App\Model\Form\ContactManager;
+use App\Model\Email\ContactEmailManager;
 
 class ContactFormHandler extends FormHandler
 {
-    private ContactManager $contactManager;
+    private ContactEmailManager $emailManager;
 
-    public function __construct(Form $form, ContactManager $contactManager, HTTPRequest $httpRequest)
+    public function __construct(Form $form, ContactEmailManager $manager, HTTPRequest $httpRequest)
     {
         $this->setForm($form);
-        $this->setContactManager($contactManager);
+        $this->setEmailManager($manager);
         $this->setHttpRequest($httpRequest);
     }
 
@@ -23,7 +23,7 @@ class ContactFormHandler extends FormHandler
     {
         if ($this->form->isValid()) {
             if ($this->form->getEntity() instanceof Contact) {
-                return $this->contactManager->sendEmail($this->form->getEntity());
+                return $this->emailManager->sendContact($this->form->getEntity());
             }
         }
 
@@ -31,13 +31,13 @@ class ContactFormHandler extends FormHandler
     }
 
     /**
-     * Set the value of contactManager.
+     * Set the value of $emailManager.
      *
      * @return self
      */
-    public function setContactManager(ContactManager $contactManager)
+    public function setEmailManager(ContactEmailManager $emailManager)
     {
-        $this->contactManager = $contactManager;
+        $this->emailManager = $emailManager;
 
         return $this;
     }
