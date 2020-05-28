@@ -105,4 +105,67 @@ final class CommentManagerPDO extends CommentManager
 
         return $listComments;
     }
+
+    /**
+     * add.
+     *
+     * Method to add a comment in database
+     */
+    public function add(Comment $comment): bool
+    {
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('commentManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        // Resquest to the MySQL bdd
+        $req = $this
+            ->dao
+            ->prepare(
+                'INSERT INTO comment 
+                SET content = :content, date_creation = NOW(), permit = :permit, id_post = :idPost, id_user = :idUser'
+            )
+        ;
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('PDO request failed');
+        }
+        $req->bindValue(':content', $comment->getContent(), PDO::PARAM_STR);
+        $req->bindValue(':permit', 'waiting', PDO::PARAM_STR);
+        $req->bindValue(':idPost', $comment->getIdPost(), PDO::PARAM_INT);
+        $req->bindValue(':idUser', $comment->getIdUser(), PDO::PARAM_INT);
+        $result = $req->execute();
+        $req->closeCursor();
+        // Returns the identifier of the last comment inserted
+        // $comment->setId((int) $this->dao->lastInsertId());
+
+        return $result;
+    }
+
+    /**
+     * modify.
+     *
+     * Method to modify a comment in database
+     */
+    public function modify(Comment $comment): bool
+    {
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('commentManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        // Resquest to the MySQL bdd
+        $req = $this
+            ->dao
+            ->prepare(
+                'UPDATE comment 
+                SET content = :content, permit = :permit
+                WHERE id = :id'
+            )
+        ;
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('PDO request failed');
+        }
+        $req->bindValue(':content', $comment->getContent(), PDO::PARAM_STR);
+        $req->bindValue(':permit', $comment->getPermit(), PDO::PARAM_STR);
+        $result = $req->execute();
+        $req->closeCursor();
+
+        return $result;
+    }
 }

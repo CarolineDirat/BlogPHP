@@ -14,9 +14,8 @@ class LoginFormHandler extends FormHandler
 
     public function __construct(Form $form, UserManagerPDO $userManagerPDO, HTTPRequest $httpRequest)
     {
-        $this->setForm($form);
+        parent::__construct($form, $httpRequest);
         $this->setUserManagerPDO($userManagerPDO);
-        $this->setHttpRequest($httpRequest);
     }
 
     public function process(): bool
@@ -37,8 +36,6 @@ class LoginFormHandler extends FormHandler
 
     /**
      * Set the value of manager.
-     *
-     * @return self
      */
     public function setUserManagerPDO(UserManagerPDO $userManagerPDO): self
     {
