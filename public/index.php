@@ -50,6 +50,17 @@ try {
             break;
             case 'admin':
                 $match = true;
+                $user = $httpRequest->getUserSession();
+                // if user doesn't exist : redirection to home page
+                if (empty($user)) {
+                    $controller = new HomeController('show', 'home', $httpRequest);
+                    $controller->execute()->send($twigRenderer);
+                }
+                // if user does not have 'admin' rights : the user is disconnect
+                if ('admin' !== $user->getRole()) {
+                    $controller = new LoginController('logout', 'login', $httpRequest);
+                    $controller->execute()->send($twigRenderer);
+                }
                 $controller = new AdminController($action, $page, $httpRequest);
                 $controller->execute()->send($twigRenderer);
         }
