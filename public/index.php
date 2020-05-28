@@ -7,6 +7,7 @@ session_start();
 
 use App\Application\HTTPRequest;
 use App\Application\TwigRenderer;
+use App\Controller\AdminController;
 use App\Controller\HomeController;
 use App\Controller\LoginController;
 use App\Controller\PostController;
@@ -47,6 +48,10 @@ try {
                 $controller->execute()->send($twigRenderer);
 
             break;
+            case 'admin':
+                $match = true;
+                $controller = new AdminController($action, $page, $httpRequest);
+                $controller->execute()->send($twigRenderer);
         }
     }
     if (!$match) {
