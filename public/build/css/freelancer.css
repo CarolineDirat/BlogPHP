@@ -120,6 +120,15 @@ header .intro-text .skills {
     font-size: 1.75em;
   }
 }
+.admin-top-block {
+  height: 110px;
+  background-color: #18BC9C;
+}
+@media (max-width: 767px) {
+  .admin-top-block {
+    height: 50px;
+  }
+}
 .alert {
   margin-bottom: 0px;
 }
@@ -222,6 +231,13 @@ section.success {
   section.first {
     padding-top: 75px;
   }
+}
+#admin {
+  background: #18BC9C;
+  color: white;
+}
+#admin div.add-post {
+  margin-bottom: 50px;
 }
 #comment-form div.control-group {
   margin-left: 5px;
