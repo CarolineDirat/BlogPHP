@@ -7,10 +7,10 @@ session_start();
 
 use App\Application\HTTPRequest;
 use App\Application\TwigRenderer;
+use App\Controller\AdminController;
 use App\Controller\HomeController;
 use App\Controller\LoginController;
 use App\Controller\PostController;
-use App\Controller\AdminController;
 
 $twigRenderer = new TwigRenderer('../templates');
 

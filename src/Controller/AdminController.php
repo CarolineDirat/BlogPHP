@@ -3,17 +3,16 @@
 namespace App\Controller;
 
 use App\Application\AbstractController;
-use App\Application\HTTPResponse;
 use App\Application\HTTPRequest;
+use App\Application\HTTPResponse;
 use App\Application\PDOSingleton;
-use App\Application\Form\Form;
 use App\Model\PostManagerPDO;
 
 final class AdminController extends AbstractController
-{    
+{
     /**
-     * executeShowAdmin
-     * 
+     * executeShowAdmin.
+     *
      * Controller to show the admin page
      *
      * @return HTTPResponse
@@ -38,38 +37,36 @@ final class AdminController extends AbstractController
             $this->getPage().'.'.$this->getAction(),
             [
                 'posts' => $listPosts,
-                'user' => $user
+                'user' => $user,
             ]
         );
     }
 
     /**
-     * logout
-     * 
+     * logout.
+     *
      * disconnects the user (called when the user does not have 'admin' rights in AdminController controller methods)
-     * 
-     * @param HTTPRequest  $httpResquest
      *
      * @return HTTPResponse
      */
     public function logout(HTTPRequest $httpResquest): HTTPResponse
     {
         $controller = new LoginController('login', 'logout', $httpResquest);
+
         return $controller->execute();
     }
-    
+
     /**
-     * home
-     * 
+     * home.
+     *
      * redirect to home page (called when user doesn't exist in AdminController controller methods)
      *
-     * @param HTTPRequest  $httpResquest
-     * 
      * @return HTTPResponse
      */
     public function home(HTTPRequest $httpResquest): HTTPResponse
     {
         $controller = new HomeController('home', 'show', $httpResquest);
+
         return $controller->execute();
     }
 }
