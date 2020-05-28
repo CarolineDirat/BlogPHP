@@ -39,18 +39,18 @@ abstract class CommentManager extends Manager
     abstract public function add(Comment $comment): bool;
 
     /**
-     * modify.
+     * update.
      *
-     * Method to modify a comment in database
+     * Method to update a comment in database
      */
-    abstract public function modify(Comment $comment): bool;
+    abstract public function update(Comment $comment): bool;
 
     /**
      * save.
      *
      * Method wich save a comment in database :
      * - add it if it's new
-     * - modify it if it isn't new
+     * - update it if it isn't new
      */
     public function save(Comment $comment): bool
     {
@@ -59,7 +59,7 @@ abstract class CommentManager extends Manager
                 return $this->add($comment);
             }
 
-            return $this->modify($comment);
+            return $this->update($comment);
         }
 
         throw new Exception('The comment must be valid to be saved.');

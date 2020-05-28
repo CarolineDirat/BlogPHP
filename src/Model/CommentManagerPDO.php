@@ -140,11 +140,11 @@ final class CommentManagerPDO extends CommentManager
     }
 
     /**
-     * modify.
+     * update.
      *
-     * Method to modify a comment in database
+     * Method to update a comment in database
      */
-    public function modify(Comment $comment): bool
+    public function update(Comment $comment): bool
     {
         if (!$this->dao instanceof PDO) {
             throw new Exception('commentManangerPDO must use an instance of PDO to connect to a MySQL database');
