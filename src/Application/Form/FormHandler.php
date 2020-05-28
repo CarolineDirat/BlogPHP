@@ -3,7 +3,6 @@
 namespace App\Application\Form;
 
 use App\Application\HTTPRequest;
-use App\Application\Manager;
 
 abstract class FormHandler
 {
@@ -17,18 +16,14 @@ abstract class FormHandler
     }
 
     /**
-     * process
-     * 
-     * process a form
+     * process.
      *
-     * @return bool
+     * process a form
      */
     abstract public function process(): bool;
 
     /**
      * Set the value of form.
-     *
-     * @return self
      */
     public function setForm(Form $form): self
     {
@@ -39,8 +34,6 @@ abstract class FormHandler
 
     /**
      * Set the value of httpRequest.
-     *
-     * @return self
      */
     public function setHttpRequest(HTTPRequest $httpRequest): self
     {

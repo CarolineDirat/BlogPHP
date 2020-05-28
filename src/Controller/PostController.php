@@ -8,9 +8,9 @@ use App\Application\PDOSingleton;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\FormBuilder\CommentFormBuilder;
+use App\FormHandler\CommentFormHandler;
 use App\Model\CommentManagerPDO;
 use App\Model\PostManagerPDO;
-use App\FormHandler\CommentFormHandler;
 
 final class PostController extends AbstractController
 {
@@ -31,12 +31,12 @@ final class PostController extends AbstractController
             $commentManager = new CommentManagerPDO($dao);
             $listComments = $commentManager->getValidComments($post->getId());
             // if a comment has been sent
-            if ( 'POST' === $httpRequest->method()) {
-                // instantiation Comment object with data 
+            if ('POST' === $httpRequest->method()) {
+                // instantiation Comment object with data
                 $comment = new Comment([
                     'content' => $httpRequest->postData('content'),
                     'idPost' => $httpRequest->getData('id'),
-                    'idUser' => $httpRequest->getUserSession()->getId()
+                    'idUser' => $httpRequest->getUserSession()->getId(),
                 ]);
                 // build comment form from $comment
                 $formBuilder = new CommentFormBuilder($comment);
@@ -60,21 +60,21 @@ final class PostController extends AbstractController
                             'comments' => $listComments,
                             'user' => $this->httpRequest->getUserSession(),
                             'commentForm' => $commentForm,
-                            'messageInfo' => "Votre commentaire a été envoyé pour validation. \n Vous recevrez un mail lorsqu'il sera validé."
+                            'messageInfo' => "Votre commentaire a été envoyé pour validation. \n Vous recevrez un mail lorsqu'il sera validé.",
                         ]
                     );
                 }
 
                 return new HTTPResponse(
-                        $this->getPage(),
-                        [
-                            'post' => $post,
-                            'comments' => $listComments,
-                            'user' => $this->httpRequest->getUserSession(),
-                            'commentForm' => $commentForm,
-                            'messageInfo' => "Votre commentaire n'a pas put être enregistré. \n Veuillez vérifier le contenu de votre commentaire."
-                        ]
-                    );
+                    $this->getPage(),
+                    [
+                        'post' => $post,
+                        'comments' => $listComments,
+                        'user' => $this->httpRequest->getUserSession(),
+                        'commentForm' => $commentForm,
+                        'messageInfo' => "Votre commentaire n'a pas put être enregistré. \n Veuillez vérifier le contenu de votre commentaire.",
+                    ]
+                );
             }
             // else, if a comment hasn't been sent :
             // build empty comment form

@@ -20,8 +20,8 @@ class CommentFormHandler extends FormHandler
     }
 
     /**
-     * process
-     * 
+     * process.
+     *
      * check form validity, then if it's ok, save the comment in database
      *
      * @return bool
@@ -34,17 +34,18 @@ class CommentFormHandler extends FormHandler
                 // ///////////////////////envoie du mail à Admin //////////////////////////////
                 return true;
             }
-            throw new Exception("Saving the comment failed.");
+
+            throw new Exception('Saving the comment failed.');
         }
+
         return false;
-        
     }
 
     /**
-     * Set the value of manager
+     * Set the value of manager.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setManager(CommentManagerPDO $manager): self
     {
         $this->manager = $manager;

@@ -105,13 +105,11 @@ final class CommentManagerPDO extends CommentManager
 
         return $listComments;
     }
+
     /**
-     * add
-     * 
-     * Method to add a comment in database
+     * add.
      *
-     * @param  Comment $comment
-     * @return bool
+     * Method to add a comment in database
      */
     public function add(Comment $comment): bool
     {
@@ -141,12 +139,9 @@ final class CommentManagerPDO extends CommentManager
     }
 
     /**
-     * modify
-     * 
-     * Method to modify a comment in database
+     * modify.
      *
-     * @param  Comment $comment
-     * @return bool
+     * Method to modify a comment in database
      */
     public function modify(Comment $comment): bool
     {

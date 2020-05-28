@@ -36,8 +36,6 @@ class LoginFormHandler extends FormHandler
 
     /**
      * Set the value of manager.
-     *
-     * @return self
      */
     public function setUserManagerPDO(UserManagerPDO $userManagerPDO): self
     {
