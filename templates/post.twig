@@ -11,6 +11,9 @@
 {% block contactLink %}"/#web"{% endblock %}
 
 {% block view %}
+            {% if not messageInfo %}
+                <div class="post-top-block"></div>
+            {% endif %}
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
@@ -19,7 +22,9 @@
                             <hr class="star-primary">
                             <h2 class="text-center"> {{ post.abstract }} </h2>
                             <hr class="star-primary">
-                            
+                            <div class="row btn-comments">
+                                <a href="#comments" role="button" class="btn btn-success" > Aller aux commentaires </a>
+                            </div>
                             <p class="text-justify"> {{ post.content|nl2br }}</p>
                             <ul class="list-inline item-details">
                                 <li>Auteur :

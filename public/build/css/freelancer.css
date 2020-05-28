@@ -223,6 +223,10 @@ section.success {
     padding-top: 75px;
   }
 }
+#comment-form div.control-group {
+  margin-left: 5px;
+  margin-right: 5px;
+}
 #comment-form div.form-group button {
   margin-left: 0px;
   margin-top: 10px;
@@ -661,7 +665,7 @@ fieldset[disabled] .btn-success.active {
   display: none;
 }
 .post {
-  padding-top: 150px;
+  padding-top: 50px;
 }
 .post h2{
   font-size: 1.5em;
@@ -672,9 +676,6 @@ fieldset[disabled] .btn-success.active {
   padding-bottom: 50px;
 }
 @media (max-width: 767px) {
-  .post {
-    padding-top: 100px;
-  }
   .post h1{
     font-size: 30px !important;
   }
@@ -684,4 +685,16 @@ fieldset[disabled] .btn-success.active {
   .post p {
     font-size: 18px;
   }
-} 
+}
+.post-top-block {
+  height: 130px;
+}
+@media (max-width: 767px) {
+  .post-top-block {
+    height: 50px;
+  }
+}
+div.row.btn-comments {
+  text-align: center;
+  margin-bottom: 20px;
+}
