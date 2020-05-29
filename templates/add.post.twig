@@ -12,7 +12,7 @@
 
 {% block view %}
     {% if not messageInfo %}
-        <div class="admin-top-block"></div>
+        <div class="post-admin-top-block"></div>
     {% endif %}
     <section id="admin-post" >
         <div  class="container">
@@ -22,18 +22,41 @@
                     <hr class="star-primary">
                 </div>
             </div>
-            <div class="row">
+            <div class="row form">
                 <div class="col-lg-8 col-lg-offset-2">
                     <form name="postForm" id="postForm"  method="post" action="/admin/add/post">                  
                         <div class="row control-group ">
-                            <div class="form-group col-xs-12 col-sm-6">
+                            <div class="form-group">
                                 {{ fieldBuilder(postForm.fields.title, ['placeholder', 'maxlength', 'required'], 'form-control') }}
                             </div>
-                            <div class="form-group col-xs-12 col-sm-6">
+                        </div>
+                        <div class="row control-group ">
+                            <div class="form-group">
                                 {{ fieldBuilder(postForm.fields.abstract, ['placeholder', 'maxlength', 'required'], 'form-control') }}
                             </div>
+                        </div>
+                        <div class="row control-group ">
+                            <div class="form-group">
+                                {{ fieldBuilder(postForm.fields.author, ['value', 'required', 'readonly'], 'form-control') }}
+                            </div>
+                        </div>
+                        <div class="row control-group ">
+                            <div class="form-group">
+                                {{ fieldBuilder(postForm.fields.content, ['placeholder', 'maxlength', 'rows', 'required'], 'form-control') }}
+                            </div>
+                            <div class="col-xs-12 text-right">
+                                 <a role="button" href="/admin" class="btn btn-primary ">Annuler</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button type="submit" class="btn btn-success btn-lg btn-login">Ajouter</button>
+                            </div>
+                            
                             
                         </div>
+                    </form>
+                </div>
             </div>
             
         </div>
