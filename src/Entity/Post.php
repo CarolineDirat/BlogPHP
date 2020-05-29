@@ -13,9 +13,9 @@ final class Post extends Entity
     private int $id;
 
     /**
-     * @var string
+     * @var ?string
      */
-    private string $title;
+    private ?string $title = null;
 
     /**
      * @var string
@@ -23,14 +23,14 @@ final class Post extends Entity
     private string $slug;
 
     /**
-     * @var string
+     * @var ?string
      */
-    private string $content;
+    private ?string $content = null;
 
     /**
-     * @var string
+     * @var ?string
      */
-    private string $abstract;
+    private ?string $abstract = null;
 
     /**
      * @var Datetime
@@ -52,9 +52,9 @@ final class Post extends Entity
      *
      * User's pseudo wich wrote the post
      *
-     * @var string
+     * @var ?string
      */
-    private string $author;
+    private ?string $author = null;
 
     public function setId(int $id): self
     {
@@ -75,7 +75,7 @@ final class Post extends Entity
         return $this;
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -99,7 +99,7 @@ final class Post extends Entity
         return $this;
     }
 
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }
@@ -111,7 +111,7 @@ final class Post extends Entity
         return $this;
     }
 
-    public function getAbstract(): string
+    public function getAbstract(): ?string
     {
         return $this->abstract;
     }
@@ -167,7 +167,7 @@ final class Post extends Entity
      *
      * @return string
      */
-    public function getAuthor(): string
+    public function getAuthor(): ?string
     {
         return $this->author;
     }
