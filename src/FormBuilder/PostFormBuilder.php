@@ -31,6 +31,7 @@ final class PostFormBuilder extends FormBuilder
         $this->form
             ->addField(
                 new InputTextField([
+                    'textLabel' => 'Titre',
                     'name' => 'title',
                     'idField' => 'title',
                     'placeholder' => 'Titre de l\'article',
@@ -44,6 +45,7 @@ final class PostFormBuilder extends FormBuilder
             )
             ->addField(
                 new InputTextField([
+                    'textLabel' => 'Chapô',
                     'name' => 'abstract',
                     'idField' => 'abstract',
                     'placeholder' => 'Chapô de l\'article',
@@ -57,6 +59,7 @@ final class PostFormBuilder extends FormBuilder
             )
             ->addField(
                 new InputTextField([
+                    'textLabel' => 'Auteur',
                     'name' => 'author',
                     'idField' => 'author',
                     'value' => $this->httpRequest->getUserSession()->getPseudo(),
@@ -73,6 +76,7 @@ final class PostFormBuilder extends FormBuilder
             )            
             ->addField(
                 new TextareaField([
+                    'textLabel' => 'Contenu de l\'article',
                     'name' => 'content',
                     'idField' => 'content',
                     'placeholder' => '... ici pour écrire l\'article ...',
