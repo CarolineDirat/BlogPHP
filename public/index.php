@@ -31,51 +31,53 @@ try {
         $action = $httpRequest->getData('action');
         // if admin module is request
         if($httpRequest->hasGET('module')) {
-            if( 'admin' === $httpRequest->getData('module')) {
+            if('admin' === $httpRequest->getData('module')) {
                 $user = $httpRequest->getUserSession();
-                // if user doesn't exist : redirection to home page
+                // if user session doesn't exist : redirection to home page
                 if (empty($user)) {
+                    $match = true;
                     $controller = new HomeController('show', 'home', $httpRequest);
                     $controller->execute()->send($twigRenderer);
                 }
                 // if user does not have 'admin' rights : the user is disconnect
                 if ('admin' !== $user->getRole()) {
+                    $match = true;
                     $controller = new LoginController('logout', 'login', $httpRequest);
                     $controller->execute()->send($twigRenderer);
-                } else {
-                    // if user role = admin, he can go to administration pages
+                }              
+                // if user role = admin, he can go to administration pages and if $action value is valid
+                if ('admin' === $user->getRole() && in_array($action, ['show', 'add', 'update', 'delete', 'admin'])) {
                     switch ($page) {
                         case 'admin':
                             $match = true;
-                            
                             $controller = new AdminController($action, $page, $httpRequest);
                             $controller->execute()->send($twigRenderer);
-                    }
-                }
-                
-                throw new Exception('No page corresponds to that requested');                
+                    }        
+                }                
             }
         }
         // else, we are in public application
-        switch ($page) {
-            case 'post':
-                $match = true;
-                $controller = new PostController($action, $page, $httpRequest);
-                $controller->execute()->send($twigRenderer);
+        if (in_array($action, ['show', 'logout'])) {
+            switch ($page) {
+                case 'post':
+                    $match = true;
+                    $controller = new PostController($action, $page, $httpRequest);
+                    $controller->execute()->send($twigRenderer);
 
-            break;
-            case 'blog':
-                $match = true;
-                $controller = new PostController($action, $page, $httpRequest);
-                $controller->execute()->send($twigRenderer);
+                break;
+                case 'blog':
+                    $match = true;
+                    $controller = new PostController($action, $page, $httpRequest);
+                    $controller->execute()->send($twigRenderer);
 
-            break;
-            case 'login':
-                $match = true;
-                $controller = new LoginController($action, $page, $httpRequest);
-                $controller->execute()->send($twigRenderer);
+                break;
+                case 'login':
+                    $match = true;
+                    $controller = new LoginController($action, $page, $httpRequest);
+                    $controller->execute()->send($twigRenderer);
 
-            break;
+                break;
+            }
         }
     }
     if (!$match) {
