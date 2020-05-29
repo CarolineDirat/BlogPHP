@@ -7,8 +7,6 @@ use App\Application\Form\MaxLengthValidator;
 use App\Application\Form\NotEmptyValidator;
 use App\Application\Form\TextareaField;
 
-//use App\Application\HTTPRequest;
-
 /**
  * CommentFormBuilder.
  *
