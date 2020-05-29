@@ -7,9 +7,10 @@ session_start();
 
 use App\Application\HTTPRequest;
 use App\Application\TwigRenderer;
-use App\Controller\AdminController;
 use App\Controller\HomeController;
 use App\Controller\LoginController;
+use App\Controller\AdminController;
+use App\Controller\PostAdminController;
 use App\Controller\PostController;
 
 $twigRenderer = new TwigRenderer('../templates');
@@ -51,6 +52,11 @@ try {
                         case 'admin':
                             $match = true;
                             $controller = new AdminController($action, $page, $httpRequest);
+                            $controller->execute()->send($twigRenderer);
+                        break;
+                        case 'post':
+                            $match = true;
+                            $controller = new PostAdminController($action, $page, $httpRequest);
                             $controller->execute()->send($twigRenderer);
                     }        
                 }                
