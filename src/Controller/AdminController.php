@@ -24,7 +24,7 @@ final class AdminController extends AbstractController
         $listPosts = $postManager->getListPosts();
 
         return new HTTPResponse(
-            $this->getPage().'.'.$this->getAction(),
+            $this->getAction().'.'.$this->getPage(),
             [
                 'posts' => $listPosts,
                 'user' => $this->httpRequest->getUserSession(),

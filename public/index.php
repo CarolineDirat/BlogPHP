@@ -24,11 +24,39 @@ try {
         $match = true;
         $controller = new HomeController($action, $page, $httpRequest);
         $controller->execute()->send($twigRenderer);
-    }
-
-    if ($httpRequest->hasGET('page')) {
+    }    
+    
+    if ($httpRequest->hasGET('page') && $httpRequest->hasGET('action')) {
         $page = $httpRequest->getData('page');
         $action = $httpRequest->getData('action');
+        // if admin module is request
+        if($httpRequest->hasGET('module')) {
+            if( 'admin' === $httpRequest->getData('module')) {
+                $user = $httpRequest->getUserSession();
+                // if user doesn't exist : redirection to home page
+                if (empty($user)) {
+                    $controller = new HomeController('show', 'home', $httpRequest);
+                    $controller->execute()->send($twigRenderer);
+                }
+                // if user does not have 'admin' rights : the user is disconnect
+                if ('admin' !== $user->getRole()) {
+                    $controller = new LoginController('logout', 'login', $httpRequest);
+                    $controller->execute()->send($twigRenderer);
+                } else {
+                    // if user role = admin, he can go to administration pages
+                    switch ($page) {
+                        case 'admin':
+                            $match = true;
+                            
+                            $controller = new AdminController($action, $page, $httpRequest);
+                            $controller->execute()->send($twigRenderer);
+                    }
+                }
+                
+                throw new Exception('No page corresponds to that requested');                
+            }
+        }
+        // else, we are in public application
         switch ($page) {
             case 'post':
                 $match = true;
@@ -48,21 +76,6 @@ try {
                 $controller->execute()->send($twigRenderer);
 
             break;
-            case 'admin':
-                $match = true;
-                $user = $httpRequest->getUserSession();
-                // if user doesn't exist : redirection to home page
-                if (empty($user)) {
-                    $controller = new HomeController('show', 'home', $httpRequest);
-                    $controller->execute()->send($twigRenderer);
-                }
-                // if user does not have 'admin' rights : the user is disconnect
-                if ('admin' !== $user->getRole()) {
-                    $controller = new LoginController('logout', 'login', $httpRequest);
-                    $controller->execute()->send($twigRenderer);
-                }
-                $controller = new AdminController($action, $page, $httpRequest);
-                $controller->execute()->send($twigRenderer);
         }
     }
     if (!$match) {
