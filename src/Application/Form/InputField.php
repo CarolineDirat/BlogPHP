@@ -38,6 +38,13 @@ class InputField extends Field
      * @var ?string
      */
     private ?string $autofocus;
+    
+    /**
+     * readonly.
+     *
+     * @var ?string
+     */
+    private $readonly;
 
     public function __construct(array $options = [])
     {
@@ -135,6 +142,30 @@ class InputField extends Field
     public function setAutofocus(?string $autofocus): self
     {
         $this->autofocus = $autofocus;
+
+        return $this;
+    }
+
+    /**
+     * Get readonly.
+     *
+     * @return ?string
+     */
+    public function getReadonly(): ?string
+    {
+        return $this->readonly;
+    }
+
+    /**
+     * Set readonly.
+     *
+     * @param ?string $readonly readonly
+     *
+     * @return self
+     */
+    public function setReadonly(?string $readonly): self
+    {
+        $this->readonly = $readonly;
 
         return $this;
     }
