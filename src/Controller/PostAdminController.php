@@ -3,19 +3,18 @@
 namespace App\Controller;
 
 use App\Application\AbstractController;
-use App\Application\HTTPRequest;
 use App\Application\HTTPResponse;
 use App\Application\PDOSingleton;
-use App\Model\PostManagerPDO;
-use App\Entity\Post;
 use App\Entity\Comment;
-use App\FormBuilder\PostFormBuilder;
+use App\Entity\Post;
 use App\FormBuilder\CommentFormBuilder;
+use App\FormBuilder\PostFormBuilder;
 use App\FormHandler\PostFormHandler;
+use App\Model\PostManagerPDO;
 
 final class PostAdminController extends AbstractController
 {
-    public function executeAddPost() : HTTPResponse
+    public function executeAddPost(): HTTPResponse
     {
         $httpRequest = $this->httpRequest;
         if ('POST' === $httpRequest->method()) {
@@ -25,7 +24,7 @@ final class PostAdminController extends AbstractController
                 'abstract' => $httpRequest->postData('abstract'),
                 'content' => $httpRequest->postData('content'),
                 'author' => $httpRequest->postData('author'),
-                'idUser' => $httpRequest->getUserSession()->getId()
+                'idUser' => $httpRequest->getUserSession()->getId(),
             ]);
             $manager = new PostManagerPDO(PDOSingleton::getInstance()->getConnexion());
             // build a post form with fields values
@@ -59,11 +58,11 @@ final class PostAdminController extends AbstractController
             }
             // else, display post form with last values and alert messages
             return new HTTPResponse(
-                $this->getAction() . '.' . $this->getPage(),
+                $this->getAction().'.'.$this->getPage(),
                 [
                     'postForm' => $postForm,
                     'user' => $this->httpRequest->getUserSession(),
-                    'messageInfo' => "L'article n'a pas pu être créé, verifiez les champs du formulaire"
+                    'messageInfo' => "L'article n'a pas pu être créé, verifiez les champs du formulaire",
                 ]
             );
         }
@@ -72,7 +71,7 @@ final class PostAdminController extends AbstractController
         $formBuilder = new PostFormBuilder($post, $this->httpRequest);
         $formBuilder->build();
         $postForm = $formBuilder->getForm();
-        
+
         return new HTTPResponse(
             $this->getAction().'.'.$this->getPage(),
             [
@@ -81,5 +80,4 @@ final class PostAdminController extends AbstractController
             ]
         );
     }
-
 }

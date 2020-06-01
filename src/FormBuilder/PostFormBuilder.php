@@ -2,14 +2,14 @@
 
 namespace App\FormBuilder;
 
+use App\Application\Entity;
 use App\Application\Form\FormBuilder;
 use App\Application\Form\InputTextField;
-use App\Application\Form\TextareaField;
 use App\Application\Form\MaxLengthValidator;
 use App\Application\Form\NotEmptyValidator;
+use App\Application\Form\TextareaField;
 use App\Application\Form\ValuesEqualityValidator;
 use App\Application\HTTPRequest;
-use App\Application\Entity;
 
 /**
  * CommentFormBuilder.
@@ -25,7 +25,7 @@ final class PostFormBuilder extends FormBuilder
         parent::__construct($entity);
         $this->setHttpRequest($httpRequest);
     }
-    
+
     public function build(): void
     {
         $this->form
@@ -70,10 +70,10 @@ final class PostFormBuilder extends FormBuilder
                         new ValuesEqualityValidator(
                             'Vous ne pouvez pas modifier votre pseudo',
                             $this->httpRequest->getUserSession()->getPseudo()
-                        )
+                        ),
                     ],
                 ])
-            )            
+            )
             ->addField(
                 new TextareaField([
                     'textLabel' => 'Contenu de l\'article',
@@ -85,7 +85,7 @@ final class PostFormBuilder extends FormBuilder
                     'rows' => 20,
                     'validators' => [
                         new NotEmptyValidator('Merci d\'écrire l\'article.'),
-                        new MaxLengthValidator('Merci d\'écrire un article de moins de 10 000 caractères', 15000)
+                        new MaxLengthValidator('Merci d\'écrire un article de moins de 10 000 caractères', 15000),
                     ],
                 ])
             )
@@ -94,8 +94,6 @@ final class PostFormBuilder extends FormBuilder
 
     /**
      * Set the value of httpRequest.
-     *
-     * @return self
      */
     public function setHttpRequest(HTTPRequest $httpRequest): self
     {

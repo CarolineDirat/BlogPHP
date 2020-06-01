@@ -13,8 +13,6 @@ class InputField extends Field
 {
     /**
      * type.
-     *
-     * @var string
      */
     protected string $type;
 
@@ -38,7 +36,7 @@ class InputField extends Field
      * @var ?string
      */
     private ?string $autofocus;
-    
+
     /**
      * readonly.
      *
@@ -61,8 +59,6 @@ class InputField extends Field
 
     /**
      * Get type.
-     *
-     * @return string
      */
     public function getType(): string
     {
@@ -83,8 +79,6 @@ class InputField extends Field
      * Set required.
      *
      * @param ?string $required required
-     *
-     * @return self
      */
     public function setRequired(?string $required): self
     {
@@ -107,8 +101,6 @@ class InputField extends Field
      * Set value.
      *
      * @param string $value value
-     *
-     * @return self
      */
     public function setValue(string $value): self
     {
@@ -136,8 +128,6 @@ class InputField extends Field
      * Set autofocus.
      *
      * @param ?string $autofocus autofocus
-     *
-     * @return self
      */
     public function setAutofocus(?string $autofocus): self
     {
@@ -160,8 +150,6 @@ class InputField extends Field
      * Set readonly.
      *
      * @param ?string $readonly readonly
-     *
-     * @return self
      */
     public function setReadonly(?string $readonly): self
     {

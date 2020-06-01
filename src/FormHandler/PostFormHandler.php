@@ -7,7 +7,6 @@ use App\Application\Form\FormHandler;
 use App\Application\HTTPRequest;
 use App\Entity\Post;
 use App\Model\PostManagerPDO;
-use Exception;
 
 class PostFormHandler extends FormHandler
 {
@@ -23,8 +22,6 @@ class PostFormHandler extends FormHandler
      * process.
      *
      * check form validity, then if it's ok, save the Post in database
-     *
-     * @return bool
      */
     public function process(): bool
     {
@@ -38,8 +35,6 @@ class PostFormHandler extends FormHandler
 
     /**
      * Set the value of manager.
-     *
-     * @return self
      */
     public function setManager(PostManagerPDO $manager): self
     {

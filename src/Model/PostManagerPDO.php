@@ -3,11 +3,11 @@
 namespace App\Model;
 
 use App\Entity\Post;
+use Cocur\Slugify\Slugify;
 use DateTime;
 use Exception;
 use PDO;
 use PDOStatement;
-use Cocur\Slugify\Slugify;
 
 /**
  * PostManagerPDO.

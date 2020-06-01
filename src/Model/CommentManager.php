@@ -4,7 +4,6 @@ namespace App\Model;
 
 use App\Application\Manager;
 use App\Entity\Comment;
-use Exception;
 
 /**
  * CommentManager.

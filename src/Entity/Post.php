@@ -7,9 +7,6 @@ use DateTime;
 
 final class Post extends Entity
 {
-    /**
-     * @var int
-     */
     private int $id;
 
     /**
@@ -17,9 +14,6 @@ final class Post extends Entity
      */
     private ?string $title = null;
 
-    /**
-     * @var string
-     */
     private string $slug;
 
     /**
@@ -32,19 +26,10 @@ final class Post extends Entity
      */
     private ?string $abstract = null;
 
-    /**
-     * @var Datetime
-     */
     private Datetime $dateCreation;
 
-    /**
-     * @var Datetime
-     */
     private Datetime $dateUpdate;
 
-    /**
-     * @var int
-     */
     private int $idUser;
 
     /**
@@ -125,8 +110,6 @@ final class Post extends Entity
 
     /**
      * getDateCreation.
-     *
-     * @return DateTime
      */
     public function getDateCreation(): DateTime
     {
@@ -142,8 +125,6 @@ final class Post extends Entity
 
     /**
      * getDateUpdate.
-     *
-     * @return DateTime
      */
     public function getDateUpdate(): DateTime
     {
@@ -176,8 +157,6 @@ final class Post extends Entity
      * Set user's pseudo wich wrote the post.
      *
      * @param string $author User's pseudo wich wrote the post
-     *
-     * @return self
      */
     public function setAuthor(string $author): self
     {

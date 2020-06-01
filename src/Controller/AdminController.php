@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Application\AbstractController;
-use App\Application\HTTPRequest;
 use App\Application\HTTPResponse;
 use App\Application\PDOSingleton;
 use App\Model\PostManagerPDO;
