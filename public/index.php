@@ -8,10 +8,10 @@ session_start();
 use App\Application\HTTPRequest;
 use App\Application\TwigRenderer;
 use App\Controller\PostsAdminController;
-use App\Controller\HomeController;
-use App\Controller\LoginController;
+use App\Controller\HomePublicController;
+use App\Controller\LoginPublicController;
 use App\Controller\PostAdminController;
-use App\Controller\PostController;
+use App\Controller\PostPublicController;
 use App\Controller\BLogPublicController;
 
 $twigRenderer = new TwigRenderer('../templates');
@@ -24,7 +24,7 @@ try {
 
     if ('/' === $httpRequest->requestURI()) {
         $match = true;
-        $controller = new HomeController($action, $page, $httpRequest);
+        $controller = new HomePublicController($action, $page, $httpRequest);
         $controller->execute()->send($twigRenderer);
     }
 
@@ -38,13 +38,13 @@ try {
                 // if user session doesn't exist : redirection to home page
                 if (empty($user)) {
                     $match = true;
-                    $controller = new HomeController('show', 'home', $httpRequest);
+                    $controller = new HomePublicController('show', 'home', $httpRequest);
                     $controller->execute()->send($twigRenderer);
                 }
                 // if user does not have 'admin' rights : the user is disconnect
                 if ('admin' !== $user->getRole()) {
                     $match = true;
-                    $controller = new LoginController('logout', 'login', $httpRequest);
+                    $controller = new LoginPublicController('logout', 'login', $httpRequest);
                     $controller->execute()->send($twigRenderer);
                 }
                 // if user role = admin, he can go to administration pages and if $action value is valid
@@ -65,11 +65,11 @@ try {
             }
         }
         // else, we are in public application
-        if (in_array($action, ['show', 'logout'], true)) {
+        if ('public' === $httpRequest->getData('module')) {
             switch ($page) {
                 case 'post':
                     $match = true;
-                    $controller = new PostController($action, $page, $httpRequest);
+                    $controller = new PostPublicController($action, $page, $httpRequest);
                     $controller->execute()->send($twigRenderer);
 
                 break;
@@ -81,7 +81,7 @@ try {
                 break;
                 case 'login':
                     $match = true;
-                    $controller = new LoginController($action, $page, $httpRequest);
+                    $controller = new LoginPublicController($action, $page, $httpRequest);
                     $controller->execute()->send($twigRenderer);
 
                 break;

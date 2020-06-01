@@ -11,7 +11,7 @@ use App\FormHandler\ContactFormHandler;
 use App\Model\Email\ContactEmailManager;
 use Gregwar\Captcha\CaptchaBuilder;
 
-final class HomeController extends AbstractController
+final class HomePublicController extends AbstractController
 {
     /**
      * Controller to show the Home Page.

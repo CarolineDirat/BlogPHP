@@ -11,7 +11,7 @@ use App\FormBuilder\LoginFormBuilder;
 use App\FormHandler\LoginFormHandler;
 use App\Model\UserManagerPDO;
 
-final class LoginController extends AbstractController
+final class LoginPublicController extends AbstractController
 {
     /**
      * Controller to show the Login Page.

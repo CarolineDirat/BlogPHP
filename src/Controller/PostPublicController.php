@@ -12,7 +12,7 @@ use App\FormHandler\CommentFormHandler;
 use App\Model\CommentManagerPDO;
 use App\Model\PostManagerPDO;
 
-final class PostController extends AbstractController
+final class PostPublicController extends AbstractController
 {
     /**
      * controller to show the page of a post.
