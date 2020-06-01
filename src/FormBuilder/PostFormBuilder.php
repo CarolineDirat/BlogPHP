@@ -66,7 +66,7 @@ final class PostFormBuilder extends FormBuilder
                     'required' => 'required',
                     'readonly' => '"true"',
                     'validators' => [
-                        new NotEmptyValidator('Merci d\'écrire le chapô de l\'article.'),
+                        new NotEmptyValidator('Merci de définir l\'auteur de l\'article.'),
                         new ValuesEqualityValidator(
                             'Vous ne pouvez pas modifier votre pseudo',
                             $this->httpRequest->getUserSession()->getPseudo()
