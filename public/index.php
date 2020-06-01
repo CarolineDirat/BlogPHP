@@ -19,7 +19,7 @@ try {
     $match = false; // will be true if the rooter receive a route corresponding to a controller
     $action = 'show';
     $page = 'home';
-    $httpRequest = new HTTPRequest(); //$httpRequest->unsetSession('user');
+    $httpRequest = new HTTPRequest();
 
     if ('/' === $httpRequest->requestURI()) {
         $match = true;
