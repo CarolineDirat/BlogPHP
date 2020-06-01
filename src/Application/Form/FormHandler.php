@@ -18,7 +18,7 @@ abstract class FormHandler
     /**
      * process.
      *
-     * process a form
+     * process a form (cheks the validity of fields and processes data)
      */
     abstract public function process(): bool;
 

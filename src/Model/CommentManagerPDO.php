@@ -120,8 +120,8 @@ final class CommentManagerPDO extends CommentManager
         $req = $this
             ->dao
             ->prepare(
-                'INSERT INTO comment 
-                SET content = :content, date_creation = NOW(), permit = :permit, id_post = :idPost, id_user = :idUser'
+                'INSERT INTO comment ( content, date_creation, permit, id_post, id_user )
+                VALUES ( :content, NOW(), :permit, :idPost, :idUser )'
             )
         ;
         if (!$req instanceof PDOStatement) {
