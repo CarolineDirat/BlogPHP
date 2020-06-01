@@ -12,6 +12,7 @@ use App\Controller\HomeController;
 use App\Controller\LoginController;
 use App\Controller\PostAdminController;
 use App\Controller\PostController;
+use App\Controller\BLogPublicController;
 
 $twigRenderer = new TwigRenderer('../templates');
 
@@ -74,7 +75,7 @@ try {
                 break;
                 case 'blog':
                     $match = true;
-                    $controller = new PostController($action, $page, $httpRequest);
+                    $controller = new BlogPublicController($action, $page, $httpRequest);
                     $controller->execute()->send($twigRenderer);
 
                 break;
