@@ -7,44 +7,29 @@ use DateTime;
 
 final class Post extends Entity
 {
-    /**
-     * @var int
-     */
     private int $id;
 
     /**
-     * @var string
+     * @var ?string
      */
-    private string $title;
+    private ?string $title = null;
 
-    /**
-     * @var string
-     */
     private string $slug;
 
     /**
-     * @var string
+     * @var ?string
      */
-    private string $content;
+    private ?string $content = null;
 
     /**
-     * @var string
+     * @var ?string
      */
-    private string $abstract;
+    private ?string $abstract = null;
 
-    /**
-     * @var Datetime
-     */
     private Datetime $dateCreation;
 
-    /**
-     * @var Datetime
-     */
     private Datetime $dateUpdate;
 
-    /**
-     * @var int
-     */
     private int $idUser;
 
     /**
@@ -52,9 +37,9 @@ final class Post extends Entity
      *
      * User's pseudo wich wrote the post
      *
-     * @var string
+     * @var ?string
      */
-    private string $author;
+    private ?string $author = null;
 
     public function setId(int $id): self
     {
@@ -75,7 +60,7 @@ final class Post extends Entity
         return $this;
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -99,7 +84,7 @@ final class Post extends Entity
         return $this;
     }
 
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }
@@ -111,7 +96,7 @@ final class Post extends Entity
         return $this;
     }
 
-    public function getAbstract(): string
+    public function getAbstract(): ?string
     {
         return $this->abstract;
     }
@@ -125,8 +110,6 @@ final class Post extends Entity
 
     /**
      * getDateCreation.
-     *
-     * @return DateTime
      */
     public function getDateCreation(): DateTime
     {
@@ -142,8 +125,6 @@ final class Post extends Entity
 
     /**
      * getDateUpdate.
-     *
-     * @return DateTime
      */
     public function getDateUpdate(): DateTime
     {
@@ -167,7 +148,7 @@ final class Post extends Entity
      *
      * @return string
      */
-    public function getAuthor(): string
+    public function getAuthor(): ?string
     {
         return $this->author;
     }
@@ -176,8 +157,6 @@ final class Post extends Entity
      * Set user's pseudo wich wrote the post.
      *
      * @param string $author User's pseudo wich wrote the post
-     *
-     * @return self
      */
     public function setAuthor(string $author): self
     {

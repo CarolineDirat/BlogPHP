@@ -239,6 +239,23 @@ section.success {
 #admin div.add-post {
   margin-bottom: 50px;
 }
+#admin-post div.row.form {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (max-width: 400px) {
+  #admin-post button {
+    margin-top: 10px;
+  }
+}
+#admin-post h2 {
+  font-size: 2.5em;
+}
+@media (max-width: 500px) {
+  #admin-post h2 {
+    font-size: 2em;
+  }
+}
 #comment-form div.control-group {
   margin-left: 5px;
   margin-right: 5px;
@@ -700,6 +717,18 @@ fieldset[disabled] .btn-success.active {
   }
   .post p {
     font-size: 18px;
+  }
+}.post-admin-top-block {
+  height: 110px;
+}
+@media (max-width: 767px) {
+  .post-admin-top-block {
+    height: 50px;
+  }
+}
+@media (max-width: 500px) {
+  .post-admin-top-block {
+    height: 20px;
   }
 }
 .post-top-block {

@@ -7,9 +7,6 @@ use App\Application\Form\InputTextField;
 use App\Application\Form\MaxLengthValidator;
 use App\Application\Form\NotEmptyValidator;
 
-//use App\Application\Form\ValuesEqualityValidator;
-//use App\Application\HTTPRequest;
-
 /**
  * LoginFormBuilder.
  *

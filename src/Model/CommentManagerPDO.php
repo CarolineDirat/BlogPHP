@@ -120,8 +120,8 @@ final class CommentManagerPDO extends CommentManager
         $req = $this
             ->dao
             ->prepare(
-                'INSERT INTO comment 
-                SET content = :content, date_creation = NOW(), permit = :permit, id_post = :idPost, id_user = :idUser'
+                'INSERT INTO comment ( content, date_creation, permit, id_post, id_user )
+                VALUES ( :content, NOW(), :permit, :idPost, :idUser )'
             )
         ;
         if (!$req instanceof PDOStatement) {
@@ -133,8 +133,6 @@ final class CommentManagerPDO extends CommentManager
         $req->bindValue(':idUser', $comment->getIdUser(), PDO::PARAM_INT);
         $result = $req->execute();
         $req->closeCursor();
-        // Returns the identifier of the last comment inserted
-        // $comment->setId((int) $this->dao->lastInsertId());
 
         return $result;
     }

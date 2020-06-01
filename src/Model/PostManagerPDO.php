@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Entity\Post;
+use Cocur\Slugify\Slugify;
 use DateTime;
 use Exception;
 use PDO;
@@ -102,5 +103,72 @@ final class PostManagerPDO extends PostManager
         $data['dateUpdate'] = new DateTime($data['dateUpdate']);
 
         return $data;
+    }
+
+    /**
+     * add.
+     *
+     * Method to add a post in database
+     */
+    public function add(Post $post): bool
+    {
+        $slugify = new Slugify();
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        // Resquest to the MySQL bdd
+        $req = $this
+            ->dao
+            ->prepare(
+                'INSERT INTO post (title, slug, content, abstract, date_creation, date_update, id_user )
+                VALUES ( :title, :slug, :content, :abstract, NOW(), NOW(), :idUser )'
+            )
+        ;
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('PDO request failed');
+        }
+        $slugify = new Slugify();
+        $req->bindValue(':title', $post->getTitle());
+        $req->bindValue(':slug', $slugify->slugify($post->getTitle()));
+        $req->bindValue(':content', $post->getContent());
+        $req->bindValue(':abstract', $post->getAbstract());
+        $req->bindValue(':idUser', $post->getIdUser(), PDO::PARAM_INT);
+        $result = $req->execute();
+        $req->closeCursor();
+
+        return $result;
+    }
+
+    /**
+     * update.
+     *
+     * Method to update a post in database
+     */
+    public function update(Post $post): bool
+    {
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('postManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        // Resquest to the MySQL bdd
+        $req = $this
+            ->dao
+            ->prepare(
+                'UPDATE post 
+                SET title = :title, slug = :slug, content = :content, abstract = :abstract, date_update = NOW()
+                WHERE id = :idPost'
+            )
+        ;
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('PDO request failed');
+        }
+        $slugify = new Slugify();
+        $req->bindValue(':title', $post->getTitle());
+        $req->bindValue(':slug', $slugify->slugify($post->getTitle()));
+        $req->bindValue(':content', $post->getContent());
+        $req->bindValue(':abstract', $post->getAbstract());
+        $result = $req->execute();
+        $req->closeCursor();
+
+        return $result;
     }
 }
