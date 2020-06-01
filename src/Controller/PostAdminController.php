@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Application\AbstractController;
 use App\Application\HTTPResponse;
+use App\Application\HTTPRequest;
 use App\Application\PDOSingleton;
+use App\Application\Form\Form;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\FormBuilder\CommentFormBuilder;
@@ -26,11 +28,8 @@ final class PostAdminController extends AbstractController
                 'author' => $httpRequest->postData('author'),
                 'idUser' => $httpRequest->getUserSession()->getId(),
             ]);
-            $manager = new PostManagerPDO(PDOSingleton::getInstance()->getConnexion());
             // build a post form with fields values
-            $formBuilder = new PostFormBuilder($post, $this->httpRequest);
-            $formBuilder->build();
-            $postForm = $formBuilder->getForm();
+            $postForm = $this->buildPostForm($post, $httpRequest);
             // instantiate PostFormHandler
             $dao = PDOSingleton::getInstance()->getConnexion();
             $manager = new PostManagerPDO($dao);
@@ -68,16 +67,21 @@ final class PostAdminController extends AbstractController
         }
         // else, we only need an empty post form
         $post = new Post();
-        $formBuilder = new PostFormBuilder($post, $this->httpRequest);
-        $formBuilder->build();
-        $postForm = $formBuilder->getForm();
+        $postForm = $this->buildPostForm($post, $httpRequest);
 
         return new HTTPResponse(
             $this->getAction().'.'.$this->getPage(),
             [
                 'postForm' => $postForm,
-                'user' => $this->httpRequest->getUserSession(),
+                'user' => $httpRequest->getUserSession(),
             ]
         );
+    }
+
+    public function buildPostForm(Post $post, HTTPRequest $httpRequest): Form
+    {
+        $formBuilder = new PostFormBuilder($post, $httpRequest);
+        $formBuilder->build();
+        return $formBuilder->getForm();
     }
 }
