@@ -55,13 +55,9 @@ abstract class CommentManager extends Manager
     public function save(Comment $comment): bool
     {
         if ($comment->isValid()) {
-            if ($comment->isNew()) {
-                return $this->add($comment);
-            }
-
-            return $this->update($comment);
+            return $comment->isNew() ? $this->add($comment) : $this->update($comment);
         }
 
-        throw new Exception('The comment must be valid to be saved.');
+        return false;
     }
 }
