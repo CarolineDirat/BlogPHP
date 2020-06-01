@@ -4,6 +4,7 @@ namespace App\Model;
 
 use App\Application\Manager;
 use App\Entity\Post;
+use Exception;
 
 /**
  * PostManager.
@@ -27,4 +28,34 @@ abstract class PostManager extends Manager
      * @return array[Post]
      */
     abstract public function getListPosts(): array;
+
+    /**
+     * add.
+     *
+     * Method to add a post in database
+     */
+    abstract public function add(Post $post): bool;
+
+    /**
+     * update.
+     *
+     * Method to update a post in database
+     */
+    abstract public function update(Post $post): bool;
+
+    /**
+     * save.
+     *
+     * Method wich save a post in database :
+     * - add it if it's new
+     * - update it if it isn't new
+     */
+    public function save(Post $post): bool
+    {
+        if ($post->isValid()) {
+            return $post->isNew() ? $this->add($post) : $this->update($post);
+        }
+
+        return false;
+    }
 }
