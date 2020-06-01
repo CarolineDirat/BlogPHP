@@ -135,8 +135,6 @@ final class PostManagerPDO extends PostManager
         $req->bindValue(':idUser', $post->getIdUser(), PDO::PARAM_INT);
         $result = $req->execute();
         $req->closeCursor();
-        // Returns the identifier of the last post inserted
-        // $post->setId((int) $this->dao->lastInsertId());
 
         return $result;
     }

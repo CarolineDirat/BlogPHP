@@ -133,8 +133,6 @@ final class CommentManagerPDO extends CommentManager
         $req->bindValue(':idUser', $comment->getIdUser(), PDO::PARAM_INT);
         $result = $req->execute();
         $req->closeCursor();
-        // Returns the identifier of the last comment inserted
-        // $comment->setId((int) $this->dao->lastInsertId());
 
         return $result;
     }
