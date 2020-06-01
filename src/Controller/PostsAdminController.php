@@ -7,7 +7,7 @@ use App\Application\HTTPResponse;
 use App\Application\PDOSingleton;
 use App\Model\PostManagerPDO;
 
-final class AdminController extends AbstractController
+final class PostsAdminController extends AbstractController
 {
     /**
      * executeShowAdmin.
@@ -16,7 +16,7 @@ final class AdminController extends AbstractController
      *
      * @return HTTPResponse
      */
-    public function executeShowAdmin(): HTTPResponse
+    public function executeAdminPosts(): HTTPResponse
     {
         // get list of all posts
         $postManager = new PostManagerPDO(PDOSingleton::getInstance()->getConnexion());

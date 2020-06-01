@@ -7,7 +7,7 @@ session_start();
 
 use App\Application\HTTPRequest;
 use App\Application\TwigRenderer;
-use App\Controller\AdminController;
+use App\Controller\PostsAdminController;
 use App\Controller\HomeController;
 use App\Controller\LoginController;
 use App\Controller\PostAdminController;
@@ -47,11 +47,11 @@ try {
                     $controller->execute()->send($twigRenderer);
                 }
                 // if user role = admin, he can go to administration pages and if $action value is valid
-                if ('admin' === $user->getRole() && in_array($action, ['show', 'add', 'update', 'delete', 'admin'], true)) {
+                if ('admin' === $user->getRole()) {
                     switch ($page) {
-                        case 'admin':
+                        case 'posts':
                             $match = true;
-                            $controller = new AdminController($action, $page, $httpRequest);
+                            $controller = new PostsAdminController($action, $page, $httpRequest);
                             $controller->execute()->send($twigRenderer);
 
                         break;
