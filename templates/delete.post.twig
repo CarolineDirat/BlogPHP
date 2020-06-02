@@ -1,0 +1,64 @@
+{# delete post view #}
+
+{% extends "layout.twig" %}
+
+{% block title %}{{ parent() }}Ajouter un article{% endblock %}
+
+{% block themeCSS %}../../../../{{ parent() }}{% endblock %}
+{% block awesomeCSS %}../../../../{{ parent() }}{% endblock %}
+
+{% block contactLink %}"/#web"{% endblock %}
+
+{% block view %}
+    {% if not messageInfo %}
+        <div class="post-admin-top-block"></div>
+    {% endif %}
+    <section id="delete-post" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h4>La suppresion d'un article est irréversible</h4>
+                    <p class="text-center">Êtes-vous sûr de vouloir supprimer cet article ?</p>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row form">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="row text-center">
+                        <form name="deletePostForm" id="addPostForm"  method="post" action="/admin/delete/post/#{post.id}">                  
+                            <input type="text" id="confirm-delete-post" name="confirm-delete-post" value="delete" hidden readonly>
+                            <div>
+                                <button type="submit" class="btn btn-success btn-lg btn-login">Oui, je supprime l'article</button>
+                                <a href="/admin" role="button" class="btn btn-primary">Non, j'annule la suppression</a>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                        <div class="post">
+                            <h4 class="text-center">{{ post.title }}</h4>
+                            <hr class="star-primary">
+                            <h5 class="text-center"> {{ post.abstract }} </h5>
+                            <hr class="star-primary">
+                            <p class="text-justify"> {{ post.content|nl2br }}</p>
+                            <ul class="list-inline item-details">
+                                <li>Auteur :
+                                    <strong>{{ post.author }}</strong>
+                                </li>
+                                <li>Date de dernière mise à jour :
+                                    <strong>{{ post.dateUpdate|date("d/m/Y") }}</a>
+                                    </strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>                    
+
+{% endblock %}
+
+{% block themeJS %}../../../../{{ parent() }}{% endblock %}
