@@ -4,7 +4,6 @@
 
 {% block title %}{{ parent() }}Ajouter un article{% endblock %}
 
-
 {% block themeCSS %}../../{{ parent() }}{% endblock %}
 {% block awesomeCSS %}../../{{ parent() }}{% endblock %}
 
@@ -24,7 +23,7 @@
             </div>
             <div class="row form">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <form name="postForm" id="postForm"  method="post" action="/admin/add/post">                  
+                    <form name="addPostForm" id="addPostForm"  method="post" action="/admin/add/post">                  
                         <div class="row control-group ">
                             <div class="form-group">
                                 {{ fieldBuilder(postForm.fields.title, ['placeholder', 'maxlength', 'required'], 'form-control') }}
@@ -52,18 +51,13 @@
                             <div class="form-group col-xs-12">
                                 <button type="submit" class="btn btn-success btn-lg btn-login">Ajouter</button>
                             </div>
-                            
-                            
                         </div>
                     </form>
                 </div>
             </div>
-            
         </div>
     </section>                    
 
 {% endblock %}
-
-
 
 {% block themeJS %}../../{{ parent() }}{% endblock %}
