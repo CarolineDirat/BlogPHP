@@ -37,7 +37,7 @@ class Router
      */
     public function loadRoutes(): void
     {
-        $xml = new DOMDocument(); //http://blogphp/
+        $xml = new DOMDocument();
         $xml->load(str_replace('src\Application', '', __DIR__).'\config\routes.xml');
         $routes = $xml->getElementsByTagName('route');
         foreach ($routes as $route) {
@@ -59,7 +59,8 @@ class Router
     public function checkRoute(Route $route): void
     {
         $this->loadRoutes();
-        if (!in_array($route, $this->getRoutes(), true)) {
+        //var_dump($route);var_dump($this->getRoutes()); exit;
+        if (!in_array($route, $this->getRoutes())) {
             throw new Exception('No Route corresponding to the Request');
         }
     }
