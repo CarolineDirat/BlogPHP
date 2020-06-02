@@ -1,0 +1,64 @@
+{# add post view #}
+
+{% extends "layout.twig" %}
+
+{% block title %}{{ parent() }}Modifier un article{% endblock %}
+
+{% block themeCSS %}../../../{{ parent() }}{% endblock %}
+{% block awesomeCSS %}../../../{{ parent() }}{% endblock %}
+
+{% block contactLink %}"/#web"{% endblock %}
+
+{% block view %}
+    {% if not messageInfo %}
+        <div class="post-admin-top-block"></div>
+    {% endif %}
+    <section id="admin-post" >
+        <div  class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Modifier un article</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row form">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <form name="updatePostForm" id="updatePostForm"  method="post" action="/admin/update/post">                  
+                        <div class="row control-group ">
+                            <div class="form-group">
+                                {{ fieldBuilder(postForm.fields.title, ['placeholder', 'maxlength', 'required', 'value'], 'form-control') }}
+                            </div>
+                        </div>
+                        <div class="row control-group ">
+                            <div class="form-group">
+                                {{ fieldBuilder(postForm.fields.abstract, ['placeholder', 'maxlength', 'required', 'value'], 'form-control') }}
+                            </div>
+                        </div>
+                        <div class="row control-group ">
+                            <div class="form-group">
+                                {{ fieldBuilder(postForm.fields.author, ['value', 'required', 'readonly'], 'form-control') }}
+                            </div>
+                        </div>
+                        <div class="row control-group ">
+                            <div class="form-group">
+                                {{ fieldBuilder(postForm.fields.content, ['placeholder', 'maxlength', 'rows', 'required', 'value'], 'form-control') }}
+                            </div>
+                            <div class="col-xs-12 text-right">
+                                 <a role="button" href="/admin" class="btn btn-primary ">Annuler</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button type="submit" class="btn btn-success btn-lg btn-login">Modifier</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>                    
+
+{% endblock %}
+
+{% block themeJS %}../../../{{ parent() }}{% endblock %}
+
