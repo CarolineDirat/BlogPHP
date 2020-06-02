@@ -34,6 +34,7 @@ final class PostAdminController extends AbstractController
      *
      * controller corresponding to the route(admin,add,post)
      * to go to the page to add a post : add.post.twig
+     * and process a form post to add a post
      *
      * @return HTTPResponse
      */
@@ -102,8 +103,9 @@ final class PostAdminController extends AbstractController
     /**
      * executeUpdatePost.
      *
-     *  * controller corresponding to the route(admin,update,post)
+     * controller corresponding to the route(admin,update,post)
      * to go to the page to update a post : update.post.twig
+     * and process a post form to update a post
      *
      * @return HTTPResponse
      */
@@ -179,5 +181,45 @@ final class PostAdminController extends AbstractController
                 'user' => $httpRequest->getUserSession(),
             ]
         );
+    }
+    
+    /**
+     * executeDeletePost
+     * 
+     * controller corresponding to the route(admin,delete,post)
+     * to go to the page to confirm to delete a post : delete.post.twig
+     * and it manages the deletion of the post when it is confirmed
+     *
+     * @return HTTPResponse
+     */
+    public function executeDeletePost(): HTTPResponse
+    {
+        $httpRequest = $this->httpRequest;
+        if ($httpRequest->hasGet('id')) {
+            // connexion to the database
+            $dao = PDOSingleton::getInstance()->getConnexion();
+            // get the post from the id, with its author's pseudo
+            $postManager = new PostManagerPDO($dao);
+            $post = $postManager->getPost((int) $httpRequest->getData('id'));
+
+            return new HTTPResponse(
+                $this->getAction().'.'.$this->getPage(),
+                [
+                    'user' => $httpRequest->getUserSession(),
+                    'post' => $post,
+                ]
+            );
+             
+        }
+
+        // if $_GET['id'] doesn't exists, redirection to home page with message info
+        return new HTTPResponse(
+            'home',
+            [
+                'messageInfo' => 'Vous avez été redirigé sur la page d\'accueil parce qu\'il manque l\'id du post à supprimer dans votre requête',
+                'user' => $httpRequest->getUserSession(),
+            ]
+        );
+
     }
 }
