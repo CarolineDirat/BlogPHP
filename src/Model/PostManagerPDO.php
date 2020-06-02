@@ -166,6 +166,7 @@ final class PostManagerPDO extends PostManager
         $req->bindValue(':slug', $slugify->slugify($post->getTitle()));
         $req->bindValue(':content', $post->getContent());
         $req->bindValue(':abstract', $post->getAbstract());
+        $req->bindValue(':idPost', $post->getId());
         $result = $req->execute();
         $req->closeCursor();
 
