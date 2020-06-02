@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<routes>
+    <route module="public" action="show" page="home"/> 
+    <route module="public" action="show" page="post"/>
+    <route module="public" action="show" page="blog"/>
+    <route module="public" action="show" page="login"/>
+    <route module="public" action="logout" page="login"/>
+    <route module="public" action="show" page="register"/>
+    <route module="admin" action="admin" page="posts"/>
+    <route module="admin" action="add" page="post"/>
+    <route module="admin" action="update" page="post"/>
+    <route module="admin" action="delete" page="post"/>
+    <route module="admin" action="admin" page="comments"/>
+</routes>

@@ -1,10 +1,11 @@
 RewriteEngine on
 
-RewriteRule post/([0-9]+)/([a-z0-9-]+) index.php?page=post&slug=$2&id=$1&action=show
-RewriteRule blog index.php?page=blog&action=show
-RewriteRule login index.php?page=login&action=show
-RewriteRule logout index.php?page=login&action=logout
-RewriteRule ^admin$ index.php?module=admin&action=show&page=admin
+RewriteRule ^$ index.php?module=public&page=home&action=show
+RewriteRule post/([0-9]+)/([a-z0-9-]+) index.php?module=public&page=post&slug=$2&id=$1&action=show
+RewriteRule blog index.php?module=public&page=blog&action=show
+RewriteRule login index.php?module=public&page=login&action=show
+RewriteRule logout index.php?module=public&page=login&action=logout
+RewriteRule ^admin$ index.php?module=admin&action=admin&page=posts
 RewriteRule admin/add/post index.php?module=admin&action=add&page=post
 RewriteRule admin/update/post/([0-9]+) index.php?module=admin&action=update&page=post&id=$1
 RewriteRule admin/delete/post/([0-9]+) index.php?module=admin&action=delete&page=post&id=$1

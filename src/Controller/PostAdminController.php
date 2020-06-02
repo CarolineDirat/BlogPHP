@@ -77,7 +77,14 @@ final class PostAdminController extends AbstractController
             ]
         );
     }
-
+    
+    /**
+     * buildPostForm
+     *
+     * @param  Post $post
+     * @param  HTTPRequest $httpRequest
+     * @return Form
+     */
     public function buildPostForm(Post $post, HTTPRequest $httpRequest): Form
     {
         $formBuilder = new PostFormBuilder($post, $httpRequest);

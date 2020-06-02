@@ -12,7 +12,7 @@ use App\FormHandler\CommentFormHandler;
 use App\Model\CommentManagerPDO;
 use App\Model\PostManagerPDO;
 
-final class PostController extends AbstractController
+final class PostPublicController extends AbstractController
 {
     /**
      * controller to show the page of a post.
@@ -95,17 +95,5 @@ final class PostController extends AbstractController
         }
 
         throw new \Exception('id or slug is missing in the request');
-    }
-
-    /**
-     * controller to show the blog page, a list of posts from most recent to oldest.
-     */
-    public function executeShowBLog(): HTTPResponse
-    {
-        // get the list of all posts
-        $postManager = new PostManagerPDO(PDOSingleton::getInstance()->getConnexion());
-        $listPosts = $postManager->getListPosts();
-
-        return new HTTPResponse($this->getPage(), ['listPosts' => $listPosts, 'user' => $this->httpRequest->getUserSession()]);
     }
 }
