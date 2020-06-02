@@ -100,18 +100,13 @@ class InputField extends Field
     /**
      * Set value.
      *
-     * @param string $value value
+     * @param ?string $value value
      */
-    public function setValue(string $value): self
+    public function setValue(?string $value): self
     {
-        $value = filter_var($value, FILTER_SANITIZE_STRING);
-        if ($value) {
-            $this->value = $value;
+        $this->value = filter_var($value, FILTER_SANITIZE_STRING);
 
-            return $this;
-        }
-
-        throw new InvalidArgumentException('$value property must be a string not null');
+        return $this;
     }
 
     /**
