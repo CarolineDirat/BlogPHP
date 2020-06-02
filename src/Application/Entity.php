@@ -59,16 +59,6 @@ abstract class Entity
         return true;
     }
 
-    /**
-     * isNew.
-     *
-     * Method to find out if the entity is new.
-     */
-    public function isNew(): bool
-    {
-        return empty($this->id);
-    }
-
     public function getErrors(): array
     {
         return $this->errors;

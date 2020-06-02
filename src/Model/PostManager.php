@@ -52,7 +52,7 @@ abstract class PostManager extends Manager
     public function save(Post $post): bool
     {
         if ($post->isValid()) {
-            return $post->isNew() ? $this->add($post) : $this->update($post);
+            return empty($post->getId()) ? $this->add($post) : $this->update($post);
         }
 
         return false;
