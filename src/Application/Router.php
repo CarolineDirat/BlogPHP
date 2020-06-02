@@ -40,8 +40,8 @@ class Router
      */
     public function loadRoutes(): void
     {
-        $xml = new DOMDocument();
-        $xml->load(dirname(__DIR__, 2).'/config/routes.xml');
+        $xml = new DOMDocument();//http://blogphp/
+        $xml->load(str_replace('src\Application','',__DIR__).'\config\routes.xml');
         $routes = $xml->getElementsByTagName('route');
         foreach ($routes as $route) {
             $this->addRoute(new Route(
