@@ -110,20 +110,63 @@ final class PostAdminController extends AbstractController
      */
     public function executeUpdatePost(): HTTPResponse
     {
-        if ($this->httpRequest->hasGet('id')) {
+        $httpRequest = $this->httpRequest;
+        if ($httpRequest->hasGet('id')) {
             // connexion to the database
             $dao = PDOSingleton::getInstance()->getConnexion();
-            // get post from database 
+            // if form have been submit
+            if ('POST' === $this->httpRequest->method()) {
+                // get post from post form
+                $post = new Post([
+                    'title' => $httpRequest->postData('title'),
+                    'abstract' => $httpRequest->postData('abstract'),
+                    'content' => $httpRequest->postData('content'),
+                    'author' => $httpRequest->postData('author'),
+                    'idUser' => $httpRequest->getUserSession()->getId(),
+                    'id' => $httpRequest->getData('id'),
+                ]);
+                // build a post form with fields values
+                $postForm = $this->buildPostForm($post, $httpRequest);
+                // instantiate PostFormHandler
+                $manager = new PostManagerPDO($dao);
+                $formHandler = new PostFormHandler($postForm, $manager, $httpRequest);
+                // process post form
+                if ($formHandler->process()) {
+                    // if process ok: we stay on update post page with new values, with a message of success
+                    $messageInfo = 'La modification du post a été enregistrée';
+                    // we get post from database 
+                    $postManager = new PostManagerPDO($dao);
+                    $post = $postManager->getPost((int) $httpRequest->getData('id'));
+                    // build postForm with post object
+                    $postForm = $this->buildPostForm($post, $httpRequest);
+                } else {
+                    // if process fails : a message alerts the user
+                    $messageInfo = 'La modification du  post a échoué, veuillez vérifier les valeurs des champs';
+                    // and the content of the form remains that before validation
+                }
+                return new HTTPResponse(
+                        $this->getAction().'.'.$this->getPage(),
+                        [
+                            'postForm' => $postForm,
+                            'user' => $httpRequest->getUserSession(),
+                            'messageInfo' => $messageInfo,
+                            'post' => $post,
+                        ]
+                    );
+            }
+            // else, if mehod request is not 'POST'
+            // we get post from database 
             $postManager = new PostManagerPDO($dao);
-            $post = $postManager->getPost((int) $this->httpRequest->getData('id'));
+            $post = $postManager->getPost((int) $httpRequest->getData('id'));
             // build postForm with post object
-            $postForm = $this->buildPostForm($post, $this->httpRequest);
+            $postForm = $this->buildPostForm($post, $httpRequest);
 
             return new HTTPResponse(
                 $this->getAction().'.'.$this->getPage(),
                 [
                     'postForm' => $postForm,
-                    'user' => $this->httpRequest->getUserSession(),
+                    'user' => $httpRequest->getUserSession(),
+                    'post' => $post,
                 ]
             );
 
@@ -134,7 +177,7 @@ final class PostAdminController extends AbstractController
             'home',
             [
                 'messageInfo' => 'Vous avez été redirigé sur la page d\'accueil parce qu\'il manque l\'id du post à modifier dans votre requête',
-                'user' => $this->httpRequest->getUserSession(),
+                'user' => $httpRequest->getUserSession(),
             ]
         );
     }

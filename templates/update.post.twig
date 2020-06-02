@@ -23,7 +23,7 @@
             </div>
             <div class="row form">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <form name="updatePostForm" id="updatePostForm"  method="post" action="/admin/update/post">                  
+                    <form name="updatePostForm" id="updatePostForm"  method="post" action={{ "/admin/update/post/#{post.id}" }}>
                         <div class="row control-group ">
                             <div class="form-group">
                                 {{ fieldBuilder(postForm.fields.title, ['placeholder', 'maxlength', 'required', 'value'], 'form-control') }}
@@ -44,7 +44,7 @@
                                 {{ fieldBuilder(postForm.fields.content, ['placeholder', 'maxlength', 'rows', 'required', 'value'], 'form-control') }}
                             </div>
                             <div class="col-xs-12 text-right">
-                                 <a role="button" href="/admin" class="btn btn-primary ">Annuler</a>
+                                 <a role="button" href="/admin" class="btn btn-primary ">Retour</a>
                             </div>
                         </div>
                         <div class="row">
