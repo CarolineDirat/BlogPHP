@@ -28,8 +28,6 @@ class FormExtension extends AbstractExtension
      * @param string[] $options Names of attributes you want to use in the html element (the field) :
      *                          input or textarea or select ...
      * @param ?string  $class   value of class attribute for the html element of the field
-     *
-     * @return string
      */
     public function fieldBuilder(Field $field, array $options = [], ?string $class): string
     {
@@ -71,8 +69,6 @@ class FormExtension extends AbstractExtension
      * getHtmlFromArray.
      *
      * Transform an array $key => $value into HTML attributes
-     *
-     * @return string
      */
     public function getHtmlFromArray(array $attributes): string
     {
@@ -92,8 +88,6 @@ class FormExtension extends AbstractExtension
      * input.
      *
      * Generate an input field
-     *
-     * @return string
      */
     public function input(InputField $field, array $attributes = []): string
     {
@@ -111,8 +105,6 @@ class FormExtension extends AbstractExtension
      * Generate a textarea field
      *
      * @param ?string $value
-     *
-     * @return string
      */
     public function textarea(?string $value, array $attributes = []): string
     {

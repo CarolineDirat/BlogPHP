@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Application\AbstractController;
-use App\Application\HTTPResponse;
-use App\Application\HTTPRequest;
-use App\Application\PDOSingleton;
 use App\Application\Form\Form;
+use App\Application\HTTPRequest;
+use App\Application\HTTPResponse;
+use App\Application\PDOSingleton;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\FormBuilder\CommentFormBuilder;
@@ -17,22 +17,21 @@ use App\Model\PostManagerPDO;
 final class PostAdminController extends AbstractController
 {
     /**
-     * buildPostForm
+     * buildPostForm.
      *
-     * @param  Post $post
-     * @param  HTTPRequest $httpRequest
      * @return Form
      */
     public function buildPostForm(Post $post, HTTPRequest $httpRequest): Form
     {
         $formBuilder = new PostFormBuilder($post, $httpRequest);
         $formBuilder->build();
+
         return $formBuilder->getForm();
     }
-        
+
     /**
-     * executeAddPost
-     * 
+     * executeAddPost.
+     *
      * controller corresponding to the route(admin,add,post)
      * to go to the page to add a post : add.post.twig
      *
@@ -99,10 +98,10 @@ final class PostAdminController extends AbstractController
             ]
         );
     }
-    
+
     /**
-     * executeUpdatePost
-     * 
+     * executeUpdatePost.
+     *
      *  * controller corresponding to the route(admin,update,post)
      * to go to the page to update a post : update.post.twig
      *
@@ -134,7 +133,7 @@ final class PostAdminController extends AbstractController
                 if ($formHandler->process()) {
                     // if process ok: we stay on update post page with new values, with a message of success
                     $messageInfo = 'La modification du post a été enregistrée';
-                    // we get post from database 
+                    // we get post from database
                     $postManager = new PostManagerPDO($dao);
                     $post = $postManager->getPost((int) $httpRequest->getData('id'));
                     // build postForm with post object
@@ -144,18 +143,19 @@ final class PostAdminController extends AbstractController
                     $messageInfo = 'La modification du  post a échoué, veuillez vérifier les valeurs des champs';
                     // and the content of the form remains that before validation
                 }
+
                 return new HTTPResponse(
-                        $this->getAction().'.'.$this->getPage(),
-                        [
-                            'postForm' => $postForm,
-                            'user' => $httpRequest->getUserSession(),
-                            'messageInfo' => $messageInfo,
-                            'post' => $post,
-                        ]
-                    );
+                    $this->getAction().'.'.$this->getPage(),
+                    [
+                        'postForm' => $postForm,
+                        'user' => $httpRequest->getUserSession(),
+                        'messageInfo' => $messageInfo,
+                        'post' => $post,
+                    ]
+                );
             }
             // else, if mehod request is not 'POST'
-            // we get post from database 
+            // we get post from database
             $postManager = new PostManagerPDO($dao);
             $post = $postManager->getPost((int) $httpRequest->getData('id'));
             // build postForm with post object
@@ -169,7 +169,6 @@ final class PostAdminController extends AbstractController
                     'post' => $post,
                 ]
             );
-
         }
 
         // if $_GET['id'] doesn't exists, redirection to home page with message info

@@ -2,24 +2,24 @@
 
 namespace App\Application;
 
-class Route 
-{    
+class Route
+{
     /**
-     * module
+     * module.
      *
      * @var string
      */
     private string $module;
 
     /**
-     * action
+     * action.
      *
      * @var string
      */
     private string $action;
 
     /**
-     * action
+     * action.
      *
      * @var string
      */
@@ -32,26 +32,25 @@ class Route
             ->setAction($action)
             ->setPage($page)
         ;
-
     }
 
     /**
-     * Get module
+     * Get module.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getModule(): string
     {
         return $this->module;
     }
 
     /**
-     * Set module
+     * Set module.
      *
-     * @param  string  $module  module
+     * @param string $module module
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setModule(string $module): self
     {
         $this->module = $module;
@@ -60,22 +59,22 @@ class Route
     }
 
     /**
-     * Get action
+     * Get action.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getAction(): string
     {
         return $this->action;
     }
 
     /**
-     * Set action
+     * Set action.
      *
-     * @param  string  $action  action
+     * @param string $action action
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setAction(string $action): self
     {
         $this->action = $action;
@@ -84,22 +83,22 @@ class Route
     }
 
     /**
-     * Get action
+     * Get action.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getPage(): string
     {
         return $this->page;
     }
 
     /**
-     * Set action
+     * Set action.
      *
-     * @param  string  $page  action
+     * @param string $page action
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setPage(string $page): self
     {
         $this->page = $page;
