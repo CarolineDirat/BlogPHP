@@ -1,5 +1,6 @@
 RewriteEngine on
 
+RewriteRule ^$ index.php?module=public&page=home&action=show
 RewriteRule post/([0-9]+)/([a-z0-9-]+) index.php?module=public&page=post&slug=$2&id=$1&action=show
 RewriteRule blog index.php?module=public&page=blog&action=show
 RewriteRule login index.php?module=public&page=login&action=show
