@@ -5,7 +5,7 @@ namespace App\Modules;
 use App\Application\Application;
 
 class AdminApplication extends Application
-{    
+{
     public function __construct()
     {
         parent::__construct();

@@ -41,8 +41,6 @@ abstract class Entity
      * isValid.
      *
      * checks if all entity propertoes are'nt not null
-     *
-     * @return bool
      */
     public function isValid(): bool
     {
@@ -59,16 +57,6 @@ abstract class Entity
         return true;
     }
 
-    /**
-     * isNew.
-     *
-     * Method to find out if the entity is new.
-     */
-    public function isNew(): bool
-    {
-        return empty($this->id);
-    }
-
     public function getErrors(): array
     {
         return $this->errors;
@@ -83,8 +71,6 @@ abstract class Entity
 
     /**
      * Get array of entity's properties.
-     *
-     * @return array
      */
     public function getProperties(): array
     {
@@ -95,8 +81,6 @@ abstract class Entity
      * Set array of entity's properties.
      *
      * @param array $properties array of entity's properties
-     *
-     * @return self
      */
     public function setProperties(array $properties): self
     {

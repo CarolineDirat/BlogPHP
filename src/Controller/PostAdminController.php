@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Application\AbstractController;
-use App\Application\HTTPResponse;
-use App\Application\HTTPRequest;
-use App\Application\PDOSingleton;
 use App\Application\Form\Form;
+use App\Application\HTTPRequest;
+use App\Application\HTTPResponse;
+use App\Application\PDOSingleton;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\FormBuilder\CommentFormBuilder;
@@ -16,6 +16,27 @@ use App\Model\PostManagerPDO;
 
 final class PostAdminController extends AbstractController
 {
+    /**
+     * buildPostForm.
+     *
+     * @return Form
+     */
+    public function buildPostForm(Post $post, HTTPRequest $httpRequest): Form
+    {
+        $formBuilder = new PostFormBuilder($post, $httpRequest);
+        $formBuilder->build();
+
+        return $formBuilder->getForm();
+    }
+
+    /**
+     * executeAddPost.
+     *
+     * controller corresponding to the route(admin,add,post)
+     * to go to the page to add a post : add.post.twig
+     *
+     * @return HTTPResponse
+     */
     public function executeAddPost(): HTTPResponse
     {
         $httpRequest = $this->httpRequest;
@@ -77,18 +98,86 @@ final class PostAdminController extends AbstractController
             ]
         );
     }
-    
+
     /**
-     * buildPostForm
+     * executeUpdatePost.
      *
-     * @param  Post $post
-     * @param  HTTPRequest $httpRequest
-     * @return Form
+     *  * controller corresponding to the route(admin,update,post)
+     * to go to the page to update a post : update.post.twig
+     *
+     * @return HTTPResponse
      */
-    public function buildPostForm(Post $post, HTTPRequest $httpRequest): Form
+    public function executeUpdatePost(): HTTPResponse
     {
-        $formBuilder = new PostFormBuilder($post, $httpRequest);
-        $formBuilder->build();
-        return $formBuilder->getForm();
+        $httpRequest = $this->httpRequest;
+        if ($httpRequest->hasGet('id')) {
+            // connexion to the database
+            $dao = PDOSingleton::getInstance()->getConnexion();
+            // if form have been submit
+            if ('POST' === $this->httpRequest->method()) {
+                // get post from post form
+                $post = new Post([
+                    'title' => $httpRequest->postData('title'),
+                    'abstract' => $httpRequest->postData('abstract'),
+                    'content' => $httpRequest->postData('content'),
+                    'author' => $httpRequest->postData('author'),
+                    'idUser' => $httpRequest->getUserSession()->getId(),
+                    'id' => $httpRequest->getData('id'),
+                ]);
+                // build a post form with fields values
+                $postForm = $this->buildPostForm($post, $httpRequest);
+                // instantiate PostFormHandler
+                $manager = new PostManagerPDO($dao);
+                $formHandler = new PostFormHandler($postForm, $manager, $httpRequest);
+                // process post form
+                if ($formHandler->process()) {
+                    // if process ok: we stay on update post page with new values, with a message of success
+                    $messageInfo = 'La modification du post a été enregistrée';
+                    // we get post from database
+                    $postManager = new PostManagerPDO($dao);
+                    $post = $postManager->getPost((int) $httpRequest->getData('id'));
+                    // build postForm with post object
+                    $postForm = $this->buildPostForm($post, $httpRequest);
+                } else {
+                    // if process fails : a message alerts the user
+                    $messageInfo = 'La modification du  post a échoué, veuillez vérifier les valeurs des champs';
+                    // and the content of the form remains that before validation
+                }
+
+                return new HTTPResponse(
+                    $this->getAction().'.'.$this->getPage(),
+                    [
+                        'postForm' => $postForm,
+                        'user' => $httpRequest->getUserSession(),
+                        'messageInfo' => $messageInfo,
+                        'post' => $post,
+                    ]
+                );
+            }
+            // else, if mehod request is not 'POST'
+            // we get post from database
+            $postManager = new PostManagerPDO($dao);
+            $post = $postManager->getPost((int) $httpRequest->getData('id'));
+            // build postForm with post object
+            $postForm = $this->buildPostForm($post, $httpRequest);
+
+            return new HTTPResponse(
+                $this->getAction().'.'.$this->getPage(),
+                [
+                    'postForm' => $postForm,
+                    'user' => $httpRequest->getUserSession(),
+                    'post' => $post,
+                ]
+            );
+        }
+
+        // if $_GET['id'] doesn't exists, redirection to home page with message info
+        return new HTTPResponse(
+            'home',
+            [
+                'messageInfo' => 'Vous avez été redirigé sur la page d\'accueil parce qu\'il manque l\'id du post à modifier dans votre requête',
+                'user' => $httpRequest->getUserSession(),
+            ]
+        );
     }
 }

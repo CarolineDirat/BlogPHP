@@ -37,6 +37,7 @@ final class PostFormBuilder extends FormBuilder
                     'placeholder' => 'Titre de l\'article',
                     'maxlength' => 150,
                     'required' => 'required',
+                    'value' => $this->httpRequest->postData('title'),
                     'validators' => [
                         new NotEmptyValidator('Merci d\'écrire un titre.'),
                         new MaxLengthValidator('Merci d\'écrire un titre de moins de 150 caractères', 150),
@@ -51,6 +52,7 @@ final class PostFormBuilder extends FormBuilder
                     'placeholder' => 'Chapô de l\'article',
                     'maxlength' => 300,
                     'required' => 'required',
+                    'value' => $this->httpRequest->postData('abstract'),
                     'validators' => [
                         new NotEmptyValidator('Merci d\'écrire le chapô de l\'article.'),
                         new MaxLengthValidator('Merci d\'écrire un chapô de moins de 300 caractères', 300),

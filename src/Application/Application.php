@@ -4,32 +4,32 @@ namespace App\Application;
 
 use Exception;
 
-abstract class Application 
-{    
+abstract class Application
+{
     /**
-     * httpRequest
+     * httpRequest.
      *
      * @var HTTPRequest
      */
     protected HTTPRequest $httpRequest;
-    
+
     /**
-     * twigRenderer
+     * twigRenderer.
      *
      * @var TwigRenderer
      */
     protected TwigRenderer $twigRenderer;
-    
+
     /**
-     * router
+     * router.
      *
      * @var Router
      */
     protected Router $router;
-    
+
     /**
-     * module
-     * 
+     * module.
+     *
      * name of the application module (public or admin)
      *
      * @var string
@@ -42,28 +42,26 @@ abstract class Application
         $this->setTwigRenderer(new TwigRenderer('../templates'));
         $this->setRouter(new Router());
     }
-    
+
     /**
-     * run
-     * 
+     * run.
+     *
      * method which will execute the application
      *
      * @return void
      */
     abstract public function run(): void;
-    
+
     /**
-     * implementController
-     * 
-     * define and execute the controller 
-     * 
-     * @param  string $action
-     * @param  string $page
+     * implementController.
+     *
+     * define and execute the controller
+     *
      * @return void
      */
     public function implementController(string $action, string $page): void
     {
-        $classController = 'App\\Controller\\'.ucfirst($page) . ucfirst($this->getModule()) . 'Controller';
+        $classController = 'App\\Controller\\'.ucfirst($page).ucfirst($this->getModule()).'Controller';
         if (!class_exists($classController)) {
             throw new Exception($classController."controller doesn't exist");
         }
@@ -72,23 +70,20 @@ abstract class Application
     }
 
     /**
-     * Get httpRequest
+     * Get httpRequest.
      *
-     * @return  HTTPRequest
-     */ 
+     * @return HTTPRequest
+     */
     public function getHttpRequest(): HTTPRequest
     {
         return $this->httpRequest;
     }
 
-
     /**
-     * Set httpRequest
+     * Set httpRequest.
      *
-     * @param  HTTPRequest  $httpRequest  
-     *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setHttpRequest(HTTPRequest $httpRequest): self
     {
         $this->httpRequest = $httpRequest;
@@ -97,12 +92,12 @@ abstract class Application
     }
 
     /**
-     * Set twigRenderer
+     * Set twigRenderer.
      *
-     * @param  TwigRenderer  $twigRenderer  twigRenderer
+     * @param TwigRenderer $twigRenderer twigRenderer
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setTwigRenderer(TwigRenderer $twigRenderer): self
     {
         $this->twigRenderer = $twigRenderer;
@@ -111,22 +106,22 @@ abstract class Application
     }
 
     /**
-     * Get router
+     * Get router.
      *
-     * @return  Router
-     */ 
+     * @return Router
+     */
     public function getRouter(): Router
     {
         return $this->router;
     }
 
     /**
-     * Set router
+     * Set router.
      *
-     * @param  Router  $router  router
+     * @param Router $router router
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setRouter(Router $router): self
     {
         $this->router = $router;
@@ -135,22 +130,22 @@ abstract class Application
     }
 
     /**
-     * Get name of the application module (public or admin)
+     * Get name of the application module (public or admin).
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getModule(): string
     {
         return $this->module;
     }
 
     /**
-     * Set name of the application module (public or admin)
+     * Set name of the application module (public or admin).
      *
-     * @param  string  $module  name of the application module (public or admin)
+     * @param string $module name of the application module (public or admin)
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setModule(string $module): self
     {
         $this->module = $module;

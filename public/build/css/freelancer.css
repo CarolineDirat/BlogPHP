@@ -35,6 +35,9 @@ a.active {
   color: #18BC9C;
   outline: none;
 }
+a.link-post-admin {
+  color: aliceblue;
+}
 h1,
 h2,
 h3,

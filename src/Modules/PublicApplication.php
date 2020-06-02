@@ -5,7 +5,7 @@ namespace App\Modules;
 use App\Application\Application;
 
 class PublicApplication extends Application
-{    
+{
     public function __construct()
     {
         parent::__construct();
@@ -19,5 +19,4 @@ class PublicApplication extends Application
             $this->getHttpRequest()->getData('page')
         );
     }
-
 }
