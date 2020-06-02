@@ -16,6 +16,28 @@ use App\Model\PostManagerPDO;
 
 final class PostAdminController extends AbstractController
 {
+    /**
+     * buildPostForm
+     *
+     * @param  Post $post
+     * @param  HTTPRequest $httpRequest
+     * @return Form
+     */
+    public function buildPostForm(Post $post, HTTPRequest $httpRequest): Form
+    {
+        $formBuilder = new PostFormBuilder($post, $httpRequest);
+        $formBuilder->build();
+        return $formBuilder->getForm();
+    }
+        
+    /**
+     * executeAddPost
+     * 
+     * controller corresponding to the route(admin,add,post)
+     * to go to the page to add a post : add.post.twig
+     *
+     * @return HTTPResponse
+     */
     public function executeAddPost(): HTTPResponse
     {
         $httpRequest = $this->httpRequest;
@@ -79,16 +101,41 @@ final class PostAdminController extends AbstractController
     }
     
     /**
-     * buildPostForm
+     * executeUpdatePost
+     * 
+     *  * controller corresponding to the route(admin,update,post)
+     * to go to the page to update a post : update.post.twig
      *
-     * @param  Post $post
-     * @param  HTTPRequest $httpRequest
-     * @return Form
+     * @return HTTPResponse
      */
-    public function buildPostForm(Post $post, HTTPRequest $httpRequest): Form
+    public function executeUpdatePost(): HTTPResponse
     {
-        $formBuilder = new PostFormBuilder($post, $httpRequest);
-        $formBuilder->build();
-        return $formBuilder->getForm();
+        if ($this->httpRequest->hasGet('id')) {
+            // connexion to the database
+            $dao = PDOSingleton::getInstance()->getConnexion();
+            // get post from database 
+            $postManager = new PostManagerPDO($dao);
+            $post = $postManager->getPost((int) $this->httpRequest->getData('id'));
+            // build postForm with post object
+            $postForm = $this->buildPostForm($post, $this->httpRequest);
+
+            return new HTTPResponse(
+                $this->getAction().'.'.$this->getPage(),
+                [
+                    'postForm' => $postForm,
+                    'user' => $this->httpRequest->getUserSession(),
+                ]
+            );
+
+        }
+
+        // if $_GET['id'] doesn't exists, redirection to home page with message info
+        return new HTTPResponse(
+            'home',
+            [
+                'messageInfo' => 'Vous avez été redirigé sur la page d\'accueil parce qu\'il manque l\'id du post à modifier dans votre requête',
+                'user' => $this->httpRequest->getUserSession(),
+            ]
+        );
     }
 }
