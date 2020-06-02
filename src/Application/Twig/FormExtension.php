@@ -33,7 +33,7 @@ class FormExtension extends AbstractExtension
      */
     public function fieldBuilder(Field $field, array $options = [], ?string $class): string
     {
-        // define values attributes for html element
+        // define values of attributes for html element
         $attributes['id'] = $field->getIdField();
         $attributes['name'] = $field->getName();
         foreach ($options as $option) {
