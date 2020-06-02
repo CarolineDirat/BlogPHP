@@ -36,5 +36,5 @@ try {
     $app->run();
 
 } catch (Exception $e) {
-    $twigRenderer->render('error', ['error' => $e->getMessage().' in the file '.$e->getFile(). 'line: '. $e->getLine()]);
+    $twigRenderer->render('error', ['error' => $e->getMessage().' in the file '.$e->getFile(). ' - line: '. $e->getLine()]);
 }
