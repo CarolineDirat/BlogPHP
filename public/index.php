@@ -7,90 +7,34 @@ session_start();
 
 use App\Application\HTTPRequest;
 use App\Application\TwigRenderer;
-use App\Controller\PostsAdminController;
-use App\Controller\HomePublicController;
-use App\Controller\LoginPublicController;
-use App\Controller\PostAdminController;
-use App\Controller\PostPublicController;
-use App\Controller\BLogPublicController;
+use App\Application\Route;
+use App\Modules\PublicApplication;
+use App\Modules\AdminApplication;
 
-$twigRenderer = new TwigRenderer('../templates');
+$twigRenderer = new TwigRenderer('../Templates');
 
 try {
-    $match = false; // will be true if the rooter receive a route corresponding to a controller
-    $action = 'show';
-    $page = 'home';
     $httpRequest = new HTTPRequest();
-
-    if ('/' === $httpRequest->requestURI()) {
-        $match = true;
-        $controller = new HomePublicController($action, $page, $httpRequest);
-        $controller->execute()->send($twigRenderer);
+    // if request has'nt $_GET['module'] or $_GET['action'] or $_GET['module']
+    if (!$httpRequest->hasGET('module') || !$httpRequest->hasGET('page') || !$httpRequest->hasGET('action')) {
+        throw new Exception("Error Processing Request : No page corresponds to that requested", 1);
     }
-
-    if ($httpRequest->hasGET('page') && $httpRequest->hasGET('action')) {
-        $page = $httpRequest->getData('page');
-        $action = $httpRequest->getData('action');
-        // if admin module is request
-        if ($httpRequest->hasGET('module')) {
-            if ('admin' === $httpRequest->getData('module')) {
-                $user = $httpRequest->getUserSession();
-                // if user session doesn't exist : redirection to home page
-                if (empty($user)) {
-                    $match = true;
-                    $controller = new HomePublicController('show', 'home', $httpRequest);
-                    $controller->execute()->send($twigRenderer);
-                }
-                // if user does not have 'admin' rights : the user is disconnect
-                if ('admin' !== $user->getRole()) {
-                    $match = true;
-                    $controller = new LoginPublicController('logout', 'login', $httpRequest);
-                    $controller->execute()->send($twigRenderer);
-                }
-                // if user role = admin, he can go to administration pages and if $action value is valid
-                if ('admin' === $user->getRole()) {
-                    switch ($page) {
-                        case 'posts':
-                            $match = true;
-                            $controller = new PostsAdminController($action, $page, $httpRequest);
-                            $controller->execute()->send($twigRenderer);
-
-                        break;
-                        case 'post':
-                            $match = true;
-                            $controller = new PostAdminController($action, $page, $httpRequest);
-                            $controller->execute()->send($twigRenderer);
-                    }
-                }
-            }
-        }
-        // else, we are in public application
-        if ('public' === $httpRequest->getData('module')) {
-            switch ($page) {
-                case 'post':
-                    $match = true;
-                    $controller = new PostPublicController($action, $page, $httpRequest);
-                    $controller->execute()->send($twigRenderer);
-
-                break;
-                case 'blog':
-                    $match = true;
-                    $controller = new BlogPublicController($action, $page, $httpRequest);
-                    $controller->execute()->send($twigRenderer);
-
-                break;
-                case 'login':
-                    $match = true;
-                    $controller = new LoginPublicController($action, $page, $httpRequest);
-                    $controller->execute()->send($twigRenderer);
-
-                break;
-            }
-        }
+    // if $_GET['module'] is not valid (when ModuleApplication class does'nt exists)
+    $appClass = 'App\\Modules\\'.ucfirst($httpRequest->getData('module')).'Application';
+    if (!class_exists($appClass)) {
+        throw new Exception("Error Processing Request : No page corresponds to that requested because '.$appClass.' class does'nt exist");
     }
-    if (!$match) {
-        throw new Exception('No page corresponds to that requested');
-    }
+    $app = new $appClass();
+    // checks if route from request exist
+    $route = new Route(
+        $httpRequest->getData('module'),
+        $httpRequest->getData('action'),
+        $httpRequest->getData('page')
+    );
+    $app->getRouter()->checkRoute($route);
+    // execute the application
+    $app->run();
+
 } catch (Exception $e) {
-    $twigRenderer->render('error', ['error' => $e->getMessage().' in the file '.$e->getFile()]);
+    $twigRenderer->render('error', ['error' => $e->getMessage().' in the file '.$e->getFile(). 'line: '. $e->getLine()]);
 }
