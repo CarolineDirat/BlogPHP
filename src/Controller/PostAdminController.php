@@ -189,7 +189,7 @@ final class PostAdminController extends AbstractController
      * 
      * controller corresponding to the route(admin,delete,post)
      * to go to the page to confirm to delete a post : delete.post.twig
-     * and it manages the deletion of the post when it is confirmed
+     * and it manages the deletion of the post with all its comments, when deletion is confirmed
      *
      * @return HTTPResponse
      */
@@ -202,7 +202,7 @@ final class PostAdminController extends AbstractController
             $postManager = new PostManagerPDO($dao);
             // if deletion is confirmed
             if ($httpRequest->hasPost('confirm-delete-post')) {
-                // deletion of the post and its comments
+                // deletion of the post with its comments
                 if ($postManager->delete($httpRequest->getData('id'))) {
                     // go back to admin page
                     $listPosts = $postManager->getListPosts();

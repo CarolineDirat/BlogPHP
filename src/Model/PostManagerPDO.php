@@ -176,7 +176,7 @@ final class PostManagerPDO extends PostManager
     /**
      * delete
      * 
-     * delete a post in database, with all its comments
+     * delete a post in database, with all its comments, (foreign key in MySQL)
      *
      * @param  int $id
      * @return bool
