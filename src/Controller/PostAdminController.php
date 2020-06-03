@@ -183,10 +183,10 @@ final class PostAdminController extends AbstractController
             ]
         );
     }
-    
+
     /**
-     * executeDeletePost
-     * 
+     * executeDeletePost.
+     *
      * controller corresponding to the route(admin,delete,post)
      * to go to the page to confirm to delete a post : delete.post.twig
      * and it manages the deletion of the post with all its comments, when deletion is confirmed
@@ -216,6 +216,7 @@ final class PostAdminController extends AbstractController
                         ]
                     );
                 }
+
                 throw new Exception('La suppression du post a échoué !!!!');
             }
             // get the post from the id
@@ -238,6 +239,5 @@ final class PostAdminController extends AbstractController
                 'user' => $httpRequest->getUserSession(),
             ]
         );
-
     }
 }

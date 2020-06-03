@@ -6,9 +6,9 @@ use App\Application\Entity;
 use DateTime;
 
 final class Post extends Entity
-{    
+{
     /**
-     * id
+     * id.
      *
      * @var ?int
      */
