@@ -25,7 +25,7 @@
             <div class="row form">
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="row text-center">
-                        <form name="deletePostForm" id="addPostForm"  method="post" action="/admin/delete/post/#{post.id}">                  
+                        <form name="deletePostForm" id="addPostForm"  method="post" action={{ "/admin/delete/post/#{post.id}" }}>                  
                             <input type="text" id="confirm-delete-post" name="confirm-delete-post" value="delete" hidden readonly>
                             <div>
                                 <button type="submit" class="btn btn-success btn-lg btn-login">Oui, je supprime l'article</button>
