@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `role_user` (
 ALTER TABLE post ADD CONSTRAINT user_post_fk
 FOREIGN KEY (id_user)
 REFERENCES user (id)
-ON DELETE CASCADE;
+ON DELETE CASCADE; -- The deletion of a user deletes its posts too
 
 ALTER TABLE comment ADD CONSTRAINT permit_comment_fk
 FOREIGN KEY (`permit`)
@@ -97,17 +97,17 @@ REFERENCES permit (`permit`);
 ALTER TABLE comment ADD CONSTRAINT user_comment_fk
 FOREIGN KEY (id_user)
 REFERENCES user (id)
-ON DELETE CASCADE;
+ON DELETE CASCADE; -- The deletion of a user deletes its comments too
 
 ALTER TABLE comment ADD CONSTRAINT post_comment_fk
 FOREIGN KEY (id_post)
 REFERENCES post (id)
-ON DELETE CASCADE;
+ON DELETE CASCADE; -- The deletion of a post deletes its comments too
 
 ALTER TABLE role_user ADD CONSTRAINT user_role_user_fk
 FOREIGN KEY (id)
 REFERENCES user (id)
-ON DELETE CASCADE;
+ON DELETE CASCADE; -- The deletion of a user deletes him from role_user table
 
 ALTER TABLE role_user ADD CONSTRAINT role_role_user_fk
 FOREIGN KEY (`role`)
