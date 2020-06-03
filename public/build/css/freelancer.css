@@ -310,6 +310,10 @@ section.success {
 #delete-post div.post p {
   font-size: 15px;
 }
+#error {
+  margin-top:150px; 
+  font-size:1.25em;
+}
 #login button.btn-login {
   margin-top: 30px;
 }
