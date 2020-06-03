@@ -13,6 +13,7 @@ use App\FormBuilder\CommentFormBuilder;
 use App\FormBuilder\PostFormBuilder;
 use App\FormHandler\PostFormHandler;
 use App\Model\PostManagerPDO;
+use Exception;
 
 final class PostAdminController extends AbstractController
 {
@@ -196,10 +197,28 @@ final class PostAdminController extends AbstractController
     {
         $httpRequest = $this->httpRequest;
         if ($httpRequest->hasGet('id')) {
-            // connexion to the database
+            // connexion to the database and instanciate post manager
             $dao = PDOSingleton::getInstance()->getConnexion();
-            // get the post from the id, with its author's pseudo
             $postManager = new PostManagerPDO($dao);
+            // if deletion is confirmed
+            if ($httpRequest->hasPost('confirm-delete-post')) {
+                // deletion of the post and its comments
+                if ($postManager->delete($httpRequest->getData('id'))) {
+                    // go back to admin page
+                    $listPosts = $postManager->getListPosts();
+
+                    return new HTTPResponse(
+                        'admin.posts',
+                        [
+                            'posts' => $listPosts,
+                            'user' => $this->httpRequest->getUserSession(),
+                            'correctPath' => '../../',
+                        ]
+                    );
+                }
+                throw new Exception('La suppression du post a échoué !!!!');
+            }
+            // get the post from the id
             $post = $postManager->getPost((int) $httpRequest->getData('id'));
 
             return new HTTPResponse(
@@ -209,7 +228,6 @@ final class PostAdminController extends AbstractController
                     'post' => $post,
                 ]
             );
-             
         }
 
         // if $_GET['id'] doesn't exists, redirection to home page with message info
