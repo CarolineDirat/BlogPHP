@@ -4,7 +4,6 @@
 
 {% block title %}{{ parent() }}Un article{% endblock %}
 
-
 {% block themeCSS %}../../{{ parent() }}{% endblock %}
 {% block awesomeCSS %}../../{{ parent() }}{% endblock %}
 
@@ -58,7 +57,7 @@
                                 <div id="comment-form">
                                     <form name="contactForm" id="contactForm"  method="post" action={{"/post/#{post.id}/#{post.slug}"}}>                  
                                         <div class="row control-group">
-                                            <div class="form-group col-12 controls">
+                                            <div class="form-group controls">
                                                 {{ fieldBuilder(commentForm.fields.content, ['placeholder', 'maxlength','required', 'rows'], 'form-control') }}
                                             </div>
                                             <p class="text-danger">
@@ -66,7 +65,7 @@
                                             </p>
                                         </div>
                                         <div class="row">
-                                            <div class="form-group col-xs-12">
+                                            <div class="form-group">
                                                 <button type="submit" class="btn btn-success">Envoyer le commentaire</button>
                                             </div>
                                         </div> 
@@ -85,7 +84,5 @@
                 </div>
             </div>
 {% endblock %}
-
-
 
 {% block themeJS %}../../{{ parent() }}{% endblock %}
