@@ -48,6 +48,9 @@ h6 {
   text-transform: uppercase;
   font-weight: 700;
 }
+h4 {
+  line-height: 1.5;
+}
 hr.star-light,
 hr.star-primary {
   padding: 0;
