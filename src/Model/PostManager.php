@@ -57,4 +57,13 @@ abstract class PostManager extends Manager
 
         return false;
     }
+
+    /**
+     * delete.
+     *
+     * delete a post in database, with all its comments
+     *
+     * @return bool
+     */
+    abstract public function delete(int $id): bool;
 }

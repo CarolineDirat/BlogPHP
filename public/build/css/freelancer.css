@@ -48,6 +48,9 @@ h6 {
   text-transform: uppercase;
   font-weight: 700;
 }
+h4 {
+  line-height: 1.5;
+}
 hr.star-light,
 hr.star-primary {
   padding: 0;
@@ -298,6 +301,14 @@ section.success {
 }
 #comments-footer {
   height: 50px;
+}
+#delete-post button, #delete-post a {
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+#delete-post div.post p {
+  font-size: 15px;
 }
 #login button.btn-login {
   margin-top: 30px;

@@ -1,4 +1,4 @@
-{# add post view #}
+{# update post view #}
 
 {% extends "layout.twig" %}
 
@@ -13,7 +13,7 @@
     {% if not messageInfo %}
         <div class="post-admin-top-block"></div>
     {% endif %}
-    <section id="admin-post" >
+    <section id="update-post" >
         <div  class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -43,12 +43,12 @@
                             <div class="form-group">
                                 {{ fieldBuilder(postForm.fields.content, ['placeholder', 'maxlength', 'rows', 'required', 'value'], 'form-control') }}
                             </div>
-                            <div class="col-xs-12 text-right">
+                            <div class="text-right">
                                  <a role="button" href="/admin" class="btn btn-primary ">Retour</a>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-xs-12">
+                            <div class="form-group">
                                 <button type="submit" class="btn btn-success btn-lg btn-login">Modifier</button>
                             </div>
                         </div>

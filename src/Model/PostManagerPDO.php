@@ -166,7 +166,34 @@ final class PostManagerPDO extends PostManager
         $req->bindValue(':slug', $slugify->slugify($post->getTitle()));
         $req->bindValue(':content', $post->getContent());
         $req->bindValue(':abstract', $post->getAbstract());
-        $req->bindValue(':idPost', $post->getId());
+        $req->bindValue(':idPost', $post->getId(), PDO::PARAM_INT);
+        $result = $req->execute();
+        $req->closeCursor();
+
+        return $result;
+    }
+
+    /**
+     * delete.
+     *
+     * delete a post in database, with all its comments, (foreign key in MySQL)
+     *
+     * @return bool
+     */
+    public function delete(int $id): bool
+    {
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('postManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        // Resquest to the MySQL bdd
+        $req = $this
+            ->dao
+            ->prepare('DELETE FROM post WHERE post.id = :idPost')
+        ;
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('PDO prepared request failed');
+        }
+        $req->bindValue(':idPost', $id, PDO::PARAM_INT);
         $result = $req->execute();
         $req->closeCursor();
 

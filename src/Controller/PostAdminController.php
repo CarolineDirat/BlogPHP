@@ -13,6 +13,7 @@ use App\FormBuilder\CommentFormBuilder;
 use App\FormBuilder\PostFormBuilder;
 use App\FormHandler\PostFormHandler;
 use App\Model\PostManagerPDO;
+use Exception;
 
 final class PostAdminController extends AbstractController
 {
@@ -34,6 +35,7 @@ final class PostAdminController extends AbstractController
      *
      * controller corresponding to the route(admin,add,post)
      * to go to the page to add a post : add.post.twig
+     * and process a form post to add a post
      *
      * @return HTTPResponse
      */
@@ -102,8 +104,9 @@ final class PostAdminController extends AbstractController
     /**
      * executeUpdatePost.
      *
-     *  * controller corresponding to the route(admin,update,post)
+     * controller corresponding to the route(admin,update,post)
      * to go to the page to update a post : update.post.twig
+     * and process a post form to update a post
      *
      * @return HTTPResponse
      */
@@ -176,6 +179,63 @@ final class PostAdminController extends AbstractController
             'home',
             [
                 'messageInfo' => 'Vous avez été redirigé sur la page d\'accueil parce qu\'il manque l\'id du post à modifier dans votre requête',
+                'user' => $httpRequest->getUserSession(),
+            ]
+        );
+    }
+
+    /**
+     * executeDeletePost.
+     *
+     * controller corresponding to the route(admin,delete,post)
+     * to go to the page to confirm to delete a post : delete.post.twig
+     * and it manages the deletion of the post with all its comments, when deletion is confirmed
+     *
+     * @return HTTPResponse
+     */
+    public function executeDeletePost(): HTTPResponse
+    {
+        $httpRequest = $this->httpRequest;
+        if ($httpRequest->hasGet('id')) {
+            // connexion to the database and instanciate post manager
+            $dao = PDOSingleton::getInstance()->getConnexion();
+            $postManager = new PostManagerPDO($dao);
+            // if deletion is confirmed
+            if ($httpRequest->hasPost('confirm-delete-post')) {
+                // deletion of the post with its comments
+                if ($postManager->delete($httpRequest->getData('id'))) {
+                    // go back to admin page
+                    $listPosts = $postManager->getListPosts();
+
+                    return new HTTPResponse(
+                        'admin.posts',
+                        [
+                            'posts' => $listPosts,
+                            'user' => $this->httpRequest->getUserSession(),
+                            'correctPath' => '../../',
+                        ]
+                    );
+                }
+
+                throw new Exception('La suppression du post a échoué !!!!');
+            }
+            // get the post from the id
+            $post = $postManager->getPost((int) $httpRequest->getData('id'));
+
+            return new HTTPResponse(
+                $this->getAction().'.'.$this->getPage(),
+                [
+                    'user' => $httpRequest->getUserSession(),
+                    'post' => $post,
+                ]
+            );
+        }
+
+        // if $_GET['id'] doesn't exists, redirection to home page with message info
+        return new HTTPResponse(
+            'home',
+            [
+                'messageInfo' => 'Vous avez été redirigé sur la page d\'accueil parce qu\'il manque l\'id du post à supprimer dans votre requête',
                 'user' => $httpRequest->getUserSession(),
             ]
         );

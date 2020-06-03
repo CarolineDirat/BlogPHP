@@ -16,7 +16,7 @@ final class Comment extends Entity
     /**
      * @var int
      */
-    private int $id;
+    private ?int $id = null;
 
     /**
      * content.
@@ -27,8 +27,6 @@ final class Comment extends Entity
 
     /**
      * dateCreation.
-     *
-     * @var DateTime
      */
     private DateTime $dateCreation;
 
@@ -36,48 +34,38 @@ final class Comment extends Entity
      * permit.
      *
      * comment permit witch can only be 'waiting', 'valid' or 'rejected'
-     *
-     * @var string
      */
     private string $permit = 'waiting';
 
     /**
      * idPost.
-     *
-     * @var int
      */
     private int $idPost;
 
     /**
      * idUser.
-     *
-     * @var int
      */
     private int $idUser;
 
     /**
      * author.
-     *
-     * @var string
      */
     private string $author;
 
     /**
      * Get the value of id.
      *
-     * @return int
+     * @return ?int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
      * Set the value of id.
-     *
-     * @return self
      */
-    public function setId(int $id): self
+    public function setId(?int $id): self
     {
         $this->id = $id;
 
@@ -98,8 +86,6 @@ final class Comment extends Entity
      * Set content.
      *
      * @param string $content content
-     *
-     * @return self
      */
     public function setContent(string $content): self
     {
@@ -110,8 +96,6 @@ final class Comment extends Entity
 
     /**
      * Get dateCreation.
-     *
-     * @return DateTime
      */
     public function getDateCreation(): DateTime
     {
@@ -122,8 +106,6 @@ final class Comment extends Entity
      * Set dateCreation.
      *
      * @param DateTime $dateCreation dateCreation
-     *
-     * @return self
      */
     public function setDateCreation(DateTime $dateCreation): self
     {
@@ -134,8 +116,6 @@ final class Comment extends Entity
 
     /**
      * Get permit.
-     *
-     * @return string
      */
     public function getPermit(): string
     {
@@ -146,8 +126,6 @@ final class Comment extends Entity
      * Set permit.
      *
      * @param string $permit permit
-     *
-     * @return self
      */
     public function setPermit(string $permit): self
     {
@@ -162,8 +140,6 @@ final class Comment extends Entity
 
     /**
      * Get idPost.
-     *
-     * @return int
      */
     public function getIdPost(): int
     {
@@ -174,8 +150,6 @@ final class Comment extends Entity
      * Set idPost.
      *
      * @param int $idPost idPost
-     *
-     * @return self
      */
     public function setIdPost(int $idPost): self
     {
@@ -186,8 +160,6 @@ final class Comment extends Entity
 
     /**
      * Get idUser.
-     *
-     * @return int
      */
     public function getIdUser(): int
     {
@@ -198,8 +170,6 @@ final class Comment extends Entity
      * Set idUser.
      *
      * @param int $idUser idUser
-     *
-     * @return self
      */
     public function setIdUser(int $idUser): self
     {
@@ -210,8 +180,6 @@ final class Comment extends Entity
 
     /**
      * Get author.
-     *
-     * @return string
      */
     public function getAuthor(): string
     {
@@ -222,8 +190,6 @@ final class Comment extends Entity
      * Set author.
      *
      * @param string $author author
-     *
-     * @return self
      */
     public function setAuthor(string $author): self
     {
