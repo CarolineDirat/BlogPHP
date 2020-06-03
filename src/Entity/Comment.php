@@ -16,7 +16,7 @@ final class Comment extends Entity
     /**
      * @var int
      */
-    private int $id;
+    private ?int $id = null;
 
     /**
      * content.
@@ -65,9 +65,9 @@ final class Comment extends Entity
     /**
      * Get the value of id.
      *
-     * @return int
+     * @return ?int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -77,7 +77,7 @@ final class Comment extends Entity
      *
      * @return self
      */
-    public function setId(int $id): self
+    public function setId(?int $id): self
     {
         $this->id = $id;
 

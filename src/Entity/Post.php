@@ -6,8 +6,13 @@ use App\Application\Entity;
 use DateTime;
 
 final class Post extends Entity
-{
-    private int $id;
+{    
+    /**
+     * id
+     *
+     * @var ?int
+     */
+    private ?int $id = null;
 
     /**
      * @var ?string
@@ -48,12 +53,12 @@ final class Post extends Entity
         return $this;
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
