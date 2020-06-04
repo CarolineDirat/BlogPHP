@@ -24,7 +24,7 @@ final class CommentManagerPDO extends CommentManager
      */
     public function getAllComments(int $idPost): array
     {
-        $sql = 'SELECT comment.id as id, content, comment.date_creation as dateCreation, permit, id_post as idPost, user.pseudo as author
+        $sql = 'SELECT comment.id as id, content, comment.date_creation as dateCreation, comment.status, id_post as idPost, user.pseudo as author
                 FROM comment
                 INNER JOIN user
                 ON comment.id_user = user.id
@@ -44,12 +44,12 @@ final class CommentManagerPDO extends CommentManager
      */
     public function getValidComments(int $idPost): array
     {
-        $sql = "SELECT comment.id as id, content, comment.date_creation as dateCreation, permit, id_post as idPost, user.pseudo as author
+        $sql = "SELECT comment.id as id, content, comment.date_creation as dateCreation, comment.status, id_post as idPost, user.pseudo as author
                 FROM comment
                 INNER JOIN user
                 ON comment.id_user = user.id
                 WHERE comment.id_post = :id
-                AND comment.permit = 'valid'
+                AND comment.status = 'valid'
                 ORDER BY dateCreation DESC"
         ;
 
@@ -120,15 +120,15 @@ final class CommentManagerPDO extends CommentManager
         $req = $this
             ->dao
             ->prepare(
-                'INSERT INTO comment ( content, date_creation, permit, id_post, id_user )
-                VALUES ( :content, NOW(), :permit, :idPost, :idUser )'
+                'INSERT INTO comment ( content, date_creation, status, id_post, id_user )
+                VALUES ( :content, NOW(), :status, :idPost, :idUser )'
             )
         ;
         if (!$req instanceof PDOStatement) {
             throw new Exception('PDO request failed');
         }
         $req->bindValue(':content', $comment->getContent(), PDO::PARAM_STR);
-        $req->bindValue(':permit', 'waiting', PDO::PARAM_STR);
+        $req->bindValue(':status', 'waiting', PDO::PARAM_STR);
         $req->bindValue(':idPost', $comment->getIdPost(), PDO::PARAM_INT);
         $req->bindValue(':idUser', $comment->getIdUser(), PDO::PARAM_INT);
         $result = $req->execute();
@@ -152,7 +152,7 @@ final class CommentManagerPDO extends CommentManager
             ->dao
             ->prepare(
                 'UPDATE comment 
-                SET content = :content, permit = :permit
+                SET content = :content, status = :status
                 WHERE id = :id'
             )
         ;
@@ -160,7 +160,7 @@ final class CommentManagerPDO extends CommentManager
             throw new Exception('PDO request failed');
         }
         $req->bindValue(':content', $comment->getContent(), PDO::PARAM_STR);
-        $req->bindValue(':permit', $comment->getPermit(), PDO::PARAM_STR);
+        $req->bindValue(':status', $comment->getstatus(), PDO::PARAM_STR);
         $result = $req->execute();
         $req->closeCursor();
 

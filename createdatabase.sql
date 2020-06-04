@@ -13,8 +13,8 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `permit`;
 CREATE TABLE IF NOT EXISTS `permit` (
-  `permit` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'waiting',
-  PRIMARY KEY (`permit`)
+  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'waiting',
+  PRIMARY KEY (`status`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `id` int NOT NULL AUTO_INCREMENT,
   `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_creation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `permit` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'waiting',
+  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'waiting',
   `id_post` int NOT NULL,
   `id_user` int NOT NULL,
   PRIMARY KEY (`id`)
@@ -91,8 +91,8 @@ REFERENCES user (id)
 ON DELETE CASCADE; -- The deletion of a user deletes its posts too
 
 ALTER TABLE comment ADD CONSTRAINT permit_comment_fk
-FOREIGN KEY (`permit`)
-REFERENCES permit (`permit`);
+FOREIGN KEY (`status`)
+REFERENCES permit (`status`);
 
 ALTER TABLE comment ADD CONSTRAINT user_comment_fk
 FOREIGN KEY (id_user)
