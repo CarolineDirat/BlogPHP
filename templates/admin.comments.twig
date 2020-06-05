@@ -49,10 +49,10 @@
                                         <td class="comment-author"> {{ comment.author }} </td>
                                         <td> {{ comment.content }} </td>
                                         <td>
-                                            <a href={{ "/admin/valid/comment/#{comment.id}" }} role="button" class="btn btn-primary">Valider</a>
+                                            <a href={{ "/admin/valid/comment/#{comment.id}/post/#{post.id}" }} role="button" class="btn btn-primary">Valider</a>
                                         </td>
                                         <td>
-                                            <a href={{ "/admin/reject/comment/#{comment.id}" }} role="button" class="btn btn-primary">Rejeter</a>
+                                            <a href={{ "/admin/rejected/comment/#{comment.id}/post/#{post.id}" }} role="button" class="btn btn-primary">Rejeter</a>
                                         </td>
                                     </tr>
                                 {% endif %}
@@ -73,24 +73,27 @@
                                         <a role="button" class="btn btn-primary" data-toggle="collapse" href={{ "#collapse-update-#{comment.id}" }} aria-expanded="false" aria-controls={{ "collapse-update-#{comment.id}" }}>Modifier</a>
                                         <div class="collapse" id={{ "collapse-update-#{comment.id}" }}>
                                             <div class="well">
-                                                {# admin comment form #}
+                                                {# admin status comment form #}
+                                                {# I don't use fieldBuilder() twig function because the input fields will have all the same name attribute value : 'status'.
+                                                So, I can't link this form to an entity as define in this application. Endeed, for that, a field name is corresponding to the 
+                                                entity property. And here we would have 3 properties with the same name : 'status' - that's impossible  #}
                                                 <form name="statusCommentForm" id="statusCommentForm"  method="post" action={{ "/admin/update/comment/#{comment.id}/post/#{post.id}" }}>                  
                                                     <div class="row control-group ">
                                                         <div class="radio">
                                                             <label>
-                                                               <input type="radio" name="status" id="status-waiting-{{comment.id}}" value="waiting" {# checked #}>
+                                                               <input type="radio" name="status" id="status-waiting-{{comment.id}}" value="waiting">
                                                                 en attente
                                                             </label>
                                                         </div>
                                                         <div class="radio">
                                                             <label>
-                                                               <input type="radio" name="status" id="status-valid-{{comment.id}}" value="valid" {# checked #}>
+                                                               <input type="radio" name="status" id="status-valid-{{comment.id}}" value="valid">
                                                                 valide
                                                             </label>
                                                         </div>
                                                         <div class="radio">
                                                             <label>
-                                                               <input type="radio" name="status" id="status-rejected-{{comment.id}}" value="rejected" {# checked #}>
+                                                               <input type="radio" name="status" id="status-rejected-{{comment.id}}" value="rejected">
                                                                 rejeté
                                                             </label>
                                                         </div>

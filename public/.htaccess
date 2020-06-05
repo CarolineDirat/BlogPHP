@@ -1,13 +1,17 @@
 RewriteEngine on
 
-RewriteRule ^$ index.php?module=public&page=home&action=show
-RewriteRule post/([0-9]+)/([a-z0-9-]+) index.php?module=public&page=post&slug=$2&id=$1&action=show
-RewriteRule blog index.php?module=public&page=blog&action=show
-RewriteRule login index.php?module=public&page=login&action=show
-RewriteRule logout index.php?module=public&page=login&action=logout
+RewriteRule ^$ index.php?module=public&action=show&page=home
+RewriteRule ^post/([0-9]+)/([a-z0-9-]+) index.php?module=public&action=show&page=post&slug=$2&id=$1
+RewriteRule blog index.php?module=public&action=show&page=blog
+RewriteRule login index.php?module=public&action=show&page=login
+RewriteRule logout index.php?module=public&action=logout&page=login
 RewriteRule ^admin$ index.php?module=admin&action=admin&page=posts
 RewriteRule admin/add/post index.php?module=admin&action=add&page=post
 RewriteRule admin/update/post/([0-9]+) index.php?module=admin&action=update&page=post&id=$1
 RewriteRule admin/delete/post/([0-9]+) index.php?module=admin&action=delete&page=post&id=$1
-RewriteRule admin/comments/post/([0-9]+) index.php?module=admin&action=admin&page=comments&id=$1
+RewriteRule admin/comments/post/([0-9]+) index.php?module=admin&action=admin&page=comments&idPost=$1
+RewriteRule ^admin/post/([0-9]+)/comment/([0-9]+)/valid$ index.php?module=admin&action=update&page=comments&idPost=$1&idComment=$2&status=valid
+RewriteRule ^admin/post/([0-9]+)/comment/([0-9]+)/rejected$ index.php?module=admin&action=update&page=comments&idPost=$1&idComment=$2&status=rejected
+RewriteRule ^admin/post/([0-9]+)/comment/([0-9]+)/delete$ index.php?module=admin&action=delete&page=comments&idPost=$1&idComment=$2&status=delete
+RewriteRule ^admin/post/([0-9]+)/comment/([0-9]+)/update$ index.php?module=admin&action=update&page=comments&idPost=$1&idComment=$2
 
