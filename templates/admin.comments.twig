@@ -4,8 +4,8 @@
 
 {% block title %}{{ parent() }}Gestion des commentaires{% endblock %}
 
-{% block themeCSS %}../../../{{ parent() }}{% endblock %}
-{% block awesomeCSS %}../../../{{ parent() }}{% endblock %}
+{% block themeCSS %}{{ correctPath }}../../../{{ parent() }}{% endblock %}
+{% block awesomeCSS %}{{ correctPath }}../../../{{ parent() }}{% endblock %}
 
 {% block contactLink %}"/#web"{% endblock %}
 
@@ -46,13 +46,13 @@
                             {% for comment in comments %}
                                 {% if comment.status == 'waiting' %}
                                     <tr>
-                                        <td class="comment-author"> {{ comment.author }} </td>
-                                        <td> {{ comment.content }} </td>
-                                        <td>
-                                            <a href={{ "/admin/valid/comment/#{comment.id}/post/#{post.id}" }} role="button" class="btn btn-primary">Valider</a>
+                                        <td class="col-xs-1 col-sm-1"> <span class="comment-author">{{ comment.author }}</span> {{ comment.dateCreation|date('d/m/Y h:i') }} </td>
+                                        <td class="col-xs-9 col-sm-9"> {{ comment.content }} </td>
+                                        <td class="col-xs-1 col-sm-1">
+                                            <a href={{ "/admin/post/#{post.id}/comment/#{comment.id}/valid" }} role="button" class="btn btn-primary">Valider</a>
                                         </td>
-                                        <td>
-                                            <a href={{ "/admin/rejected/comment/#{comment.id}/post/#{post.id}" }} role="button" class="btn btn-primary">Rejeter</a>
+                                        <td class="col-xs-1 col-sm-1">
+                                            <a href={{ "/admin/post/#{post.id}/comment/#{comment.id}/rejected" }} role="button" class="btn btn-primary">Rejeter</a>
                                         </td>
                                     </tr>
                                 {% endif %}
@@ -64,7 +64,7 @@
                         <tbody>
                             {% for comment in comments %}
                                 <tr>
-                                    <td class="comment-author col-xs-1 col-sm-2"> {{ comment.author }} </td>
+                                    <td class="col-xs-1 col-sm-1"> <span class="comment-author">{{ comment.author }}</span> {{ comment.dateCreation|date('d/m/Y h:i') }}  </td>
                                     <td class="col-xs-6 col-sm-6"> {{ comment.content }} </td>
                                     <td class="col-xs-1 col-sm-1">
                                         <span class="label {{"label-#{comment.status}"}}">{{ comment.status }}</span>
@@ -72,12 +72,12 @@
                                     <td class="col-xs-4 col-sm-3">
                                         <a role="button" class="btn btn-primary" data-toggle="collapse" href={{ "#collapse-update-#{comment.id}" }} aria-expanded="false" aria-controls={{ "collapse-update-#{comment.id}" }}>Modifier</a>
                                         <div class="collapse" id={{ "collapse-update-#{comment.id}" }}>
-                                            <div class="well">
+                                            <div class="well well-sm">
                                                 {# admin status comment form #}
                                                 {# I don't use fieldBuilder() twig function because the input fields will have all the same name attribute value : 'status'.
                                                 So, I can't link this form to an entity as define in this application. Endeed, for that, a field name is corresponding to the 
                                                 entity property. And here we would have 3 properties with the same name : 'status' - that's impossible  #}
-                                                <form name="statusCommentForm" id="statusCommentForm"  method="post" action={{ "/admin/update/comment/#{comment.id}/post/#{post.id}" }}>                  
+                                                <form name="statusCommentForm" id="statusCommentForm"  method="post" action={{ "/admin/post/#{post.id}/comment/#{comment.id}/update" }}>                  
                                                     <div class="row control-group ">
                                                         <div class="radio">
                                                             <label>
@@ -107,6 +107,9 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <td>
+                                        <a href={{ "/admin/post/#{post.id}/comment/#{comment.id}/delete" }} role="button" class="btn btn-warning btn-xs">Supprimer</a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -118,5 +121,5 @@
 
 {% endblock %}
 
-{% block themeJS %}../../../{{ parent() }}{% endblock %}
+{% block themeJS %}{{ correctPath }}../../../{{ parent() }}{% endblock %}
 
