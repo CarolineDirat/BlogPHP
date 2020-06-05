@@ -14,7 +14,48 @@ use PDOStatement;
  * Manager of Comments, for a PDO connection to the database, $this->dao is an instance of PDO
  */
 final class CommentManagerPDO extends CommentManager
-{
+{    
+    /**
+     * getComment
+     * 
+     * Method which return a comment from database with its id's post
+     *
+     * @param  int $id
+     * @return Comment
+     */
+    public function getComment(int $id): Comment
+    {
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('commentManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        // Resquest to the MySQL bdd
+        $req = $this
+            ->dao
+            ->prepare(
+                'SELECT comment.id, content, comment.date_creation as dateCreation, comment.status, id_post as idPost, id_user as idUser,user.pseudo as author
+                FROM comment
+                INNER JOIN user
+                ON comment.id_user = user.id
+                WHERE comment.id = :id'
+            )
+        ;
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('PDO request to get a comment failed');
+        }
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        // Instanciate the comment
+        $data['dateCreation'] = new DateTime($data['dateCreation']); // dateCreation must be instantiations of DateTime
+        $comment = new Comment($data);
+        if ($comment->isValid()) {
+            return $comment;
+        }
+
+        throw new Exception('The comment collected from database, with id='.filter_var($id, FILTER_VALIDATE_INT).', is not valid, at least one property is empty.');
+    }
+    
     /**
      * getAllComments.
      *
@@ -29,7 +70,7 @@ final class CommentManagerPDO extends CommentManager
                 INNER JOIN user
                 ON comment.id_user = user.id
                 WHERE comment.id_post = :id
-                ORDER BY dateCreation DESC'
+                ORDER BY dateCreation'
         ;
 
         return $this->getListComments($sql, $idPost);
@@ -50,7 +91,7 @@ final class CommentManagerPDO extends CommentManager
                 ON comment.id_user = user.id
                 WHERE comment.id_post = :id
                 AND comment.status = 'valid'
-                ORDER BY dateCreation DESC"
+                ORDER BY dateCreation"
         ;
 
         return $this->getListComments($sql, $idPost);
@@ -152,7 +193,7 @@ final class CommentManagerPDO extends CommentManager
             ->dao
             ->prepare(
                 'UPDATE comment 
-                SET content = :content, status = :status
+                SET content = :content, comment.status = :statuss
                 WHERE id = :id'
             )
         ;
@@ -160,7 +201,35 @@ final class CommentManagerPDO extends CommentManager
             throw new Exception('PDO request failed');
         }
         $req->bindValue(':content', $comment->getContent(), PDO::PARAM_STR);
-        $req->bindValue(':status', $comment->getstatus(), PDO::PARAM_STR);
+        $req->bindValue(':statuss', $comment->getStatus(), PDO::PARAM_STR);
+        $req->bindValue(':id', $comment->getId(), PDO::PARAM_INT);
+        $result = $req->execute();
+        $req->closeCursor();
+
+        return $result;
+    }
+
+    /**
+     * delete.
+     *
+     * delete a comment from database
+     *
+     * @return bool
+     */
+    public function delete(int $id): bool
+    {
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('CommentManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        // Resquest to the MySQL bdd
+        $req = $this
+            ->dao
+            ->prepare('DELETE FROM comment WHERE comment.id = :id')
+        ;
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('PDO prepared request failed');
+        }
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
         $result = $req->execute();
         $req->closeCursor();
 

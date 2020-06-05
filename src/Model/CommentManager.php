@@ -11,7 +11,17 @@ use App\Entity\Comment;
  * Contains the methods which concern the management of Comments
  */
 abstract class CommentManager extends Manager
-{
+{        
+    /**
+     * getComment
+     * 
+     * Method which return a comment from database with its id's post
+     *
+     * @param  int $id
+     * @return Comment
+     */
+    abstract public function getComment(int $id): Comment;
+    
     /**
      * getAllComments.
      *
@@ -59,4 +69,13 @@ abstract class CommentManager extends Manager
 
         return false;
     }
+
+    /**
+     * delete.
+     *
+     * delete a comment from database
+     *
+     * @return bool
+     */
+    abstract public function delete(int $id): bool;
 }
