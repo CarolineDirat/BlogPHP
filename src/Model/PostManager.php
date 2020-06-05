@@ -61,7 +61,7 @@ abstract class PostManager extends Manager
     /**
      * delete.
      *
-     * delete a post in database, with all its comments
+     * delete a post from database, with all its comments
      *
      * @return bool
      */
