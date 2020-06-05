@@ -26,7 +26,7 @@ final class PostFormBuilder extends FormBuilder
         $this->setHttpRequest($httpRequest);
     }
 
-    public function build(): void
+    public function build(): self
     {
         $this->form
             ->addField(
@@ -92,6 +92,8 @@ final class PostFormBuilder extends FormBuilder
                 ])
             )
         ;
+
+        return $this;
     }
 
     /**

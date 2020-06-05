@@ -107,8 +107,7 @@ final class HomePublicController extends AbstractController
     public function buildContactForm(Contact $contact): Form
     {
         $formBuilder = new ContactFormBuilder($contact, $this->httpRequest);
-        $formBuilder->build();
 
-        return $formBuilder->getForm();
+        return $formBuilder->build()->getForm();
     }
 }

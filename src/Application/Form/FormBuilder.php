@@ -28,9 +28,9 @@ abstract class FormBuilder
      *
      * build form's fields
      *
-     * @return void
+     * @return self
      */
-    abstract public function build(): void;
+    abstract public function build(): self;
 
     /**
      * Get form.

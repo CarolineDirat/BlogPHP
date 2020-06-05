@@ -95,8 +95,7 @@ final class LoginPublicController extends AbstractController
     public function buildLoginForm(Login $login): Form
     {
         $formBuilder = new LoginFormBuilder($login);
-        $formBuilder->build();
 
-        return $formBuilder->getForm();
+        return $formBuilder->build()->getForm();
     }
 }

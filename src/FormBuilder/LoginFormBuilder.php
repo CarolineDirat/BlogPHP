@@ -14,7 +14,7 @@ use App\Application\Form\NotEmptyValidator;
  */
 final class LoginFormBuilder extends FormBuilder
 {
-    public function build(): void
+    public function build(): self
     {
         $this->form
             ->addField(
@@ -61,5 +61,7 @@ final class LoginFormBuilder extends FormBuilder
                 )
             )
         ;
+
+        return $this;
     }
 }
