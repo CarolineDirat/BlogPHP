@@ -4,7 +4,7 @@
 SET AUTOCOMMIT = 1;
 START TRANSACTION;
 
-INSERT INTO `permit` (`permit`) VALUES
+INSERT INTO `permit` (`status`) VALUES
 ('rejected'),
 ('valid'),
 ('waiting');
@@ -21,7 +21,7 @@ INSERT INTO `post` (`id`, `title`, `slug`, `content`, `resume`, `id_user`) VALUE
 (3, 'Titre du troisième article', 'titre-du-troisième-article', 'Contenu du troisième article.\r\n\r\n\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\r\n\r\n\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"', 'Un troisième article comme support de travail à la construction du site', 1),
 (4, 'Titre du quatrième article', 'titre-du-quatrième-article', 'Contenu du quatrième article.\r\n\r\n\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\r\n\r\n\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"', 'Un quatrième article comme support de travail à la construction du site', 1);
 
-INSERT INTO `comment` (`id`, `content`, `permit`, `id_post`, `id_user`) VALUES
+INSERT INTO `comment` (`id`, `content`, `status`, `id_post`, `id_user`) VALUES
 (1, 'Je suis le commentaire n°1 de l\'article n°1, et dont l\'auteur est admin, et je suis validé', 'valid', 1, 1),
 (2, 'Je suis le commentaire n°2 de l\'article n°1, et dont l\'auteur est subscriber1, et je suis validé', 'valid', 1, 2),
 (3, 'Je suis le commentaire n°3 de l\'article n°1, et dont l\'auteur est subscriber1, et je suis en attente', 'waiting', 1, 2),

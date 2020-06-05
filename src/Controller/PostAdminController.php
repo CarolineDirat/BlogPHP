@@ -25,9 +25,8 @@ final class PostAdminController extends AbstractController
     public function buildPostForm(Post $post, HTTPRequest $httpRequest): Form
     {
         $formBuilder = new PostFormBuilder($post, $httpRequest);
-        $formBuilder->build();
 
-        return $formBuilder->getForm();
+        return $formBuilder->build()->getForm();
     }
 
     /**
@@ -66,8 +65,7 @@ final class PostAdminController extends AbstractController
                 // build empty comment form
                 $comment = new Comment();
                 $formBuilder = new CommentFormBuilder($comment);
-                $formBuilder->build();
-                $commentForm = $formBuilder->getForm();
+                $commentForm = $formBuilder->build()->getForm();
 
                 return new HTTPResponse(
                     $this->getPage(),

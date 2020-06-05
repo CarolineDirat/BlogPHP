@@ -1,0 +1,125 @@
+{#  admin comments view #}
+
+{% extends "layout.twig" %}
+
+{% block title %}{{ parent() }}Gestion des commentaires{% endblock %}
+
+{% block themeCSS %}{{ correctPath }}../../../{{ parent() }}{% endblock %}
+{% block awesomeCSS %}{{ correctPath }}../../../{{ parent() }}{% endblock %}
+
+{% block contactLink %}"/#web"{% endblock %}
+
+{% block view %}
+    {% if not messageInfo %}
+        <div class="post-admin-top-block"></div>
+    {% endif %}
+    <section id="admin-post-comments" >
+        <div  class="container">
+            <div class="row">
+                <div class="text-center">
+                    <h2>Gestion des commentaires</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h3>Le post</h3>
+                    <p class="title-post-admin"> <strong>{{ post.title }} </strong> - {{ post.author }} - {{ post.dateUpdate|date("d/m/Y") }}</p>
+                    <button class="btn btn-primary btn-admin-post" type="button" data-toggle="collapse" data-target="#post-collapse" aria-expanded="false" aria-controls="post-collapse">
+                        Aperçu
+                    </button>
+                    <a href={{ "/admin/update/post/#{post.id}" }} class="btn btn-success btn-admin-post" role="button">Modifier</a>
+                    <a href={{ "/admin/delete/post/#{post.id}" }} class="btn btn-success btn-admin-post" role="button">Supprimer</a>
+                    <a href={{ "/admin" }} class="btn btn-success btn-admin-post" role="button">Les autres articles</a>
+                    <div class="collapse" id="post-collapse">
+                        <div class="well">
+                            {{ post.content|nl2br }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h3> Les commentaires en attente </h3>
+                    <table class="table row">
+                        <tbody>
+                            {% for comment in comments %}
+                                {% if comment.status == 'waiting' %}
+                                    <tr>
+                                        <td class="col-xs-1 col-sm-1"> <span class="comment-author">{{ comment.author }}</span> {{ comment.dateCreation|date('d/m/Y h:i') }} </td>
+                                        <td class="col-xs-9 col-sm-9"> {{ comment.content }} </td>
+                                        <td class="col-xs-1 col-sm-1">
+                                            <a href={{ "/admin/post/#{post.id}/comment/#{comment.id}/valid" }} role="button" class="btn btn-primary">Valider</a>
+                                        </td>
+                                        <td class="col-xs-1 col-sm-1">
+                                            <a href={{ "/admin/post/#{post.id}/comment/#{comment.id}/rejected" }} role="button" class="btn btn-primary">Rejeter</a>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <h3> Tous les commentaires </h3>
+                    <table class="table row">
+                        <tbody>
+                            {% for comment in comments %}
+                                <tr>
+                                    <td class="col-xs-1 col-sm-1"> <span class="comment-author">{{ comment.author }}</span> {{ comment.dateCreation|date('d/m/Y h:i') }}  </td>
+                                    <td class="col-xs-6 col-sm-6"> {{ comment.content }} </td>
+                                    <td class="col-xs-1 col-sm-1">
+                                        <span class="label {{"label-#{comment.status}"}}">{{ comment.status }}</span>
+                                    </td>
+                                    <td class="col-xs-4 col-sm-3">
+                                        <a role="button" class="btn btn-primary" data-toggle="collapse" href={{ "#collapse-update-#{comment.id}" }} aria-expanded="false" aria-controls={{ "collapse-update-#{comment.id}" }}>Modifier</a>
+                                        <div class="collapse" id={{ "collapse-update-#{comment.id}" }}>
+                                            <div class="well well-sm">
+                                                {# admin status comment form #}
+                                                {# I don't use fieldBuilder() twig function because the input fields will have all the same name attribute value : 'status'.
+                                                So, I can't link this form to an entity as define in this application. Endeed, for that, a field name is corresponding to the 
+                                                entity property. And here we would have 3 properties with the same name : 'status' - that's impossible  #}
+                                                <form name="statusCommentForm" id="statusCommentForm"  method="post" action={{ "/admin/post/#{post.id}/comment/#{comment.id}/update" }}>                  
+                                                    <div class="row control-group ">
+                                                        <div class="radio">
+                                                            <label>
+                                                               <input type="radio" name="status" id="status-waiting-{{comment.id}}" value="waiting">
+                                                                en attente
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label>
+                                                               <input type="radio" name="status" id="status-valid-{{comment.id}}" value="valid">
+                                                                valide
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label>
+                                                               <input type="radio" name="status" id="status-rejected-{{comment.id}}" value="rejected">
+                                                                rejeté
+                                                            </label>
+                                                        </div>
+                                                        <div class="row text-center">
+                                                            <div class="form-group">
+                                                                <button type="submit" class="btn btn-success btn-xs">Enregistrer</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href={{ "/admin/post/#{post.id}/comment/#{comment.id}/delete" }} role="button" class="btn btn-warning btn-xs">Supprimer</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>                    
+
+{% endblock %}
+
+{% block themeJS %}{{ correctPath }}../../../{{ parent() }}{% endblock %}
+

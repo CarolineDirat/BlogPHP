@@ -11,4 +11,6 @@
     <route module="admin" action="update" page="post"/>
     <route module="admin" action="delete" page="post"/>
     <route module="admin" action="admin" page="comments"/>
+    <route module="admin" action="update" page="comments"/>
+    <route module="admin" action="delete" page="comments"/>
 </routes>

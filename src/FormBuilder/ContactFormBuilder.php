@@ -31,7 +31,7 @@ final class ContactFormBuilder extends FormBuilder
         return ''.$field->getValueField();
     }
 
-    public function build(): void
+    public function build(): self
     {
         $this->form
             ->addField(
@@ -123,12 +123,12 @@ final class ContactFormBuilder extends FormBuilder
                 ])
             )
         ;
+
+        return $this;
     }
 
     /**
      * Set the value of httpRequest.
-     *
-     * @return self
      */
     public function setHttpRequest(HTTPRequest $httpRequest): self
     {

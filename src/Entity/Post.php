@@ -15,26 +15,52 @@ final class Post extends Entity
     private ?int $id = null;
 
     /**
+     * title.
+     *
      * @var ?string
      */
     private ?string $title = null;
 
+    /**
+     * slug.
+     *
+     * @var string
+     */
     private string $slug;
 
     /**
+     * content.
+     *
      * @var ?string
      */
     private ?string $content = null;
 
     /**
+     * abstract.
+     *
      * @var ?string
      */
     private ?string $abstract = null;
 
-    private Datetime $dateCreation;
+    /**
+     * dateCreation.
+     *
+     * @var DateTime
+     */
+    private DateTime $dateCreation;
 
-    private Datetime $dateUpdate;
+    /**
+     * dateUpdate.
+     *
+     * @var DateTime
+     */
+    private DateTime $dateUpdate;
 
+    /**
+     * idUser.
+     *
+     * @var int
+     */
     private int $idUser;
 
     /**
@@ -46,6 +72,11 @@ final class Post extends Entity
      */
     private ?string $author = null;
 
+    /**
+     * setId.
+     *
+     * @return self
+     */
     public function setId(int $id): self
     {
         $this->id = (int) $id;
@@ -53,11 +84,23 @@ final class Post extends Entity
         return $this;
     }
 
+    /**
+     * getId.
+     *
+     * @return ?int
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * setTitle.
+     *
+     * @param ?string $title
+     *
+     * @return self
+     */
     public function setTitle(?string $title): self
     {
         $this->title = $title;
@@ -65,11 +108,21 @@ final class Post extends Entity
         return $this;
     }
 
+    /**
+     * getTitle.
+     *
+     * @return ?string
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+     * setSlug.
+     *
+     * @return self
+     */
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
@@ -77,11 +130,21 @@ final class Post extends Entity
         return $this;
     }
 
+    /**
+     * getSlug.
+     *
+     * @return string
+     */
     public function getSlug(): string
     {
         return $this->slug;
     }
 
+    /**
+     * setContent.
+     *
+     * @return self
+     */
     public function setContent(string $content): self
     {
         $this->content = $content;
@@ -89,11 +152,21 @@ final class Post extends Entity
         return $this;
     }
 
+    /**
+     * getContent.
+     *
+     * @return ?string
+     */
     public function getContent(): ?string
     {
         return $this->content;
     }
 
+    /**
+     * setAbstract.
+     *
+     * @return self
+     */
     public function setAbstract(string $abstract): self
     {
         $this->abstract = $abstract;
@@ -101,11 +174,21 @@ final class Post extends Entity
         return $this;
     }
 
+    /**
+     * getAbstract.
+     *
+     * @return ?string
+     */
     public function getAbstract(): ?string
     {
         return $this->abstract;
     }
 
+    /**
+     * setDateCreation.
+     *
+     * @return self
+     */
     public function setDateCreation(DateTime $dateCreation): self
     {
         $this->dateCreation = $dateCreation;
@@ -115,12 +198,19 @@ final class Post extends Entity
 
     /**
      * getDateCreation.
+     *
+     * @return DateTime
      */
     public function getDateCreation(): DateTime
     {
         return $this->dateCreation;
     }
 
+    /**
+     * setDateUpdate.
+     *
+     * @return self
+     */
     public function setDateUpdate(DateTime $dateUpdate): self
     {
         $this->dateUpdate = $dateUpdate;
@@ -130,12 +220,19 @@ final class Post extends Entity
 
     /**
      * getDateUpdate.
+     *
+     * @return DateTime
      */
     public function getDateUpdate(): DateTime
     {
         return $this->dateUpdate;
     }
 
+    /**
+     * setIdUser.
+     *
+     * @return self
+     */
     public function setIdUser(int $idUser): self
     {
         $this->idUser = $idUser;
@@ -143,6 +240,11 @@ final class Post extends Entity
         return $this;
     }
 
+    /**
+     * getIdUser.
+     *
+     * @return int
+     */
     public function getIdUser(): int
     {
         return $this->idUser;
@@ -151,7 +253,7 @@ final class Post extends Entity
     /**
      * Get user's pseudo wich wrote the post.
      *
-     * @return string
+     * @return ?string
      */
     public function getAuthor(): ?string
     {

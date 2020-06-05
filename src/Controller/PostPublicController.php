@@ -40,8 +40,7 @@ final class PostPublicController extends AbstractController
                 ]);
                 // build comment form from $comment
                 $formBuilder = new CommentFormBuilder($comment);
-                $formBuilder->build();
-                $commentForm = $formBuilder->getForm();
+                $commentForm = $formBuilder->build()->getForm();
                 // instantiation of form handler and comment manager to process the form
                 $manager = new CommentManagerPDO($dao);
                 $formHandler = new CommentFormHandler($commentForm, $manager, $httpRequest);
@@ -50,8 +49,7 @@ final class PostPublicController extends AbstractController
                     // build empty comment form
                     $comment = new Comment();
                     $formBuilder = new CommentFormBuilder($comment);
-                    $formBuilder->build();
-                    $commentForm = $formBuilder->getForm();
+                    $commentForm = $formBuilder->build()->getForm();
                     // send HTTP response
                     return new HTTPResponse(
                         $this->getPage(),
@@ -80,8 +78,7 @@ final class PostPublicController extends AbstractController
             // build empty comment form
             $comment = new Comment();
             $formBuilder = new CommentFormBuilder($comment);
-            $formBuilder->build();
-            $commentForm = $formBuilder->getForm();
+            $commentForm = $formBuilder->build()->getForm();
 
             return new HTTPResponse(
                 $this->getPage(),

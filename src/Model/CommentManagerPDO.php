@@ -16,6 +16,44 @@ use PDOStatement;
 final class CommentManagerPDO extends CommentManager
 {
     /**
+     * getComment.
+     *
+     * Method which return a comment from database with its id's post
+     */
+    public function getComment(int $id): Comment
+    {
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('commentManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        // Resquest to the MySQL bdd
+        $req = $this
+            ->dao
+            ->prepare(
+                'SELECT comment.id, content, comment.date_creation as dateCreation, comment.status, id_post as idPost, id_user as idUser,user.pseudo as author
+                FROM comment
+                INNER JOIN user
+                ON comment.id_user = user.id
+                WHERE comment.id = :id'
+            )
+        ;
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('PDO request to get a comment failed');
+        }
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        // Instanciate the comment
+        $data['dateCreation'] = new DateTime($data['dateCreation']); // dateCreation must be instantiations of DateTime
+        $comment = new Comment($data);
+        if ($comment->isValid()) {
+            return $comment;
+        }
+
+        throw new Exception('The comment collected from database, with id='.filter_var($id, FILTER_VALIDATE_INT).', is not valid, at least one property is empty.');
+    }
+
+    /**
      * getAllComments.
      *
      * Method which returns a list of all comments of one post, from most recent to oldest.
@@ -24,12 +62,12 @@ final class CommentManagerPDO extends CommentManager
      */
     public function getAllComments(int $idPost): array
     {
-        $sql = 'SELECT comment.id as id, content, comment.date_creation as dateCreation, permit, id_post as idPost, user.pseudo as author
+        $sql = 'SELECT comment.id as id, content, comment.date_creation as dateCreation, comment.status, id_post as idPost, user.pseudo as author
                 FROM comment
                 INNER JOIN user
                 ON comment.id_user = user.id
                 WHERE comment.id_post = :id
-                ORDER BY dateCreation DESC'
+                ORDER BY dateCreation'
         ;
 
         return $this->getListComments($sql, $idPost);
@@ -44,13 +82,13 @@ final class CommentManagerPDO extends CommentManager
      */
     public function getValidComments(int $idPost): array
     {
-        $sql = "SELECT comment.id as id, content, comment.date_creation as dateCreation, permit, id_post as idPost, user.pseudo as author
+        $sql = "SELECT comment.id as id, content, comment.date_creation as dateCreation, comment.status, id_post as idPost, user.pseudo as author
                 FROM comment
                 INNER JOIN user
                 ON comment.id_user = user.id
                 WHERE comment.id_post = :id
-                AND comment.permit = 'valid'
-                ORDER BY dateCreation DESC"
+                AND comment.status = 'valid'
+                ORDER BY dateCreation"
         ;
 
         return $this->getListComments($sql, $idPost);
@@ -120,15 +158,15 @@ final class CommentManagerPDO extends CommentManager
         $req = $this
             ->dao
             ->prepare(
-                'INSERT INTO comment ( content, date_creation, permit, id_post, id_user )
-                VALUES ( :content, NOW(), :permit, :idPost, :idUser )'
+                'INSERT INTO comment ( content, date_creation, status, id_post, id_user )
+                VALUES ( :content, NOW(), :status, :idPost, :idUser )'
             )
         ;
         if (!$req instanceof PDOStatement) {
             throw new Exception('PDO request failed');
         }
         $req->bindValue(':content', $comment->getContent(), PDO::PARAM_STR);
-        $req->bindValue(':permit', 'waiting', PDO::PARAM_STR);
+        $req->bindValue(':status', 'waiting', PDO::PARAM_STR);
         $req->bindValue(':idPost', $comment->getIdPost(), PDO::PARAM_INT);
         $req->bindValue(':idUser', $comment->getIdUser(), PDO::PARAM_INT);
         $result = $req->execute();
@@ -152,7 +190,7 @@ final class CommentManagerPDO extends CommentManager
             ->dao
             ->prepare(
                 'UPDATE comment 
-                SET content = :content, permit = :permit
+                SET content = :content, comment.status = :statuss
                 WHERE id = :id'
             )
         ;
@@ -160,7 +198,33 @@ final class CommentManagerPDO extends CommentManager
             throw new Exception('PDO request failed');
         }
         $req->bindValue(':content', $comment->getContent(), PDO::PARAM_STR);
-        $req->bindValue(':permit', $comment->getPermit(), PDO::PARAM_STR);
+        $req->bindValue(':statuss', $comment->getStatus(), PDO::PARAM_STR);
+        $req->bindValue(':id', $comment->getId(), PDO::PARAM_INT);
+        $result = $req->execute();
+        $req->closeCursor();
+
+        return $result;
+    }
+
+    /**
+     * delete.
+     *
+     * delete a comment from database
+     */
+    public function delete(int $id): bool
+    {
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('CommentManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        // Resquest to the MySQL bdd
+        $req = $this
+            ->dao
+            ->prepare('DELETE FROM comment WHERE comment.id = :id')
+        ;
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('PDO prepared request failed');
+        }
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
         $result = $req->execute();
         $req->closeCursor();
 

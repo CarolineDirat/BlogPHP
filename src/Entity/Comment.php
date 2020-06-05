@@ -31,11 +31,11 @@ final class Comment extends Entity
     private DateTime $dateCreation;
 
     /**
-     * permit.
+     * status.
      *
-     * comment permit witch can only be 'waiting', 'valid' or 'rejected'
+     * comment status witch can only be 'waiting', 'valid' or 'rejected'
      */
-    private string $permit = 'waiting';
+    private string $status = 'waiting';
 
     /**
      * idPost.
@@ -115,27 +115,31 @@ final class Comment extends Entity
     }
 
     /**
-     * Get permit.
+     * Get status.
+     *
+     * @return string
      */
-    public function getPermit(): string
+    public function getStatus(): string
     {
-        return $this->permit;
+        return $this->status;
     }
 
     /**
-     * Set permit.
+     * Set status.
      *
-     * @param string $permit permit
+     * @param string $status status
+     *
+     * @return self
      */
-    public function setPermit(string $permit): self
+    public function setStatus(string $status): self
     {
-        if (in_array($permit, ['waiting', 'valid', 'rejected'], true)) {
-            $this->permit = $permit;
+        if (in_array($status, ['waiting', 'valid', 'rejected'], true)) {
+            $this->status = $status;
 
             return $this;
         }
 
-        throw new InvalidArgumentException("Comment's permit can have only three values : 'waiting', 'rejected' or 'valid'");
+        throw new InvalidArgumentException("Comment's status can have only three values : 'waiting', 'rejected' or 'valid'");
     }
 
     /**

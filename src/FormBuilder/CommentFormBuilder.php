@@ -14,7 +14,7 @@ use App\Application\Form\TextareaField;
  */
 final class CommentFormBuilder extends FormBuilder
 {
-    public function build(): void
+    public function build(): self
     {
         // one textarea field for the content of a comment
         $this->form->addField(
@@ -31,5 +31,7 @@ final class CommentFormBuilder extends FormBuilder
                 ],
             ])
         );
+
+        return $this;
     }
 }

@@ -13,6 +13,13 @@ use App\Entity\Comment;
 abstract class CommentManager extends Manager
 {
     /**
+     * getComment.
+     *
+     * Method which return a comment from database with its id's post
+     */
+    abstract public function getComment(int $id): Comment;
+
+    /**
      * getAllComments.
      *
      * Method which returns a list of all comments of one post, from most recent to oldest.
@@ -59,4 +66,11 @@ abstract class CommentManager extends Manager
 
         return false;
     }
+
+    /**
+     * delete.
+     *
+     * delete a comment from database
+     */
+    abstract public function delete(int $id): bool;
 }
