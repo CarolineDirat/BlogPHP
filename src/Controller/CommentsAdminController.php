@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Application\AbstractController;
 use App\Application\HTTPResponse;
 use App\Application\PDOSingleton;
-use App\Model\PostManagerPDO;
 use App\Model\CommentManagerPDO;
+use App\Model\PostManagerPDO;
 use Exception;
 
 final class CommentsAdminController extends AbstractController
@@ -15,8 +15,6 @@ final class CommentsAdminController extends AbstractController
      * executeAdminCommments.
      *
      * Controller to go to the page which manage comments
-     *
-     * @return HTTPResponse
      */
     public function executeAdminComments(): HTTPResponse
     {
@@ -30,7 +28,7 @@ final class CommentsAdminController extends AbstractController
             // get list of post's comments
             $commentManager = new CommentManagerPDO($dao);
             $comments = $commentManager->getAllComments((int) $post->getId());
-           
+
             return new HTTPResponse(
                 $this->getAction().'.'.$this->getPage(),
                 [
@@ -40,16 +38,14 @@ final class CommentsAdminController extends AbstractController
                 ]
             );
         }
-        
+
         throw new Exception("display page of comments's management failed");
     }
-    
+
     /**
-     * executeUpdateComment
-     * 
-     * Controller to edit one are severals comment's status
+     * executeUpdateComment.
      *
-     * @return HTTPResponse
+     * Controller to edit one are severals comment's status
      */
     public function executeUpdateComments(): HTTPResponse
     {
@@ -63,7 +59,7 @@ final class CommentsAdminController extends AbstractController
             if ($httpRequest->hasGet('idComment')) {
                 // I get the comment from the bdd
                 $comment = $commentManager->getComment($httpRequest->getData('idComment'));
-                // Edition of comment's status ... 
+                // Edition of comment's status ...
                 if ($httpRequest->hasPost('status')) {
                     // ... from post data ...
                     $comment->setStatus($httpRequest->postData('status'));
@@ -83,27 +79,25 @@ final class CommentsAdminController extends AbstractController
             $post = $postManager->getPost((int) $httpRequest->getData('idPost'));
             // -> get list of post's comments
             $comments = $commentManager->getAllComments((int) $post->getId());
-           
+
             return new HTTPResponse(
                 'admin.comments',
                 [
                     'post' => $post,
                     'comments' => $comments,
                     'user' => $this->httpRequest->getUserSession(),
-                    'correctPath' => '../../'
+                    'correctPath' => '../../',
                 ]
             );
         }
-        
+
         throw new Exception("update comment's status failed");
     }
 
     /**
-     * executeDeleteComment
-     * 
-     * Controller to delete one or severals comment
+     * executeDeleteComment.
      *
-     * @return HTTPResponse
+     * Controller to delete one or severals comment
      */
     public function executeDeleteComments(): HTTPResponse
     {
@@ -115,7 +109,7 @@ final class CommentsAdminController extends AbstractController
             $commentManager = new CommentManagerPDO($dao);
             // if the request wants to delete a comment's status
             if ($httpRequest->hasGet('idComment') && 'delete' === $httpRequest->getData('status')) {
-                // delete the comment 
+                // delete the comment
                 if (!$commentManager->delete($httpRequest->getData('idComment'))) {
                     throw new Exception('The request to delete comment\'s status failed');
                 }
@@ -125,18 +119,18 @@ final class CommentsAdminController extends AbstractController
             $post = $postManager->getPost((int) $httpRequest->getData('idPost'));
             // -> get list of post's comments
             $comments = $commentManager->getAllComments((int) $post->getId());
-           
+
             return new HTTPResponse(
                 'admin.comments',
                 [
                     'post' => $post,
                     'comments' => $comments,
                     'user' => $this->httpRequest->getUserSession(),
-                    'correctPath' => '../../'
+                    'correctPath' => '../../',
                 ]
             );
         }
-        
+
         throw new Exception("update comment's status failed");
     }
 }

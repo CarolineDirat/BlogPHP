@@ -84,8 +84,6 @@ final class HomePublicController extends AbstractController
      * initCaptchaCode.
      *
      * Initialization of catpcha code, and put it in $_SESSION['captchaPhrase']
-     *
-     * @return CaptchaBuilder
      */
     public function initCaptchaCode(): CaptchaBuilder
     {
@@ -101,8 +99,6 @@ final class HomePublicController extends AbstractController
      * buildContactForm.
      *
      * create a contact form from Contact object
-     *
-     * @return Form
      */
     public function buildContactForm(Contact $contact): Form
     {

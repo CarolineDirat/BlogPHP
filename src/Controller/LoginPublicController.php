@@ -89,8 +89,6 @@ final class LoginPublicController extends AbstractController
      * buildLoginForm.
      *
      * create a login form from Login object
-     *
-     * @return Form
      */
     public function buildLoginForm(Login $login): Form
     {

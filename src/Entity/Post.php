@@ -8,56 +8,56 @@ use DateTime;
 final class Post extends Entity
 {
     /**
-     * id
+     * id.
      *
      * @var ?int
      */
     private ?int $id = null;
 
     /**
-     * title
-     * 
+     * title.
+     *
      * @var ?string
      */
     private ?string $title = null;
-    
+
     /**
-     * slug
+     * slug.
      *
      * @var string
      */
     private string $slug;
 
     /**
-     * content
-     * 
+     * content.
+     *
      * @var ?string
      */
     private ?string $content = null;
 
     /**
-     * abstract
-     * 
+     * abstract.
+     *
      * @var ?string
      */
     private ?string $abstract = null;
-    
+
     /**
-     * dateCreation
+     * dateCreation.
      *
      * @var DateTime
      */
     private DateTime $dateCreation;
-    
+
     /**
-     * dateUpdate
+     * dateUpdate.
      *
      * @var DateTime
      */
     private DateTime $dateUpdate;
-    
+
     /**
-     * idUser
+     * idUser.
      *
      * @var int
      */
@@ -71,11 +71,10 @@ final class Post extends Entity
      * @var ?string
      */
     private ?string $author = null;
-    
+
     /**
-     * setId
+     * setId.
      *
-     * @param  int $id
      * @return self
      */
     public function setId(int $id): self
@@ -84,9 +83,9 @@ final class Post extends Entity
 
         return $this;
     }
-    
+
     /**
-     * getId
+     * getId.
      *
      * @return ?int
      */
@@ -94,11 +93,12 @@ final class Post extends Entity
     {
         return $this->id;
     }
-    
+
     /**
-     * setTitle
+     * setTitle.
      *
      * @param ?string $title
+     *
      * @return self
      */
     public function setTitle(?string $title): self
@@ -107,9 +107,9 @@ final class Post extends Entity
 
         return $this;
     }
-    
+
     /**
-     * getTitle
+     * getTitle.
      *
      * @return ?string
      */
@@ -117,11 +117,10 @@ final class Post extends Entity
     {
         return $this->title;
     }
-    
+
     /**
-     * setSlug
+     * setSlug.
      *
-     * @param  string $slug
      * @return self
      */
     public function setSlug(string $slug): self
@@ -130,9 +129,9 @@ final class Post extends Entity
 
         return $this;
     }
-    
+
     /**
-     * getSlug
+     * getSlug.
      *
      * @return string
      */
@@ -140,11 +139,10 @@ final class Post extends Entity
     {
         return $this->slug;
     }
-    
+
     /**
-     * setContent
+     * setContent.
      *
-     * @param  string $content
      * @return self
      */
     public function setContent(string $content): self
@@ -153,9 +151,9 @@ final class Post extends Entity
 
         return $this;
     }
-    
+
     /**
-     * getContent
+     * getContent.
      *
      * @return ?string
      */
@@ -163,11 +161,10 @@ final class Post extends Entity
     {
         return $this->content;
     }
-    
+
     /**
-     * setAbstract
+     * setAbstract.
      *
-     * @param  string $abstract
      * @return self
      */
     public function setAbstract(string $abstract): self
@@ -176,9 +173,9 @@ final class Post extends Entity
 
         return $this;
     }
-    
+
     /**
-     * getAbstract
+     * getAbstract.
      *
      * @return ?string
      */
@@ -186,11 +183,10 @@ final class Post extends Entity
     {
         return $this->abstract;
     }
-    
+
     /**
-     * setDateCreation
+     * setDateCreation.
      *
-     * @param  DateTime $dateCreation
      * @return self
      */
     public function setDateCreation(DateTime $dateCreation): self
@@ -200,9 +196,8 @@ final class Post extends Entity
         return $this;
     }
 
-        
     /**
-     * getDateCreation
+     * getDateCreation.
      *
      * @return DateTime
      */
@@ -210,11 +205,10 @@ final class Post extends Entity
     {
         return $this->dateCreation;
     }
-    
+
     /**
-     * setDateUpdate
+     * setDateUpdate.
      *
-     * @param  DateTime $dateUpdate
      * @return self
      */
     public function setDateUpdate(DateTime $dateUpdate): self
@@ -224,9 +218,8 @@ final class Post extends Entity
         return $this;
     }
 
-        
     /**
-     * getDateUpdate
+     * getDateUpdate.
      *
      * @return DateTime
      */
@@ -234,11 +227,10 @@ final class Post extends Entity
     {
         return $this->dateUpdate;
     }
-    
+
     /**
-     * setIdUser
+     * setIdUser.
      *
-     * @param  int $idUser
      * @return self
      */
     public function setIdUser(int $idUser): self
@@ -247,9 +239,9 @@ final class Post extends Entity
 
         return $this;
     }
-    
+
     /**
-     * getIdUser
+     * getIdUser.
      *
      * @return int
      */

@@ -14,14 +14,11 @@ use PDOStatement;
  * Manager of Comments, for a PDO connection to the database, $this->dao is an instance of PDO
  */
 final class CommentManagerPDO extends CommentManager
-{    
+{
     /**
-     * getComment
-     * 
-     * Method which return a comment from database with its id's post
+     * getComment.
      *
-     * @param  int $id
-     * @return Comment
+     * Method which return a comment from database with its id's post
      */
     public function getComment(int $id): Comment
     {
@@ -55,7 +52,7 @@ final class CommentManagerPDO extends CommentManager
 
         throw new Exception('The comment collected from database, with id='.filter_var($id, FILTER_VALIDATE_INT).', is not valid, at least one property is empty.');
     }
-    
+
     /**
      * getAllComments.
      *
@@ -213,8 +210,6 @@ final class CommentManagerPDO extends CommentManager
      * delete.
      *
      * delete a comment from database
-     *
-     * @return bool
      */
     public function delete(int $id): bool
     {

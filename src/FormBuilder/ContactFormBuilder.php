@@ -129,8 +129,6 @@ final class ContactFormBuilder extends FormBuilder
 
     /**
      * Set the value of httpRequest.
-     *
-     * @return self
      */
     public function setHttpRequest(HTTPRequest $httpRequest): self
     {

@@ -116,7 +116,7 @@ final class Comment extends Entity
 
     /**
      * Get status.
-     * 
+     *
      * @return string
      */
     public function getStatus(): string
@@ -128,7 +128,7 @@ final class Comment extends Entity
      * Set status.
      *
      * @param string $status status
-     * 
+     *
      * @return self
      */
     public function setStatus(string $status): self
