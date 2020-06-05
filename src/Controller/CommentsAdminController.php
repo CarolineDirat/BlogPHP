@@ -29,7 +29,7 @@ final class CommentsAdminController extends AbstractController
             // get list of post's comments
             $commentManager = new CommentManagerPDO($dao);
             $comments = $commentManager->getAllComments((int) $post->getId());
-
+           
             return new HTTPResponse(
                 $this->getAction().'.'.$this->getPage(),
                 [

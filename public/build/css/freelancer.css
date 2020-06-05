@@ -126,6 +126,15 @@ header .intro-text .skills {
     font-size: 1.75em;
   }
 }
+td div.form-group {
+  margin-bottom: 5px;
+}
+td div.well {
+  padding-top: 0px;
+  padding-bottom: 5px;
+  padding-left: 25px;
+  margin-bottom: 2px;
+}
 .admin-top-block {
   height: 110px;
   background-color: #18BC9C;
@@ -141,8 +150,18 @@ header .intro-text .skills {
 .exception {
   margin-bottom: 50px !important;
 }
+.label-rejected {
+  background-color: darkred;
+}
 .label-success {
   background-color: rgb(44, 62, 80);
+}
+.label-valid {
+  background-color: turquoise;
+}
+
+.label-waiting {
+  background-color: #2C3E50;
 }
 .form-control:focus {
   border-color: #18BC9C;
@@ -265,6 +284,15 @@ section.success {
   #admin-post h2 {
     font-size: 2em;
   }
+}
+@media (max-width: 500px) {
+  #admin-post-comments h2 {
+    font-size: 2em;
+  }
+}
+#admin-post-comments h3 {
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 #comment-form {
   margin-top: 50px;
@@ -503,6 +531,10 @@ h5.card-title a.btn {
 .bg-primary {
   background-color: #18BC9C;
 }
+.btn-admin-post {
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
 .btn-captcha-code {
   margin-left: 10px;
 }
@@ -645,6 +677,10 @@ fieldset[disabled] .btn-success.active {
 .btn.active {
   outline: none;
 }
+.comment-author {
+  color: #128f76;
+  font-weight: bold;
+}
 .scroll-top {
   position: fixed;
   right: 2%;
@@ -725,6 +761,9 @@ fieldset[disabled] .btn-success.active {
 .post {
   padding-top: 50px;
 }
+.post a.btn-primary {
+  margin-left: 30px;
+}
 .post h2{
   font-size: 1.5em;
   line-height: 1.5em !important;
@@ -763,6 +802,9 @@ fieldset[disabled] .btn-success.active {
   .post-top-block {
     height: 50px;
   }
+}
+.title-post-admin {
+  color: #11866f;
 }
 div.row.btn-comments {
   text-align: center;
