@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Application\Entity;
 use DateTime;
-use InvalidArgumentException;
 
 /**
  * Comment.
@@ -138,8 +137,9 @@ final class Comment extends Entity
 
             return $this;
         }
+        $this->status = 'waiting'; 
 
-        throw new InvalidArgumentException("Comment's status can have only three values : 'waiting', 'rejected' or 'valid'");
+        return $this;
     }
 
     /**
