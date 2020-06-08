@@ -60,7 +60,7 @@ class Router
     {
         $this->loadRoutes();
         //var_dump($route);var_dump($this->getRoutes()); exit;
-        if (!in_array($route, $this->getRoutes(), true)) {
+        if (!in_array($route, $this->getRoutes())) {
             throw new Exception('No Route corresponding to the Request');
         }
     }
