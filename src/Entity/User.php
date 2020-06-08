@@ -23,35 +23,42 @@ final class User extends Entity
      *
      * @var string
      */
-    private $pseudo;
+    private string $pseudo;
 
     /**
      * password.
      *
      * @var string
      */
-    private $password;
+    private string $password;
+    
+    /**
+     * email
+     *
+     * @var string
+     */
+    private string $email;
 
     /**
      * dateCreation.
      *
      * @var DateTime
      */
-    private $dateCreation;
+    private DateTime $dateCreation;
 
     /**
      * activationKey.
      *
      * @var string
      */
-    private $activationKey;
+    private string $activationKey;
 
     /**
      * enabled.
      *
      * @var int
      */
-    private $enabled = 1;
+    private int $enabled = 1;
 
     /**
      * role.
@@ -235,6 +242,34 @@ final class User extends Entity
     public function setRole(string $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return  string
+     */ 
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set email
+     *
+     * @param  string  $email  email
+     *
+     * @return  self
+     */ 
+    public function setEmail(string $email): self
+    {
+        $email = filter_var(filter_var($email, FILTER_SANITIZE_EMAIL), FILTER_VALIDATE_EMAIL);
+        if (empty($email)) {
+            throw new InvalidArgumentException('invalid email');
+        }
+        $this->email = $email;
 
         return $this;
     }
