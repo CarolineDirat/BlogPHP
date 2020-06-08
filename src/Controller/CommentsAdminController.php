@@ -70,9 +70,8 @@ final class CommentsAdminController extends AbstractController
                 }
                 // update the comment with its new status
                 if (!$commentManager->save($comment)) {
-                    throw new Exception('The request to edit comment\'s status failed');
+                    throw new Exception('The request to update comment\'s status failed');
                 }
-                $comment = $commentManager->getComment($httpRequest->getData('idComment'));
             }
             // display the page to manage comments :
             // -> get the post from the id, with its author's pseudo
@@ -91,7 +90,7 @@ final class CommentsAdminController extends AbstractController
             );
         }
 
-        throw new Exception("update comment's status failed");
+        throw new Exception("The request to update a comment's status failed");
     }
 
     /**
