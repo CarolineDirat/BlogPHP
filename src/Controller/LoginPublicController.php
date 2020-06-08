@@ -61,7 +61,7 @@ final class LoginPublicController extends AbstractController
 
             return new HTTPResponse(
                 $this->getPage(),
-                ['messageLogin' => 'Pseudo et/ou de mot de pas incorrect(s).', 'loginForm' => $loginForm]
+                ['messageLogin' => 'Pseudo et/ou de mot de passe incorrect(s).', 'loginForm' => $loginForm]
             );
         }
 
