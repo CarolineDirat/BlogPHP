@@ -4,6 +4,7 @@ namespace App\PHPMailer;
 
 use App\Application\PHPMailerApp;
 use InvalidArgumentException;
+use Exception;
 
 /**
  * CommentStatusPHPMailer
@@ -54,7 +55,7 @@ class CommentStatusPHPMailer extends PHPMailerApp
                 $custom = 'Il est en attente d\'une validation. ';
             break;
             default:
-                $custom = '';
+                throw new Exception('comment status value'.$params['status'].' is not valid');
         }        
         // This is the HTML message body <b>in bold!</b>:
         $this->Body = 'Bonjour '.$params['pseudo'].', vous avez reçu un message depuis le site CaroCode : <br/> 

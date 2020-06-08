@@ -26,7 +26,7 @@ class CommentEmailManager
     public function sendStatus(Comment $comment, Post $post): bool
     {
         $mail = new CommentStatusPHPMailer(true);    // Instantiation of PHPMailer and passing `true` enables exceptions
-        $status = '';
+        $status = 'waiting';
         // status name will be in french in the email body
         switch ($comment->getStatus()) {
             case 'valid':
