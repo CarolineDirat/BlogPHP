@@ -29,7 +29,7 @@ final class CommentManagerPDO extends CommentManager
         $req = $this
             ->dao
             ->prepare(
-                'SELECT comment.id, content, comment.date_creation as dateCreation, comment.status, id_post as idPost, id_user as idUser,user.pseudo as author
+                'SELECT comment.id, content, comment.date_creation as dateCreation, comment.status, id_post as idPost, id_user as idUser,user.pseudo as author, user.email as email
                 FROM comment
                 INNER JOIN user
                 ON comment.id_user = user.id
