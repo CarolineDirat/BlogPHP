@@ -6,11 +6,11 @@ use App\Application\PHPMailerApp;
 use InvalidArgumentException;
 
 /**
- * PHPMailerContact.
+ * ContactPHPMailer.
  *
  * Build the mail to send a contact message
  */
-class PHPMailerContact extends PHPMailerApp
+class ContactPHPMailer extends PHPMailerApp
 {
     /**
      * sendEmail.

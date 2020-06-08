@@ -46,6 +46,7 @@ final class PostPublicController extends AbstractController
                 $formHandler = new CommentFormHandler($commentForm, $manager, $httpRequest);
                 // process comment form and display post page consequently to the process result
                 if ($formHandler->process()) {
+                    // /// send a mail to Admin to notify him ///////////
                     // build empty comment form
                     $comment = new Comment();
                     $formBuilder = new CommentFormBuilder($comment);

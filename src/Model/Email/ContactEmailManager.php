@@ -3,7 +3,7 @@
 namespace App\Model\Email;
 
 use App\Entity\Form\Contact;
-use App\PHPMailer\PHPMailerContact;
+use App\PHPMailer\ContactPHPMailer;
 use Exception;
 
 /**
@@ -15,7 +15,7 @@ class ContactEmailManager
 {
     public function sendContact(Contact $contact): bool
     {
-        $mail = new PHPMailerContact(true);    // Instantiation of PHPMailer and passing `true` enables exceptions
+        $mail = new ContactPHPMailer(true);    // Instantiation of PHPMailer and passing `true` enables exceptions
         $params = [
             'recipient' => EMAIL_CONTACT,
             'firstName' => $contact->getFirstName(),

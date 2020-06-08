@@ -7,6 +7,7 @@ use App\Application\HTTPResponse;
 use App\Application\PDOSingleton;
 use App\Model\CommentManagerPDO;
 use App\Model\PostManagerPDO;
+use App\Model\Email\CommentEmailManager;
 use Exception;
 
 final class CommentsAdminController extends AbstractController
@@ -55,6 +56,8 @@ final class CommentsAdminController extends AbstractController
             $dao = PDOSingleton::getInstance()->getConnexion();
             $postManager = new PostManagerPDO($dao);
             $commentManager = new CommentManagerPDO($dao);
+            // -> get the post from the id
+            $post = $postManager->getPost((int) $httpRequest->getData('idPost'));
             // if the request wants to edit a comment's status
             if ($httpRequest->hasGet('idComment')) {
                 // I get the comment from the bdd
@@ -62,21 +65,23 @@ final class CommentsAdminController extends AbstractController
                 // Edition of comment's status ...
                 if ($httpRequest->hasPost('status')) {
                     // ... from post data ...
-                    $comment->setStatus($httpRequest->postData('status'));
+                    // $status can only be 'waiting', 'valid' and 'rejected' in setStatus() method and it will be 'waiting' by default
+                    $comment->setStatus($httpRequest->postData('status')); 
                 }
                 if ($httpRequest->hasGet('status')) {
                     // ... or from get data
-                    $comment->setStatus($httpRequest->getData('status'));
+                    // $status can only be 'waiting', 'valid' and 'rejected' in setStatus() method and it will be 'waiting' by default
+                    $comment->setStatus($httpRequest->getData('status')); 
                 }
                 // update the comment with its new status
-                if (!$commentManager->update($comment)) {
-                    throw new Exception('The request to edit comment\'s status failed');
+                if (!$commentManager->save($comment)) {
+                    throw new Exception('The request to update comment\'s status failed');
                 }
-                $comment = $commentManager->getComment($httpRequest->getData('idComment'));
+                // send the mail to notify comment author of its status modification
+                $mailManager = new CommentEmailManager();
+                $mailManager->sendStatus($comment, $post); // if the send failed, an Exception will be throw
             }
             // display the page to manage comments :
-            // -> get the post from the id, with its author's pseudo
-            $post = $postManager->getPost((int) $httpRequest->getData('idPost'));
             // -> get list of post's comments
             $comments = $commentManager->getAllComments((int) $post->getId());
 
@@ -91,7 +96,7 @@ final class CommentsAdminController extends AbstractController
             );
         }
 
-        throw new Exception("update comment's status failed");
+        throw new Exception("The request to update a comment's status failed");
     }
 
     /**

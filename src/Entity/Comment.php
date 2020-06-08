@@ -26,6 +26,8 @@ final class Comment extends Entity
 
     /**
      * dateCreation.
+     * 
+     * @var DateTime
      */
     private DateTime $dateCreation;
 
@@ -33,23 +35,42 @@ final class Comment extends Entity
      * status.
      *
      * comment status witch can only be 'waiting', 'valid' or 'rejected'
+     * 
+     * @var string
      */
     private string $status = 'waiting';
 
     /**
      * idPost.
+     * 
+     * @var int
      */
     private int $idPost;
 
     /**
      * idUser.
+     * 
+     * @var int
      */
     private int $idUser;
 
     /**
      * author.
+     * 
+     * user's pseudo which wrote the comment
+     * 
+     *  @var string
      */
     private string $author;
+
+    /**
+     * email.
+     * 
+     * user's email which wrote the comment
+     * 
+     * @var string
+     */
+    private string $email;
 
     /**
      * Get the value of id.
@@ -198,6 +219,30 @@ final class Comment extends Entity
     public function setAuthor(string $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get user's email which wrote the comment
+     *
+     * @return  string
+     */ 
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set user's email which wrote the comment
+     *
+     * @param  string  $email  user's email which wrote the comment
+     *
+     * @return  self
+     */ 
+    public function setEmail(string $email)
+    {
+        $this->email = $email;
 
         return $this;
     }

@@ -30,12 +30,7 @@ class CommentFormHandler extends FormHandler
     {
         $comment = $this->form->getEntity();
         if ($comment instanceof Comment && $this->form->isValid()) {
-            if ($this->manager->save($comment)) {
-                // ///////////////////////envoie du mail à Admin //////////////////////////////
-                return true;
-            }
-
-            throw new Exception('Saving the comment failed.');
+            return $this->manager->save($comment);
         }
 
         return false;

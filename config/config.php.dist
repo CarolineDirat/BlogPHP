@@ -33,8 +33,11 @@ define('DB_NAME', get('DB_NAME', 'blogphp'));   // the name of the database
 define('PORT', get('PORT', '3306'));
 define('PDO_DSN', 'mysql:host=' . SERVER . ';port=' . PORT . ';dbname=' . DB_NAME);
 
-// to configure the send of e-mail
+// to configure the send of e-mail in App\Application\PHPMailerApp
 define('SMTP_SERVER', 'write_yours');    // SMTP server, ex : 'smtp.gmail.com'
 define('SMTP_USER', 'write_yours');      // SMTP username, ex : 'joe.doe@gmail.com'
 define('SMTP_PASS', 'write_yours');      // SMTP password
-define('EMAIL_CONTACT', 'write_yours');    // E-MAIL adress to receive message from contact form
+
+// emails of Administrator
+define('EMAIL_CONTACT', 'write_yours');  // E-MAIL adress to receive message from contact form
+define('EMAIL_ADMIN', 'write_yours');    // E-MAIL adress to receive an reply from a mail send to a user from CaroCode
