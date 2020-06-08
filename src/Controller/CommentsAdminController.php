@@ -69,7 +69,7 @@ final class CommentsAdminController extends AbstractController
                     $comment->setStatus($httpRequest->getData('status'));
                 }
                 // update the comment with its new status
-                if (!$commentManager->update($comment)) {
+                if (!$commentManager->save($comment)) {
                     throw new Exception('The request to edit comment\'s status failed');
                 }
                 $comment = $commentManager->getComment($httpRequest->getData('idComment'));
