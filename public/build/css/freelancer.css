@@ -135,6 +135,12 @@ td div.well {
   padding-left: 25px;
   margin-bottom: 2px;
 }
+thead {
+  color: #161f29;
+}
+thead th {
+  margin-bottom: 20px;
+}
 .admin-top-block {
   height: 110px;
   background-color: #18BC9C;
@@ -241,6 +247,10 @@ td div.well {
   .navbar-custom.affix .navbar-brand {
     font-size: 1.5em;
   }
+}
+.table>thead>tr>th {
+  padding-bottom: 30px;
+  border-bottom: none;
 }
 section {
   padding: 100px 0;
@@ -524,6 +534,10 @@ footer .footer-below {
 }
 a.nav-link {
   color: white;
+}
+a.btn.btn-primary.btn-comments-admin-post {
+  background-color: #B40404;
+  border-color: #B40404;
 }
 h5.card-title a.btn {
   white-space: normal;

@@ -36,6 +36,16 @@ abstract class CommentManager extends Manager
      * @return array[Comment]
      */
     abstract public function getValidComments(int $idPost): array;
+    
+    /**
+     * getNbWaitingComments
+     * 
+     * Method which returns the number of waiting comments for one post
+     *
+     * @param  int $idPost
+     * @return int
+     */
+    abstract public function getNbWaitingComments(int $idPost): int;
 
     /**
      * add.

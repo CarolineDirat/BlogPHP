@@ -73,6 +73,8 @@ final class CommentManagerPDO extends CommentManager
         return $this->getListComments($sql, $idPost);
     }
 
+    
+
     /**
      * getValidComments.
      *
@@ -142,6 +144,37 @@ final class CommentManagerPDO extends CommentManager
         }
 
         return $listComments;
+    }
+    
+    /**
+     * getNbWaitingComments
+     * 
+     * Method which returns the number of waiting comments for one post
+     *
+     * @param  int $idPost
+     * @return int
+     */
+    public function getNbWaitingComments(int $idPost): int
+    {
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('commentManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        // Resquest to the MySQL bdd
+        $req = $this
+            ->dao
+            ->prepare(
+                "SELECT COUNT(*) FROM comment WHERE comment.id_post = :id AND comment.status = 'waiting'"
+            )
+        ;
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('PDO request failed');
+        }
+        $req->bindValue(':id', $idPost, PDO::PARAM_INT);
+        $req->execute();
+        $nbWaitingComments = $req->fetch();
+        $req->closeCursor();
+       
+        return (int) $nbWaitingComments[0];
     }
 
     /**
