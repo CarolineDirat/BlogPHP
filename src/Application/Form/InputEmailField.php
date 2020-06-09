@@ -8,6 +8,7 @@ use InvalidArgumentException;
  * InputEmailField.
  *
  * Represent an intput field with type="email"
+ * with its own additional attributes to those of the input tag
  */
 class InputEmailField extends InputField
 {
@@ -49,14 +50,7 @@ class InputEmailField extends InputField
     public function __construct(array $options = [])
     {
         parent::__construct($options);
-        $this->defineEmailType();
-    }
-
-    public function defineEmailType(): self
-    {
         $this->type = 'email';
-
-        return $this;
     }
 
     /**

@@ -7,6 +7,7 @@ use InvalidArgumentException;
 /**
  * InputTextField.
  * Represent an intput field with type="text".
+ * with its own additional attributes to those of the input tag
  */
 class InputTextField extends InputField
 {
@@ -27,14 +28,7 @@ class InputTextField extends InputField
     public function __construct(array $options = [])
     {
         parent::__construct($options);
-        $this->defineTextType();
-    }
-
-    public function defineTextType(): self
-    {
         $this->type = 'text';
-
-        return $this;
     }
 
     /**

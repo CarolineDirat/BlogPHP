@@ -5,7 +5,7 @@ namespace App\Application\Form;
 /**
  * InputField.
  *
- * field with html element = input
+ * field with html element = input, with its own attributes
  */
 class InputField extends Field
 {
@@ -45,14 +45,7 @@ class InputField extends Field
     public function __construct(array $options = [])
     {
         parent::__construct($options);
-        $this->defineInputTag();
-    }
-
-    public function defineInputTag(): self
-    {
         $this->tag = 'input';
-
-        return $this;
     }
 
     /**
