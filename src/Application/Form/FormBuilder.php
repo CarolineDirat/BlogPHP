@@ -27,6 +27,22 @@ abstract class FormBuilder
      * build form's fields
      */
     abstract public function build(): self;
+    
+    /**
+     * getValueField
+     * 
+     * get a field value form its name
+     *
+     * @param  string $fieldName
+     * @return string
+     */
+    public function getValueField(string $fieldName): string
+    {
+        $fields = $this->getForm()->getFields();
+        $field = $fields[$fieldName];
+
+        return ''.$field->getValueField();
+    }
 
     /**
      * Get form.

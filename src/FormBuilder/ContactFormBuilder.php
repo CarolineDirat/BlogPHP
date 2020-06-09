@@ -23,14 +23,6 @@ final class ContactFormBuilder extends FormBuilder
         $this->setHttpRequest($httpRequest);
     }
 
-    public function getValueField(string $fieldName): string
-    {
-        $fields = $this->form->getFields();
-        $field = $fields[$fieldName];
-
-        return ''.$field->getValueField();
-    }
-
     public function build(): self
     {
         $this->form
