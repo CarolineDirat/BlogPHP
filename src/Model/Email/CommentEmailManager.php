@@ -71,8 +71,9 @@ class CommentEmailManager
     {
         $mail = new CommentReportAdminPHPMailer(true);    // Instantiation of PHPMailer and passing `true` enables exceptions
         // define $params for sendMail() method
+        $params = [];
         $params = [
-            'linkToLogin' => '<a href="http://blogphp/login" >Se connecter</a>',
+            'linkToLogin' => '<a href="'.SERVER_HOST.'/login" >Se connecter</a>',
             'comment' => $comment->getContent(),
             'title' => $post->getTitle(),
         ];
