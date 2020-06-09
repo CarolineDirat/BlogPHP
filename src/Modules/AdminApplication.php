@@ -17,9 +17,9 @@ class AdminApplication extends Application
         $page = $this->getHttpRequest()->getData('page');
         $action = $this->getHttpRequest()->getData('action');
         if (empty($this->httpRequest->getUserSession())) {
-            // if user session doesn't exist : redirection to home page
+            // if user session doesn't exist : go to login page
             $action = 'show';
-            $page = 'home';
+            $page = 'login';
             $this->setModule('public');
         } elseif ('admin' !== $this->httpRequest->getUserSession()->getRole()) {
             // else if user does not have 'admin' rights : the user is disconnect

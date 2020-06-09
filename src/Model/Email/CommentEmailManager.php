@@ -5,6 +5,7 @@ namespace App\Model\Email;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\PHPMailer\CommentStatusPHPMailer;
+use App\PHPMailer\CommentReportAdminPHPMailer;
 use Exception;
 
 /**
@@ -54,5 +55,33 @@ class CommentEmailManager
         }
 
         throw new Exception('Sending email to notify update of comment\'s status failed:'.$mail->ErrorInfo);
+    }
+    
+    /**
+     * sendToAdmin
+     * 
+     * define params for sendMail() method of App\PHPMailer\CommentReportAdminPHPMailer 
+     * which create and send a email to report Admin of creation of a comment to validate
+     *
+     * @param  Comment $comment
+     * @param  Post $post
+     * @return bool
+     */
+    public function sendReportComment(Comment $comment, Post $post): bool
+    {
+        $mail = new CommentReportAdminPHPMailer(true);    // Instantiation of PHPMailer and passing `true` enables exceptions
+        // define $params for sendMail() method
+        $params = [];
+        $params = [
+            'linkToLogin' => '<a href="'.SERVER_HOST.'/login" >Se connecter</a>',
+            'comment' => $comment->getContent(),
+            'title' => $post->getTitle(),
+        ];
+        // send the mail
+        if ($mail->sendEmail($params)) {
+            return true;
+        }
+
+        throw new Exception('Sending email to report Admin a comment to validate failed:'.$mail->ErrorInfo);
     }
 }

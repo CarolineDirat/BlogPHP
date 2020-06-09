@@ -23,8 +23,17 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 table-responsive">
                     <table class="table">
+                        <thead>
+                            <tr>
+                                <th colspan="5">
+                                    * Un bouton   
+                                    <a href="/admin" role="button" class="btn btn-primary btn-comments-admin-post btn-xs">Commentaires</a> 
+                                        a au moins un commentaire en attente.
+                                </th>
+                            </tr>
+                        </thead>
                         <tbody>
-                            {% for post in posts %}
+                            {% for key, post in posts %}
                                 <tr>
                                     <td>{{ post.dateUpdate|date('d/m/Y')}}</td>
                                     <td>
@@ -32,8 +41,12 @@
                                             {{ post.title}}
                                         </a>
                                     </td>
+                                    {% set class = "btn btn-primary" %}
+                                    {% if nbsWaitingComments[key] > 0 %}
+                                        {% set class = "btn btn-primary btn-comments-admin-post" %}
+                                    {% endif %}
                                     <td>
-                                        <a href={{ "/admin/comments/post/#{post.id}" }} role="button" class="btn btn-primary">Commentaires</a>
+                                        <a href={{ "/admin/comments/post/#{post.id}" }} role="button" class="{{ class }}">Commentaires</a>
                                     </td>
                                     <td>
                                         <a href={{ "/admin/update/post/#{post.id}" }} role="button" class="btn btn-primary">Modifier</a>

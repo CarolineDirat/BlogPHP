@@ -41,3 +41,6 @@ define('SMTP_PASS', 'write_yours');      // SMTP password
 // emails of Administrator
 define('EMAIL_CONTACT', 'write_yours');  // E-MAIL adress to receive message from contact form
 define('EMAIL_ADMIN', 'write_yours');    // E-MAIL adress to receive an reply from a mail send to a user from CaroCode
+
+// website address
+define('SERVER_HOST', 'write_yours');   // ex : http://blogphp (website address of virtualhost on Wampserver)

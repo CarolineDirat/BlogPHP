@@ -11,6 +11,7 @@ use App\FormBuilder\CommentFormBuilder;
 use App\FormHandler\CommentFormHandler;
 use App\Model\CommentManagerPDO;
 use App\Model\PostManagerPDO;
+use App\Model\Email\CommentEmailManager;
 
 final class PostPublicController extends AbstractController
 {
@@ -46,7 +47,9 @@ final class PostPublicController extends AbstractController
                 $formHandler = new CommentFormHandler($commentForm, $manager, $httpRequest);
                 // process comment form and display post page consequently to the process result
                 if ($formHandler->process()) {
-                    // /// send a mail to Admin to notify him ///////////
+                    // send a mail to Admin to notify him of creation of a comment to validate
+                    $manager = new CommentEmailManager();
+                    $manager->sendReportComment($comment, $post);
                     // build empty comment form
                     $comment = new Comment();
                     $formBuilder = new CommentFormBuilder($comment);
