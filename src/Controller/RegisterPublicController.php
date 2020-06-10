@@ -27,14 +27,9 @@ final class RegisterPublicController extends AbstractController
      */
     public function executeShowRegister(): HTTPResponse
     {
-        // We must know pseudos and emails already existing
-        $dao = PDOSingleton::getInstance()->getConnexion();
-        $manager = new UserManagerPDO($dao);
-        $pseudos = $manager->getPseudos();
-        $emails = $manager->getEmails();
         // Build empty registration form
         $register = new Register();
-        $formbuilder = new RegisterFormBuilder($register, $pseudos, $emails);
+        $formbuilder = new RegisterFormBuilder($register, [], []);
         $registerForm = $formbuilder->build()->getForm();   
         // manage url tree
         $correctPath = '';
@@ -69,7 +64,7 @@ final class RegisterPublicController extends AbstractController
               'password' => $httpRequest->postData('password'),
               'confirmPassword' => $httpRequest->postData('confirmPassword'),
             ]);
-            // To build registration form, we must know pseudos and emails already existing
+            // To build registration form with values, we must know pseudos and emails already existing
             $dao = PDOSingleton::getInstance()->getConnexion();
             $manager = new UserManagerPDO($dao);
             $pseudos = $manager->getPseudos();
