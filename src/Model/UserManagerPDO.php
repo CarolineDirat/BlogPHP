@@ -48,8 +48,12 @@ final class UserManagerPDO extends UserManager
         $pseudos = $req->fetchAll(PDO::FETCH_COLUMN);
         $req->closeCursor();
         //var_dump($pseudos);exit;
+        if ( false !== $pseudos) {
+
+            return $pseudos;
+        }
         
-        return $pseudos;
+        throw new Exception('fetchAll() line 64 in getEmails() failed');
     }
 
     public function getEmails(): array
@@ -64,8 +68,12 @@ final class UserManagerPDO extends UserManager
         $emails = $req->fetchAll(PDO::FETCH_COLUMN);
         $req->closeCursor();
         //var_dump($emails);exit;
+        if ( false !== $emails) {
+            
+            return $emails;
+        }
         
-        return $emails;
+        throw new Exception('fetchAll() line 64 in getEmails() failed');
     }
 
     public function hasLogin(Login $login): bool
@@ -122,5 +130,76 @@ final class UserManagerPDO extends UserManager
         }
 
         return $user;
+    }
+
+    public function add(User $user): bool
+    {
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        // Resquest to the MySQL bdd
+        $req = $this
+            ->dao
+            ->prepare(
+                'INSERT INTO user ( pseudo, password, email, date_creation, activation_key, enabled )
+                VALUES ( :pseudo, :password, :email, NOW(), :activation_key, :enabled )'
+            )
+        ;
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('PDO request to add user failed');
+        }
+        $req->bindValue(':pseudo', $user->getPseudo());
+        $req->bindValue(':password', password_hash($user->getPassword(), PASSWORD_DEFAULT)); // hash password
+        $req->bindValue(':email', $user->getEmail());
+        $req->bindValue(':activation_key', sha1(microtime().$user->getPseudo()));
+        $req->bindValue(':enabled', 1, PDO::PARAM_INT);
+        $result = $req->execute();
+        $req->closeCursor();
+        if (!$result) {
+            throw new Exception('Insert request to add user failed');
+        }
+        // now we add role to user, adding user id and his role in user_role table
+        $idUser = $this->dao->lastInsertId();
+        $req = $this
+            ->dao
+            ->prepare(
+                'INSERT INTO role_user ( id, role )
+                VALUES ( :id, :role )'
+            )
+        ;
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('PDO request to add user in role_user failed');
+        }
+        $req->bindValue(':id', $idUser, PDO::PARAM_INT);
+        $req->bindValue(':role', $user->getRole());
+        $result = $req->execute();
+        $req->closeCursor();
+
+        return $result;
+    }
+
+    public function update(User $user): bool
+    {
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        // Resquest to the MySQL bdd
+        $req = $this
+            ->dao
+            ->prepare(
+                'UPDATE user 
+                SET enabled = :enabled
+                WHERE user.id = :id'
+            )
+        ;
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('PDO request to update user failed');
+        }
+        $req->bindValue(':enabled', $user->getEnabled(), PDO::PARAM_INT);
+        $req->bindValue(':id', $user->getId(), PDO::PARAM_INT);
+        $result = $req->execute();
+        $req->closeCursor();
+
+        return $result;
     }
 }
