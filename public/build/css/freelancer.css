@@ -278,7 +278,7 @@ section.success {
 #admin div.add-post {
   margin-bottom: 50px;
 }
-#admin-post div.row.form {
+div.row.form {
   padding-left: 15px;
   padding-right: 15px;
 }
