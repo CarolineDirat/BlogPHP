@@ -7,7 +7,6 @@ use App\Application\Form\FormHandler;
 use App\Application\HTTPRequest;
 use App\Entity\Comment;
 use App\Model\CommentManagerPDO;
-use Exception;
 
 class CommentFormHandler extends FormHandler
 {

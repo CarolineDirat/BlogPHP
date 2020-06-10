@@ -8,7 +8,6 @@ use App\Application\HTTPRequest;
 use App\Entity\Form\Register;
 use App\Entity\User;
 use App\Model\UserManagerPDO;
-use Exception;
 
 class RegisterFormHandler extends FormHandler
 {
@@ -37,7 +36,7 @@ class RegisterFormHandler extends FormHandler
                 'password' => $register->getPassword(),
                 'role' => 'subscriber',
             ]);
-            
+
             return $this->manager->save($user);
         }
 

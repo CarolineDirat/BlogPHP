@@ -12,15 +12,15 @@ use App\FormHandler\RegisterFormHandler;
 use App\Model\UserManagerPDO;
 
 /**
- * RegisterPublicController
- * 
+ * RegisterPublicController.
+ *
  * Controller to manage a user registration
  */
 final class RegisterPublicController extends AbstractController
-{    
+{
     /**
-     * executeShowRegister
-     * 
+     * executeShowRegister.
+     *
      * Controller corresponding to the route /register
      *
      * @return HTTPResponse
@@ -30,10 +30,10 @@ final class RegisterPublicController extends AbstractController
         // Build empty registration form
         $register = new Register();
         $formbuilder = new RegisterFormBuilder($register, [], []);
-        $registerForm = $formbuilder->build()->getForm();   
+        $registerForm = $formbuilder->build()->getForm();
         // manage url tree
         $correctPath = '';
-        if ( 'register/save' === $this->httpRequest->requestURI()) {
+        if ('register/save' === $this->httpRequest->requestURI()) {
             $correctPath = '../';
         }
 
@@ -45,24 +45,24 @@ final class RegisterPublicController extends AbstractController
             ]
         );
     }
-    
+
     /**
-     * executeSaveRegister
-     * 
+     * executeSaveRegister.
+     *
      * Controller corresponding to the route /register/save
      *
      * @return HTTPResponse
-    */ 
+     */
     public function executeSaveRegister(): HTTPResponse
     {
         $httpRequest = $this->httpRequest;
         if ('POST' === $httpRequest->method()) {
             $register = new Register([
-              'pseudo' => $httpRequest->postData('pseudo'),
-              'email' => $httpRequest->postData('email'),
-              'confirmEmail' => $httpRequest->postData('confirmEmail'),
-              'password' => $httpRequest->postData('password'),
-              'confirmPassword' => $httpRequest->postData('confirmPassword'),
+                'pseudo' => $httpRequest->postData('pseudo'),
+                'email' => $httpRequest->postData('email'),
+                'confirmEmail' => $httpRequest->postData('confirmEmail'),
+                'password' => $httpRequest->postData('password'),
+                'confirmPassword' => $httpRequest->postData('confirmPassword'),
             ]);
             // To build registration form with values, we must know pseudos and emails already existing
             $dao = PDOSingleton::getInstance()->getConnexion();
@@ -75,9 +75,9 @@ final class RegisterPublicController extends AbstractController
             // Instanciate FormHandler for registration form
             $formHandler = new RegisterFormHandler($registerForm, $manager, $httpRequest);
             // process the form
-            if($formHandler->process()) {    
+            if ($formHandler->process()) {
                 return new HTTPResponse(
-                    $this->getPage(), 
+                    $this->getPage(),
                     [
                         'messageInfo' => 'Votre inscription a réussi. Il reste à activer votre compte en cliquant sur lien dans l\'email que vous avez reçu.',
                     ]
@@ -85,7 +85,7 @@ final class RegisterPublicController extends AbstractController
             }
 
             return new HTTPResponse(
-                $this->getPage(), 
+                $this->getPage(),
                 [
                     'registerForm' => $registerForm,
                     'messageInfo' => 'Au moins un des champs n\'a pas été validé, veuillez suivre les indications :',

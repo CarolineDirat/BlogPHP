@@ -72,8 +72,6 @@ final class CommentManagerPDO extends CommentManager
         return $this->getListComments($sql, $idPost);
     }
 
-    
-
     /**
      * getValidComments.
      *
@@ -141,13 +139,12 @@ final class CommentManagerPDO extends CommentManager
 
         return $listComments;
     }
-    
+
     /**
-     * getNbWaitingComments
-     * 
+     * getNbWaitingComments.
+     *
      * Method which returns the number of waiting comments for one post
      *
-     * @param  int $idPost
      * @return int
      */
     public function getNbWaitingComments(int $idPost): int
@@ -166,7 +163,7 @@ final class CommentManagerPDO extends CommentManager
         $req->execute();
         $nbWaitingComments = $req->fetch();
         $req->closeCursor();
-       
+
         return (int) $nbWaitingComments[0];
     }
 

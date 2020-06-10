@@ -30,22 +30,22 @@ class UniqueValidator extends Validator
     }
 
     /**
-     * Get array of values that must be different from the value of the field
+     * Get array of values that must be different from the value of the field.
      *
-     * @return  string[]
-     */ 
+     * @return string[]
+     */
     public function getArray(): array
     {
         return $this->array;
     }
 
     /**
-     * Set array of values that must be different from the value of the field
+     * Set array of values that must be different from the value of the field.
      *
-     * @param  string[]  $array  Array of values that must be different from the value of the field
+     * @param string[] $array Array of values that must be different from the value of the field
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setArray(array $array): self
     {
         $this->array = $array;

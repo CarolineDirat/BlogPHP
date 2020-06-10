@@ -46,9 +46,9 @@ class InputPasswordField extends InputField
      * @var ?int
      */
     private ?int $minlength;
-    
+
     /**
-     * title
+     * title.
      *
      * @var ?string
      */
@@ -193,22 +193,22 @@ class InputPasswordField extends InputField
     }
 
     /**
-     * Get title
+     * Get title.
      *
-     * @return  ?string
-     */ 
+     * @return ?string
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
     /**
-     * Set title
+     * Set title.
      *
-     * @param  ?string  $title  title
+     * @param ?string $title title
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setTitle(?string $title): self
     {
         $this->title = $title;

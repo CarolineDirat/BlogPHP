@@ -4,22 +4,22 @@ namespace App\FormBuilder;
 
 use App\Application\Entity;
 use App\Application\Form\FormBuilder;
-use App\Application\Form\InputTextField;
+use App\Application\Form\HoneypotValidator;
 use App\Application\Form\InputEmailField;
 use App\Application\Form\InputPasswordField;
+use App\Application\Form\InputTextField;
 use App\Application\Form\MaxLengthValidator;
 use App\Application\Form\MinLengthValidator;
 use App\Application\Form\NotEmptyValidator;
-use App\Application\Form\HoneypotValidator;
-use App\Application\Form\ValuesEqualityValidator;
 use App\Application\Form\RegexValidator;
 use App\Application\Form\UniqueValidator;
+use App\Application\Form\ValuesEqualityValidator;
 
 final class RegisterFormBuilder extends FormBuilder
-{    
+{
     /**
-     * pseudos
-     * 
+     * pseudos.
+     *
      * pseudos that already exists in database
      *
      * @var string[]
@@ -27,14 +27,14 @@ final class RegisterFormBuilder extends FormBuilder
     private array $pseudos;
 
     /**
-     * emails
-     * 
+     * emails.
+     *
      * emails that already exists in database
      *
      * @var string[]
      */
     private array $emails;
-    
+
     public function __construct(Entity $register, array $pseudos, array $emails)
     {
         parent::__construct($register);
@@ -120,7 +120,7 @@ final class RegisterFormBuilder extends FormBuilder
                         new MaxLengthValidator('Le mot de passe spécifié est trop long (100 caractères maximum)', 250),
                         new MinLengthValidator('Le mot de passe spécifié est trop court (8 caractères minimum)', 8),
                         new RegexValidator(
-                            'Le mot de passe spécifié doit contenir au moins 1 majuscule et 1 chiffre.', 
+                            'Le mot de passe spécifié doit contenir au moins 1 majuscule et 1 chiffre.',
                             '/^(?=.*[A-Z])(?=.*\d).+$/'
                         ),
                     ],

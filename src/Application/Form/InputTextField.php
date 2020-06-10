@@ -7,7 +7,7 @@ use InvalidArgumentException;
 /**
  * InputTextField.
  * Represent an intput field with type="text".
- * with its own additional attributes to those of the input tag
+ * with its own additional attributes to those of the input tag.
  */
 class InputTextField extends InputField
 {

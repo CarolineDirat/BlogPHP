@@ -3,11 +3,11 @@
 namespace App\PHPMailer;
 
 use App\Application\PHPMailerApp;
-use InvalidArgumentException;
 use Exception;
+use InvalidArgumentException;
 
 /**
- * CommentStatusPHPMailer
+ * CommentStatusPHPMailer.
  */
 class CommentStatusPHPMailer extends PHPMailerApp
 {
@@ -47,23 +47,26 @@ class CommentStatusPHPMailer extends PHPMailerApp
         switch ($params['status']) {
             case 'valide':
                 $custom = 'Il est donc désormais visible parmi les autres commentaires validés. ';
+
             break;
-            case 'rejeté' :
+            case 'rejeté':
                 $custom = 'Il ne sera pas lisible sur le site. ';
+
             break;
-            case 'en attente' :
+            case 'en attente':
                 $custom = 'Il est en attente d\'une validation. ';
+
             break;
             default:
                 throw new Exception('comment status value'.$params['status'].' is not valid');
-        }        
+        }
         // This is the HTML message body <b>in bold!</b>:
         $this->Body = 'Bonjour '.$params['pseudo'].', vous avez reçu un message depuis le site CaroCode : <br/> 
-            Votre commentaire : <br/> << '.$params['comment'].' >> <br/> du '.$params['date'].' sur le post "'.$params['title'] . '" <br/>
-            est désormais <b>'.$params['status']. '</b>. '.$custom;  
+            Votre commentaire : <br/> << '.$params['comment'].' >> <br/> du '.$params['date'].' sur le post "'.$params['title'].'" <br/>
+            est désormais <b>'.$params['status'].'</b>. '.$custom;
         // This is the body in plain text for non-HTML mail clients:
         $this->AltBody = 'Bonjour '.$params['pseudo'].', vous avez reçu un message depuis le site CaroCode : 
-        Votre commentaire : << '.$params['comment'].' >> du '.$params['date'].' sur le post "'.$params['title'] .'"  
+        Votre commentaire : << '.$params['comment'].' >> du '.$params['date'].' sur le post "'.$params['title'].'"  
         est désormais '.$params['status'].'. '.$custom;
 
         return $this->send();

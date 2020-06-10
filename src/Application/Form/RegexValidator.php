@@ -10,9 +10,9 @@ use Exception;
  * Validator to know if field value is valid for a regex
  */
 class RegexValidator extends Validator
-{    
+{
     /**
-     * pattern
+     * pattern.
      *
      * @var string
      */
@@ -23,7 +23,7 @@ class RegexValidator extends Validator
         parent::__construct($errorMessage);
         $this->setPattern($pattern);
     }
-    
+
     public function isValid(?string $value): bool
     {
         switch (preg_match($this->getPattern(), $value)) {
@@ -32,29 +32,29 @@ class RegexValidator extends Validator
             case 0:
                 return false;
             case false:
-                throw new Exception("validation of password with preg_match() failed.");
+                throw new Exception('validation of password with preg_match() failed.');
             default:
-                throw new Exception("validation of password with failed.");
+                throw new Exception('validation of password with failed.');
         }
     }
 
     /**
-     * Get pattern
+     * Get pattern.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getPattern(): string
     {
         return $this->pattern;
     }
 
     /**
-     * Set pattern
+     * Set pattern.
      *
-     * @param  string  $pattern  pattern
+     * @param string $pattern pattern
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setPattern(string $pattern): self
     {
         $this->pattern = $pattern;

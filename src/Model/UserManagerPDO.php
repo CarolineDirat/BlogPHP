@@ -47,11 +47,10 @@ final class UserManagerPDO extends UserManager
         $pseudos = $req->fetchAll(PDO::FETCH_COLUMN);
         $req->closeCursor();
         //var_dump($pseudos);exit;
-        if ( false !== $pseudos) {
-
+        if (false !== $pseudos) {
             return $pseudos;
         }
-        
+
         throw new Exception('fetchAll() line 64 in getEmails() failed');
     }
 
@@ -64,11 +63,10 @@ final class UserManagerPDO extends UserManager
         $emails = $req->fetchAll(PDO::FETCH_COLUMN);
         $req->closeCursor();
         //var_dump($emails);exit;
-        if ( false !== $emails) {
-            
+        if (false !== $emails) {
             return $emails;
         }
-        
+
         throw new Exception('fetchAll() line 64 in getEmails() failed');
     }
 

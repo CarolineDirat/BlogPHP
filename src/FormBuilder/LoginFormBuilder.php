@@ -3,11 +3,11 @@
 namespace App\FormBuilder;
 
 use App\Application\Form\FormBuilder;
-use App\Application\Form\InputTextField;
+use App\Application\Form\HoneypotValidator;
 use App\Application\Form\InputPasswordField;
+use App\Application\Form\InputTextField;
 use App\Application\Form\MaxLengthValidator;
 use App\Application\Form\NotEmptyValidator;
-use App\Application\Form\HoneypotValidator;
 
 /**
  * LoginFormBuilder.

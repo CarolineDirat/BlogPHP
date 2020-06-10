@@ -31,9 +31,9 @@ final class User extends Entity
      * @var string
      */
     private string $password;
-    
+
     /**
-     * email
+     * email.
      *
      * @var string
      */
@@ -247,22 +247,22 @@ final class User extends Entity
     }
 
     /**
-     * Get email
+     * Get email.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
     /**
-     * Set email
+     * Set email.
      *
-     * @param  string  $email  email
+     * @param string $email email
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setEmail(string $email): self
     {
         $email = filter_var(filter_var($email, FILTER_SANITIZE_EMAIL), FILTER_VALIDATE_EMAIL);
