@@ -96,10 +96,8 @@ final class RegisterPublicController extends AbstractController
                     'messageInfo' => 'Au moins un des champs n\'a pas été validé, veuillez suivre les indications :',
                 ]
             );
-
         }
 
         return $this->executeShowRegister();
     }
-    
 }

@@ -4,6 +4,7 @@ namespace App\FormBuilder;
 
 use App\Application\Form\FormBuilder;
 use App\Application\Form\InputTextField;
+use App\Application\Form\InputPasswordField;
 use App\Application\Form\MaxLengthValidator;
 use App\Application\Form\NotEmptyValidator;
 use App\Application\Form\HoneypotValidator;
@@ -48,7 +49,7 @@ final class LoginFormBuilder extends FormBuilder
                 )
             )
             ->addField(
-                new InputTextField(
+                new InputPasswordField(
                     [
                         'textLabel' => 'Votre mot de passe',
                         'name' => 'password',
