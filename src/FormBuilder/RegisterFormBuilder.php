@@ -13,10 +13,31 @@ use App\Application\Form\NotEmptyValidator;
 use App\Application\Form\HoneypotValidator;
 use App\Application\Form\ValuesEqualityValidator;
 use App\Application\Form\RegexValidator;
-use App\Application\HTTPRequest;
+use App\Application\Form\UniqueValidator;
 
 final class RegisterFormBuilder extends FormBuilder
-{
+{    
+    /**
+     * pseudos
+     *
+     * @var string[]
+     */
+    private array $pseudos;
+
+    /**
+     * pseudos
+     *
+     * @var string[]
+     */
+    private array $emails;
+    
+    public function __construct(Entity $register, array $pseudos, array $emails)
+    {
+        parent::__construct($register);
+        $this->pseudos = $pseudos;
+        $this->emails = $emails;
+    }
+
     public function build(): self
     {
         $this->form
@@ -31,6 +52,7 @@ final class RegisterFormBuilder extends FormBuilder
                     'validators' => [
                         new NotEmptyValidator('Merci de spécifier un pseudo pour vous nommer sur le site.'),
                         new MaxLengthValidator('Le pseudo spécifié est trop long (50 caractères maximum)', 50),
+                        new UniqueValidator('Ce pseudo est déjà utilisé, veuillez en choisir un autre.', $this->pseudos),
                     ],
                 ])
             )
@@ -57,6 +79,7 @@ final class RegisterFormBuilder extends FormBuilder
                     'validators' => [
                         new NotEmptyValidator('Merci de spécifier votre email.'),
                         new MaxLengthValidator('L\'email spécifié est trop long (250 caractères maximum)', 250),
+                        new UniqueValidator('Cet email est déjà utilisé, veuillez en choisir un autre.', $this->emails),
                     ],
                 ])
             )
