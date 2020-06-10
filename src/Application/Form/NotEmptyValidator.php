@@ -5,7 +5,7 @@ namespace App\Application\Form;
 /**
  * NotEmptyValidator.
  *
- * Validator to know if field value is empty (or null)
+ * Validator to check if the field is not empty
  */
 class NotEmptyValidator extends Validator
 {
