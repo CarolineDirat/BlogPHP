@@ -19,13 +19,17 @@ final class RegisterFormBuilder extends FormBuilder
 {    
     /**
      * pseudos
+     * 
+     * pseudos that already exists in database
      *
      * @var string[]
      */
     private array $pseudos;
 
     /**
-     * pseudos
+     * emails
+     * 
+     * emails that already exists in database
      *
      * @var string[]
      */
