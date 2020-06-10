@@ -36,6 +36,38 @@ final class UserManagerPDO extends UserManager
         throw new Exception('The nickname of the author of the article could not be recovered');
     }
 
+    public function getPseudos(): array
+    {
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        $req = $this->dao->query('SELECT pseudo FROM user');
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('The SQL request failed with getPseudos()');
+        }
+        $pseudos = $req->fetchAll(PDO::FETCH_COLUMN);
+        $req->closeCursor();
+        //var_dump($pseudos);exit;
+        
+        return $pseudos;
+    }
+
+    public function getEmails(): array
+    {
+        if (!$this->dao instanceof PDO) {
+            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
+        }
+        $req = $this->dao->query('SELECT email FROM user');
+        if (!$req instanceof PDOStatement) {
+            throw new Exception('The SQL request failed with getEamils()');
+        }
+        $emails = $req->fetchAll(PDO::FETCH_COLUMN);
+        $req->closeCursor();
+        //var_dump($emails);exit;
+        
+        return $emails;
+    }
+
     public function hasLogin(Login $login): bool
     {
         if (!$this->dao instanceof PDO) {
