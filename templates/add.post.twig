@@ -24,22 +24,22 @@
             <div class="row form">
                 <div class="col-lg-8 col-lg-offset-2">
                     <form name="addPostForm" id="addPostForm"  method="post" action="/admin/add/post">                  
-                        <div class="row control-group ">
+                        <div class="row control-group">
                             <div class="form-group">
                                 {{ fieldBuilder(postForm.fields.title, ['placeholder', 'maxlength', 'required'], 'form-control') }}
                             </div>
                         </div>
-                        <div class="row control-group ">
+                        <div class="row control-group">
                             <div class="form-group">
                                 {{ fieldBuilder(postForm.fields.abstract, ['placeholder', 'maxlength', 'required'], 'form-control') }}
                             </div>
                         </div>
-                        <div class="row control-group ">
+                        <div class="row control-group">
                             <div class="form-group">
                                 {{ fieldBuilder(postForm.fields.author, ['value', 'required', 'readonly'], 'form-control') }}
                             </div>
                         </div>
-                        <div class="row control-group ">
+                        <div class="row control-group">
                             <div class="form-group">
                                 {{ fieldBuilder(postForm.fields.content, ['placeholder', 'maxlength', 'rows', 'required'], 'form-control') }}
                             </div>
