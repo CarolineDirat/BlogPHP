@@ -49,7 +49,7 @@ final class RegisterFormBuilder extends FormBuilder
                 new InputTextField([
                     'textLabel' => 'Votre pseudo',
                     'name' => 'pseudo',
-                    'idField' => 'pseudo-Register',
+                    'idField' => 'pseudo-register',
                     'placeholder' => 'Pseudo',
                     'required' => 'required',
                     'maxlength' => 50,
@@ -63,7 +63,7 @@ final class RegisterFormBuilder extends FormBuilder
             ->addField(
                 new InputTextField([
                     'name' => 'confirmPseudo',
-                    'idField' => 'confirm-pseudo-Register',
+                    'idField' => 'confirm-pseudo-register',
                     'placeholder' => 'Confirmer votre pseudo',
                     'maxlength' => 50,
                     'validators' => [
@@ -132,7 +132,6 @@ final class RegisterFormBuilder extends FormBuilder
                     'idField' => 'confirm-password',
                     'placeholder' => 'Confirmer votre mot de passe',
                     'title' => 'Il faut au moins 1 majuscule, 1 chiffre et 8 caractères en tout',
-                    'pattern' => '/^(?=.*[A-Z])(?=.*\d).+$/',
                     'required' => 'required',
                     'maxlength' => 250,
                     'minlength' => 8,

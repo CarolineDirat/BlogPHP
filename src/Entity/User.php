@@ -14,9 +14,9 @@ use InvalidArgumentException;
 final class User extends Entity
 {
     /**
-     * @var int
+     * @var ?int
      */
-    private int $id;
+    private ?int $id = null;
 
     /**
      * pseudo.
@@ -79,9 +79,9 @@ final class User extends Entity
     /**
      * Get the value of id.
      *
-     * @return int
+     * @return ?int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
