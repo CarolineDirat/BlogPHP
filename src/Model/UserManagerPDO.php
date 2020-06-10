@@ -16,11 +16,13 @@ use PDOStatement;
  */
 final class UserManagerPDO extends UserManager
 {
+    public function __construct(PDO $dao)
+    {
+        $this->dao = $dao;
+    }
+
     public function getPseudo(int $id): string
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         $req = $this->dao->prepare('SELECT pseudo FROM user WHERE id = :id');
         if (!$req instanceof PDOStatement) {
             throw new Exception('The SQL request failed with getPseudo($id)');
@@ -38,9 +40,6 @@ final class UserManagerPDO extends UserManager
 
     public function getPseudos(): array
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         $req = $this->dao->query('SELECT pseudo FROM user');
         if (!$req instanceof PDOStatement) {
             throw new Exception('The SQL request failed with getPseudos()');
@@ -58,9 +57,6 @@ final class UserManagerPDO extends UserManager
 
     public function getEmails(): array
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         $req = $this->dao->query('SELECT email FROM user');
         if (!$req instanceof PDOStatement) {
             throw new Exception('The SQL request failed with getEamils()');
@@ -78,9 +74,6 @@ final class UserManagerPDO extends UserManager
 
     public function hasLogin(Login $login): bool
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         // check the presence of the pseudo in the database
         $pseudo = $login->getPseudo();
         $req = $this->dao->prepare('SELECT user.password FROM user WHERE pseudo = :pseudo');
@@ -105,9 +98,6 @@ final class UserManagerPDO extends UserManager
 
     public function getUser(?string $pseudo): User
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         $req = $this->dao->prepare(
             'SELECT user.id, pseudo, user.password, user.email, date_creation as dateCreation, user.enabled, role_user.role
             FROM user
@@ -134,9 +124,6 @@ final class UserManagerPDO extends UserManager
 
     public function add(User $user): bool
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         // Resquest to the MySQL bdd
         $req = $this
             ->dao
@@ -180,9 +167,6 @@ final class UserManagerPDO extends UserManager
 
     public function update(User $user): bool
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         // Resquest to the MySQL bdd
         $req = $this
             ->dao

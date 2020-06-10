@@ -15,6 +15,11 @@ use PDOStatement;
  */
 final class CommentManagerPDO extends CommentManager
 {
+    public function __construct(PDO $dao)
+    {
+        $this->dao = $dao;
+    }
+
     /**
      * getComment.
      *
@@ -22,9 +27,6 @@ final class CommentManagerPDO extends CommentManager
      */
     public function getComment(int $id): Comment
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('commentManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         // Resquest to the MySQL bdd
         $req = $this
             ->dao
@@ -36,9 +38,6 @@ final class CommentManagerPDO extends CommentManager
                 WHERE comment.id = :id'
             )
         ;
-        if (!$req instanceof PDOStatement) {
-            throw new Exception('PDO request to get a comment failed');
-        }
         $req->bindValue(':id', $id, PDO::PARAM_INT);
         $req->execute();
         $data = $req->fetch(PDO::FETCH_ASSOC);
@@ -109,9 +108,6 @@ final class CommentManagerPDO extends CommentManager
      */
     public function getListComments(string $sql, int $idPost): array
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('commentManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         // Resquest to the MySQL bdd
         $req = $this
             ->dao
@@ -156,9 +152,6 @@ final class CommentManagerPDO extends CommentManager
      */
     public function getNbWaitingComments(int $idPost): int
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('commentManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         // Resquest to the MySQL bdd
         $req = $this
             ->dao
@@ -184,9 +177,6 @@ final class CommentManagerPDO extends CommentManager
      */
     public function add(Comment $comment): bool
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('commentManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         // Resquest to the MySQL bdd
         $req = $this
             ->dao
@@ -215,9 +205,6 @@ final class CommentManagerPDO extends CommentManager
      */
     public function update(Comment $comment): bool
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('commentManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         // Resquest to the MySQL bdd
         $req = $this
             ->dao
@@ -246,9 +233,6 @@ final class CommentManagerPDO extends CommentManager
      */
     public function delete(int $id): bool
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('CommentManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         // Resquest to the MySQL bdd
         $req = $this
             ->dao

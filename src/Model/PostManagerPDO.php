@@ -16,12 +16,13 @@ use PDOStatement;
  */
 final class PostManagerPDO extends PostManager
 {
+    public function __construct(PDO $dao)
+    {
+        $this->dao = $dao;
+    }
+
     public function getPost(int $id): Post
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
-
         $req = $this
             ->dao
             ->prepare(
@@ -57,9 +58,6 @@ final class PostManagerPDO extends PostManager
 
     public function getListPosts(): array
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         // Resquest to the MySQL bdd
         $req = $this
             ->dao
@@ -112,10 +110,6 @@ final class PostManagerPDO extends PostManager
      */
     public function add(Post $post): bool
     {
-        $slugify = new Slugify();
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('PostManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         // Resquest to the MySQL bdd
         $req = $this
             ->dao
@@ -146,9 +140,6 @@ final class PostManagerPDO extends PostManager
      */
     public function update(Post $post): bool
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('postManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         // Resquest to the MySQL bdd
         $req = $this
             ->dao
@@ -182,9 +173,6 @@ final class PostManagerPDO extends PostManager
      */
     public function delete(int $id): bool
     {
-        if (!$this->dao instanceof PDO) {
-            throw new Exception('postManangerPDO must use an instance of PDO to connect to a MySQL database');
-        }
         // Resquest to the MySQL bdd
         $req = $this
             ->dao
