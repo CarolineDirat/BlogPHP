@@ -49,14 +49,7 @@ class TextareaField extends Field
     public function __construct(array $options = [])
     {
         parent::__construct($options);
-        $this->defineTextareaTag();
-    }
-
-    public function defineTextareaTag(): self
-    {
         $this->tag = 'textarea';
-
-        return $this;
     }
 
     /**

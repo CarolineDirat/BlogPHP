@@ -5,12 +5,12 @@ namespace App\Application\Form;
 use InvalidArgumentException;
 
 /**
- * InputEmailField.
+ * InputPasswordField.
  *
- * Represent an intput field with type="email"
+ * Represent an intput field with type="password"
  * with its own additional attributes to those of the input tag
  */
-class InputEmailField extends InputField
+class InputPasswordField extends InputField
 {
     /**
      * placeholder.
@@ -47,10 +47,17 @@ class InputEmailField extends InputField
      */
     private ?int $minlength;
 
+    /**
+     * title.
+     *
+     * @var ?string
+     */
+    private ?string $title;
+
     public function __construct(array $options = [])
     {
         parent::__construct($options);
-        $this->type = 'email';
+        $this->type = 'password';
     }
 
     /**
@@ -183,5 +190,29 @@ class InputEmailField extends InputField
         }
 
         throw new InvalidArgumentException('$minlength property must be an integer not null');
+    }
+
+    /**
+     * Get title.
+     *
+     * @return ?string
+     */
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set title.
+     *
+     * @param ?string $title title
+     *
+     * @return self
+     */
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
     }
 }

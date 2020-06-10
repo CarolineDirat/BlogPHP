@@ -14,9 +14,9 @@ use InvalidArgumentException;
 final class User extends Entity
 {
     /**
-     * @var int
+     * @var ?int
      */
-    private int $id;
+    private ?int $id = null;
 
     /**
      * pseudo.
@@ -31,9 +31,9 @@ final class User extends Entity
      * @var string
      */
     private string $password;
-    
+
     /**
-     * email
+     * email.
      *
      * @var string
      */
@@ -79,9 +79,9 @@ final class User extends Entity
     /**
      * Get the value of id.
      *
-     * @return int
+     * @return ?int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -247,22 +247,22 @@ final class User extends Entity
     }
 
     /**
-     * Get email
+     * Get email.
      *
-     * @return  string
-     */ 
+     * @return string
+     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
     /**
-     * Set email
+     * Set email.
      *
-     * @param  string  $email  email
+     * @param string $email email
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setEmail(string $email): self
     {
         $email = filter_var(filter_var($email, FILTER_SANITIZE_EMAIL), FILTER_VALIDATE_EMAIL);

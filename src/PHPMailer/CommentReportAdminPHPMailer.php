@@ -21,7 +21,7 @@ class CommentReportAdminPHPMailer extends PHPMailerApp
      *
      * the $params array must contains :
      *
-     *  string $linkToLogin     Link to go to the login page of CaroCode website 
+     *  string $linkToLogin     Link to go to the login page of CaroCode website
      *                          ex : '<a href='http://blogphp/login' >Se connecter</a>'
      *  string $title           Title of the post corresponding to the comment
      *  string $comment         Content of the comment
@@ -40,7 +40,7 @@ class CommentReportAdminPHPMailer extends PHPMailerApp
         }
         // Recipients
         $this->setFrom('ne-pas-repondre@carocode.com', 'CaroCode');
-        $this->addAddress(EMAIL_ADMIN,);   // Add a recipient (Name is optional)
+        $this->addAddress(EMAIL_ADMIN, );   // Add a recipient (Name is optional)
         $this->Subject = 'Un nouveau commentaire à valider dans CaroCode : ';    // Here is the subject
         // This is the HTML message body <b>in bold!</b>:
         $this->Body = 'Nouveau commentaire sur le post <b>'.strtoupper($params['title']).'</b><br/>

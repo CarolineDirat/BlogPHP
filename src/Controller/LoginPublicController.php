@@ -25,10 +25,6 @@ final class LoginPublicController extends AbstractController
                 'password' => $this->httpRequest->postData('password'),
             ]);
             $loginForm = $this->buildLoginForm($login);
-            // check honeypot
-            if (!empty($login->getUsername())) {
-                return new HTTPResponse($this->getPage(), ['loginForm' => $loginForm]);
-            }
             $manager = new UserManagerPDO(PDOSingleton::getInstance()->getConnexion());
             $formHandler = new LoginFormHandler($loginForm, $manager, $this->httpRequest);
             if ($formHandler->process()) {

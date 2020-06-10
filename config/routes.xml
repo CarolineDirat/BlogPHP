@@ -6,6 +6,7 @@
     <route module="public" action="show" page="login"/>
     <route module="public" action="logout" page="login"/>
     <route module="public" action="show" page="register"/>
+    <route module="public" action="save" page="register"/>
     <route module="admin" action="admin" page="posts"/>
     <route module="admin" action="add" page="post"/>
     <route module="admin" action="update" page="post"/>

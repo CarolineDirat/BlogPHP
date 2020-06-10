@@ -3,6 +3,8 @@
 namespace App\FormBuilder;
 
 use App\Application\Form\FormBuilder;
+use App\Application\Form\HoneypotValidator;
+use App\Application\Form\InputPasswordField;
 use App\Application\Form\InputTextField;
 use App\Application\Form\MaxLengthValidator;
 use App\Application\Form\NotEmptyValidator;
@@ -26,6 +28,7 @@ final class LoginFormBuilder extends FormBuilder
                     'maxlength' => 50,
                     'validators' => [
                         new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 50),
+                        new HoneypotValidator('Cette valeur n\'est pas correcte'),
                     ],
                 ])
             )
@@ -46,7 +49,7 @@ final class LoginFormBuilder extends FormBuilder
                 )
             )
             ->addField(
-                new InputTextField(
+                new InputPasswordField(
                     [
                         'textLabel' => 'Votre mot de passe',
                         'name' => 'password',

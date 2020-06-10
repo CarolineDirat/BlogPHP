@@ -23,7 +23,7 @@ class Router
      */
     public function addRoute(Route $route): void
     {
-        if (!in_array($route, $this->routes, true)) {
+        if (!in_array($route, $this->routes)) {
             $this->routes[] = $route;
         }
     }

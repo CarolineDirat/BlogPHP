@@ -1,0 +1,74 @@
+{# register page view #}
+
+{% extends "layout.twig" %}
+
+{% block title %}{{ parent() }}Inscription{% endblock %}
+
+{% block themeCSS %}{{ correctPath }}../../{{ parent() }}{% endblock %}
+{% block awesomeCSS %}{{ correctPath }}../../{{ parent() }}{% endblock %}
+
+{% block contactLink %}"/#web"{% endblock %}
+
+{% block view %}
+    {% if not messageInfo %}
+        <div class="post-admin-top-block"></div>
+    {% endif %}
+    <section id="register" >
+        <div  class="container">
+           <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>S'inscrire</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            {% if registerForm %}
+                <div class="row form">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <form name="registerForm" id="registerForm"  method="post" action="/register/save">                  
+                            <div class="row control-group">
+                                <div class="form-group">
+                                    {{ fieldBuilder(registerForm.fields.pseudo, ['placeholder', 'maxlength', 'required'], 'form-control') }}
+                                </div>
+                            </div>
+                            <div class="row control-group username">
+                                <div class="form-group">
+                                    {{ fieldBuilder(registerForm.fields.confirmPseudo, ['placeholder', 'maxlength'], 'form-control') }}
+                                </div>
+                            </div>
+                            <div class="row control-group">
+                                <div class="form-group">
+                                    {{ fieldBuilder(registerForm.fields.email, ['placeholder', 'maxlength', 'required'], 'form-control') }}
+                                </div>
+                            </div>
+                            <div class="row control-group">
+                                <div class="form-group">
+                                    {{ fieldBuilder(registerForm.fields.confirmEmail, ['placeholder', 'maxlength', 'required'], 'form-control') }}
+                                </div>
+                            </div>
+                            <div class="row control-group">
+                                <div class="form-group">
+                                    {{ fieldBuilder(registerForm.fields.password, ['placeholder', 'minlength', 'maxlength', 'required', 'title'], 'form-control') }}
+                                </div>
+                            </div>
+                            <div class="row control-group">
+                                <div class="form-group">
+                                    {{ fieldBuilder(registerForm.fields.confirmPassword, ['placeholder', 'minlength', 'maxlength', 'required', 'title'], 'form-control') }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-lg btn-register">M'inscrire</button>
+                                </div>
+                            </div>     
+                        </form>
+                    </div>
+                </div>
+            <div id="login-footer" class="row">
+            </div>
+        {% endif %}
+        </div>
+    </section>                    
+
+{% endblock %}
+
+{% block themeJS %}{{ correctPath }}../../{{ parent() }}{% endblock %}

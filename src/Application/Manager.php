@@ -14,7 +14,7 @@ abstract class Manager
      *
      * @var object
      */
-    protected $dao;
+    protected object $dao;
 
     public function __construct(object $dao)
     {

@@ -10,8 +10,8 @@ use App\Entity\Post;
 use App\FormBuilder\CommentFormBuilder;
 use App\FormHandler\CommentFormHandler;
 use App\Model\CommentManagerPDO;
-use App\Model\PostManagerPDO;
 use App\Model\Email\CommentEmailManager;
+use App\Model\PostManagerPDO;
 
 final class PostPublicController extends AbstractController
 {

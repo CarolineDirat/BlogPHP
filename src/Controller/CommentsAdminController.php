@@ -6,8 +6,8 @@ use App\Application\AbstractController;
 use App\Application\HTTPResponse;
 use App\Application\PDOSingleton;
 use App\Model\CommentManagerPDO;
-use App\Model\PostManagerPDO;
 use App\Model\Email\CommentEmailManager;
+use App\Model\PostManagerPDO;
 use Exception;
 
 final class CommentsAdminController extends AbstractController
@@ -66,12 +66,12 @@ final class CommentsAdminController extends AbstractController
                 if ($httpRequest->hasPost('status')) {
                     // ... from post data ...
                     // $status can only be 'waiting', 'valid' and 'rejected' in setStatus() method and it will be 'waiting' by default
-                    $comment->setStatus($httpRequest->postData('status')); 
+                    $comment->setStatus($httpRequest->postData('status'));
                 }
                 if ($httpRequest->hasGet('status')) {
                     // ... or from get data
                     // $status can only be 'waiting', 'valid' and 'rejected' in setStatus() method and it will be 'waiting' by default
-                    $comment->setStatus($httpRequest->getData('status')); 
+                    $comment->setStatus($httpRequest->getData('status'));
                 }
                 // update the comment with its new status
                 if (!$commentManager->save($comment)) {
