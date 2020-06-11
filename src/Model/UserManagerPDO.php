@@ -16,12 +16,10 @@ use PDOStatement;
  */
 final class UserManagerPDO extends UserManager
 {
-    /**
-     * dao : the connection to the MySQL database.
-     *
-     * @var PDO
-     */
-    private PDO $dao;
+    public function __construct(PDO $dao)
+    {
+        $this->dao = $dao;
+    }
 
     public function getPseudo(int $id): string
     {
