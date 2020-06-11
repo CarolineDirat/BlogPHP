@@ -12,9 +12,9 @@ use App\Entity\User;
  * contains the methods which concern the management of Users
  */
 abstract class UserManager extends Manager
-{   
+{
     /**
-     * getPseudo
+     * getPseudo.
      * 
      * method which returns the user's pseudo, corresponding to an identifier.
      *

@@ -81,7 +81,7 @@ final class RegisterPublicController extends AbstractController
                 $user = $manager->getUser($register->getPseudo());
                 $emailManager = new RegisterEmailManager();
                 $emailManager->sendActivation($user); // An Exception is throw if the email sending failed.
-                
+
                 return new HTTPResponse(
                     $this->getPage(),
                     [
@@ -101,10 +101,10 @@ final class RegisterPublicController extends AbstractController
 
         return $this->executeShowRegister();
     }
-    
+
     /**
-     * executeActivationRegister
-     * 
+     * executeActivationRegister.
+     *
      * Controller corresponding to the route /activation-(.+)
      *
      * @return HTTPResponse
@@ -112,8 +112,7 @@ final class RegisterPublicController extends AbstractController
     public function executeActivationRegister(): HTTPResponse
     {
         $httpRequest = $this->httpRequest;
-        if ($httpRequest->hasGet('log') && $httpRequest->hasGet('key')) 
-        {
+        if ($httpRequest->hasGet('log') && $httpRequest->hasGet('key')) {
             // get pseudo from request
             $pseudoGet = $httpRequest->getData('log');
             // ckeck if pseudo from request exists
@@ -128,7 +127,7 @@ final class RegisterPublicController extends AbstractController
                 );
             }
             // get user from database
-            $user = $manager->getUser($pseudoGet); 
+            $user = $manager->getUser($pseudoGet);
             // checks if user is not enabled
             if ($user->isEnabled()) {
                 return new HTTPResponse(
@@ -151,7 +150,7 @@ final class RegisterPublicController extends AbstractController
                 // update user to activate his account, and save update
                 $user->setEnabled(2);
                 $manager->save($user);
-                
+
                 return new HTTPResponse(
                     $this->getPage(),
                     [

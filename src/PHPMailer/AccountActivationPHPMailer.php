@@ -38,7 +38,7 @@ class AccountActivationPHPMailer extends PHPMailerApp
         }
         // Recipients
         $this->setFrom('ne-pas-repondre@carocode.com', 'CaroCode');
-        $this->addAddress($params['recipient'], $params['pseudo'] );   // Add a recipient (Name is optional)
+        $this->addAddress($params['recipient'], $params['pseudo']);   // Add a recipient (Name is optional)
         $this->Subject = 'Activer votre compte pour le blog CaroCode : ';    // Here is the subject
         // This is the HTML message body <b>in bold!</b>:
         $this->Body = 'Bienvenue sur CaroCode, <br/>
@@ -49,7 +49,7 @@ class AccountActivationPHPMailer extends PHPMailerApp
         $this->AltBody = 'Bienvenue sur CaroCode.
         Pour activer votre compte, veuillez cliquer sur le lien ci-après ou le copier/coller dans votre navigateur internet : 
         '.SERVER_HOST.'/activation-log='.urlencode($params['pseudo']).'&key='.urlencode($params['key']);
-        
+
         return $this->send();
     }
 }

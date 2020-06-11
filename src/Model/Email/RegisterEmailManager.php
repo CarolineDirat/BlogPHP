@@ -9,17 +9,15 @@ use Exception;
 
 /**
  * CommentEmailManager.
- * 
  */
 class RegisterEmailManager
-{    
+{
     /**
-     * sendActivation
-     * 
-     * define params to send by sendMail() method of AccountActivationPHPMailer class to
-     * send a mail to new user to invite him to activate his account 
+     * sendActivation.
      *
-     * @param  User $user
+     * define params to send by sendMail() method of AccountActivationPHPMailer class to
+     * send a mail to new user to invite him to activate his account
+     *
      * @return bool
      */
     public function sendActivation(User $user): bool
