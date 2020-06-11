@@ -26,23 +26,23 @@ final class HTTPRequest
     {
         return filter_has_var(INPUT_COOKIE, $key);
     }
-    
+
     /**
-     * generateToken
-     * 
+     * generateToken.
+     *
      * Generate a token and its duration and save them in session
      *
      * @return void
      */
-    public function generateToken(): void 
+    public function generateToken(): void
     {
         $this->setSession('token', sha1(random_bytes(32)));
         $_SESSION['token_time'] = time();
     }
-    
+
     /**
-     * getTokenTime
-     * 
+     * getTokenTime.
+     *
      * get token_time session
      *
      * @return int
@@ -50,6 +50,7 @@ final class HTTPRequest
     public function getTokenTime(): int
     {
         $tokenTime = isset($_SESSION['token_time']) ? filter_var($_SESSION['token_time'], FILTER_VALIDATE_INT, []) : false;
+
         return !empty($tokenTime) ? $tokenTime : 0;
     }
 
@@ -61,6 +62,7 @@ final class HTTPRequest
     public function getSession(string $key): ?string
     {
         $session = isset($_SESSION[$key]) ? filter_var($_SESSION[$key], FILTER_SANITIZE_STRING, []) : null;
+
         return  !empty($session) ? $session : null;
     }
 
@@ -73,9 +75,9 @@ final class HTTPRequest
     {
         $_SESSION[$key] = filter_var($value, FILTER_SANITIZE_STRING, []);
     }
-    
+
     /**
-     * getUserSession
+     * getUserSession.
      *
      * @return ?User
      */
@@ -83,9 +85,9 @@ final class HTTPRequest
     {
         return (!empty($_SESSION['user'])) ? $_SESSION['user'] : null;
     }
-    
+
     /**
-     * setUserSession
+     * setUserSession.
      *
      * @param  User $user
      * @return void
