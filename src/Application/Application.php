@@ -41,6 +41,27 @@ abstract class Application
         $this->setHttpRequest(new HTTPRequest());
         $this->setTwigRenderer(new TwigRenderer('../templates'));
         $this->setRouter(new Router());
+        $this->checkToken();
+    }
+    
+    /**
+     * checkToken
+     * 
+     * delete user session and his tokens, if tokens exists and expired
+     *
+     * @return void
+     */
+    public function checkToken(): void
+    {
+        $httpRequest = $this->getHttpRequest();
+        if (
+            !empty($httpRequest->getSession('token')) &&
+            $httpRequest->getTokenTime() <= (time() - LENGTH_SESSION)
+        ) {
+            $httpRequest->unsetSession('user');
+            $httpRequest->unsetSession('token');
+            $httpRequest->unsetSession('token_time');
+        }
     }
 
     /**
