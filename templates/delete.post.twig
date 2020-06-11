@@ -17,7 +17,7 @@
         <div class="container">
             <div class="row">
                 <div class="text-center">
-                    <h4>La suppresion d'un article est irréversible</h4>
+                    <h4>La suppression d'un article est irréversible</h4>
                     <p class="text-center">Êtes-vous sûr de vouloir supprimer cet article ?</p>
                     <hr class="star-primary">
                 </div>
@@ -26,7 +26,8 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="row text-center">
                         <form name="deletePostForm" id="addPostForm"  method="post" action={{ "/admin/delete/post/#{post.id}" }}>                  
-                            <input type="text" id="confirm-delete-post" name="confirm-delete-post" value="delete" hidden readonly>
+                            <input type="hidden" id="confirm-delete-post" name="confirm-delete-post" value="delete">
+                            <input type="hidden" id="token-delete-post" name="token" value={{ token }}>
                             <div>
                                 <button type="submit" class="btn btn-success btn-lg btn-login">Oui, je supprime l'article</button>
                                 <a href="/admin" role="button" class="btn btn-primary">Non, j'annule la suppression</a>
