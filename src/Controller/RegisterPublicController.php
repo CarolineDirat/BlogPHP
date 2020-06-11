@@ -101,4 +101,71 @@ final class RegisterPublicController extends AbstractController
 
         return $this->executeShowRegister();
     }
+    
+    /**
+     * executeActivationRegister
+     * 
+     * Controller corresponding to the route /activation-(.+)
+     *
+     * @return HTTPResponse
+     */
+    public function executeActivationRegister(): HTTPResponse
+    {
+        $httpRequest = $this->httpRequest;
+        if ($httpRequest->hasGet('log') && $httpRequest->hasGet('key')) 
+        {
+            // get pseudo from request
+            $pseudoGet = $httpRequest->getData('log');
+            // ckeck if pseudo from request exists
+            $dao = PDOSingleton::getInstance()->getConnexion();
+            $manager = new UserManagerPDO($dao);
+            if (!in_array($pseudoGet, $manager->getPseudos(), true)) {
+                return new HTTPResponse(
+                    $this->getPage(),
+                    [
+                        'messageInfo' => 'Erreur : votre compte ne peut être activé, le pseudo fourni n\'existe pas dans la base de données.',
+                    ]
+                );
+            }
+            // get user from database
+            $user = $manager->getUser($pseudoGet); 
+            // checks if user is not enabled
+            if ($user->isEnabled()) {
+                return new HTTPResponse(
+                    $this->getPage(),
+                    [
+                        'messageInfo' => 'Votre compte est déjà actif ! Vous pouvez vous connecter :)',
+                    ]
+                );
+            }
+            // checks activation key
+            if ($httpRequest->getData('key') !== $user->getActivationKey()) {
+                return new HTTPResponse(
+                    $this->getPage(),
+                    [
+                        'messageInfo' => 'Erreur : votre compte ne peut être activé, les données de la requête sont fausses.',
+                    ]
+                );
+            }
+            if ($httpRequest->getData('key') === $user->getActivationKey()) {
+                // update user to activate his account, and save update
+                $user->setEnabled(2);
+                $manager->save($user);
+                
+                return new HTTPResponse(
+                    $this->getPage(),
+                    [
+                        'messageInfo' => 'Votre compte a bien été activé :) Vous pouvez vous connecter :)',
+                    ]
+                );
+            }
+        }
+
+        return new HTTPResponse(
+            $this->getPage(),
+            [
+                'messageInfo' => 'Erreur : votre compte ne peut être activé, les données de la requête sont fausses.',
+            ]
+        );
+    }
 }
