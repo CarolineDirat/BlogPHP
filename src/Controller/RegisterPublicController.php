@@ -9,6 +9,7 @@ use App\Application\PDOSingleton;
 use App\Entity\Form\Register;
 use App\FormBuilder\RegisterFormBuilder;
 use App\FormHandler\RegisterFormHandler;
+use App\Model\Email\RegisterEmailManager;
 use App\Model\UserManagerPDO;
 
 /**
@@ -69,13 +70,18 @@ final class RegisterPublicController extends AbstractController
             $manager = new UserManagerPDO($dao);
             $pseudos = $manager->getPseudos();
             $emails = $manager->getEmails();
-            // Build registration form
+            // Build registration form.
             $formbuilder = new RegisterFormBuilder($register, $pseudos, $emails);
             $registerForm = $formbuilder->build()->getForm();
-            // Instanciate FormHandler for registration form
+            // Instanciate FormHandler for registration form.
             $formHandler = new RegisterFormHandler($registerForm, $manager, $httpRequest);
             // process the form
             if ($formHandler->process()) {
+                // send activation email to new user to activate his account.
+                $user = $manager->getUser($register->getPseudo());
+                $emailManager = new RegisterEmailManager();
+                $emailManager->sendActivation($user); // An Exception is throw if the email sending failed.
+                
                 return new HTTPResponse(
                     $this->getPage(),
                     [
