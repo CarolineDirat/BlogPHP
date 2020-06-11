@@ -17,7 +17,7 @@ class CommentEmailManager
     /**
      * sendStatus
      * 
-     * define params to send to sendMail() method of CommentStatusPHPMailer to
+     * define params to send by sendMail() method of CommentStatusPHPMailer to
      * send a mail to comment author to notify him the update of its comment's status
      *
      * @param  Comment $comment
