@@ -27,6 +27,8 @@ class LoginFormHandler extends FormHandler
             $this->httpRequest
                 ->setUserSession($this->userManagerPDO->getUser($login->getPseudo()))
             ;
+            // and generate a token and its duration
+            $this->httpRequest->generateToken();
 
             return true;
         }
