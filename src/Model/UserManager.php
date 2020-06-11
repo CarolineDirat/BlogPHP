@@ -15,17 +15,16 @@ abstract class UserManager extends Manager
 {
     /**
      * getPseudo.
-     * 
-     * method which returns the user's pseudo, corresponding to an identifier.
      *
+     * method which returns the user's pseudo, corresponding to an identifier.
      * @param  int $id
      * @return string
      */
     abstract public function getPseudo(int $id): string;
 
     /**
-     * getPseudos
-     * 
+     * getPseudos.
+     *
      * method which returns all user's pseudos.
      *
      * @return array
@@ -33,14 +32,13 @@ abstract class UserManager extends Manager
     abstract public function getPseudos(): array;
 
     /**
-     * getEmails
-     * 
+     * getEmails.
+     *
      * method which returns all user's emails.
      *
      * @return array
      */
     abstract public function getEmails(): array;
-
 
     /**
      * hasLogin.
@@ -73,18 +71,18 @@ abstract class UserManager extends Manager
     }
 
     /**
-     * add
-     * 
-     * Method to add a user in database
+     * add.
      *
+     * Method to add a user in database
+     * 
      * @param  User $user
      * @return bool
      */
     abstract public function add(User $user): bool;
 
     /**
-     * update
-     * 
+     * update.
+     *
      * Method to update a user in database
      *
      * @param  User $user

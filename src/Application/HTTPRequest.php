@@ -28,30 +28,70 @@ final class HTTPRequest
     }
 
     /**
-     * get a session variable if it exists.
+     * generateToken.
      *
-     * @return mixed string or false if the filter fails
+     * Generate a token and its duration and save them in session
+     *
+     * @return void
      */
-    public function getSession(string $key)
+    public function generateToken(): void
     {
-        return filter_var($_SESSION[$key], FILTER_SANITIZE_STRING, []);
+        $this->setSession('token', sha1(random_bytes(32)));
+        $_SESSION['token_time'] = time();
+    }
+
+    /**
+     * getTokenTime.
+     *
+     * get token_time session
+     *
+     * @return int
+     */
+    public function getTokenTime(): int
+    {
+        $tokenTime = isset($_SESSION['token_time']) ? filter_var($_SESSION['token_time'], FILTER_VALIDATE_INT, []) : false;
+
+        return !empty($tokenTime) ? $tokenTime : 0;
+    }
+
+    /**
+     * get a string session variable if it exists.
+     *
+     * @return ?string or false if the filter fails
+     */
+    public function getSession(string $key): ?string
+    {
+        $session = isset($_SESSION[$key]) ? filter_var($_SESSION[$key], FILTER_SANITIZE_STRING, []) : null;
+
+        return  !empty($session) ? $session : null;
     }
 
     /**
      * setSession.
      *
-     * edit or create a session variable
+     * edit or create a string session variable
      */
     public function setSession(string $key, string $value): void
     {
         $_SESSION[$key] = filter_var($value, FILTER_SANITIZE_STRING, []);
     }
 
+    /**
+     * getUserSession.
+     *
+     * @return ?User
+     */
     public function getUserSession(): ?User
     {
         return (!empty($_SESSION['user'])) ? $_SESSION['user'] : null;
     }
 
+    /**
+     * setUserSession.
+     *
+     * @param  User $user
+     * @return void
+     */
     public function setUserSession(User $user): void
     {
         $_SESSION['user'] = $user;

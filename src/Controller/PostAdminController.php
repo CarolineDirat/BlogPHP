@@ -198,8 +198,13 @@ final class PostAdminController extends AbstractController
             // connexion to the database and instanciate post manager
             $dao = PDOSingleton::getInstance()->getConnexion();
             $postManager = new PostManagerPDO($dao);
-            // if deletion is confirmed
-            if ($httpRequest->hasPost('confirm-delete-post')) {
+            // if deletion is confirmed, and tokens are validated
+            if (
+                $httpRequest->hasPost('confirm-delete-post') &&
+                $httpRequest->hasPost('token') &&
+                $httpRequest->getSession('token') == $httpRequest->postData('token') &&
+                $httpRequest->getTokenTime() >= (time() - LENGTH_SESSION)
+            ) {
                 // deletion of the post with its comments
                 if ($postManager->delete($httpRequest->getData('id'))) {
                     // go back to admin page
@@ -225,6 +230,7 @@ final class PostAdminController extends AbstractController
                 [
                     'user' => $httpRequest->getUserSession(),
                     'post' => $post,
+                    'token' => $httpRequest->getSession('token'),
                 ]
             );
         }

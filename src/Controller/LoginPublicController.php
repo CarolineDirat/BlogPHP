@@ -73,7 +73,10 @@ final class LoginPublicController extends AbstractController
      */
     public function executeLogoutLogin(): HTTPResponse
     {
+        // delete user session and his tokens
         $this->httpRequest->unsetSession('user');
+        $this->httpRequest->unsetSession('token');
+        $this->httpRequest->unsetSession('token_time');
         // Build empty login form
         $login = new Login();
         $loginForm = $this->buildLoginForm($login);
