@@ -7,6 +7,7 @@ RewriteRule login index.php?module=public&action=show&page=login
 RewriteRule logout index.php?module=public&action=logout&page=login
 RewriteRule ^register$ index.php?module=public&action=show&page=register
 RewriteRule register/save index.php?module=public&action=save&page=register
+RewriteRule activation-(.+) index.php?module=public&action=activation&page=register&$1
 RewriteRule ^admin$ index.php?module=admin&action=admin&page=posts
 RewriteRule admin/add/post index.php?module=admin&action=add&page=post
 RewriteRule admin/update/post/([0-9]+) index.php?module=admin&action=update&page=post&id=$1
