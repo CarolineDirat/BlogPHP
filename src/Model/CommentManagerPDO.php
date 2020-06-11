@@ -15,10 +15,12 @@ use PDOStatement;
  */
 final class CommentManagerPDO extends CommentManager
 {
-    public function __construct(PDO $dao)
-    {
-        $this->dao = $dao;
-    }
+    /**
+     * dao : the connection to the MySQL database.
+     *
+     * @var PDO
+     */
+    private PDO $dao;
 
     /**
      * getComment.

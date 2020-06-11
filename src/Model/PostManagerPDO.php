@@ -16,10 +16,12 @@ use PDOStatement;
  */
 final class PostManagerPDO extends PostManager
 {
-    public function __construct(PDO $dao)
-    {
-        $this->dao = $dao;
-    }
+    /**
+     * dao : the connection to the MySQL database.
+     *
+     * @var PDO
+     */
+    private PDO $dao;
 
     public function getPost(int $id): Post
     {
