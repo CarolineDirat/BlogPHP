@@ -4,24 +4,21 @@ namespace App\Model\Email;
 
 use App\Entity\Comment;
 use App\Entity\Post;
-use App\PHPMailer\CommentStatusPHPMailer;
 use App\PHPMailer\CommentReportAdminPHPMailer;
+use App\PHPMailer\CommentStatusPHPMailer;
 use Exception;
 
 /**
  * CommentEmailManager.
- * 
  */
 class CommentEmailManager
-{    
+{
     /**
-     * sendStatus
-     * 
-     * define params to send to sendMail() method of CommentStatusPHPMailer to
+     * sendStatus.
+     *
+     * define params to send by sendMail() method of CommentStatusPHPMailer to
      * send a mail to comment author to notify him the update of its comment's status
      *
-     * @param  Comment $comment
-     * @param  Post $post
      * @return bool
      */
     public function sendStatus(Comment $comment, Post $post): bool
@@ -32,14 +29,17 @@ class CommentEmailManager
         switch ($comment->getStatus()) {
             case 'valid':
                 $status = 'valide';
+
             break;
-            case 'rejected' :
+            case 'rejected':
                 $status = 'rejeté';
+
             break;
-            case 'waiting' :
+            case 'waiting':
                 $status = 'en attente';
+
             break;
-        }        
+        }
         // define $params for sendMail() method
         $params = [
             'recipient' => $comment->getEmail(),
@@ -56,15 +56,13 @@ class CommentEmailManager
 
         throw new Exception('Sending email to notify update of comment\'s status failed:'.$mail->ErrorInfo);
     }
-    
+
     /**
-     * sendToAdmin
-     * 
-     * define params for sendMail() method of App\PHPMailer\CommentReportAdminPHPMailer 
+     * sendToAdmin.
+     *
+     * define params for sendMail() method of App\PHPMailer\CommentReportAdminPHPMailer
      * which create and send a email to report Admin of creation of a comment to validate
      *
-     * @param  Comment $comment
-     * @param  Post $post
      * @return bool
      */
     public function sendReportComment(Comment $comment, Post $post): bool

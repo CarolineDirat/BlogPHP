@@ -97,7 +97,7 @@ final class UserManagerPDO extends UserManager
     public function getUser(?string $pseudo): User
     {
         $req = $this->dao->prepare(
-            'SELECT user.id, pseudo, user.password, user.email, date_creation as dateCreation, user.enabled, role_user.role
+            'SELECT user.id, pseudo, user.password, user.email, date_creation as dateCreation, user.activation_key as activationKey, user.enabled, role_user.role
             FROM user
             INNER JOIN role_user
             ON user.id = role_user.id 
