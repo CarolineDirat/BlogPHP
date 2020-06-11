@@ -36,6 +36,7 @@ final class CommentsAdminController extends AbstractController
                     'post' => $post,
                     'comments' => $comments,
                     'user' => $this->httpRequest->getUserSession(),
+                    'token' => $this->httpRequest->getSession('token'),
                 ]
             );
         }
@@ -92,6 +93,7 @@ final class CommentsAdminController extends AbstractController
                     'comments' => $comments,
                     'user' => $this->httpRequest->getUserSession(),
                     'correctPath' => '../../',
+                    'token' => $this->httpRequest->getSession('token'),
                 ]
             );
         }
@@ -112,8 +114,14 @@ final class CommentsAdminController extends AbstractController
             $dao = PDOSingleton::getInstance()->getConnexion();
             $postManager = new PostManagerPDO($dao);
             $commentManager = new CommentManagerPDO($dao);
-            // if the request wants to delete a comment's status
-            if ($httpRequest->hasGet('idComment') && 'delete' === $httpRequest->getData('status')) {
+            // if the request wants to delete a comment's status, and if session token are checks
+            if (
+                $httpRequest->hasGet('idComment') &&
+                'delete' === $httpRequest->getData('status') &&
+                $httpRequest->hasGet('token') &&
+                $httpRequest->getSession('token') === $httpRequest->getData('token') &&
+                $httpRequest->getTokenTime() >= (time() - LENGTH_SESSION)
+            ) {
                 // delete the comment
                 if (!$commentManager->delete($httpRequest->getData('idComment'))) {
                     throw new Exception('The request to delete comment\'s status failed');
@@ -132,6 +140,7 @@ final class CommentsAdminController extends AbstractController
                     'comments' => $comments,
                     'user' => $this->httpRequest->getUserSession(),
                     'correctPath' => '../../',
+                    'token' => $this->httpRequest->getSession('token'),
                 ]
             );
         }

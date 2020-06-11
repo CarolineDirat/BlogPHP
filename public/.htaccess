@@ -15,5 +15,5 @@ RewriteRule admin/delete/post/([0-9]+) index.php?module=admin&action=delete&page
 RewriteRule admin/comments/post/([0-9]+) index.php?module=admin&action=admin&page=comments&idPost=$1
 RewriteRule ^admin/post/([0-9]+)/comment/([0-9]+)/valid$ index.php?module=admin&action=update&page=comments&idPost=$1&idComment=$2&status=valid
 RewriteRule ^admin/post/([0-9]+)/comment/([0-9]+)/rejected$ index.php?module=admin&action=update&page=comments&idPost=$1&idComment=$2&status=rejected
-RewriteRule ^admin/post/([0-9]+)/comment/([0-9]+)/delete$ index.php?module=admin&action=delete&page=comments&idPost=$1&idComment=$2&status=delete
+RewriteRule ^admin/post/([0-9]+)/comment/([0-9]+)/delete-(.+) index.php?module=admin&action=delete&page=comments&idPost=$1&idComment=$2&status=delete&token=$3
 RewriteRule ^admin/post/([0-9]+)/comment/([0-9]+)/update$ index.php?module=admin&action=update&page=comments&idPost=$1&idComment=$2
