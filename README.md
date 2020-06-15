@@ -2,10 +2,10 @@
 
 # BlogPHP
 
-### Professional blog written as part of my web developer training.
+**Professional blog written as part of my web developer training.**
 PHP - Object Oriented Programming - Model View Controller
 
-# Requirements
+## Requirements
 
 BlogPHP installation needs (in command line):
 - **composer**:  https://getcomposer.org/
@@ -17,8 +17,7 @@ BlogPHP use:
 - **URL rewriting**, so on Apache, you must active **rewrite_module** module.
 - **[cocur/slugify](https://github.com/cocur/slugify)** package requires the Multibyte String extension from PHP. Typically you can use the configure option --enable-mbstring while compiling PHP. More information can be found in the [PHP documentation](https://www.php.net/manual/en/mbstring.installation.php).
 
-
-# Installation on a local server :
+## Installation on a local server :
 
 The following instructions guide you to install the project locally, on the example of a Wampserver
 
@@ -61,44 +60,39 @@ The following instructions guide you to install the project locally, on the exam
 5. Create a **virualhost** on **Wampserver**. 
    Be careful, virtualhost must point to the public directory
    > for example: C:/wamp/www/BlopPHP/public
-
    
 ### **Change the admin data to login**
-  
 - You can change his pseudo as you want (but users pseudos must be distincts).
 - Be carefful, passwords are hashed with `password_hash(string 'password', PASSWORD_DEFAULT')` => You can change admin passsword only if you use this function to hash it.
 
+## Use 
 
-# Use 
-
-## Any user
-### /
+### Any user
+#### /
 > On the home page, any user can contact you from contact form.
 Your CV must be in public directory with the resume.pdf name.
-### /blog    
+#### /blog    
 > Lists posts from most recent to oldest
-### /post/{id}/{slug}
+#### /post/{id}/{slug}
 > To read a post
-### /login
+#### /login
 > To log in.
-### /register
+#### /register
 > To register : a user will be created with Subscriber role (only to comment posts), and a confirmation email is send to him to activate his account.
 
-## Subscriber user
-### /post/{id}/{slug}
+### Subscriber user
+#### /post/{id}/{slug}
 > Can add a comment on a post (but it will have to be validated by admin who will receive an email)
-## Admin user
-### /admin, 
+### Admin user
+#### /admin, 
 > To manage posts : add, modify or delete a post
-### /admin/add/post
+#### /admin/add/post
 > To add a post
-### /admin/update/post/{id}
+#### /admin/update/post/{id}
 > To modify a post
-### /admin/delete/post/{id}
+#### /admin/delete/post/{id}
 > To delete a post
-### /admin/comments/post/{id}
+#### /admin/comments/post/{id}
 > To manage post's comments
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/25ebc61fdc9e40b7b92cab3794831cbb)](https://www.codacy.com/manual/CarolineDirat/BlogPHP?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CarolineDirat/BlogPHP&amp;utm_campaign=Badge_Grade)
-
-
