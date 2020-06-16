@@ -46,6 +46,7 @@ a.active {
 a.link-post-admin {
   color: aliceblue;
 }
+
 h1,
 h2,
 h3,
@@ -71,8 +72,8 @@ hr.star-primary {
   margin: 25px auto 30px;
 }
 
-hr.star-light:after,
-hr.star-primary:after {
+hr.star-light::after,
+hr.star-primary::after {
   content: "\f005";
   font-family: FontAwesome, sans-serif;
   display: inline-block;
@@ -86,7 +87,7 @@ hr.star-light {
   border-color: white;
 }
 
-hr.star-light:after {
+hr.star-light::after {
   background-color: #18BC9C;
   color: white;
 }
@@ -95,7 +96,7 @@ hr.star-primary {
   border-color: #2C3E50;
 }
 
-hr.star-primary:after {
+hr.star-primary::after {
   background-color: white;
   color: #2C3E50;
 }
@@ -199,13 +200,14 @@ thead th {
 .label-valid {
   background-color: turquoise;
 }
+
 .label-waiting {
   background-color: #2C3E50;
 }
 
 .form-control:focus {
   border-color: #18BC9C;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #18BC9C;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #18BC9C;
 }
 
 .navbar-custom {
@@ -296,7 +298,7 @@ thead th {
   }
 }
 
-.table>thead>tr>th {
+.table > thead > tr > th {
   padding-bottom: 30px;
   border-bottom: none;
 }
@@ -353,6 +355,7 @@ div.row.form {
     font-size: 2em;
   }
 }
+
 @media (max-width: 500px) {
   #admin-post-comments h2 {
     font-size: 2em;
@@ -386,6 +389,7 @@ div.row.form {
   font-size: 17px;
   margin-left: 5px;
 }
+
 #comments h2 {
   margin-bottom: 30px;
 }
@@ -399,11 +403,13 @@ div.row.form {
     margin-top: 20px;
   }
 }
+
 @media (max-width: 500px) {
   #comments button {
     margin-left: 20px;
   }
 }
+
 @media (max-width: 350px) {
   #comments button {
     margin-left: 0px;
@@ -414,7 +420,8 @@ div.row.form {
   height: 50px;
 }
 
-#delete-post button, #delete-post a {
+#delete-post button, 
+#delete-post a {
   margin-right: 10px;
   margin-left: 10px;
   margin-top: 10px;
@@ -425,8 +432,8 @@ div.row.form {
 }
 
 #error {
-  margin-top:150px; 
-  font-size:1.25em;
+  margin-top: 150px; 
+  font-size: 1.25em;
 }
 
 #login button.btn-login {
@@ -469,7 +476,7 @@ div.row.form {
   }
 }
 
-#message-login p{
+#message-login p {
   padding-top: 30px;
   padding-bottom: 30px;
   margin-bottom: 50px;
@@ -480,7 +487,7 @@ div.row.form {
   color: #18BC9C;
 }
 
-#portfolio{
+#portfolio {
   margin-top: 100px;
 }
 
@@ -548,7 +555,7 @@ div.row.form {
   position: relative;
   margin-bottom: 0;
   padding-bottom: 0.5em;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #EEE;
 }
 
 .floating-label-form-group input,
@@ -576,15 +583,15 @@ div.row.form {
   vertical-align: middle;
   vertical-align: baseline;
   opacity: 0;
-  -webkit-transition: top 0.3s ease,opacity 0.3s ease;
-  -moz-transition: top 0.3s ease,opacity 0.3s ease;
-  -ms-transition: top 0.3s ease,opacity 0.3s ease;
-  transition: top 0.3s ease,opacity 0.3s ease;
+  -webkit-transition: top 0.3s ease, opacity 0.3s ease;
+  -moz-transition: top 0.3s ease, opacity 0.3s ease;
+  -ms-transition: top 0.3s ease, opacity 0.3s ease;
+  transition: top 0.3s ease, opacity 0.3s ease;
 }
 
 .floating-label-form-group:not(:first-child) {
   padding-left: 14px;
-  border-left: 1px solid #eeeeee;
+  border-left: 1px solid #EEE;
 }
 
 .floating-label-form-group-with-value label {
@@ -597,7 +604,7 @@ div.row.form {
 }
 
 form .row:first-child .floating-label-form-group {
-  border-top: 1px solid #eeeeee;
+  border-top: 1px solid #EEE;
 }
 
 footer {
