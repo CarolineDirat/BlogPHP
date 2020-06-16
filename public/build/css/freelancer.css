@@ -366,6 +366,7 @@ div.row.form {
   margin-top: 30px;
   margin-bottom: 20px;
 }
+
 #comment-form {
   margin-top: 50px;
 }
@@ -395,7 +396,7 @@ div.row.form {
 }
 
 #comments button {
-    margin-left: 80px;
+  margin-left: 80px;
 }
 
 @media (max-width: 630px) {
@@ -420,7 +421,7 @@ div.row.form {
   height: 50px;
 }
 
-#delete-post button, 
+#delete-post button,
 #delete-post a {
   margin-right: 10px;
   margin-left: 10px;
@@ -432,7 +433,7 @@ div.row.form {
 }
 
 #error {
-  margin-top: 150px; 
+  margin-top: 150px;
   font-size: 1.25em;
 }
 
@@ -555,7 +556,7 @@ div.row.form {
   position: relative;
   margin-bottom: 0;
   padding-bottom: 0.5em;
-  border-bottom: 1px solid #EEE;
+  border-bottom: 1px solid #eee;
 }
 
 .floating-label-form-group input,
@@ -591,7 +592,7 @@ div.row.form {
 
 .floating-label-form-group:not(:first-child) {
   padding-left: 14px;
-  border-left: 1px solid #EEE;
+  border-left: 1px solid #eee;
 }
 
 .floating-label-form-group-with-value label {
@@ -604,7 +605,7 @@ div.row.form {
 }
 
 form .row:first-child .floating-label-form-group {
-  border-top: 1px solid #EEE;
+  border-top: 1px solid #eee;
 }
 
 footer {
@@ -633,7 +634,7 @@ footer .footer-below {
   background-color: #2C3E50;
 }
 
-.footer-menu .nav>li>a:hover{
+.footer-menu .nav > li > a:hover{
   background-color: #2C3E50;
   color: #18BC9C;
 }
@@ -664,7 +665,7 @@ h5.card-title a.btn {
   margin-left: 10px;
 }
 
-@media(max-width: 359px){
+@media (max-width: 359px){
   .btn-captcha-code {
     margin-top: 5px;
   }
@@ -759,8 +760,8 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .btn-primary.btn-scroll-contact-form {
-	border-radius: 19px;
-	margin-left: 10px;
+  border-radius: 19px;
+  margin-left: 10px;
 }
 
 .btn-success {
@@ -898,8 +899,10 @@ fieldset[disabled] .btn-success.active {
   background-color: #2C3E50;
   transform: rotate(45deg);
   -ms-transform: rotate(45deg);
+
   /* IE 9 */
   -webkit-transform: rotate(45deg);
+
   /* Safari and Chrome */
   z-index: 1051;
 }
@@ -929,12 +932,12 @@ fieldset[disabled] .btn-success.active {
   margin-left: 30px;
 }
 
-.post h2{
+.post h2 {
   font-size: 1.5em;
   line-height: 1.5em;
 }
 
-.post .item-details{
+.post .item-details {
   padding-top: 20px;
   padding-bottom: 50px;
 }
@@ -960,6 +963,7 @@ fieldset[disabled] .btn-success.active {
     height: 50px;
   }
 }
+
 @media (max-width: 500px) {
   .post-admin-top-block {
     height: 20px;
