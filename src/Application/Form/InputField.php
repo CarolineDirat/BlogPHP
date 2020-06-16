@@ -95,7 +95,8 @@ class InputField extends Field
      */
     public function setValue(?string $value): self
     {
-        $this->value = filter_var($value, FILTER_SANITIZE_STRING);
+        $value = filter_var($value, FILTER_SANITIZE_STRING);
+        $this->value = $value === false ? null : $value;
 
         return $this;
     }
