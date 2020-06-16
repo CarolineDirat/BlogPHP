@@ -15,15 +15,19 @@ class AdminApplication extends Application
 
     public function run(): void
     {
-        $page = $this->getHttpRequest()->getData('page');
-        $action = $this->getHttpRequest()->getData('action');
-        if (empty($this->httpRequest->getUserSession())) {
-            // if user session doesn't exist : go to login page
+        $httpRequest = $this->getHttpRequest();
+        $page = $httpRequest->getData('page');
+        $action = $httpRequest->getData('action');
+        // if user session doesn't exist : go to login page
+        if (empty($httpRequest->getUserSession())) {
+            // store URI in session (used for redirection after login)
+            $httpRequest->setSession('url', $httpRequest->requestURI());
+            // go to login page
             $action = 'show';
             $page = 'login';
             $this->setModule('public');
-        } elseif ('admin' !== $this->httpRequest->getUserSession()->getRole()) {
-            // else if user does not have 'admin' rights : the user is disconnect
+        // else if user does not have 'admin' rights : the user is disconnect
+        } elseif ('admin' !== $httpRequest->getUserSession()->getRole()) {
             $action = 'logout';
             $page = 'login';
             $this->setModule('public');
