@@ -9,6 +9,11 @@ use App\Entity\User;
  */
 final class HTTPRequest
 {
+    public function __construct()
+    {
+        session_start();
+    }
+    
     /**
      * get a cookie variable if it exists.
      *

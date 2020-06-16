@@ -3,8 +3,6 @@
 require_once '../vendor/autoload.php';
 require_once '../config/config.php';
 
-session_start();
-
 use App\Application\HTTPRequest;
 use App\Application\Route;
 use App\Application\TwigRenderer;
