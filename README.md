@@ -34,37 +34,36 @@ The following instructions guide you to install the project locally, on the exam
    > `composer install`
 
 3. Define your **configuration data**:
-   - **Rename** config/**config.php.dist** to config/**config.php**
-   - in config/config.php, from line 26, **define** each **constant value** with yours
+  - **Rename** config/**config.php.dist** to config/**config.php**
+  - in config/config.php, from line 26, **define** each **constant value** with yours
    
-4. In your MySQL database :
-   
-   - **Create** the **database** (with the name defined in config/config.php file)
-        > **charset**: utf8mb4  
-        > **collation**: utf8mb4_unicode_ci
+4. In your MySQL database :   
+  - **Create** the **database** (with the name defined in config/config.php file)
+    > **charset**: utf8mb4  
+    > **collation**: utf8mb4_unicode_ci
   
-   - **Create tables** in your database by running the script in the **createdatabase.sql** file 
+  - **Create tables** in your database by running the script in the **createdatabase.sql** file 
   
-   - Rename incomplete_dataset.sql (file at the root of BlogPHP directory) to **dataset.sql**
+  - Rename incomplete_dataset.sql (file at the root of BlogPHP directory) to **dataset.sql**
     > You must specify users emails (You can put 4 identical mails)
 
-   - Run **dataset.sql** script to put data in database.
-   > This data contains users, posts and comments (with different status) to understand how the site works. You can delete unnecessary data later. You will be able to change admin password later too.
+  - Run **dataset.sql** script to put data in database.
+    > This data contains users, posts and comments (with different status) to understand how the site works. You can delete unnecessary data later. You will be able to change admin password later too.
    
-   user         |  password
-   -------------| --------------
-   Admin        |  admin
-   Subscriber1  |  subscriber1
-   Subscriber2  |  subscriber2
-   Subscriber3  |  subscriber3
+     user         |  password
+     -------------| --------------
+     Admin        |  admin
+     Subscriber1  |  subscriber1
+     Subscriber2  |  subscriber2
+     Subscriber3  |  subscriber3
 
 5. Create a **virualhost** on **Wampserver**. 
-   Be careful, virtualhost must point to the public directory
-   > for example: C:/wamp/www/BlopPHP/public
+Be careful, virtualhost must point to the public directory
+  > for example: C:/wamp/www/BlopPHP/public
    
 ### **Change the admin data to login**
-- You can change his pseudo as you want (but users pseudos must be distincts).
-- Be carefful, passwords are hashed with `password_hash(string 'password', PASSWORD_DEFAULT')` => You can change admin passsword only if you use this function to hash it.
+  - You can change his pseudo as you want (but users pseudos must be distincts).
+  - Be carefful, passwords are hashed with `password_hash(string 'password', PASSWORD_DEFAULT')` => You can change admin passsword only if you use this function to hash it.
 
 ## Use 
 
