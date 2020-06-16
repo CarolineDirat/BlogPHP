@@ -151,10 +151,10 @@ thead th {
   }
 }
 .alert {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 .alert.alert-warning.exception {
-  margin-bottom: 50px ;
+  margin-bottom: 50px;
 }
 .label-rejected {
   background-color: darkred;
@@ -165,7 +165,6 @@ thead th {
 .label-valid {
   background-color: turquoise;
 }
-
 .label-waiting {
   background-color: #2C3E50;
 }
@@ -312,12 +311,12 @@ div.row.form {
   margin-right: 5px;
 }
 #comment-form div.form-group button {
-  margin-left: 0px;
+  margin-left: 0;
   margin-top: 10px;
   margin-bottom: 30px;
 }
 #comment-form div.form-group {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 #comment-form p {
   font-size: 17px;
@@ -379,7 +378,7 @@ div.row.form {
   }
 }
 #messageInfo {
-  padding: 0px;
+  padding: 0;
   padding-top: 110px;
   font-size: 18px;
 }
