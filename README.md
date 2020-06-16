@@ -8,11 +8,11 @@ PHP - Object Oriented Programming - Model View Controller
 ## Requirements
 
 BlogPHP installation needs (in command line):
-- **composer**:  https://getcomposer.org/
-- **Git**: https://git-scm.com/
+- **composer**:  [getcomposer.org/](https://getcomposer.org/)
+- **Git**: [git-scm.com/](https://git-scm.com/)
 
 BlogPHP use:
-- **PHP** version: 7.4.* (server and terminal), https://www.php.net/
+- **PHP** version: 7.4.* (server and terminal),[www.php.net/](https://www.php.net/)
 - **MySQL** database that you can manage with a **database tool** (as [phpmyadmin](https://www.phpmyadmin.net/) or [DBeaver](https://dbeaver.io/) ...)
 - **URL rewriting**, so on Apache, you must active **rewrite_module** module.
 - **[cocur/slugify](https://github.com/cocur/slugify)** package requires the Multibyte String extension from PHP. Typically you can use the configure option --enable-mbstring while compiling PHP. More information can be found in the [PHP documentation](https://www.php.net/manual/en/mbstring.installation.php).

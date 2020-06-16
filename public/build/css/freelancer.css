@@ -1,4 +1,4 @@
-/*!
+/*
  * Start Bootstrap - Freelancer v3.3.7+1 (http://startbootstrap.com/template-overviews/freelancer)
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
@@ -151,10 +151,10 @@ thead th {
   }
 }
 .alert {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
-.exception {
-  margin-bottom: 50px !important;
+.alert.alert-warning.exception {
+  margin-bottom: 50px;
 }
 .label-rejected {
   background-color: darkred;
@@ -165,7 +165,6 @@ thead th {
 .label-valid {
   background-color: turquoise;
 }
-
 .label-waiting {
   background-color: #2C3E50;
 }
@@ -312,19 +311,19 @@ div.row.form {
   margin-right: 5px;
 }
 #comment-form div.form-group button {
-  margin-left: 0px;
+  margin-left: 0;
   margin-top: 10px;
   margin-bottom: 30px;
 }
 #comment-form div.form-group {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 #comment-form p {
   font-size: 17px;
   margin-left: 5px;
 }
 #comments h2 {
-  margin-bottom: 30px !important;
+  margin-bottom: 30px;
 }
 #comments button {
     margin-left: 80px;
@@ -379,7 +378,7 @@ div.row.form {
   }
 }
 #messageInfo {
-  padding: 0px;
+  padding: 0;
   padding-top: 110px;
   font-size: 18px;
 }
@@ -562,13 +561,13 @@ div.row.btn-comments {
 }
 .btn-menu {
   text-transform: uppercase;
-  background-color: #828582 !important ;
-  border-color: #828582 !important;
+  background-color: #828582;
+  border-color: #828582;
   margin-left: 20px;
 }
 .btn-menu:hover {
-  background-color: #18BC9C !important ;
-  border-color: #18BC9C !important ;
+  background-color: #18BC9C;
+  border-color: #18BC9C;
 }
 .btn-outline {
   color: white;
@@ -778,7 +777,7 @@ fieldset[disabled] .btn-success.active {
 }
 .post h2{
   font-size: 1.5em;
-  line-height: 1.5em !important;
+  line-height: 1.5em;
 }
 .post .item-details{
   padding-top: 20px;
@@ -786,7 +785,7 @@ fieldset[disabled] .btn-success.active {
 }
 @media (max-width: 767px) {
   .post h1{
-    font-size: 30px !important;
+    font-size: 30px;
   }
   .post h2{
     font-size: 1.25em;
