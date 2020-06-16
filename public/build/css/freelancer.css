@@ -139,6 +139,7 @@ header .intro-text .skills {
 }
 
 @media (min-width: 768px) {
+
   header .container {
     padding-top: 200px;
     padding-bottom: 100px;
@@ -176,6 +177,7 @@ thead th {
 }
 
 @media (max-width: 767px) {
+
   .admin-top-block {
     height: 50px;
   }
@@ -278,21 +280,25 @@ thead th {
 }
 
 @media (min-width: 768px) {
+
   .navbar-custom {
     padding: 25px 0;
     -webkit-transition: padding 0.3s;
     -moz-transition: padding 0.3s;
     transition: padding 0.3s;
   }
+
   .navbar-custom .navbar-brand {
     font-size: 2em;
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
   }
+
   .navbar-custom.affix {
     padding: 10px 0;
   }
+
   .navbar-custom.affix .navbar-brand {
     font-size: 1.5em;
   }
@@ -318,6 +324,7 @@ section.success {
 }
 
 @media (max-width: 767px) {
+
   section {
     padding: 75px 0;
   }
@@ -341,6 +348,7 @@ div.row.form {
 }
 
 @media (max-width: 400px) {
+
   #admin-post button {
     margin-top: 10px;
   }
@@ -351,12 +359,14 @@ div.row.form {
 }
 
 @media (max-width: 500px) {
+
   #admin-post h2 {
     font-size: 2em;
   }
 }
 
 @media (max-width: 500px) {
+
   #admin-post-comments h2 {
     font-size: 2em;
   }
@@ -400,18 +410,21 @@ div.row.form {
 }
 
 @media (max-width: 630px) {
+
   #comments button {
     margin-top: 20px;
   }
 }
 
 @media (max-width: 500px) {
+
   #comments button {
     margin-left: 20px;
   }
 }
 
 @media (max-width: 350px) {
+
   #comments button {
     margin-left: 0px;
   }
@@ -446,6 +459,7 @@ div.row.form {
 }
 
 @media (max-width: 767px) {
+
   #login h2 {
     margin-top: 50px;
   }
@@ -456,6 +470,7 @@ div.row.form {
 }
 
 @media (max-width: 450px) {
+
   #login-footer {
     margin-top: 100px;
   }
@@ -472,6 +487,7 @@ div.row.form {
 }
 
 @media (max-width: 767px) {
+
   #messageInfo {
     padding-top: 50px;
   }
@@ -543,6 +559,7 @@ div.row.form {
 }
 
 @media (min-width: 767px) {
+
   #portfolio .portfolio-item {
     margin: 0 0 30px;
   }
@@ -666,6 +683,7 @@ h5.card-title a.btn {
 }
 
 @media (max-width: 359px){
+
   .btn-captcha-code {
     margin-top: 5px;
   }
@@ -943,12 +961,15 @@ fieldset[disabled] .btn-success.active {
 }
 
 @media (max-width: 767px) {
+
   .post h1{
     font-size: 30px;
   }
+
   .post h2{
     font-size: 1.25em;
   }
+
   .post p {
     font-size: 18px;
   }
@@ -959,12 +980,14 @@ fieldset[disabled] .btn-success.active {
 }
 
 @media (max-width: 767px) {
+
   .post-admin-top-block {
     height: 50px;
   }
 }
 
 @media (max-width: 500px) {
+
   .post-admin-top-block {
     height: 20px;
   }
@@ -975,6 +998,7 @@ fieldset[disabled] .btn-success.active {
 }
 
 @media (max-width: 767px) {
+  
   .post-top-block {
     height: 50px;
   }
