@@ -1,5 +1,5 @@
 parameters:
-    autoload_files:
+    scanFiles:
         - constants.php
     level: 6
     paths :
