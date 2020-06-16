@@ -3,12 +3,13 @@
 namespace App\Modules;
 
 use App\Application\Application;
+use App\Application\HTTPRequest;
 
 class PublicApplication extends Application
 {
-    public function __construct()
+    public function __construct(HTTPRequest $httpRequest)
     {
-        parent::__construct();
+        parent::__construct($httpRequest);
         $this->module = 'public';
     }
 
