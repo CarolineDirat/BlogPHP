@@ -22,6 +22,7 @@ class AdminApplication extends Application
         if (empty($httpRequest->getUserSession())) {
             // store URI in session (used for redirection after login)
             $httpRequest->setSession('url', $httpRequest->requestURI());
+            $httpRequest->setSession('correctPath', '../');
             // go to login page
             $action = 'show';
             $page = 'login';
