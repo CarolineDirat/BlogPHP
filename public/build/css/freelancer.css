@@ -3,30 +3,37 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
+
 body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   overflow-x: hidden;
 }
+
 p {
   font-size: 20px;
 }
+
 p.small {
   font-size: 16px;
 }
+
 p.card-text {
   padding-right: 5%;
   padding-left: 5%;
   padding-bottom: 10px;
 }
+
 p.comment-author-date {
   font-weight: bold;
   color: #18BC9C;
   margin-top: 25px;
   margin-bottom: 5px;
 }
+
 p.comment-content {
   font-size: 17px;
 }
+
 a,
 a:hover,
 a:focus,
@@ -35,6 +42,7 @@ a.active {
   color: #18BC9C;
   outline: none;
 }
+
 a.link-post-admin {
   color: aliceblue;
 }
@@ -48,9 +56,11 @@ h6 {
   text-transform: uppercase;
   font-weight: 700;
 }
+
 h4 {
   line-height: 1.5;
 }
+
 hr.star-light,
 hr.star-primary {
   padding: 0;
@@ -60,49 +70,60 @@ hr.star-primary {
   max-width: 250px;
   margin: 25px auto 30px;
 }
+
 hr.star-light:after,
 hr.star-primary:after {
   content: "\f005";
-  font-family: FontAwesome;
+  font-family: FontAwesome, sans-serif;
   display: inline-block;
   position: relative;
   top: -0.8em;
   font-size: 2em;
   padding: 0 0.25em;
 }
+
 hr.star-light {
   border-color: white;
 }
+
 hr.star-light:after {
   background-color: #18BC9C;
   color: white;
 }
+
 hr.star-primary {
   border-color: #2C3E50;
 }
+
 hr.star-primary:after {
   background-color: white;
   color: #2C3E50;
 }
+
 .img-centered {
   margin: 0 auto;
 }
+
 .img-logo {
   width: 350px;
 }
+
 header {
   text-align: center;
   background: #18BC9C;
   color: white;
 }
+
 header .container {
   padding-top: 100px;
   padding-bottom: 50px;
 }
+
 header img {
   display: block;
   margin: 0 auto 20px;
 }
+
 header .intro-text .name {
   display: block;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -110,10 +131,12 @@ header .intro-text .name {
   font-weight: 700;
   font-size: 2em;
 }
+
 header .intro-text .skills {
   font-size: 1.25em;
   font-weight: 300;
 }
+
 @media (min-width: 768px) {
   header .container {
     padding-top: 200px;
@@ -126,52 +149,65 @@ header .intro-text .skills {
     font-size: 1.75em;
   }
 }
+
 td div.form-group {
   margin-bottom: 5px;
 }
+
 td div.well {
   padding-top: 0px;
   padding-bottom: 5px;
   padding-left: 25px;
   margin-bottom: 2px;
 }
+
 thead {
   color: #161f29;
 }
+
 thead th {
   margin-bottom: 20px;
 }
+
 .admin-top-block {
   height: 110px;
   background-color: #18BC9C;
 }
+
 @media (max-width: 767px) {
   .admin-top-block {
     height: 50px;
   }
 }
+
 .alert {
   margin-bottom: 0;
 }
+
 .alert.alert-warning.exception {
   margin-bottom: 50px;
 }
+
 .label-rejected {
   background-color: darkred;
 }
+
 .label-success {
   background-color: rgb(44, 62, 80);
 }
+
 .label-valid {
   background-color: turquoise;
 }
 .label-waiting {
   background-color: #2C3E50;
 }
+
 .form-control:focus {
   border-color: #18BC9C;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #18BC9C;
 }
+
 .navbar-custom {
   background: #2C3E50;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -179,54 +215,66 @@ thead th {
   font-weight: 700;
   border: none;
 }
+
 .navbar-custom a:focus {
   outline: none;
 }
+
 .navbar-custom .navbar-brand {
   color: white;
 }
+
 .navbar-custom .navbar-brand:hover,
 .navbar-custom .navbar-brand:focus,
 .navbar-custom .navbar-brand:active,
 .navbar-custom .navbar-brand.active {
   color: white;
 }
+
 .navbar-custom .navbar-nav {
   letter-spacing: 1px;
 }
+
 .navbar-custom .navbar-nav li a {
   color: white;
 }
+
 .navbar-custom .navbar-nav li a:hover {
   color: #18BC9C;
   outline: none;
 }
+
 .navbar-custom .navbar-nav li a:focus,
 .navbar-custom .navbar-nav li a:active {
   color: white;
 }
+
 .navbar-custom .navbar-nav li.active a {
   color: white;
   background: #18BC9C;
 }
+
 .navbar-custom .navbar-nav li.active a:hover,
 .navbar-custom .navbar-nav li.active a:focus,
 .navbar-custom .navbar-nav li.active a:active {
   color: white;
   background: #18BC9C;
 }
+
 .navbar-custom .navbar-toggle {
   color: white;
   text-transform: uppercase;
   font-size: 10px;
   border-color: white;
 }
+
 .navbar-custom .navbar-toggle:hover,
 .navbar-custom .navbar-toggle:focus {
   background-color: #18BC9C;
   color: white;
   border-color: #18BC9C;
 }
+
 @media (min-width: 768px) {
   .navbar-custom {
     padding: 25px 0;
@@ -247,21 +295,26 @@ thead th {
     font-size: 1.5em;
   }
 }
+
 .table>thead>tr>th {
   padding-bottom: 30px;
   border-bottom: none;
 }
+
 section {
   padding: 100px 0;
 }
+
 section h2 {
   margin: 0;
   font-size: 3em;
 }
+
 section.success {
   background: #18BC9C;
   color: white;
 }
+
 @media (max-width: 767px) {
   section {
     padding: 75px 0;
@@ -270,25 +323,31 @@ section.success {
     padding-top: 75px;
   }
 }
+
 #admin {
   background: #18BC9C;
   color: white;
 }
+
 #admin div.add-post {
   margin-bottom: 50px;
 }
+
 div.row.form {
   padding-left: 15px;
   padding-right: 15px;
 }
+
 @media (max-width: 400px) {
   #admin-post button {
     margin-top: 10px;
   }
 }
+
 #admin-post h2 {
   font-size: 2.5em;
 }
+
 @media (max-width: 500px) {
   #admin-post h2 {
     font-size: 2em;
@@ -299,6 +358,7 @@ div.row.form {
     font-size: 2em;
   }
 }
+
 #admin-post-comments h3 {
   margin-top: 30px;
   margin-bottom: 20px;
@@ -306,18 +366,22 @@ div.row.form {
 #comment-form {
   margin-top: 50px;
 }
+
 #comment-form div.control-group {
   margin-left: 5px;
   margin-right: 5px;
 }
+
 #comment-form div.form-group button {
   margin-left: 0;
   margin-top: 10px;
   margin-bottom: 30px;
 }
+
 #comment-form div.form-group {
   margin-bottom: 0;
 }
+
 #comment-form p {
   font-size: 17px;
   margin-left: 5px;
@@ -325,9 +389,11 @@ div.row.form {
 #comments h2 {
   margin-bottom: 30px;
 }
+
 #comments button {
     margin-left: 80px;
 }
+
 @media (max-width: 630px) {
   #comments button {
     margin-top: 20px;
@@ -343,74 +409,92 @@ div.row.form {
     margin-left: 0px;
   }
 }
+
 #comments-footer {
   height: 50px;
 }
+
 #delete-post button, #delete-post a {
   margin-right: 10px;
   margin-left: 10px;
   margin-top: 10px;
 }
+
 #delete-post div.post p {
   font-size: 15px;
 }
+
 #error {
   margin-top:150px; 
   font-size:1.25em;
 }
+
 #login button.btn-login {
   margin-top: 30px;
 }
+
 #login h2 {
   margin-top: 100px;
 }
+
 @media (max-width: 767px) {
   #login h2 {
     margin-top: 50px;
   }
 }
+
 #login-footer {
   margin-top: 250px;
 }
+
 @media (max-width: 450px) {
   #login-footer {
     margin-top: 100px;
   }
 }
+
 #messageInfo {
   padding: 0;
   padding-top: 110px;
   font-size: 18px;
 }
+
 #messageInfo div.container {
   width: 100%;
 }
+
 @media (max-width: 767px) {
   #messageInfo {
     padding-top: 50px;
   }
 }
+
 #message-login p{
   padding-top: 30px;
   padding-bottom: 30px;
   margin-bottom: 50px;
 }
+
 #message-login span {
   font-weight: bold;
   color: #18BC9C;
 }
+
 #portfolio{
   margin-top: 100px;
 }
+
 #portfolio .portfolio-item {
   margin: 0 0 15px;
   right: 0;
 }
+
 #portfolio .portfolio-item .portfolio-link {
   display: block;
   position: relative;
   margin: 0 auto;
 }
+
 #portfolio .portfolio-item .portfolio-link .caption {
   background: rgba(24, 188, 156, 0.9);
   position: absolute;
@@ -421,9 +505,11 @@ div.row.form {
   -webkit-transition: all ease 0.5s;
   -moz-transition: all ease 0.5s;
 }
+
 #portfolio .portfolio-item .portfolio-link .caption:hover {
   opacity: 1;
 }
+
 #portfolio .portfolio-item .portfolio-link .caption .caption-content {
   position: absolute;
   width: 100%;
@@ -434,30 +520,37 @@ div.row.form {
   margin-top: -12px;
   color: white;
 }
+
 #portfolio .portfolio-item .portfolio-link .caption .caption-content i {
   margin-top: -12px;
 }
+
 #portfolio .portfolio-item .portfolio-link .caption .caption-content h3,
 #portfolio .portfolio-item .portfolio-link .caption .caption-content h4 {
   margin: 0;
 }
+
 #portfolio * {
   z-index: 2;
 }
+
 @media (min-width: 767px) {
   #portfolio .portfolio-item {
     margin: 0 0 30px;
   }
 }
+
 #register button.btn-register {
   margin-top: 30px;
 }
+
 .floating-label-form-group {
   position: relative;
   margin-bottom: 0;
   padding-bottom: 0.5em;
   border-bottom: 1px solid #eeeeee;
 }
+
 .floating-label-form-group input,
 .floating-label-form-group textarea {
   z-index: 1;
@@ -471,6 +564,7 @@ div.row.form {
   box-shadow: none !important;
   resize: none;
 }
+
 .floating-label-form-group label {
   display: block;
   z-index: 0;
@@ -487,88 +581,111 @@ div.row.form {
   -ms-transition: top 0.3s ease,opacity 0.3s ease;
   transition: top 0.3s ease,opacity 0.3s ease;
 }
+
 .floating-label-form-group:not(:first-child) {
   padding-left: 14px;
   border-left: 1px solid #eeeeee;
 }
+
 .floating-label-form-group-with-value label {
   top: 0;
   opacity: 1;
 }
+
 .floating-label-form-group-with-focus label {
   color: #18BC9C;
 }
+
 form .row:first-child .floating-label-form-group {
   border-top: 1px solid #eeeeee;
 }
+
 footer {
   color: white;
 }
+
 footer h3 {
   margin-bottom: 30px;
 }
+
 footer .footer-above {
   padding-top: 50px;
   background-color: #2C3E50;
 }
+
 footer .footer-col {
   margin-bottom: 50px;
 }
+
 footer .footer-below {
   padding: 25px 0;
   background-color: #233140;
 }
+
 .footer-menu {
   background-color: #2C3E50;
 }
+
 .footer-menu .nav>li>a:hover{
   background-color: #2C3E50;
   color: #18BC9C;
 }
+
 a.nav-link {
   color: white;
 }
+
 a.btn.btn-primary.btn-comments-admin-post {
   background-color: #B40404;
   border-color: #B40404;
 }
+
 h5.card-title a.btn {
   white-space: normal;
 }
+
 .bg-primary {
   background-color: #18BC9C;
 }
+
 .btn-admin-post {
   margin-left: 10px;
   margin-bottom: 5px;
 }
+
 .btn-captcha-code {
   margin-left: 10px;
 }
+
 @media(max-width: 359px){
   .btn-captcha-code {
     margin-top: 5px;
   }
 }
+
 .btn-captcha-code a:active,
 .btn-captcha-code a:hover,
 .btn-captcha-code a:focus {
   text-decoration-line: none;
 }
+
 div.row.btn-comments {
   text-align: center;
   margin-bottom: 20px;
 }
+
 .btn-menu {
   text-transform: uppercase;
   background-color: #828582;
   border-color: #828582;
   margin-left: 20px;
 }
+
 .btn-menu:hover {
   background-color: #18BC9C;
   border-color: #18BC9C;
 }
+
 .btn-outline {
   color: white;
   font-size: 20px;
@@ -577,6 +694,7 @@ div.row.btn-comments {
   transition: all 0.3s ease-in-out;
   margin-top: 15px;
 }
+
 .btn-outline:hover,
 .btn-outline:focus,
 .btn-outline:active,
@@ -585,12 +703,14 @@ div.row.btn-comments {
   background: white;
   border: solid 2px white;
 }
+
 .btn-primary {
   color: white;
   background-color: #2C3E50;
   border-color: #2C3E50;
   font-weight: 700;
 }
+
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
@@ -600,11 +720,13 @@ div.row.btn-comments {
   background-color: #1a242f;
   border-color: #161f29;
 }
+
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
   background-image: none;
 }
+
 .btn-primary.disabled,
 .btn-primary[disabled],
 fieldset[disabled] .btn-primary,
@@ -623,20 +745,24 @@ fieldset[disabled] .btn-primary.active {
   background-color: #2C3E50;
   border-color: #2C3E50;
 }
+
 .btn-primary .badge {
   color: #2C3E50;
   background-color: white;
 }
+
 .btn-primary.btn-scroll-contact-form {
 	border-radius: 19px;
 	margin-left: 10px;
 }
+
 .btn-success {
   color: white;
   background-color: #18BC9C;
   border-color: #18BC9C;
   font-weight: 700;
 }
+
 .btn-success:hover,
 .btn-success:focus,
 .btn-success:active,
@@ -646,11 +772,13 @@ fieldset[disabled] .btn-primary.active {
   background-color: #128f76;
   border-color: #11866f;
 }
+
 .btn-success:active,
 .btn-success.active,
 .open .dropdown-toggle.btn-success {
   background-image: none;
 }
+
 .btn-success.disabled,
 .btn-success[disabled],
 fieldset[disabled] .btn-success,
@@ -669,10 +797,12 @@ fieldset[disabled] .btn-success.active {
   background-color: #18BC9C;
   border-color: #18BC9C;
 }
+
 .btn-success .badge {
   color: #18BC9C;
   background-color: white;
 }
+
 .btn-social {
   display: inline-block;
   height: 60px;
@@ -683,15 +813,18 @@ fieldset[disabled] .btn-success.active {
   font-size: 30px;
   line-height: 55px;
 }
+
 .btn:focus,
 .btn:active,
 .btn.active {
   outline: none;
 }
+
 .comment-author {
   color: #128f76;
   font-weight: bold;
 }
+
 .scroll-top {
   position: fixed;
   right: 2%;
@@ -700,6 +833,7 @@ fieldset[disabled] .btn-success.active {
   height: 50px;
   z-index: 1049;
 }
+
 .scroll-top .btn {
   font-size: 20px;
   width: 50px;
@@ -707,9 +841,11 @@ fieldset[disabled] .btn-success.active {
   border-radius: 100%;
   line-height: 28px;
 }
+
 .scroll-top .btn:focus {
   outline: none;
 }
+
 .portfolio-modal .modal-content {
   border-radius: 0;
   background-clip: border-box;
@@ -720,16 +856,20 @@ fieldset[disabled] .btn-success.active {
   padding: 100px 0;
   text-align: center;
 }
+
 .portfolio-modal .modal-content h2 {
   margin: 0;
   font-size: 3em;
 }
+
 .portfolio-modal .modal-content img {
   margin-bottom: 30px;
 }
+
 .portfolio-modal .modal-content .item-details {
   margin: 30px 0;
 }
+
 .portfolio-modal .close-modal {
   position: absolute;
   width: 75px;
@@ -739,9 +879,11 @@ fieldset[disabled] .btn-success.active {
   right: 25px;
   cursor: pointer;
 }
+
 .portfolio-modal .close-modal:hover {
   opacity: 0.3;
 }
+
 .portfolio-modal .close-modal .lr {
   height: 75px;
   width: 1px;
@@ -754,6 +896,7 @@ fieldset[disabled] .btn-success.active {
   /* Safari and Chrome */
   z-index: 1051;
 }
+
 .portfolio-modal .close-modal .lr .rl {
   height: 75px;
   width: 1px;
@@ -765,24 +908,30 @@ fieldset[disabled] .btn-success.active {
   /* Safari and Chrome */
   z-index: 1052;
 }
+
 .portfolio-modal .modal-backdrop {
   opacity: 0;
   display: none;
 }
+
 .post {
   padding-top: 50px;
 }
+
 .post a.btn-primary {
   margin-left: 30px;
 }
+
 .post h2{
   font-size: 1.5em;
   line-height: 1.5em;
 }
+
 .post .item-details{
   padding-top: 20px;
   padding-bottom: 50px;
 }
+
 @media (max-width: 767px) {
   .post h1{
     font-size: 30px;
@@ -793,9 +942,12 @@ fieldset[disabled] .btn-success.active {
   .post p {
     font-size: 18px;
   }
-}.post-admin-top-block {
+}
+
+.post-admin-top-block {
   height: 110px;
 }
+
 @media (max-width: 767px) {
   .post-admin-top-block {
     height: 50px;
@@ -806,17 +958,21 @@ fieldset[disabled] .btn-success.active {
     height: 20px;
   }
 }
+
 .post-top-block {
   height: 130px;
 }
+
 @media (max-width: 767px) {
   .post-top-block {
     height: 50px;
   }
 }
+
 .title-post-admin {
   color: #11866f;
 }
+
 .username {
   opacity: 0;
   position: absolute;
