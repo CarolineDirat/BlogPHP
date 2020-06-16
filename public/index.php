@@ -20,7 +20,7 @@ try {
     if (!class_exists($appClass)) {
         throw new Exception("Error Processing Request : No page corresponds to that requested because '.{$appClass}.' class does'nt exist");
     }
-    $app = new $appClass();
+    $app = new $appClass($httpRequest);
     // checks if route from request exist
     $route = new Route(
         $httpRequest->getData('module'),

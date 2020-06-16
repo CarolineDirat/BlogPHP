@@ -36,9 +36,9 @@ abstract class Application
      */
     protected string $module = '';
 
-    public function __construct()
+    public function __construct(HTTPRequest $httpRequest)
     {
-        $this->setHttpRequest(new HTTPRequest());
+        $this->setHttpRequest($httpRequest);
         $this->setTwigRenderer(new TwigRenderer('../templates'));
         $this->setRouter(new Router());
         $this->checkToken();
