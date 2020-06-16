@@ -16,6 +16,7 @@ BlogPHP use:
 - **MySQL** database that you can manage with a **database tool** (as [phpmyadmin](https://www.phpmyadmin.net/) or [DBeaver](https://dbeaver.io/) ...)
 - **URL rewriting**, so on Apache, you must active **rewrite_module** module.
 - **[cocur/slugify](https://github.com/cocur/slugify)** package requires the Multibyte String extension from PHP. Typically you can use the configure option --enable-mbstring while compiling PHP. More information can be found in the [PHP documentation](https://www.php.net/manual/en/mbstring.installation.php).
+- **PHPMailer** to send emails. To understand its configuration in config/config.php, and in src/Application/PHPMailerApp.php, you can see its [documentation](https://github.com/PHPMailer/PHPMailer#a-simple-example) on Github.
 
 ## Installation on a local server :
 
