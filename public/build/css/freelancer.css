@@ -25,7 +25,7 @@ p.card-text {
 
 p.comment-author-date {
   font-weight: bold;
-  color: #18BC9C;
+  color: #18bc9c;
   margin-top: 25px;
   margin-bottom: 5px;
 }
@@ -39,7 +39,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-  color: #18BC9C;
+  color: #18bc9c;
   outline: none;
 }
 
@@ -88,17 +88,17 @@ hr.star-light {
 }
 
 hr.star-light::after {
-  background-color: #18BC9C;
+  background-color: #18bc9c;
   color: white;
 }
 
 hr.star-primary {
-  border-color: #2C3E50;
+  border-color: #2c3e50;
 }
 
 hr.star-primary::after {
   background-color: white;
-  color: #2C3E50;
+  color: #2c3e50;
 }
 
 .img-centered {
@@ -111,7 +111,7 @@ hr.star-primary::after {
 
 header {
   text-align: center;
-  background: #18BC9C;
+  background: #18bc9c;
   color: white;
 }
 
@@ -139,14 +139,15 @@ header .intro-text .skills {
 }
 
 @media (min-width: 768px) {
-
   header .container {
     padding-top: 200px;
     padding-bottom: 100px;
   }
+
   header .intro-text .name {
     font-size: 3.75em;
   }
+
   header .intro-text .skills {
     font-size: 1.75em;
   }
@@ -173,11 +174,10 @@ thead th {
 
 .admin-top-block {
   height: 110px;
-  background-color: #18BC9C;
+  background-color: #18bc9c;
 }
 
 @media (max-width: 767px) {
-
   .admin-top-block {
     height: 50px;
   }
@@ -204,16 +204,16 @@ thead th {
 }
 
 .label-waiting {
-  background-color: #2C3E50;
+  background-color: #2c3e50;
 }
 
 .form-control:focus {
-  border-color: #18BC9C;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #18BC9C;
+  border-color: #18bc9c;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #18bc9c;
 }
 
 .navbar-custom {
-  background: #2C3E50;
+  background: #2c3e50;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
@@ -244,7 +244,7 @@ thead th {
 }
 
 .navbar-custom .navbar-nav li a:hover {
-  color: #18BC9C;
+  color: #18bc9c;
   outline: none;
 }
 
@@ -255,14 +255,14 @@ thead th {
 
 .navbar-custom .navbar-nav li.active a {
   color: white;
-  background: #18BC9C;
+  background: #18bc9c;
 }
 
 .navbar-custom .navbar-nav li.active a:hover,
 .navbar-custom .navbar-nav li.active a:focus,
 .navbar-custom .navbar-nav li.active a:active {
   color: white;
-  background: #18BC9C;
+  background: #18bc9c;
 }
 
 .navbar-custom .navbar-toggle {
@@ -274,13 +274,12 @@ thead th {
 
 .navbar-custom .navbar-toggle:hover,
 .navbar-custom .navbar-toggle:focus {
-  background-color: #18BC9C;
+  background-color: #18bc9c;
   color: white;
-  border-color: #18BC9C;
+  border-color: #18bc9c;
 }
 
 @media (min-width: 768px) {
-
   .navbar-custom {
     padding: 25px 0;
     -webkit-transition: padding 0.3s;
@@ -319,22 +318,22 @@ section h2 {
 }
 
 section.success {
-  background: #18BC9C;
+  background: #18bc9c;
   color: white;
 }
 
 @media (max-width: 767px) {
-
   section {
     padding: 75px 0;
   }
+
   section.first {
     padding-top: 75px;
   }
 }
 
 #admin {
-  background: #18BC9C;
+  background: #18bc9c;
   color: white;
 }
 
@@ -348,7 +347,6 @@ div.row.form {
 }
 
 @media (max-width: 400px) {
-
   #admin-post button {
     margin-top: 10px;
   }
@@ -359,14 +357,12 @@ div.row.form {
 }
 
 @media (max-width: 500px) {
-
   #admin-post h2 {
     font-size: 2em;
   }
 }
 
 @media (max-width: 500px) {
-
   #admin-post-comments h2 {
     font-size: 2em;
   }
@@ -375,6 +371,36 @@ div.row.form {
 #admin-post-comments h3 {
   margin-top: 30px;
   margin-bottom: 20px;
+}
+
+#comments h2 {
+  margin-bottom: 30px;
+}
+
+#comments button {
+  margin-left: 80px;
+}
+
+@media (max-width: 630px) {
+  #comments button {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  #comments button {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 350px) {
+  #comments button {
+    margin-left: 0px;
+  }
+}
+
+#comments-footer {
+  height: 50px;
 }
 
 #comment-form {
@@ -399,39 +425,6 @@ div.row.form {
 #comment-form p {
   font-size: 17px;
   margin-left: 5px;
-}
-
-#comments h2 {
-  margin-bottom: 30px;
-}
-
-#comments button {
-  margin-left: 80px;
-}
-
-@media (max-width: 630px) {
-
-  #comments button {
-    margin-top: 20px;
-  }
-}
-
-@media (max-width: 500px) {
-
-  #comments button {
-    margin-left: 20px;
-  }
-}
-
-@media (max-width: 350px) {
-
-  #comments button {
-    margin-left: 0px;
-  }
-}
-
-#comments-footer {
-  height: 50px;
 }
 
 #delete-post button,
@@ -459,7 +452,6 @@ div.row.form {
 }
 
 @media (max-width: 767px) {
-
   #login h2 {
     margin-top: 50px;
   }
@@ -470,7 +462,6 @@ div.row.form {
 }
 
 @media (max-width: 450px) {
-
   #login-footer {
     margin-top: 100px;
   }
@@ -487,7 +478,6 @@ div.row.form {
 }
 
 @media (max-width: 767px) {
-
   #messageInfo {
     padding-top: 50px;
   }
@@ -501,7 +491,7 @@ div.row.form {
 
 #message-login span {
   font-weight: bold;
-  color: #18BC9C;
+  color: #18bc9c;
 }
 
 #portfolio {
@@ -559,7 +549,6 @@ div.row.form {
 }
 
 @media (min-width: 767px) {
-
   #portfolio .portfolio-item {
     margin: 0 0 30px;
   }
@@ -618,7 +607,7 @@ div.row.form {
 }
 
 .floating-label-form-group-with-focus label {
-  color: #18BC9C;
+  color: #18bc9c;
 }
 
 form .row:first-child .floating-label-form-group {
@@ -635,7 +624,7 @@ footer h3 {
 
 footer .footer-above {
   padding-top: 50px;
-  background-color: #2C3E50;
+  background-color: #2c3e50;
 }
 
 footer .footer-col {
@@ -648,12 +637,12 @@ footer .footer-below {
 }
 
 .footer-menu {
-  background-color: #2C3E50;
+  background-color: #2c3e50;
 }
 
 .footer-menu .nav > li > a:hover {
-  background-color: #2C3E50;
-  color: #18BC9C;
+  background-color: #2c3e50;
+  color: #18bc9c;
 }
 
 a.nav-link {
@@ -670,7 +659,7 @@ h5.card-title a.btn {
 }
 
 .bg-primary {
-  background-color: #18BC9C;
+  background-color: #18bc9c;
 }
 
 .btn-admin-post {
@@ -683,7 +672,6 @@ h5.card-title a.btn {
 }
 
 @media (max-width: 359px) {
-
   .btn-captcha-code {
     margin-top: 5px;
   }
@@ -708,8 +696,8 @@ div.row.btn-comments {
 }
 
 .btn-menu:hover {
-  background-color: #18BC9C;
-  border-color: #18BC9C;
+  background-color: #18bc9c;
+  border-color: #18bc9c;
 }
 
 .btn-outline {
@@ -725,15 +713,15 @@ div.row.btn-comments {
 .btn-outline:focus,
 .btn-outline:active,
 .btn-outline.active {
-  color: #18BC9C;
+  color: #18bc9c;
   background: white;
   border: solid 2px white;
 }
 
 .btn-primary {
   color: white;
-  background-color: #2C3E50;
-  border-color: #2C3E50;
+  background-color: #2c3e50;
+  border-color: #2c3e50;
   font-weight: 700;
 }
 
@@ -768,12 +756,12 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-  background-color: #2C3E50;
-  border-color: #2C3E50;
+  background-color: #2c3e50;
+  border-color: #2c3e50;
 }
 
 .btn-primary .badge {
-  color: #2C3E50;
+  color: #2c3e50;
   background-color: white;
 }
 
@@ -784,8 +772,8 @@ fieldset[disabled] .btn-primary.active {
 
 .btn-success {
   color: white;
-  background-color: #18BC9C;
-  border-color: #18BC9C;
+  background-color: #18bc9c;
+  border-color: #18bc9c;
   font-weight: 700;
 }
 
@@ -820,12 +808,12 @@ fieldset[disabled] .btn-success:active,
 .btn-success.disabled.active,
 .btn-success[disabled].active,
 fieldset[disabled] .btn-success.active {
-  background-color: #18BC9C;
-  border-color: #18BC9C;
+  background-color: #18bc9c;
+  border-color: #18bc9c;
 }
 
 .btn-success .badge {
-  color: #18BC9C;
+  color: #18bc9c;
   background-color: white;
 }
 
@@ -914,7 +902,7 @@ fieldset[disabled] .btn-success.active {
   height: 75px;
   width: 1px;
   margin-left: 35px;
-  background-color: #2C3E50;
+  background-color: #2c3e50;
   transform: rotate(45deg);
   -ms-transform: rotate(45deg);
 
@@ -928,7 +916,7 @@ fieldset[disabled] .btn-success.active {
 .portfolio-modal .close-modal .lr .rl {
   height: 75px;
   width: 1px;
-  background-color: #2C3E50;
+  background-color: #2c3e50;
   transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   /* IE 9 */
@@ -961,7 +949,6 @@ fieldset[disabled] .btn-success.active {
 }
 
 @media (max-width: 767px) {
-
   .post h1{
     font-size: 30px;
   }
@@ -980,14 +967,12 @@ fieldset[disabled] .btn-success.active {
 }
 
 @media (max-width: 767px) {
-
   .post-admin-top-block {
     height: 50px;
   }
 }
 
 @media (max-width: 500px) {
-
   .post-admin-top-block {
     height: 20px;
   }
@@ -998,7 +983,6 @@ fieldset[disabled] .btn-success.active {
 }
 
 @media (max-width: 767px) {
-
   .post-top-block {
     height: 50px;
   }
