@@ -202,8 +202,7 @@ final class PostAdminController extends AbstractController
             if (
                 $httpRequest->hasPost('confirm-delete-post') &&
                 $httpRequest->hasPost('token') &&
-                $httpRequest->getSession('token') == $httpRequest->postData('token') &&
-                $httpRequest->getTokenTime() >= (time() - LENGTH_SESSION)
+                $httpRequest->getSession('token') == $httpRequest->postData('token')
             ) {
                 // deletion of the post with its comments
                 if ($postManager->delete($httpRequest->getData('id'))) {

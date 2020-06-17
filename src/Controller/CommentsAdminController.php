@@ -119,8 +119,7 @@ final class CommentsAdminController extends AbstractController
                 $httpRequest->hasGet('idComment') &&
                 'delete' === $httpRequest->getData('status') &&
                 $httpRequest->hasGet('token') &&
-                $httpRequest->getSession('token') === $httpRequest->getData('token') &&
-                $httpRequest->getTokenTime() >= (time() - LENGTH_SESSION)
+                $httpRequest->getSession('token') === $httpRequest->getData('token')
             ) {
                 // delete the comment
                 if (!$commentManager->delete($httpRequest->getData('idComment'))) {
