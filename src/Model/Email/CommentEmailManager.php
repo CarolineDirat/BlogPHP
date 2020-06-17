@@ -50,8 +50,10 @@ class CommentEmailManager
             'title' => $post->getTitle(),
         ];
         // send the mail
-        if ($mail->sendEmail($params)) {
-            return true;
+        if (!empty($mail)) {
+            if ($mail->sendEmail($params)) {
+                return true;
+            }
         }
 
         throw new Exception('Sending email to notify update of comment\'s status failed:'.$mail->ErrorInfo);
@@ -70,13 +72,15 @@ class CommentEmailManager
         $mail = new CommentReportAdminPHPMailer(true);    // Instantiation of PHPMailer and passing `true` enables exceptions
         // define $params for sendMail() method
         $params = [
-            'linkToLogin' => '<a href="'.SERVER_HOST.'/login" >Se connecter</a>',
+            'linkToLogin' => '<a href="'.SERVER_HOST.'/admin/comments/post/'.$post->getId().'" >Aller aux commentaires du post</a>',
             'comment' => $comment->getContent(),
             'title' => $post->getTitle(),
         ];
         // send the mail
-        if ($mail->sendEmail($params)) {
-            return true;
+        if (!empty($mail)) {
+            if ($mail->sendEmail($params)) {
+                return true;
+            }
         }
 
         throw new Exception('Sending email to report Admin a comment to validate failed:'.$mail->ErrorInfo);

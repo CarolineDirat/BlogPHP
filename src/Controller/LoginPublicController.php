@@ -18,21 +18,22 @@ final class LoginPublicController extends AbstractController
      */
     public function executeShowLogin(): HTTPResponse
     {
-        if ('POST' === $this->httpRequest->method()) {
+        $httpRequest = $this->httpRequest;
+        if ('POST' === $httpRequest->method()) {
             $login = new Login([
-                'username' => $this->httpRequest->postData('username'),
-                'pseudo' => $this->httpRequest->postData('pseudo'),
-                'password' => $this->httpRequest->postData('password'),
+                'username' => $httpRequest->postData('username'),
+                'pseudo' => $httpRequest->postData('pseudo'),
+                'password' => $httpRequest->postData('password'),
             ]);
             $loginForm = $this->buildLoginForm($login);
             $manager = new UserManagerPDO(PDOSingleton::getInstance()->getConnexion());
-            $formHandler = new LoginFormHandler($loginForm, $manager, $this->httpRequest);
+            $formHandler = new LoginFormHandler($loginForm, $manager, $httpRequest);
             if ($formHandler->process()) {
                 // check if user is enabled :
-                $user = $this->httpRequest->getUserSession();
+                $user = $httpRequest->getUserSession();
                 if (!$user->isEnabled()) {
                     // $_SESSION['user'] is unset if user is not enabled
-                    $this->httpRequest->unsetSession('user');
+                    $httpRequest->unsetSession('user');
                     // Build empty login form
                     $login = new Login();
                     $loginForm = $this->buildLoginForm($login);
@@ -44,6 +45,12 @@ final class LoginPublicController extends AbstractController
                             'messageLogin' => "Votre compte n'est pas encore activé ! \n Veuillez vérifier vos emails, un mail vous a été envoyé pour l'activer.",
                         ]
                     );
+                }
+                // user requested another URI before login
+                if ($httpRequest->hasSession('url')) {
+                    header('Location: ' . SERVER_HOST . $httpRequest->getSession('url'));
+                    $httpRequest->unsetSession('url');
+                    exit;
                 }
 
                 return new HTTPResponse(
@@ -64,8 +71,18 @@ final class LoginPublicController extends AbstractController
         // Build empty login form
         $login = new Login();
         $loginForm = $this->buildLoginForm($login);
+        $correctPath = null;
+        if ($httpRequest->hasSession('correctPath')) {
+            $correctPath = $httpRequest->getSession('correctPath');
+        }
 
-        return new HTTPResponse($this->getPage(), ['loginForm' => $loginForm]);
+        return new HTTPResponse(
+            $this->getPage(),
+            [
+                'loginForm' => $loginForm,
+                'correctPath' => $correctPath,
+            ]
+        );
     }
 
     /**

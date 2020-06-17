@@ -4,8 +4,8 @@
 
 {% block title %}{{ parent() }}Connexion{% endblock %}
 
-{% block themeCSS %}../../{{ parent() }}{% endblock %}
-{% block awesomeCSS %}../../{{ parent() }}{% endblock %}
+{% block themeCSS %}{{ correctPath }}../../{{ parent() }}{% endblock %}
+{% block awesomeCSS %}{{ correctPath }}../../{{ parent() }}{% endblock %}
 
 {% block contactLink %}"/#web"{% endblock %}
 
@@ -80,4 +80,4 @@
 
 {% block footerConnectionButton %}{% endblock %}
 
-{% block themeJS %}../../{{ parent() }}{% endblock %}
+{% block themeJS %}{{ correctPath }}../../{{ parent() }}{% endblock %}

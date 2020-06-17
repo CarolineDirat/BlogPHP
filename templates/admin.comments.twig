@@ -65,7 +65,7 @@
                         <tbody>
                             {% for comment in comments %}
                                 <tr>
-                                    <td class="col-xs-1 col-sm-1"> <span class="comment-author">{{ comment.author }}</span> {{ comment.dateCreation|date('d/m/Y h:i') }}  </td>
+                                    <td class="col-xs-1 col-sm-1"> <span class="comment-author">{{ comment.author }}</span> {{ comment.dateCreation|date('d/m/Y H:i') }}  </td>
                                     <td class="col-xs-6 col-sm-6"> {{ comment.content }} </td>
                                     <td class="col-xs-1 col-sm-1">
                                         <span class="label {{"label-#{comment.status}"}}">{{ comment.status }}</span>

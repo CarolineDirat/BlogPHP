@@ -80,6 +80,19 @@ final class HTTPRequest
     {
         $_SESSION[$key] = filter_var($value, FILTER_SANITIZE_STRING, []);
     }
+    
+    /**
+     * hasSession
+     * 
+     * checks if a variable exists in $_SESSION[$key]
+     *
+     * @param  string $key
+     * @return bool
+     */
+    public function hasSession(string $key): bool
+    {
+        return isset($_SESSION[$key]);
+    }
 
     /**
      * getUserSession.
