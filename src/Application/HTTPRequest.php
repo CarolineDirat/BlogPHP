@@ -15,6 +15,18 @@ final class HTTPRequest
     }
     
     /**
+     * redirection
+     *
+     * @param  ?string $uri
+     * @return void
+     */
+    public function redirection(?string $uri): void
+    {
+        header('Location: '. SERVER_HOST . $uri);
+        exit;
+    }
+    
+    /**
      * get a cookie variable if it exists.
      *
      * @return mixed string || false if the filter fails || null if $key does'nt exist
@@ -122,7 +134,9 @@ final class HTTPRequest
      */
     public function unsetSession(string $key): void
     {
-        unset($_SESSION[$key]);
+        if(isset($_SESSION[$key])) {
+            unset($_SESSION[$key]);
+        }
     }
 
     /**

@@ -48,9 +48,9 @@ final class LoginPublicController extends AbstractController
                 }
                 // user requested another URI before login
                 if ($httpRequest->hasSession('url')) {
-                    header('Location: ' . SERVER_HOST . $httpRequest->getSession('url'));
+                    $uri = $httpRequest->getSession('url');
                     $httpRequest->unsetSession('url');
-                    exit;
+                    $httpRequest->redirection($uri);
                 }
 
                 return new HTTPResponse(
