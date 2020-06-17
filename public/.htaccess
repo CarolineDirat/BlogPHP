@@ -1,6 +1,9 @@
 RewriteEngine on
 
+Options -Indexes
+
 RewriteRule ^$ index.php?module=public&action=show&page=home
+RewriteRule download download/resume.pdf
 RewriteRule ^post/([0-9]+)/([a-z0-9-]+) index.php?module=public&action=show&page=post&slug=$2&id=$1
 RewriteRule blog index.php?module=public&action=show&page=blog
 RewriteRule login index.php?module=public&action=show&page=login

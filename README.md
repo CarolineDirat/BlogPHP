@@ -1,26 +1,29 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8044d672c24c4334b6ddb7926e3ed1f4)](https://app.codacy.com/manual/CarolineDirat/BlogPHP?utm_source=github.com&utm_medium=referral&utm_content=CarolineDirat/BlogPHP&utm_campaign=Badge_Grade_Settings)
-
 # BlogPHP
 
 **Professional blog written as part of my web developer training.**
 PHP - Object Oriented Programming - Model View Controller
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8044d672c24c4334b6ddb7926e3ed1f4)](https://app.codacy.com/manual/CarolineDirat/BlogPHP?utm_source=github.com&utm_medium=referral&utm_content=CarolineDirat/BlogPHP&utm_campaign=Badge_Grade_Settings)
+
 ## Requirements
 
-BlogPHP installation needs (in command line):
-- **composer**:  [getcomposer.org/](https://getcomposer.org/)
-- **Git**: [git-scm.com/](https://git-scm.com/)
+#### BlogPHP installation needs:
+- in command line:
+  * **composer**:  [getcomposer.org/](https://getcomposer.org/)
+  * **Git**: [git-scm.com/](https://git-scm.com/) to clone the project
+- and:
+  * **NCSA HTTPd** server as **Apache**, because it use .htaccess file.
 
-BlogPHP use:
+#### BlogPHP use:
 - **PHP** version: 7.4.* (server and terminal),[www.php.net/](https://www.php.net/)
 - **MySQL** database that you can manage with a **database tool** (as [phpmyadmin](https://www.phpmyadmin.net/) or [DBeaver](https://dbeaver.io/) ...)
-- **URL rewriting**, so on Apache, you must active **rewrite_module** module.
-- **[cocur/slugify](https://github.com/cocur/slugify)** package requires the Multibyte String extension from PHP. Typically you can use the configure option --enable-mbstring while compiling PHP. More information can be found in the [PHP documentation](https://www.php.net/manual/en/mbstring.installation.php).
+- **URL rewriting**, so on **Apache**, you must active **rewrite_module** module.
+- **[cocur/slugify](https://github.com/cocur/slugify)** package requires the **Multibyte String extension** from PHP. Typically you can use the configure option --enable-mbstring while compiling PHP. More information can be found in the [PHP documentation](https://www.php.net/manual/en/mbstring.installation.php).
 - **PHPMailer** to send emails. To understand its configuration in config/config.php, and in src/Application/PHPMailerApp.php, you can see its [documentation](https://github.com/PHPMailer/PHPMailer#a-simple-example) on Github.
 
 ## Installation on a local server :
 
-The following instructions guide you to install the project locally, on the example of a Wampserver
+The following instructions guide you to install the project locally, on HTTP server Apache (for example : with Wampserver).
 
 1. **Clone the project** from Github 
    At the root of your local serveur, with command line
@@ -34,7 +37,7 @@ The following instructions guide you to install the project locally, on the exam
    > `composer install`
 
 3. Define your **configuration data**:
-  - **Rename** config/**config.php.dist** to config/**config.php**
+  - **copy** the config/**config.php.dist** file by naming it config/**config.php**
   - in config/config.php, from line 26, **define** each **constant value** with yours
    
 4. In your MySQL database :   
@@ -42,14 +45,12 @@ The following instructions guide you to install the project locally, on the exam
     > **charset**: utf8mb4  
     > **collation**: utf8mb4_unicode_ci
   
-  - **Create tables** in your database by running the script in the **createdatabase.sql** file 
-  
-  - Rename incomplete_dataset.sql (file at the root of BlogPHP directory) to **dataset.sql**
-    > You must specify users emails (You can put 4 identical mails)
+  - **Create tables** in your database by running the script in the **createdatabase.sql** file.
 
-  - Run **dataset.sql** script to put data in database.
+  - Run **incomplete_dataset.sql** script to put data in database. 
     > This data contains users, posts and comments (with different status) to understand how the site works. You can delete unnecessary data later. You will be able to change admin password later too.
-   
+    But **users's emails address are missing**, so from your database tools, **add users's emails**. You can put 4 identical mails, but Admin's email address must match to EMAIL_ADMIN constant defined in your config/config.php file.
+
      user         |  password
      -------------| --------------
      Admin        |  admin
@@ -63,14 +64,16 @@ Be careful, virtualhost must point to the public directory
    
 ### **Change the admin data to login**
   - You can change his pseudo as you want (but users pseudos must be distincts).
-  - Be carefful, passwords are hashed with `password_hash(string 'password', PASSWORD_DEFAULT')` => You can change admin passsword only if you use this function to hash it.
+  - Be careful, passwords are hashed with `password_hash(string 'password', PASSWORD_DEFAULT')` => You can change admin passsword only if you use this function to hash it.
 
 ## Use 
+
+##### Here are some URIs corresponding to the features of the blog:
 
 ### Any user
 #### /
 > On the home page, any user can contact you from contact form.
-Your CV must be in public directory with the resume.pdf name.
+Your CV must be a file named resume.pdf, in public/download directory.
 #### /blog    
 > Lists posts from most recent to oldest
 #### /post/{id}/{slug}
