@@ -33,6 +33,9 @@ final class PostPublicController extends AbstractController
             $listComments = $commentManager->getValidComments($post->getId());
             // if a comment has been sent
             if ('POST' === $httpRequest->method()) {
+                if (empty($httpRequest->getUserSession())) {
+                   $httpRequest->redirection('/login'); 
+                }
                 // instantiation Comment object with data
                 $comment = new Comment([
                     'content' => $httpRequest->postData('content'),
@@ -83,7 +86,7 @@ final class PostPublicController extends AbstractController
             $comment = new Comment();
             $formBuilder = new CommentFormBuilder($comment);
             $commentForm = $formBuilder->build()->getForm();
-            // URI is store un user session to be redirected after log in
+            // URI is store in user session to be redirected after log in
             if (empty($this->httpRequest->getUserSession())) {
                 $this->httpRequest->setSession('url', $this->httpRequest->requestURI());
             }
