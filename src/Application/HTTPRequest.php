@@ -91,11 +91,7 @@ final class HTTPRequest
      */
     public function hasSession(string $key): bool
     {
-        if (!isset($_SESSION[$key])) {
-            return false;
-        }
-
-        return true;
+        return isset($_SESSION[$key]);
     }
 
     /**
