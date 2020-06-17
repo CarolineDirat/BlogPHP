@@ -83,6 +83,10 @@ final class PostPublicController extends AbstractController
             $comment = new Comment();
             $formBuilder = new CommentFormBuilder($comment);
             $commentForm = $formBuilder->build()->getForm();
+            // URI is store un user session to be redirected after log in
+            if (empty($this->httpRequest->getUserSession())) {
+                $this->httpRequest->setSession('url', $this->httpRequest->requestURI());
+            }
 
             return new HTTPResponse(
                 $this->getPage(),
