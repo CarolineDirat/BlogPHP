@@ -66,6 +66,10 @@ Be careful, virtualhost must point to the public directory
   - You can change his pseudo as you want (but users pseudos must be distincts).
   - Be careful, passwords are hashed with `password_hash(string 'password', PASSWORD_DEFAULT')` => You can change admin passsword only if you use this function to hash it.
 
+### Warnings 
+##### If you want push this project in production :
+I have the rights for the CaroCode logo, you do not have the right to use it on your own website (or any other public use). You must therefore change the public/build/img/logo.png file.
+
 ## Use 
 
 ##### Here are some URIs corresponding to the features of the blog:
