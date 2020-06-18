@@ -50,10 +50,10 @@
                                         <td class="col-xs-1 col-sm-1"> <span class="comment-author">{{ comment.author }}</span> {{ comment.dateCreation|date('d/m/Y h:i') }} </td>
                                         <td class="col-xs-9 col-sm-9"> {{ comment.content }} </td>
                                         <td class="col-xs-1 col-sm-1">
-                                            <a href={{ "/admin/post/#{post.id}/comment/#{comment.id}/valid" }} role="button" class="btn btn-primary">Valider</a>
+                                            <a href={{ "/admin/post/#{post.id}/comment/#{comment.id}/valid-#{token}" }} role="button" class="btn btn-primary">Valider</a>
                                         </td>
                                         <td class="col-xs-1 col-sm-1">
-                                            <a href={{ "/admin/post/#{post.id}/comment/#{comment.id}/rejected" }} role="button" class="btn btn-primary">Rejeter</a>
+                                            <a href={{ "/admin/post/#{post.id}/comment/#{comment.id}/rejected-#{token}" }} role="button" class="btn btn-primary">Rejeter</a>
                                         </td>
                                     </tr>
                                 {% endif %}

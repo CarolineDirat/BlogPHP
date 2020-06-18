@@ -69,7 +69,7 @@ final class CommentsAdminController extends AbstractController
                     // $status can only be 'waiting', 'valid' and 'rejected' in setStatus() method and it will be 'waiting' by default
                     $comment->setStatus($httpRequest->postData('status'));
                 }
-                if ($httpRequest->hasGet('status')) {
+                if ($httpRequest->hasGet('status') && $httpRequest->checkGetToken()) {
                     // ... or from get data
                     // $status can only be 'waiting', 'valid' and 'rejected' in setStatus() method and it will be 'waiting' by default
                     $comment->setStatus($httpRequest->getData('status'));
