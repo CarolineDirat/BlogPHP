@@ -14,11 +14,11 @@ class ValuesEqualityValidator extends Validator
      *
      * the value which the field value must be compared
      *
-     * @var string
+     * @var ?string
      */
-    private string $refValue;
+    private ?string $refValue;
 
-    public function __construct(string $errorMessage, string $refValue)
+    public function __construct(string $errorMessage, ?string $refValue)
     {
         parent::__construct($errorMessage);
         $this->setRefValue($refValue);
@@ -34,7 +34,7 @@ class ValuesEqualityValidator extends Validator
      *
      * @return self
      */
-    public function setRefValue(string $refValue): self
+    public function setRefValue(?string $refValue): self
     {
         $this->refValue = $refValue;
 
