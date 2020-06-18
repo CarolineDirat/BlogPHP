@@ -65,7 +65,7 @@ final class PostAdminController extends AbstractController
                 $post = $postManager->getPost((int) $dao->lastInsertId());
                 // build empty comment form
                 $comment = new Comment();
-                $formBuilder = new CommentFormBuilder($comment);
+                $formBuilder = new CommentFormBuilder($comment, $httpRequest, $this->action);
                 $commentForm = $formBuilder->build()->getForm();
 
                 return new HTTPResponse(

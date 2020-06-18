@@ -41,9 +41,10 @@ final class PostPublicController extends AbstractController
                     'content' => $httpRequest->postData('content'),
                     'idPost' => $httpRequest->getData('id'),
                     'idUser' => $httpRequest->getUserSession()->getId(),
+                    'token' => $httpRequest->postData('token'),
                 ]);
                 // build comment form from $comment
-                $formBuilder = new CommentFormBuilder($comment);
+                $formBuilder = new CommentFormBuilder($comment, $httpRequest, $this->action);
                 $commentForm = $formBuilder->build()->getForm();
                 // instantiation of form handler and comment manager to process the form
                 $manager = new CommentManagerPDO($dao);
@@ -55,7 +56,7 @@ final class PostPublicController extends AbstractController
                     $manager->sendReportComment($comment, $post);
                     // build empty comment form
                     $comment = new Comment();
-                    $formBuilder = new CommentFormBuilder($comment);
+                    $formBuilder = new CommentFormBuilder($comment, $httpRequest, $this->action);
                     $commentForm = $formBuilder->build()->getForm();
                     // send HTTP response
                     return new HTTPResponse(
@@ -77,14 +78,14 @@ final class PostPublicController extends AbstractController
                         'comments' => $listComments,
                         'user' => $this->httpRequest->getUserSession(),
                         'commentForm' => $commentForm,
-                        'messageInfo' => "Votre commentaire n'a pas put être enregistré. \n Veuillez vérifier le contenu de votre commentaire.",
+                        'messageInfo' => "Votre commentaire n'a pas pu être enregistré. \n Veuillez vérifier le contenu de votre commentaire.",
                     ]
                 );
             }
             // else, if a comment hasn't been sent :
             // build empty comment form
             $comment = new Comment();
-            $formBuilder = new CommentFormBuilder($comment);
+            $formBuilder = new CommentFormBuilder($comment, $httpRequest, $this->action);
             $commentForm = $formBuilder->build()->getForm();
             // URI is store in user session to be redirected after log in
             if (empty($this->httpRequest->getUserSession())) {
