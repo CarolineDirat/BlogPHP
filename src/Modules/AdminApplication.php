@@ -21,7 +21,7 @@ class AdminApplication extends Application
         // if user session doesn't exist : go to login page
         if (empty($httpRequest->getUserSession())) {
             // store URI in session (used for redirection after login)
-            $httpRequest->setSession('url', $httpRequest->requestURI());
+            $httpRequest->setSession('uri', $httpRequest->requestURI());
             $httpRequest->setSession('correctPath', '../');
             // go to login page
             $action = 'show';

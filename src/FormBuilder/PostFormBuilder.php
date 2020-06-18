@@ -5,6 +5,7 @@ namespace App\FormBuilder;
 use App\Application\Entity;
 use App\Application\Form\FormBuilder;
 use App\Application\Form\InputTextField;
+use App\Application\Form\InputTokenField;
 use App\Application\Form\MaxLengthValidator;
 use App\Application\Form\NotEmptyValidator;
 use App\Application\Form\TextareaField;
@@ -12,18 +13,28 @@ use App\Application\Form\ValuesEqualityValidator;
 use App\Application\HTTPRequest;
 
 /**
- * CommentFormBuilder.
+ * PostFormBuilder.
  *
  * Builder of post form (for add or update a post)
  */
 final class PostFormBuilder extends FormBuilder
 {
     private HTTPRequest $httpRequest;
+    
+    /**
+     * action
+     * 
+     * used to define idField of token field
+     *
+     * @var string
+     */
+    private string $action;
 
-    public function __construct(Entity $entity, HTTPRequest $httpRequest)
+    public function __construct(Entity $entity, HTTPRequest $httpRequest, string $action)
     {
         parent::__construct($entity);
         $this->setHttpRequest($httpRequest);
+        $this->action = $action;
     }
 
     public function build(): self
@@ -43,8 +54,7 @@ final class PostFormBuilder extends FormBuilder
                         new MaxLengthValidator('Merci d\'écrire un titre de moins de 150 caractères', 150),
                     ],
                 ])
-            )
-            ->addField(
+            )->addField(
                 new InputTextField([
                     'textLabel' => 'Chapô',
                     'name' => 'abstract',
@@ -58,8 +68,7 @@ final class PostFormBuilder extends FormBuilder
                         new MaxLengthValidator('Merci d\'écrire un chapô de moins de 300 caractères', 300),
                     ],
                 ])
-            )
-            ->addField(
+            )->addField(
                 new InputTextField([
                     'textLabel' => 'Auteur',
                     'name' => 'author',
@@ -75,8 +84,7 @@ final class PostFormBuilder extends FormBuilder
                         ),
                     ],
                 ])
-            )
-            ->addField(
+            )->addField(
                 new TextareaField([
                     'textLabel' => 'Contenu de l\'article',
                     'name' => 'content',
@@ -89,6 +97,16 @@ final class PostFormBuilder extends FormBuilder
                         new NotEmptyValidator('Merci d\'écrire l\'article.'),
                         new MaxLengthValidator('Merci d\'écrire un article de moins de 10 000 caractères', 15000),
                     ],
+                ])
+            )->addField(
+                new InputTokenField([ 
+                    // name property is already defined to 'token' in InputTokenField class
+                    'idField' => 'token-post-'.$this->action,
+                    'value' => $this->httpRequest->getSession('token'),
+                    'validators' => [
+                        new NotEmptyValidator('Essaye de te reconnecter pour voir...'),
+                        new ValuesEqualityValidator('Essaye de te reconnecter pour voir...', $this->httpRequest->getSession('token')),
+                    ]
                 ])
             )
         ;

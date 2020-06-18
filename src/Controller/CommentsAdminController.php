@@ -64,12 +64,12 @@ final class CommentsAdminController extends AbstractController
                 // I get the comment from the bdd
                 $comment = $commentManager->getComment($httpRequest->getData('idComment'));
                 // Edition of comment's status ...
-                if ($httpRequest->hasPost('status')) {
+                if ($httpRequest->hasPost('status') && $httpRequest->checkPostToken()) {
                     // ... from post data ...
                     // $status can only be 'waiting', 'valid' and 'rejected' in setStatus() method and it will be 'waiting' by default
                     $comment->setStatus($httpRequest->postData('status'));
                 }
-                if ($httpRequest->hasGet('status')) {
+                if ($httpRequest->hasGet('status') && $httpRequest->checkGetToken()) {
                     // ... or from get data
                     // $status can only be 'waiting', 'valid' and 'rejected' in setStatus() method and it will be 'waiting' by default
                     $comment->setStatus($httpRequest->getData('status'));
@@ -118,9 +118,7 @@ final class CommentsAdminController extends AbstractController
             if (
                 $httpRequest->hasGet('idComment') &&
                 'delete' === $httpRequest->getData('status') &&
-                $httpRequest->hasGet('token') &&
-                $httpRequest->getSession('token') === $httpRequest->getData('token') &&
-                $httpRequest->getTokenTime() >= (time() - LENGTH_SESSION)
+                $httpRequest->checkGetToken()
             ) {
                 // delete the comment
                 if (!$commentManager->delete($httpRequest->getData('idComment'))) {

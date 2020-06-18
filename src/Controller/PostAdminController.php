@@ -22,9 +22,9 @@ final class PostAdminController extends AbstractController
      *
      * @return Form
      */
-    public function buildPostForm(Post $post, HTTPRequest $httpRequest): Form
+    public function buildPostForm(Post $post, HTTPRequest $httpRequest, string $action): Form
     {
-        $formBuilder = new PostFormBuilder($post, $httpRequest);
+        $formBuilder = new PostFormBuilder($post, $httpRequest, $action);
 
         return $formBuilder->build()->getForm();
     }
@@ -49,9 +49,10 @@ final class PostAdminController extends AbstractController
                 'content' => $httpRequest->postData('content'),
                 'author' => $httpRequest->postData('author'),
                 'idUser' => $httpRequest->getUserSession()->getId(),
+                'token' => $httpRequest->postData('token'),
             ]);
             // build a post form with fields values
-            $postForm = $this->buildPostForm($post, $httpRequest);
+            $postForm = $this->buildPostForm($post, $httpRequest, $this->action);
             // instantiate PostFormHandler
             $dao = PDOSingleton::getInstance()->getConnexion();
             $manager = new PostManagerPDO($dao);
@@ -64,7 +65,7 @@ final class PostAdminController extends AbstractController
                 $post = $postManager->getPost((int) $dao->lastInsertId());
                 // build empty comment form
                 $comment = new Comment();
-                $formBuilder = new CommentFormBuilder($comment);
+                $formBuilder = new CommentFormBuilder($comment, $httpRequest, $this->action);
                 $commentForm = $formBuilder->build()->getForm();
 
                 return new HTTPResponse(
@@ -88,7 +89,7 @@ final class PostAdminController extends AbstractController
         }
         // else, we only need an empty post form
         $post = new Post();
-        $postForm = $this->buildPostForm($post, $httpRequest);
+        $postForm = $this->buildPostForm($post, $httpRequest, $this->action);
 
         return new HTTPResponse(
             $this->getAction().'.'.$this->getPage(),
@@ -124,9 +125,10 @@ final class PostAdminController extends AbstractController
                     'author' => $httpRequest->postData('author'),
                     'idUser' => $httpRequest->getUserSession()->getId(),
                     'id' => $httpRequest->getData('id'),
+                    'token' => $httpRequest->postData('token'),
                 ]);
                 // build a post form with fields values
-                $postForm = $this->buildPostForm($post, $httpRequest);
+                $postForm = $this->buildPostForm($post, $httpRequest, $this->action);
                 // instantiate PostFormHandler
                 $manager = new PostManagerPDO($dao);
                 $formHandler = new PostFormHandler($postForm, $manager, $httpRequest);
@@ -138,7 +140,7 @@ final class PostAdminController extends AbstractController
                     $postManager = new PostManagerPDO($dao);
                     $post = $postManager->getPost((int) $httpRequest->getData('id'));
                     // build postForm with post object
-                    $postForm = $this->buildPostForm($post, $httpRequest);
+                    $postForm = $this->buildPostForm($post, $httpRequest, $this->action);
                 } else {
                     // if process fails : a message alerts the user
                     $messageInfo = 'La modification du  post a échoué, veuillez vérifier les valeurs des champs';
@@ -160,7 +162,7 @@ final class PostAdminController extends AbstractController
             $postManager = new PostManagerPDO($dao);
             $post = $postManager->getPost((int) $httpRequest->getData('id'));
             // build postForm with post object
-            $postForm = $this->buildPostForm($post, $httpRequest);
+            $postForm = $this->buildPostForm($post, $httpRequest, $this->action);
 
             return new HTTPResponse(
                 $this->getAction().'.'.$this->getPage(),
@@ -201,9 +203,7 @@ final class PostAdminController extends AbstractController
             // if deletion is confirmed, and tokens are validated
             if (
                 $httpRequest->hasPost('confirm-delete-post') &&
-                $httpRequest->hasPost('token') &&
-                $httpRequest->getSession('token') == $httpRequest->postData('token') &&
-                $httpRequest->getTokenTime() >= (time() - LENGTH_SESSION)
+                $httpRequest->checkPostToken()
             ) {
                 // deletion of the post with its comments
                 if ($postManager->delete($httpRequest->getData('id'))) {

@@ -15,6 +15,18 @@ final class HTTPRequest
     }
     
     /**
+     * redirection
+     *
+     * @param  ?string $uri
+     * @return void
+     */
+    public function redirection(?string $uri): void
+    {
+        header('Location: '. SERVER_HOST . $uri);
+        exit;
+    }
+    
+    /**
      * get a cookie variable if it exists.
      *
      * @return mixed string || false if the filter fails || null if $key does'nt exist
@@ -57,6 +69,32 @@ final class HTTPRequest
         $tokenTime = isset($_SESSION['token_time']) ? filter_var($_SESSION['token_time'], FILTER_VALIDATE_INT, []) : false;
 
         return !empty($tokenTime) ? $tokenTime : 0;
+    }
+    
+    /**
+     * checkPostToken
+     *
+     * @return bool
+     */
+    public function checkPostToken(): bool
+    {
+        if (!$this->hasPost('token')) {
+            return false;
+        }
+        return $this->getSession('token') === $this->postData('token');
+    }
+    
+    /**
+     * checkGetToken
+     *
+     * @return bool
+     */
+    public function checkGetToken(): bool
+    {
+        if (!$this->hasGet('token')) {
+            return false;
+        }
+        return $this->getSession('token') === $this->getData('token');
     }
 
     /**
@@ -122,7 +160,9 @@ final class HTTPRequest
      */
     public function unsetSession(string $key): void
     {
-        unset($_SESSION[$key]);
+        if(isset($_SESSION[$key])) {
+            unset($_SESSION[$key]);
+        }
     }
 
     /**
