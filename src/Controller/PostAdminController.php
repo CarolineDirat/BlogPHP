@@ -201,8 +201,7 @@ final class PostAdminController extends AbstractController
             // if deletion is confirmed, and tokens are validated
             if (
                 $httpRequest->hasPost('confirm-delete-post') &&
-                $httpRequest->hasPost('token') &&
-                $httpRequest->getSession('token') == $httpRequest->postData('token')
+                $httpRequest->checkPostToken()
             ) {
                 // deletion of the post with its comments
                 if ($postManager->delete($httpRequest->getData('id'))) {

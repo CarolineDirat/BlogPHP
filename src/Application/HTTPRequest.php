@@ -70,6 +70,32 @@ final class HTTPRequest
 
         return !empty($tokenTime) ? $tokenTime : 0;
     }
+    
+    /**
+     * checkPostToken
+     *
+     * @return bool
+     */
+    public function checkPostToken(): bool
+    {
+        if (!$this->hasPost('token')) {
+            return false;
+        }
+        return $this->getSession('token') === $this->postData('token');
+    }
+    
+    /**
+     * checkGetToken
+     *
+     * @return bool
+     */
+    public function checkGetToken(): bool
+    {
+        if (!$this->hasGet('token')) {
+            return false;
+        }
+        return $this->getSession('token') === $this->getData('token');
+    }
 
     /**
      * get a string session variable if it exists.
