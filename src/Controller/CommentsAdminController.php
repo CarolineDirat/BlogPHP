@@ -64,7 +64,7 @@ final class CommentsAdminController extends AbstractController
                 // I get the comment from the bdd
                 $comment = $commentManager->getComment($httpRequest->getData('idComment'));
                 // Edition of comment's status ...
-                if ($httpRequest->hasPost('status')) {
+                if ($httpRequest->hasPost('status') && $httpRequest->checkPostToken()) {
                     // ... from post data ...
                     // $status can only be 'waiting', 'valid' and 'rejected' in setStatus() method and it will be 'waiting' by default
                     $comment->setStatus($httpRequest->postData('status'));
