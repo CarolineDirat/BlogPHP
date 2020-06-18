@@ -43,8 +43,13 @@
                             <div class="form-group">
                                 {{ fieldBuilder(postForm.fields.content, ['placeholder', 'maxlength', 'rows', 'required'], 'form-control') }}
                             </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group">
+                                {{ fieldBuilder(postForm.fields.token, ['value'], '') }}
+                            </div>
                             <div class="text-right">
-                                 <a role="button" href="/admin" class="btn btn-primary ">Annuler</a>
+                                 <a role="button" href="/admin" class="btn btn-primary">Annuler</a>
                             </div>
                         </div>
                         <div class="row">

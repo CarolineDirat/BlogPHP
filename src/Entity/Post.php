@@ -71,6 +71,13 @@ final class Post extends Entity
      * @var ?string
      */
     private ?string $author = null;
+    
+    /**
+     * token
+     *
+     * @var ?string
+     */
+    private ?string $token = null;
 
     /**
      * setId.
@@ -268,6 +275,30 @@ final class Post extends Entity
     public function setAuthor(string $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return  ?string
+     */ 
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    /**
+     * Set token
+     *
+     * @param  ?string  $token  token
+     *
+     * @return  self
+     */ 
+    public function setToken(?string $token) : self
+    {
+        $this->token = $token;
 
         return $this;
     }
