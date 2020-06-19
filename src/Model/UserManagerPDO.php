@@ -82,13 +82,12 @@ final class UserManagerPDO extends UserManager
         $req->execute();
         $data = $req->fetch();
         $req->closeCursor();
-        $password = $data['password'];
-        if (empty($password)) {
+        if (empty($data)) {
             return false;
         }
         // checks password
         if (!empty($login->getPassword())) {
-            return password_verify($login->getPassword(), $password);
+            return password_verify($login->getPassword(), $data['password']);
         }
 
         return false;
