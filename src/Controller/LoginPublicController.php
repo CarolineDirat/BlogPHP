@@ -90,15 +90,29 @@ final class LoginPublicController extends AbstractController
      */
     public function executeLogoutLogin(): HTTPResponse
     {
+        $httpRequest = $this->httpRequest;
         // delete user session and his tokens
-        $this->httpRequest->unsetSession('user');
-        $this->httpRequest->unsetSession('token');
-        $this->httpRequest->unsetSession('token_time');
+        $httpRequest->unsetSession('user');
+        $httpRequest->unsetSession('token');
+        $httpRequest->unsetSession('token_time');
         // Build empty login form
         $login = new Login();
         $loginForm = $this->buildLoginForm($login);
+        // if logout from AdminApplication
+        $correctPath = null;
+        if ($httpRequest->hasSession('correctPath')) {
+            $correctPath = $httpRequest->getSession('correctPath');
+            $httpRequest->unsetSession('correctPath');
+        }
 
-        return new HTTPResponse($this->getPage(), ['loginForm' => $loginForm, 'messageLogin' => 'Vous êtes déconnecté.']);
+        return new HTTPResponse(
+            $this->getPage(),
+            [
+                'loginForm' => $loginForm,
+                'messageLogin' => 'Vous êtes déconnecté.',
+                'correctPath' => $correctPath,
+            ]
+        );
     }
 
     /**
