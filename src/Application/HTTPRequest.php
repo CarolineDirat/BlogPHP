@@ -13,19 +13,20 @@ final class HTTPRequest
     {
         session_start();
     }
-    
+
     /**
-     * redirection
+     * redirection.
      *
-     * @param  ?string $uri
+     * @param ?string $uri
+     *
      * @return void
      */
     public function redirection(?string $uri): void
     {
-        header('Location: '. SERVER_HOST . $uri);
+        header('Location: '.SERVER_HOST.$uri);
         exit;
     }
-    
+
     /**
      * get a cookie variable if it exists.
      *
@@ -70,9 +71,9 @@ final class HTTPRequest
 
         return !empty($tokenTime) ? $tokenTime : 0;
     }
-    
+
     /**
-     * checkPostToken
+     * checkPostToken.
      *
      * @return bool
      */
@@ -81,11 +82,12 @@ final class HTTPRequest
         if (!$this->hasPost('token')) {
             return false;
         }
+
         return $this->getSession('token') === $this->postData('token');
     }
-    
+
     /**
-     * checkGetToken
+     * checkGetToken.
      *
      * @return bool
      */
@@ -94,6 +96,7 @@ final class HTTPRequest
         if (!$this->hasGet('token')) {
             return false;
         }
+
         return $this->getSession('token') === $this->getData('token');
     }
 
@@ -118,10 +121,10 @@ final class HTTPRequest
     {
         $_SESSION[$key] = filter_var($value, FILTER_SANITIZE_STRING, []);
     }
-    
+
     /**
-     * hasSession
-     * 
+     * hasSession.
+     *
      * checks if a variable exists in $_SESSION[$key]
      *
      * @param  string $key
@@ -160,7 +163,7 @@ final class HTTPRequest
      */
     public function unsetSession(string $key): void
     {
-        if(isset($_SESSION[$key])) {
+        if (isset($_SESSION[$key])) {
             unset($_SESSION[$key]);
         }
     }

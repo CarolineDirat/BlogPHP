@@ -30,7 +30,7 @@ abstract class FormBuilder
 
     /**
      * getValueField.
-     * 
+     *
      * get a field value form its name
      *
      * @param  string $fieldName

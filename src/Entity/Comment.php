@@ -73,7 +73,7 @@ final class Comment extends Entity
     private string $email;
 
     /**
-     * token
+     * token.
      *
      * @var ?string
      */
@@ -255,22 +255,22 @@ final class Comment extends Entity
     }
 
     /**
-     * Get token
+     * Get token.
      *
-     * @return  ?string
-     */ 
+     * @return ?string
+     */
     public function getToken(): ?string
     {
         return $this->token;
     }
 
     /**
-     * Set token
+     * Set token.
      *
-     * @param  ?string  $token  token
+     * @param ?string $token token
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setToken(?string $token): self
     {
         $this->token = $token;
