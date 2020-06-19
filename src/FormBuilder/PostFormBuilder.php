@@ -20,10 +20,10 @@ use App\Application\HTTPRequest;
 final class PostFormBuilder extends FormBuilder
 {
     private HTTPRequest $httpRequest;
-    
+
     /**
-     * action
-     * 
+     * action.
+     *
      * used to define idField of token field
      *
      * @var string
@@ -99,14 +99,14 @@ final class PostFormBuilder extends FormBuilder
                     ],
                 ])
             )->addField(
-                new InputTokenField([ 
+                new InputTokenField([
                     // name property is already defined to 'token' in InputTokenField class
                     'idField' => 'token-post-'.$this->action,
                     'value' => $this->httpRequest->getSession('token'),
                     'validators' => [
                         new NotEmptyValidator('Essaye de te reconnecter pour voir...'),
                         new ValuesEqualityValidator('Essaye de te reconnecter pour voir...', $this->httpRequest->getSession('token')),
-                    ]
+                    ],
                 ])
             )
         ;

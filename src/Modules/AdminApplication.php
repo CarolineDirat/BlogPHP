@@ -46,8 +46,8 @@ class AdminApplication extends Application
         $nbSlash = mb_substr_count($httpRequest->requestURI(), '/');
         $correctPath = '';
         while ($nbSlash > 1) {
-            $correctPath .= '../'; 
-            $nbSlash -=1;
+            $correctPath .= '../';
+            --$nbSlash;
         }
 
         return $correctPath;

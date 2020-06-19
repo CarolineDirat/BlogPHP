@@ -43,10 +43,10 @@ abstract class Application
         $this->setRouter(new Router());
         $this->checkTokenTime();
     }
-    
+
     /**
-     * checkTokenTime
-     * 
+     * checkTokenTime.
+     *
      * delete user session and his tokens, if token time exists and expired
      *
      * @return void

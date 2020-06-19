@@ -35,7 +35,7 @@ final class PostPublicController extends AbstractController
             if ('POST' === $httpRequest->method()) {
                 if (empty($httpRequest->getUserSession())) {
                     $httpRequest->setSession('correctPath', '../../');
-                    $httpRequest->redirection('/login'); 
+                    $httpRequest->redirection('/login');
                 }
                 // instantiation Comment object with data
                 $comment = new Comment([

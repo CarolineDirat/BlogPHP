@@ -2,13 +2,13 @@
 
 namespace App\FormBuilder;
 
+use App\Application\Entity;
 use App\Application\Form\FormBuilder;
-use App\Application\Form\ValuesEqualityValidator;
+use App\Application\Form\InputTokenField;
 use App\Application\Form\MaxLengthValidator;
 use App\Application\Form\NotEmptyValidator;
 use App\Application\Form\TextareaField;
-use App\Application\Form\InputTokenField;
-use App\Application\Entity;
+use App\Application\Form\ValuesEqualityValidator;
 use App\Application\HTTPRequest;
 
 /**
@@ -19,16 +19,16 @@ use App\Application\HTTPRequest;
 final class CommentFormBuilder extends FormBuilder
 {
     private HTTPRequest $httpRequest;
-    
+
     /**
-     * action
-     * 
+     * action.
+     *
      * used to define idField of token field
      *
      * @var string
      */
     private string $action;
-    
+
     public function __construct(Entity $entity, HTTPRequest $httpRequest, string $action)
     {
         parent::__construct($entity);
@@ -61,7 +61,7 @@ final class CommentFormBuilder extends FormBuilder
                     'validators' => [
                         new NotEmptyValidator('Essaye de te reconnecter pour voir...'),
                         new ValuesEqualityValidator('Essaye de te reconnecter pour voir...', $this->httpRequest->getSession('token')),
-                    ]
+                    ],
                 ])
             )
         ;
@@ -70,10 +70,10 @@ final class CommentFormBuilder extends FormBuilder
     }
 
     /**
-     * Set the value of httpRequest
+     * Set the value of httpRequest.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setHttpRequest(HTTPRequest $httpRequest): self
     {
         $this->httpRequest = $httpRequest;
