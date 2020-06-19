@@ -51,12 +51,12 @@ The following instructions guide you to install the project locally, on HTTP ser
     > This data contains users, posts and comments (with different status) to understand how the site works. You can delete unnecessary data later. You will be able to change admin password later too.
     But **users's emails address are missing**, so from your database tools, **add users's emails**. You can put 4 identical mails, but Admin's email address must match to EMAIL_ADMIN constant defined in your config/config.php file.
 
-     user         |  password
-     -------------| --------------
-     Admin        |  admin
-     Subscriber1  |  subscriber1
-     Subscriber2  |  subscriber2
-     Subscriber3  |  subscriber3
+       user       |  password     |    role    |   status
+     ------------ | ------------- | ---------- | ------------
+     Admin        |  admin        | admin      | enabled
+     Subscriber1  |  subscriber1  | subscriber | enabled
+     Subscriber2  |  subscriber2  | subscriber | enabled
+     Subscriber3  |  subscriber3  | subscriber | not enabled
 
 5. Create a **virualhost** on **Wampserver**. 
 Be careful, virtualhost must point to the public directory
