@@ -17,7 +17,7 @@ abstract class UserManager extends Manager
      * getPseudo.
      *
      * method which returns the user's pseudo, corresponding to an identifier.
-     * 
+     *
      * @param  int $id
      * @return string
      */
