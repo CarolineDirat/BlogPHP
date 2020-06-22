@@ -40,9 +40,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-8 col-lg-offset-2 table-responsive">
                     <h3> Les commentaires en attente </h3>
-                    <table class="table row">
+                    <table class="table">
                         <tbody>
                             {% for comment in comments %}
                                 {% if comment.status == 'waiting' %}
@@ -61,7 +61,7 @@
                         </tbody>
                     </table>
                     <h3> Tous les commentaires </h3>
-                    <table class="table row">
+                    <table class="table">
                         <tbody>
                             {% for comment in comments %}
                                 <tr>
