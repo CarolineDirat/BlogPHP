@@ -67,7 +67,7 @@ final class HTTPRequest
      */
     public function getTokenTime(): int
     {
-        $tokenTime = isset($_SESSION['token_time']) ? filter_var($_SESSION['token_time'], FILTER_VALIDATE_INT, []) : false;
+        $tokenTime = $this->hasSession('token_time') ? filter_var($_SESSION['token_time'], FILTER_VALIDATE_INT, []) : false;
 
         return !empty($tokenTime) ? $tokenTime : 0;
     }
@@ -96,6 +96,9 @@ final class HTTPRequest
         if (!$this->hasGet('token')) {
             return false;
         }
+        if (!$this->hasSession('token')) {
+            return false;
+        }
 
         return $this->getSession('token') === $this->getData('token');
     }
@@ -103,11 +106,11 @@ final class HTTPRequest
     /**
      * get a string session variable if it exists.
      *
-     * @return ?string or false if the filter fails
+     * @return ?string
      */
     public function getSession(string $key): ?string
     {
-        $session = isset($_SESSION[$key]) ? filter_var($_SESSION[$key], FILTER_SANITIZE_STRING, []) : null;
+        $session = $this->hasSession($key) ? filter_var($_SESSION[$key], FILTER_SANITIZE_STRING, []) : null;
 
         return  !empty($session) ? $session : null;
     }
@@ -142,7 +145,7 @@ final class HTTPRequest
      */
     public function getUserSession(): ?User
     {
-        return (!empty($_SESSION['user'])) ? $_SESSION['user'] : null;
+        return $this->hasSession('user') ? $_SESSION['user'] : null;
     }
 
     /**
@@ -163,7 +166,7 @@ final class HTTPRequest
      */
     public function unsetSession(string $key): void
     {
-        if (isset($_SESSION[$key])) {
+        if ($this->hasSession($key)) {
             unset($_SESSION[$key]);
         }
     }
