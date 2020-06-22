@@ -8,6 +8,7 @@ use App\Application\Route;
 use App\Application\TwigRenderer;
 
 $twigRenderer = new TwigRenderer('../Templates');
+
 try {
     $httpRequest = new HTTPRequest();
     // if request has'nt $_GET['module'] or $_GET['action'] or $_GET['module']
