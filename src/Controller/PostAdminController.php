@@ -132,6 +132,9 @@ final class PostAdminController extends AbstractController
                 // instantiate PostFormHandler
                 $manager = new PostManagerPDO($dao);
                 $formHandler = new PostFormHandler($postForm, $manager, $httpRequest);
+                // if process fails : a message alerts the user
+                // and the content of the form remains that before validation
+                $messageInfo = 'La modification du  post a échoué, veuillez vérifier les valeurs des champs.';
                 // process post form
                 if ($formHandler->process()) {
                     // if process ok: we stay on update post page with new values, with a message of success
@@ -141,12 +144,8 @@ final class PostAdminController extends AbstractController
                     $post = $postManager->getPost((int) $httpRequest->getData('id'));
                     // build postForm with post object
                     $postForm = $this->buildPostForm($post, $httpRequest, $this->action);
-                } else {
-                    // if process fails : a message alerts the user
-                    $messageInfo = 'La modification du  post a échoué, veuillez vérifier les valeurs des champs';
-                    // and the content of the form remains that before validation
                 }
-
+                
                 return new HTTPResponse(
                     $this->getAction().'.'.$this->getPage(),
                     [
