@@ -10,13 +10,11 @@
 {% block contactLink %}/#web{% endblock %}
 
 {% block view %}
-
     <div  class="container">
         <div id="error" class="alert alert-warning exception" role="alert">
             <span style="font-weight:bold;">Une erreur s'est produite :</span> {{ error }}
         </div>
     </div>
-
 {% endblock %}
 
 {% block themeJS %}../../{{ parent() }}{% endblock %}
