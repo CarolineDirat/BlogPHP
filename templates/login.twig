@@ -12,7 +12,6 @@
 {% block headerConnectionButton %}{% endblock %}
 
 {% block view %}
-
     <section id="login">
         <div class="container">
             <div class="row">
@@ -21,61 +20,61 @@
                     <hr class="star-primary">
                 </div>
             </div>
-        {% if messageLogin %}
-            <div class="container" id="message-login">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        {% if user %}
-                            <p class="text-center bg-success">
-                        {% else %}
-                            <p class="text-center bg-warning">
-                        {% endif %}
-                        {{ messageLogin|nl2br }}
-                        {% if user %}
-                            <span>{{ user.pseudo }}</span>{{ " ! Vous êtes connecté :) " }}
-                        {% endif %}
-                        </p>
+            {% if messageLogin %}
+                <div class="container" id="message-login">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            {% if user %}
+                                <p class="text-center bg-success">
+                            {% else %}
+                                <p class="text-center bg-warning">
+                            {% endif %}
+                                {{ messageLogin|nl2br }}
+                            {% if user %}
+                                <span>{{ user.pseudo }}</span>{{ " ! Vous êtes connecté :) " }}
+                            {% endif %}
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </div>    
-        {% endif %}
+                </div>    
+            {% endif %}
 
-        {% if loginForm %}
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <form name="loginForm" id="loginForm"  method="post" action="/login">                  
-                            <div class="row control-group username">
-                                <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
-                                    {{ fieldBuilder(loginForm.fields.username, ['placeholder', 'maxlength'], 'form-control') }}
-                                    <p class="help-block text-danger"></p>
+            {% if loginForm %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <form name="loginForm" id="loginForm"  method="post" action="/login">                  
+                                <div class="row control-group username">
+                                    <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
+                                        {{ fieldBuilder(loginForm.fields.username, ['placeholder', 'maxlength'], 'form-control') }}
+                                        <p class="help-block text-danger"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row control-group">
-                                <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
-                                    {{ fieldBuilder(loginForm.fields.pseudo, ['placeholder', 'maxlength', 'autofocus'], 'form-control') }}
-                                    <p class="help-block text-danger"></p>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
+                                        {{ fieldBuilder(loginForm.fields.pseudo, ['placeholder', 'maxlength', 'autofocus'], 'form-control') }}
+                                        <p class="help-block text-danger"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row control-group">
-                                <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
-                                    {{ fieldBuilder(loginForm.fields.password, ['placeholder', 'maxlength'], 'form-control') }}
-                                    <p class="help-block text-danger"></p>
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 col-sm-6 floating-label-form-group controls">
+                                        {{ fieldBuilder(loginForm.fields.password, ['placeholder', 'maxlength'], 'form-control') }}
+                                        <p class="help-block text-danger"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-lg btn-login">Me connecter</button>
-                                </div>
-                            </div>     
-                        </form>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success btn-lg btn-login">Me connecter</button>
+                                    </div>
+                                </div>     
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="login-footer" class="row">
-            </div>
-        {% endif %}
-    </div>  
+                <div id="login-footer" class="row"></div>
+            {% endif %}
+        </div>
+    </section>
 {% endblock %}
 
 {% block footerConnectionButton %}{% endblock %}

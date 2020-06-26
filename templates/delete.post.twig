@@ -33,33 +33,30 @@
                                 <a href="/admin" role="button" class="btn btn-primary">Non, j'annule la suppression</a>
                             </div>
                         </form>
-                        
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                        <div class="post">
-                            <h4 class="text-center">{{ post.title }}</h4>
-                            <hr class="star-primary">
-                            <h5 class="text-center"> {{ post.abstract }} </h5>
-                            <hr class="star-primary">
-                            <p class="text-justify"> {{ post.content|nl2br }}</p>
-                            <ul class="list-inline item-details">
-                                <li>Auteur :
-                                    <strong>{{ post.author }}</strong>
-                                </li>
-                                <li>Date de dernière mise à jour :
-                                    <strong>{{ post.dateUpdate|date("d/m/Y") }}</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="post">
+                        <h4 class="text-center">{{ post.title }}</h4>
+                        <hr class="star-primary">
+                        <h5 class="text-center"> {{ post.abstract }} </h5>
+                        <hr class="star-primary">
+                        <p class="text-justify"> {{ post.content|nl2br }}</p>
+                        <ul class="list-inline item-details">
+                            <li>Auteur :
+                                <strong>{{ post.author }}</strong>
+                            </li>
+                            <li>Date de dernière mise à jour :
+                                <strong>{{ post.dateUpdate|date("d/m/Y") }}</strong>
+                            </li>
+                        </ul>
                     </div>
+                </div>
             </div>
         </div>
     </section>                    
-
 {% endblock %}
 
 {% block themeJS %}../../../../{{ parent() }}{% endblock %}

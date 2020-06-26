@@ -10,82 +10,81 @@
 {% block contactLink %}"/#web"{% endblock %}
 
 {% block view %}
-            {% if not messageInfo %}
-                <div class="post-top-block"></div>
-            {% endif %}
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="post">
-                            <h1 class="text-center">{{ post.title }}</h1>
-                            <hr class="star-primary">
-                            <h2 class="text-center"> {{ post.abstract }} </h2>
-                            <hr class="star-primary">
-                            <div class="row btn-comments">
-                                <a href="#comments" role="button" class="btn btn-success" > Aller aux commentaires </a>
-                            {% if user.role == 'admin' %}
-                                <a href={{ "/admin/comments/post/#{post.id}" }} role="button" class="btn btn-primary" > Gestion du post </a>
-                            {% endif %}
-                            </div>
-                            <p class="text-justify"> {{ post.content|nl2br }}</p>
-                            <ul class="list-inline item-details">
-                                <li>Auteur :
-                                    <strong>{{ post.author }}</strong>
-                                </li>
-                                <li>Date de dernière mise à jour :
-                                    <strong>{{ post.dateUpdate|date("d/m/Y") }}</strong>
-                                </li>
-                            </ul>
-                        </div>
+    {% if not messageInfo %}
+        <div class="post-top-block"></div>
+    {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="post">
+                    <h1 class="text-center">{{ post.title }}</h1>
+                    <hr class="star-primary">
+                    <h2 class="text-center"> {{ post.abstract }} </h2>
+                    <hr class="star-primary">
+                    <div class="row btn-comments">
+                        <a href="#comments" role="button" class="btn btn-success" > Aller aux commentaires </a>
+                        {% if user.role == 'admin' %}
+                            <a href={{ "/admin/comments/post/#{post.id}" }} role="button" class="btn btn-primary" > Gestion du post </a>
+                        {% endif %}
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div id="comments">
-                            <h2> 
-                                Commentaires 
-                                {% if not user %}
-                                    <a href="/login" class="nav-link">
-                                        <button type="button" class="btn btn-menu btn-success">
-                                            Me connecter pour commenter
-                                        </button>
-                                    </a>
-                                {% endif %}
-                            </h2>
-                            {% for comment in comments %}
-                                    <p class="comment-author-date"> {{ comment.author }} - {{ comment.dateCreation|date("d/m/Y") }}</p>
-                                    <p class="text-justify comment-content">{{ comment.content|nl2br }}</p>
-                            {% endfor %}
-                            {% if user %}
-                                <div id="comment-form">
-                                    <form name="contactForm" id="contactForm"  method="post" action={{"/post/#{post.id}/#{post.slug}"}}>                  
-                                        <div class="row control-group">
-                                            <div class="form-group controls">
-                                                {{ fieldBuilder(commentForm.fields.content, ['placeholder', 'maxlength','required', 'rows'], 'form-control') }}
-                                            </div>
-                                            <p class="text-danger">
-                                                Ce commentaire sera soumis à validation avant de pouvoir être affiché.
-                                            </p>
-                                        </div>
-                                        <div class="row control-group">
-                                            <div class="form-group controls">
-                                                {{ fieldBuilder(commentForm.fields.token, ['value'], '') }}
-                                            </div>
-                                        </div>
-                                        <div class="row control-group">
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-success">Envoyer le commentaire</button>
-                                            </div>
-                                        </div> 
-                                    </form>
-                                </div>
-                            {% endif %}                  
-                        </div>
-                    </div>
-                </div>
-                <div id="comments-footer" class="row">
+                    <p class="text-justify"> {{ post.content|nl2br }}</p>
+                    <ul class="list-inline item-details">
+                        <li>Auteur :
+                            <strong>{{ post.author }}</strong>
+                        </li>
+                        <li>Date de dernière mise à jour :
+                            <strong>{{ post.dateUpdate|date("d/m/Y") }}</strong>
+                        </li>
+                    </ul>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div id="comments">
+                    <h2> 
+                        Commentaires 
+                        {% if not user %}
+                            <a href="/login" class="nav-link">
+                                <button type="button" class="btn btn-menu btn-success">
+                                    Me connecter pour commenter
+                                </button>
+                            </a>
+                        {% endif %}
+                    </h2>
+                    {% for comment in comments %}
+                        <p class="comment-author-date"> {{ comment.author }} - {{ comment.dateCreation|date("d/m/Y") }}</p>
+                        <p class="text-justify comment-content">{{ comment.content|nl2br }}</p>
+                    {% endfor %}
+                    {% if user %}
+                        <div id="comment-form">
+                            <form name="contactForm" id="contactForm"  method="post" action={{"/post/#{post.id}/#{post.slug}"}}>                  
+                                <div class="row control-group">
+                                    <div class="form-group controls">
+                                        {{ fieldBuilder(commentForm.fields.content, ['placeholder', 'maxlength','required', 'rows'], 'form-control') }}
+                                    </div>
+                                    <p class="text-danger">
+                                        Ce commentaire sera soumis à validation avant de pouvoir être affiché.
+                                    </p>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group controls">
+                                        {{ fieldBuilder(commentForm.fields.token, ['value'], '') }}
+                                    </div>
+                                </div>
+                                <div class="row control-group">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success">Envoyer le commentaire</button>
+                                    </div>
+                                </div> 
+                            </form>
+                        </div>
+                    {% endif %}                  
+                </div>
+            </div>
+        </div>
+        <div id="comments-footer" class="row"></div>
+    </div>
 {% endblock %}
 
 {% block themeJS %}../../{{ parent() }}{% endblock %}
