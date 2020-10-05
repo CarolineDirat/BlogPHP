@@ -6,6 +6,11 @@ PHP - Object Oriented Programming - Model View Controller
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8044d672c24c4334b6ddb7926e3ed1f4)](https://app.codacy.com/manual/CarolineDirat/BlogPHP?utm_source=github.com&utm_medium=referral&utm_content=CarolineDirat/BlogPHP&utm_campaign=Badge_Grade_Settings)
 
+#### Constraints
+- no CMS
+- no framework
+The only lines of code that can come from elsewhere will be those of the Bootstrap theme, which you will be careful to choose.
+
 ## Requirements
 
 #### BlogPHP installation needs:
